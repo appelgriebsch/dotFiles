@@ -3,12 +3,12 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 " general bundles
 " git support
@@ -39,7 +39,7 @@ Bundle 'dart-lang/dart-vim-plugin'
 " Emmet support
 Bundle 'mattn/emmet-vim'
 " Go language support
-Plugin 'fatih/vim-go'
+Bundle 'fatih/vim-go'
 
 " color theme bundles
 Bundle 'altercation/vim-colors-solarized'
@@ -171,9 +171,6 @@ else
     colorscheme railscasts
     hi CursorLineNr  cterm=bold ctermfg=136
 endif
-
-set guifont=Source_Code_Pro_Medium:h13
-set guifontwide=Source_Code_Pro_Medium:h13
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
