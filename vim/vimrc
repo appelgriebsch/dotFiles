@@ -28,6 +28,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 " language syntax support
 Bundle 'sheerun/vim-polyglot'
+" completion support
+Bundle 'Shougo/neocomplete.vim'
 " LaTeX bundle
 Bundle 'vimlatex'
 " statistical R language
@@ -40,7 +42,7 @@ Bundle 'dart-lang/dart-vim-plugin'
 Bundle 'mattn/emmet-vim'
 " Go language support
 Bundle 'fatih/vim-go'
-
+Bundle 'nsf/gocode', {'rtp': 'vim/'}
 " color theme bundles
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jpo/vim-railscasts-theme'
@@ -132,9 +134,9 @@ augroup END
 " }}}
 
 " Tabs, spaces, wrapping {{{
-set tabstop=8
-set shiftwidth=4
-set softtabstop=4
+set tabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set wrap
 set textwidth=80
@@ -331,6 +333,12 @@ let g:gundo_debug = 1
 let g:gundo_preview_bottom = 1
 let g:gundo_tree_statusline = "Gundo"
 let g:gundo_preview_statusline = "Gundo Preview"
+" }}}
+
+" Neocomplete {{{
+
+let g:neocomplete#enable_at_startup = 1
+
 " }}}
 
 " status line (airline)
