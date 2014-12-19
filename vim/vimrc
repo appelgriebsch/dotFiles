@@ -30,6 +30,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'sheerun/vim-polyglot'
 " completion support
 Bundle 'Shougo/neocomplete.vim'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
 " LaTeX bundle
 Bundle 'vimlatex'
 " statistical R language
