@@ -1,0 +1,7 @@
+export GOROOT=/usr/local/go
+export GOPATH=/Users/appelgriebsch/Documents/golib
+export DART_SDK=/usr/local/dart
+
+export PATH=$GOPATH/bin:$PATH
+
+source ~/.shell_prompt.sh
