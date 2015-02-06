@@ -1,5 +1,4 @@
-export GOROOT=/usr/local/go
-export GOPATH=/Volumes/Media/Projects/golib
+export GOPATH=$HOME/Projects/golib
 export DART_SDK=/usr/local/dart
 
 export PATH=$GOPATH/bin:$PATH

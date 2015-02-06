@@ -47,7 +47,7 @@ Bundle 'fatih/vim-go'
 Bundle 'nsf/gocode', {'rtp': 'vim/'}
 " color theme bundles
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'jpo/vim-railscasts-theme'
+Bundle 'ajh17/Spacegray.vim'
 
 syntax on                     " syntax highlighing
 filetype on                   " try to detect filetypes
@@ -166,13 +166,13 @@ if has("gui_running")
     " Remove toolbar
     set guioptions-=T
     set background=dark
-    colorscheme railscasts
+    colorscheme spacegray
     set antialias
 else
     set t_Co=256
     "let g:solarized_termcolors=256      " use solarized 256 fallback
     set background=dark
-    colorscheme railscasts
+    colorscheme spacegray
     hi CursorLineNr  cterm=bold ctermfg=136
 endif
 

@@ -1,3 +1,6 @@
-[submodule "vundle"]
-	path = vim/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
+[submodule "shell/spacegray"]
+	path = shell/spacegray
+	url = https://appelgriebsch@github.com/tannadev/Spacegray-OSX-Terminal-Theme.git
+[submodule "xcode/spacegray"]
+	path = xcode/spacegray
+	url = https://appelgriebsch@github.com/zdne/spacegray-xcode.git
