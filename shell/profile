@@ -3,6 +3,4 @@ export DART_SDK=/usr/local/dart
 
 export PATH=$GOPATH/bin:$PATH
 
-alias vi=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 source ~/.shell_prompt.sh
