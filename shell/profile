@@ -1,6 +1,5 @@
 export GOPATH=$HOME/Projects/golib
-export DART_SDK=/usr/local/dart
-
 export PATH=$GOPATH/bin:$PATH
 
 source ~/.shell_prompt.sh
+source ~/.aliases.sh
