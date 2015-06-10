@@ -26,27 +26,18 @@ Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 " file & buffer enhancements
 Bundle 'kien/ctrlp.vim'
+" YouCompleteMe
+Bundle 'Valloric/YouCompleteMe'
 " language syntax support
 Bundle 'sheerun/vim-polyglot'
-" completion support
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-" LaTeX bundle
-Bundle 'vimlatex'
-" statistical R language
-Bundle 'jcfaria/Vim-R-plugin'
 " Markdown language
 Bundle 'plasticboy/vim-markdown'
-" Dart language
-Bundle 'dart-lang/dart-vim-plugin'
 " Emmet support
 Bundle 'mattn/emmet-vim'
 " Go language support
 Bundle 'fatih/vim-go'
 Bundle 'nsf/gocode', {'rtp': 'vim/'}
 " color theme bundles
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'ajh17/Spacegray.vim'
 
 syntax on                     " syntax highlighing
