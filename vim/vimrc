@@ -26,10 +26,10 @@ Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 " file & buffer enhancements
 Bundle 'kien/ctrlp.vim'
-" YouCompleteMe
-Bundle 'Valloric/YouCompleteMe'
 " language syntax support
 Bundle 'sheerun/vim-polyglot'
+" JavaScript language
+Bundle 'marijnh/tern_for_vim'
 " Markdown language
 Bundle 'plasticboy/vim-markdown'
 " Emmet support
