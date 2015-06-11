@@ -7,6 +7,3 @@
 [submodule "vundle"]
 	path = vim/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "shell/bash-it"]
-	path = shell/bash-it
-	url = git@github.com:Bash-it/bash-it.git
