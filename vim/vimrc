@@ -159,6 +159,7 @@ if has("gui_running")
     set background=dark
     colorscheme spacegray
     set antialias
+    set guifont=Source\ Code\ Pro:h14
 else
     set t_Co=256
     "let g:solarized_termcolors=256      " use solarized 256 fallback
