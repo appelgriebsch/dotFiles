@@ -28,6 +28,10 @@ Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 " language syntax support
 Bundle 'sheerun/vim-polyglot'
+" autocomplete support
+Bundle 'Shougo/neocomplete'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
 " JavaScript language
 Bundle 'marijnh/tern_for_vim'
 " Markdown language
