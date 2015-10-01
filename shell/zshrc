@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export GOPATH=$HOME/Projects/golib
+export GOPATH=$HOME/Documents/Projects/golib
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -51,7 +51,7 @@ plugins=(git bower docker npm osx redis-cli web-search)
 
 # User configuration
 
-export PATH="$GOPATH/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/MacGPG2/bin:/usr/texbin:/Library/Frameworks/Python.framework/Versions/3.4/bin"
+export PATH="/usr/local/texlive/2015basic/bin/universal-darwin:$GOPATH/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/MacGPG2/bin:/usr/texbin"
 export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
