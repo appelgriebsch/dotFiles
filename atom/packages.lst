@@ -10,6 +10,7 @@ atom-ternjs
 atom-typescript 
 atom-tsd
 autocomplete-angular-material
+autocomplete-paths
 autocomplete-python
 clipboard-plus
 color-picker
