@@ -4,8 +4,8 @@ export PATH=$GOPATH/bin:$PATH
 OS=`uname -s`
 
 if [[ "${OS}" == "Darwin" ]]; then
-  alias vi=/Application/MacVim.app/Contents/MacOS/Vim
-  alias vim=/Application/MacVim.app/Contents/MacOS/Vim
+  alias vi=/Applications/MacVim.app/Contents/MacOS/Vim
+  alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
   export ANDROID_HOME=$HOME/Library/Developer/Xamarin/android-sdk-macosx
 elif [[ "${OS}" == "Linux" ]]; then
   export ANDROID_HOME=/opt/android-sdk
