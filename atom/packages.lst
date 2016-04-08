@@ -4,6 +4,7 @@ api-workbench
 atom-angular-material-snippets
 atom-beautify
 atom-bootstrap3
+atom-pair
 atom-ternjs
 atom-tsd
 atom-typescript
@@ -21,8 +22,8 @@ autocomplete-xml
 builder-go
 clipboard-plus
 color-picker
-data-atom
 dash
+data-atom
 dockerletion
 emmet
 environment
@@ -37,12 +38,16 @@ go-plus
 gofmt
 gometalinter-linter
 gorename
-ide-flow
 language-babel
 language-docker
 language-graphql
+language-latex
+language-plantuml
 language-swift
+latex
+latexer
 linter
+linter-chktex
 linter-csslint
 linter-docker
 linter-eslint
@@ -60,6 +65,7 @@ minimap-highlight-selected
 navigator-godef
 pdf-view
 pigments
+plantuml-preview
 react
 react-snippets
 term3
