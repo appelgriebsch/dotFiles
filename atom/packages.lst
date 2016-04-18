@@ -1,6 +1,7 @@
 angularjs
 angularjs-snippets
 api-workbench
+asciidoc-preview
 atom-angular-material-snippets
 atom-beautify
 atom-bootstrap3
@@ -38,6 +39,7 @@ go-plus
 gofmt
 gometalinter-linter
 gorename
+language-asciidoc
 language-babel
 language-docker
 language-graphql
