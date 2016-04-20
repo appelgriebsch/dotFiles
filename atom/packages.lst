@@ -12,7 +12,6 @@ atom-typescript
 autocomplete-angular-material
 autocomplete-clang
 autocomplete-emojis
-autocomplete-go
 autocomplete-java
 autocomplete-json
 autocomplete-modules
@@ -20,7 +19,6 @@ autocomplete-paths
 autocomplete-python
 autocomplete-swift
 autocomplete-xml
-builder-go
 clipboard-plus
 color-picker
 dash
@@ -33,15 +31,10 @@ file-icons
 git-control
 git-plus
 git-time-machine
-go-config
-go-get
-go-plus
-gofmt
-gometalinter-linter
-gorename
 language-asciidoc
 language-babel
 language-docker
+language-ethereum
 language-graphql
 language-latex
 language-plantuml
@@ -53,7 +46,6 @@ linter-chktex
 linter-csslint
 linter-docker
 linter-eslint
-linter-flow
 linter-less
 linter-swiftc
 linter-tidy
@@ -64,13 +56,11 @@ minimap-bookmarks
 minimap-find-and-replace
 minimap-git-diff
 minimap-highlight-selected
-navigator-godef
 pdf-view
 pigments
 plantuml-preview
 react
 react-snippets
 term3
-tester-go
 tool-bar
 tool-bar-almighty
