@@ -1,5 +1,0 @@
-export GOPATH=$HOME/Projects/golib
-export PATH=$GOPATH/bin:$PATH
-
-source ~/.shell_prompt.sh
-source ~/.aliases.sh

@@ -46,13 +46,12 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bower docker node npm atom osx redis-cli web-search)
+plugins=(git github docker docker-compose emacs go node npm atom redis-cli web-search ubuntu)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -83,9 +82,3 @@ export LANG=en_US.UTF-8
 if [ -f $HOME/.zprofile ]; then
   source $HOME/.zprofile
 fi
-
-###-tns-completion-start-###
-if [ -f $HOME/.tnsrc ]; then 
-    source $HOME/.tnsrc 
-fi
-###-tns-completion-end-###
