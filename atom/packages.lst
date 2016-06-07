@@ -1,3 +1,4 @@
+Ensime
 angularjs
 angularjs-snippets
 api-workbench
@@ -7,11 +8,10 @@ atom-beautify
 atom-bootstrap3
 atom-pair
 atom-ternjs
-atom-tsd
-atom-typescript
 autocomplete-angular-material
 autocomplete-clang
 autocomplete-emojis
+autocomplete-flow
 autocomplete-go
 autocomplete-java
 autocomplete-json
@@ -20,6 +20,7 @@ autocomplete-paths
 autocomplete-python
 autocomplete-swift
 autocomplete-xml
+browser-plus
 builder-go
 clipboard-plus
 color-picker
@@ -39,6 +40,9 @@ go-plus
 gofmt
 gometalinter-linter
 gorename
+hyperclick
+ide-flow
+intentions
 language-asciidoc
 language-babel
 language-docker
@@ -47,6 +51,7 @@ language-graphql
 language-latex
 language-plantuml
 language-rdf
+language-scala
 language-sparql
 language-swift
 latex
@@ -56,10 +61,10 @@ linter-chktex
 linter-csslint
 linter-docker
 linter-eslint
+linter-flow
 linter-less
 linter-swiftc
 linter-tidy
-linter-tslint
 merge-conflicts
 minimap
 minimap-bookmarks
