@@ -1,4 +1,3 @@
-Ensime
 angularjs
 angularjs-snippets
 api-workbench
@@ -28,12 +27,10 @@ browser-plus
 builder-go
 clipboard-plus
 color-picker
-dash
 data-atom
 devdocs
 dockerletion
 emmet
-environment
 expose
 file-icons
 git-control
@@ -54,10 +51,10 @@ language-babel
 language-docker
 language-dot
 language-graphql
+language-javascript-jsx
 language-latex
 language-plantuml
 language-rdf
-language-scala
 language-sparql
 language-swift
 latex
@@ -81,7 +78,6 @@ navigator-godef
 pdf-view
 pigments
 plantuml-viewer
-react
 react-es6-snippets
 react-snippets
 solarized-one-light-ui
