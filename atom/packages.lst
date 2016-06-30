@@ -6,6 +6,9 @@ atom-angular-material-snippets
 atom-beautify
 atom-bootstrap3
 atom-easy-jsdoc
+atom-material-numix-syntax
+atom-material-syntax-dark
+atom-material-ui
 atom-mermaid
 atom-pair
 atom-polymer
@@ -80,8 +83,4 @@ pigments
 plantuml-viewer
 react-es6-snippets
 react-snippets
-solarized-one-light-ui
 term3
-tester-go
-tool-bar
-tool-bar-almighty
