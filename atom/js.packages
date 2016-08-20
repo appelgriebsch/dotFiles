@@ -6,15 +6,11 @@ atom-easy-jsdoc
 atom-react-native-autocomplete
 atom-ternjs
 autocomplete-angular-material
-autocomplete-clang
 autocomplete-emojis
 autocomplete-flow
-autocomplete-go
 autocomplete-json
 autocomplete-modules
 autocomplete-paths
-autocomplete-python
-autocomplete-swift
 autocomplete-xml
 chester-atom-syntax
 clipboard-plus
@@ -24,7 +20,6 @@ emmet
 file-icons
 git-plus
 git-time-machine
-go-plus
 ide-flow
 intentions
 language-babel
@@ -33,7 +28,6 @@ language-graphql
 language-javascript-jsx
 language-rdf
 language-sparql
-language-swift
 linter
 linter
 linter-csslint
@@ -41,7 +35,6 @@ linter-docker
 linter-eslint
 linter-flow
 linter-less
-linter-swiftc
 linter-tidy
 merge-conflicts
 minimap
