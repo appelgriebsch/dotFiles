@@ -3,16 +3,17 @@ angularjs-snippets
 atom-angular-material-snippets
 atom-bootstrap3
 atom-easy-jsdoc
+atom-material-ui
+atom-material-syntax
 atom-react-native-autocomplete
-atom-ternjs
 autocomplete-angular-material
 autocomplete-emojis
 autocomplete-flow
 autocomplete-json
 autocomplete-modules
 autocomplete-paths
+autocomplete-python
 autocomplete-xml
-chester-atom-syntax
 clipboard-plus
 color-picker
 dockerletion
@@ -29,7 +30,6 @@ language-javascript-jsx
 language-rdf
 language-sparql
 linter
-linter
 linter-csslint
 linter-docker
 linter-eslint
@@ -43,6 +43,6 @@ minimap-find-and-replace
 minimap-git-diff
 pigments
 react-snippets
-terminal-plus
+terminal-panel
 tool-bar
 tool-bar-almighty

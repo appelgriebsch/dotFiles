@@ -1,8 +1,10 @@
 Hydrogen
 asciidoc-preview
+atom-material-ui
+atom-material-syntax
 atom-mermaid
 autocomplete-python
-chester-atom-syntax
+autocomplete-R
 clipboard-plus
 file-icons
 graphviz-preview
@@ -29,6 +31,6 @@ minimap-bookmarks
 minimap-find-and-replace
 minimap-git-diff
 pdf-view
-terminal-plus
+terminal-panel
 tool-bar
 uber-juno
