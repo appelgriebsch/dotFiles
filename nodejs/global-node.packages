@@ -5,6 +5,7 @@ eslint
 eslint-plugin-react
 flow-bin
 flow-remove-types
+flow-typed
 graphql-pouch
 gulp
 horizon
