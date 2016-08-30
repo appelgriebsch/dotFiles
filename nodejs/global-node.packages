@@ -1,9 +1,11 @@
+appelgriebsch/pouchdb-server
 babel-cli
 cordova
 eslint
 eslint-plugin-react
 flow-bin
 flow-remove-types
+graphql-pouch
 gulp
 horizon
 ijavascript
@@ -12,5 +14,6 @@ json
 node-gyp
 npms-cli
 react-native-cli
+tslint
 typescript
 typings
