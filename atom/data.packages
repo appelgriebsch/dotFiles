@@ -23,8 +23,6 @@ latex-completions
 latexer
 linter
 linter-chktex
-linter-spell
-linter-spell-latex
 merge-conflicts
 minimap
 minimap-bookmarks
