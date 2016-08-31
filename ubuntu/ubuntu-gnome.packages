@@ -498,6 +498,7 @@ golang-race-detector-runtime
 golang-src
 google-play-music-desktop-player
 gpgv
+graphicsmagick
 graphviz
 grep
 grilo-plugins-0.2-base:amd64
@@ -557,6 +558,7 @@ ibus-gtk:amd64
 ibus-gtk3:amd64
 ibus-pinyin
 ibus-table
+icnsutils
 icoutils
 ifupdown
 iio-sensor-proxy
@@ -1240,6 +1242,7 @@ libical1a:amd64
 libice-dev:amd64
 libice6:amd64
 libice6:i386
+libicns1:amd64
 libicu55:amd64
 libicu55:i386
 libidn11:amd64
