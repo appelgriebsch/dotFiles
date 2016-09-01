@@ -2833,7 +2833,9 @@ wbritish
 wget
 whiptail
 whoopsie
+wine
 wine-gecko2.21:amd64
+wine-gecko2.21:i386
 wine-mono0.0.8
 wine1.8
 wine1.8-amd64
