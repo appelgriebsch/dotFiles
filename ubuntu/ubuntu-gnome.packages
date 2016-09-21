@@ -39,7 +39,6 @@ at-spi2-core
 atom
 attr
 aufs-tools
-augeas-lenses
 autoconf
 autoconf-archive
 automake
@@ -71,7 +70,6 @@ boilerplate
 brasero
 brasero-cdrkit
 brasero-common
-bridge-utils
 brltty
 bsdmainutils
 bsdutils
@@ -83,7 +81,6 @@ ca-certificates
 ca-certificates-java
 ca-certificates-mono
 cabextract
-cgmanager
 cgroupfs-mount
 cheese
 cheese-common
@@ -97,6 +94,7 @@ cli-common
 cmake
 cmake-data
 cmake-qt-gui
+code
 colord
 colord-data
 command-not-found
@@ -108,7 +106,6 @@ coreutils
 cpio
 cpp
 cpp-5
-cpu-checker
 cracklib-runtime
 crda
 cron
@@ -184,7 +181,6 @@ duplicity
 dvd+rw-tools
 e2fslibs:amd64
 e2fsprogs
-ebtables
 ed
 efibootmgr
 eject
@@ -195,8 +191,6 @@ empathy-common
 enchant
 enpass
 eog
-epiphany-browser
-epiphany-browser-data
 erlang-asn1
 erlang-base
 erlang-crypto
@@ -212,13 +206,9 @@ espeak-data:amd64
 ethtool
 evince
 evince-common
-evolution
-evolution-common
 evolution-data-server
 evolution-data-server-common
 evolution-data-server-online-accounts
-evolution-ews
-evolution-plugins
 exuberant-ctags
 fakeroot
 ffmpeg
@@ -319,6 +309,7 @@ gdb
 gdbserver
 gdisk
 gdm3
+geary
 gedit
 gedit-common
 gedit-plugins
@@ -424,7 +415,6 @@ gnome-accessibility-profiles
 gnome-accessibility-themes
 gnome-backgrounds
 gnome-bluetooth
-gnome-boxes
 gnome-builder
 gnome-calculator
 gnome-calendar
@@ -496,7 +486,6 @@ golang-doc
 golang-go
 golang-race-detector-runtime
 golang-src
-google-play-music-desktop-player
 gpgv
 graphicsmagick
 graphviz
@@ -577,6 +566,7 @@ initscripts
 inkscape
 inputattach
 insomnia
+inspect.demonstrator
 insserv
 install-info
 intel-gpu-tools
@@ -589,7 +579,6 @@ iptables
 iputils-arping
 iputils-ping
 iputils-tracepath
-ipxe-qemu
 ipython
 ipython-notebook
 ipython-notebook-common
@@ -710,7 +699,6 @@ libaudio2:amd64
 libaudiofile1:amd64
 libaudit-common
 libaudit1:amd64
-libaugeas0
 libauthen-sasl-perl
 libavahi-client3:amd64
 libavahi-client3:i386
@@ -749,7 +737,6 @@ libboost-date-time1.58.0:amd64
 libboost-filesystem1.58.0:amd64
 libboost-iostreams1.58.0:amd64
 libboost-locale1.58.0:amd64
-libboost-random1.58.0:amd64
 libboost-regex1.58.0:amd64
 libboost-system1.58.0:amd64
 libboost-thread1.58.0:amd64
@@ -771,7 +758,6 @@ libc6-dev-x32
 libc6-i386
 libc6-x32
 libcaca0:amd64
-libcacard0:amd64
 libcache-lru-perl
 libcairo-gobject2:amd64
 libcairo-perl
@@ -804,7 +790,6 @@ libcdr-0.1-1:amd64
 libcdt5
 libcgi-fast-perl
 libcgi-pm-perl
-libcgmanager0:amd64
 libcgraph6
 libchamplain-0.12-0:amd64
 libchamplain-gtk-0.12-0:amd64
@@ -958,7 +943,7 @@ libeval-closure-perl
 libevdev2:amd64
 libevdocument3-4:amd64
 libevent-2.0-5:amd64
-libevolution
+libevent-core-2.0-5:amd64
 libevview3-3:amd64
 libexempi3:amd64
 libexif12:amd64
@@ -975,7 +960,6 @@ libfakeroot:amd64
 libfarstream-0.2-5:amd64
 libfcgi-perl
 libfdisk1:amd64
-libfdt1:amd64
 libffi-dev:amd64
 libffi6:amd64
 libffi6:i386
@@ -1176,7 +1160,6 @@ libgtk-3-bin
 libgtk-3-common
 libgtk-3-dev:amd64
 libgtk-3-doc
-libgtk-vnc-2.0-0:amd64
 libgtk2-perl
 libgtk2.0-0:amd64
 libgtk2.0-bin
@@ -1203,7 +1186,6 @@ libgupnp-igd-1.0-4:amd64
 libgusb2:amd64
 libgutenprint2
 libgvc6
-libgvnc-1.0-0:amd64
 libgvpr2
 libgweather-3-6:amd64
 libgweather-common
@@ -1279,7 +1261,6 @@ libisc-export160
 libisc160:amd64
 libisccc140:amd64
 libisccfg140:amd64
-libiscsi2:amd64
 libisl15:amd64
 libisofs6:amd64
 libitm1:amd64
@@ -1471,6 +1452,7 @@ libmono-system-data-linq4.0-cil
 libmono-system-data-services-client4.0-cil
 libmono-system-data-services4.0-cil
 libmono-system-data4.0-cil
+libmono-system-deployment4.0-cil
 libmono-system-design4.0-cil
 libmono-system-drawing-design4.0-cil
 libmono-system-drawing4.0-cil
@@ -1528,8 +1510,10 @@ libmono-system-web-extensions4.0-cil
 libmono-system-web-http-selfhost4.0-cil
 libmono-system-web-http-webhost4.0-cil
 libmono-system-web-http4.0-cil
+libmono-system-web-mobile4.0-cil
 libmono-system-web-mvc3.0-cil
 libmono-system-web-razor2.0-cil
+libmono-system-web-regularexpressions4.0-cil
 libmono-system-web-routing4.0-cil
 libmono-system-web-services4.0-cil
 libmono-system-web-webpages-deployment2.0-cil
@@ -1539,6 +1523,9 @@ libmono-system-web4.0-cil
 libmono-system-windows-forms-datavisualization4.0a-cil
 libmono-system-windows-forms4.0-cil
 libmono-system-windows4.0-cil
+libmono-system-workflow-activities4.0-cil
+libmono-system-workflow-componentmodel4.0-cil
+libmono-system-workflow-runtime4.0-cil
 libmono-system-xaml4.0-cil
 libmono-system-xml-linq4.0-cil
 libmono-system-xml-serialization4.0-cil
@@ -1550,8 +1537,8 @@ libmono-webmatrix-data4.0-cil
 libmono-windowsbase4.0-cil
 libmono-xbuild-tasks4.0-cil
 libmonoboehm-2.0-1
+libmonoboehm-2.0-dev
 libmonosgen-2.0-1
-libmonosgen-2.0-dev
 libmoo-perl
 libmoose-perl
 libmoosex-arrayref-perl
@@ -1602,7 +1589,6 @@ libnet-libidn-perl
 libnet-smtp-ssl-perl
 libnet-ssleay-perl
 libnetcdf11
-libnetcf1:amd64
 libnetfilter-conntrack3:amd64
 libnetpbm10
 libnettle6:amd64
@@ -1610,11 +1596,9 @@ libnettle6:i386
 libnewt0.52:amd64
 libnfnetlink0:amd64
 libnice10:amd64
-libnih-dbus1:amd64
 libnih1:amd64
 libnl-3-200:amd64
 libnl-genl-3-200:amd64
-libnl-route-3-200:amd64
 libnm-glib-vpn1:amd64
 libnm-glib4:amd64
 libnm-gtk-common
@@ -1674,16 +1658,12 @@ libopenimageio1.6
 libopenjp2-7:amd64
 libopenjpeg5:amd64
 libopenlibm2:amd64
-libopenshot-audio3:amd64
-libopenshot9:amd64
 libopenspecfun1:amd64
 libopus0:amd64
 liborbit-2-0:amd64
 liborc-0.4-0:amd64
 liborc-0.4-0:i386
 liborcus-0.10-0v5:amd64
-libosinfo-1.0-0:amd64
-libosinfo-bin
 libosmesa6:amd64
 libosmesa6:i386
 libosmgpsmap-1.0-1:amd64
@@ -1777,8 +1757,6 @@ libpulse-mainloop-glib0:amd64
 libpulse0:amd64
 libpulse0:i386
 libpulsedsp:amd64
-libpurple-bin
-libpurple0
 libpwquality-common
 libpwquality1:amd64
 libpython-all-dev:amd64
@@ -1799,14 +1777,9 @@ libqmi-glib1:amd64
 libqmi-proxy
 libqpdf17:amd64
 libqqwing2v5:amd64
-libqt5clucene5:amd64
 libqt5core5a:amd64
 libqt5dbus5:amd64
-libqt5designer5:amd64
 libqt5gui5:amd64
-libqt5help5:amd64
-libqt5multimedia5:amd64
-libqt5multimediawidgets5:amd64
 libqt5network5:amd64
 libqt5opengl5:amd64
 libqt5printsupport5:amd64
@@ -1815,7 +1788,6 @@ libqt5quick5:amd64
 libqt5sql5:amd64
 libqt5sql5-sqlite:amd64
 libqt5svg5:amd64
-libqt5test5:amd64
 libqt5webkit5:amd64
 libqt5widgets5:amd64
 libqt5x11extras5:amd64
@@ -1823,12 +1795,10 @@ libqt5xml5:amd64
 libquadmath0:amd64
 libquvi-scripts
 libquvi7:amd64
-librados2
 libraptor2-0:amd64
 librasqal3:amd64
 libraw1394-11:amd64
 libraw15:amd64
-librbd1
 librdf-ns-perl
 librdf-perl
 librdf-rdfa-parser-perl
@@ -1932,9 +1902,6 @@ libspeechd2:amd64
 libspeex1:amd64
 libspeexdsp1:amd64
 libspeexdsp1:i386
-libspice-client-glib-2.0-8:amd64
-libspice-client-gtk-3.0-4:amd64
-libspice-server1:amd64
 libspnav0
 libspqr2.0.2:amd64
 libsqlite3-0:amd64
@@ -2036,8 +2003,6 @@ libusb-0.1-4:amd64
 libusb-1.0-0:amd64
 libusb-1.0-0:i386
 libusbmuxd4:amd64
-libusbredirhost1:amd64
-libusbredirparser1:amd64
 libustr-1.0-1:amd64
 libutempter0:amd64
 libutf8proc1:amd64
@@ -2051,9 +2016,6 @@ libva1:amd64
 libvala-0.30-0:amd64
 libvariable-magic-perl
 libvdpau1:amd64
-libvirt-bin
-libvirt-glib-1.0-0:amd64
-libvirt0:amd64
 libvisio-0.1-1:amd64
 libvisual-0.4-0:amd64
 libvo-aacenc0:amd64
@@ -2130,7 +2092,6 @@ libx32quadmath0
 libx32stdc++-5-dev
 libx32stdc++6
 libx32ubsan0
-libx86-1:amd64
 libxapian22v5:amd64
 libxatracker2:amd64
 libxau-dev:amd64
@@ -2185,8 +2146,6 @@ libxdamage1:i386
 libxdmcp-dev:amd64
 libxdmcp6:amd64
 libxdmcp6:i386
-libxen-4.6:amd64
-libxenstore3.0:amd64
 libxerces-c3.1:amd64
 libxext-dev:amd64
 libxext6:amd64
@@ -2281,22 +2240,22 @@ lintian
 linux-base
 linux-firmware
 linux-generic
-linux-headers-4.4.0-34
-linux-headers-4.4.0-34-generic
 linux-headers-4.4.0-36
 linux-headers-4.4.0-36-generic
+linux-headers-4.4.0-38
+linux-headers-4.4.0-38-generic
 linux-headers-generic
-linux-image-4.4.0-34-generic
 linux-image-4.4.0-36-generic
-linux-image-extra-4.4.0-34-generic
+linux-image-4.4.0-38-generic
 linux-image-extra-4.4.0-36-generic
+linux-image-extra-4.4.0-38-generic
 linux-image-generic
 linux-libc-dev:amd64
 linux-sound-base
-linux-tools-4.4.0-34
-linux-tools-4.4.0-34-generic
 linux-tools-4.4.0-36
 linux-tools-4.4.0-36-generic
+linux-tools-4.4.0-38
+linux-tools-4.4.0-38-generic
 linux-tools-common
 linux-tools-virtual
 llvm
@@ -2360,7 +2319,6 @@ mousetweaks
 mplayer
 mplayer2
 mscompress
-msr-tools
 mtools
 mtr-tiny
 multiarch-support
@@ -2407,7 +2365,6 @@ openjdk-8-jre:amd64
 openjdk-8-jre-headless:amd64
 openoffice.org-hyphenation
 openprinting-ppds
-openshot-qt
 openssh-client
 openssl
 os-prober
@@ -2432,11 +2389,9 @@ perl
 perl-base
 perl-doc
 perl-modules-5.22
-pidgin
-pidgin-data
-pidgin-libnotify
 pinentry-curses
 pinentry-gnome3
+pinentry-gtk2
 pkg-config
 playonlinux
 plymouth
@@ -2444,7 +2399,6 @@ plymouth-label
 plymouth-theme-ubuntu-gnome-logo
 plymouth-theme-ubuntu-gnome-text
 plymouth-theme-ubuntu-text
-pm-utils
 po-debconf
 policykit-1
 policykit-1-gnome
@@ -2585,7 +2539,6 @@ python3-gdbm:amd64
 python3-gi
 python3-gi-cairo
 python3-html5lib
-python3-httplib2
 python3-jedi
 python3-jinja2
 python3-louis
@@ -2595,7 +2548,6 @@ python3-markupsafe
 python3-matplotlib
 python3-minimal
 python3-numpy
-python3-openshot:amd64
 python3-pexpect
 python3-pil:amd64
 python3-pip
@@ -2606,11 +2558,6 @@ python3-pyatspi
 python3-pycurl
 python3-pygments
 python3-pyparsing
-python3-pyqt5
-python3-pyqt5.qtmultimedia
-python3-pyqt5.qtopengl
-python3-pyqt5.qtsvg
-python3-pyqt5.qtwebkit
 python3-renderpm:amd64
 python3-reportlab
 python3-reportlab-accel:amd64
@@ -2636,11 +2583,6 @@ python3-zmq
 python3.5
 python3.5-dev
 python3.5-minimal
-qemu-block-extra:amd64
-qemu-kvm
-qemu-system-common
-qemu-system-x86
-qemu-utils
 qpdf
 qttranslations5-l10n
 readline-common
@@ -2674,7 +2616,6 @@ samba-libs:amd64
 samba-vfs-modules
 sane-utils
 sbsigntool
-seabios
 seahorse
 seahorse-daemon
 secureboot-db
@@ -2691,7 +2632,6 @@ signon-ui-service
 signon-ui-x11
 signond
 simple-scan
-simplenote
 smartmontools
 snap-confine
 snapd
@@ -2700,7 +2640,6 @@ software-properties-gtk
 sound-theme-freedesktop
 speech-dispatcher
 speech-dispatcher-audio-plugins:amd64
-spice-client-glib-usb-acl-helper
 squashfs-tools
 ssh-askpass-gnome
 ssl-cert
@@ -2726,7 +2665,6 @@ tcpd
 tcpdump
 tdb-tools
 telepathy-gabble
-telepathy-haze
 telepathy-idle
 telepathy-logger
 telepathy-mission-control-5
@@ -2822,7 +2760,6 @@ uuid
 uuid-runtime
 va-driver-all:amd64
 valac-0.30-vapi
-vbetool
 vdpau-driver-all:amd64
 vdpau-va-driver:amd64
 vim-common
@@ -2873,6 +2810,7 @@ xdg-user-dirs
 xdg-user-dirs-gtk
 xdg-utils
 xdiagnose
+xfonts-100dpi
 xfonts-base
 xfonts-encodings
 xfonts-scalable
