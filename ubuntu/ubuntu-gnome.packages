@@ -161,6 +161,7 @@ diffstat
 diffutils
 dirmngr
 distro-info-data
+dkms
 dleyna-renderer
 dleyna-server
 dmeventd
@@ -186,8 +187,6 @@ efibootmgr
 eject
 elixir
 emacsen-common
-empathy
-empathy-common
 enchant
 enpass
 eog
@@ -1777,6 +1776,15 @@ libqmi-glib1:amd64
 libqmi-proxy
 libqpdf17:amd64
 libqqwing2v5:amd64
+libqt4-dbus:amd64
+libqt4-declarative:amd64
+libqt4-network:amd64
+libqt4-opengl:amd64
+libqt4-script:amd64
+libqt4-sql:amd64
+libqt4-sql-mysql:amd64
+libqt4-xml:amd64
+libqt4-xmlpatterns:amd64
 libqt5core5a:amd64
 libqt5dbus5:amd64
 libqt5gui5:amd64
@@ -1792,6 +1800,9 @@ libqt5webkit5:amd64
 libqt5widgets5:amd64
 libqt5x11extras5:amd64
 libqt5xml5:amd64
+libqtcore4:amd64
+libqtdbus4:amd64
+libqtgui4:amd64
 libquadmath0:amd64
 libquvi-scripts
 libquvi7:amd64
@@ -2281,7 +2292,6 @@ man-db
 manpages
 manpages-dev
 mawk
-mcp-account-manager-goa
 media-player-info
 meld
 memtest86+
@@ -2583,7 +2593,11 @@ python3-zmq
 python3.5
 python3.5-dev
 python3.5-minimal
+qdbus
 qpdf
+qt-at-spi:amd64
+qtchooser
+qtcore4-l10n
 qttranslations5-l10n
 readline-common
 realmd
@@ -2665,6 +2679,7 @@ tcpd
 tcpdump
 tdb-tools
 telepathy-gabble
+telepathy-haze
 telepathy-idle
 telepathy-logger
 telepathy-mission-control-5
@@ -2765,6 +2780,10 @@ vdpau-va-driver:amd64
 vim-common
 vim-tiny
 vino
+virtualbox
+virtualbox-dkms
+virtualbox-guest-additions-iso
+virtualbox-qt
 wamerican
 wbritish
 wget
