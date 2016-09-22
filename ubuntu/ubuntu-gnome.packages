@@ -71,6 +71,7 @@ brasero
 brasero-cdrkit
 brasero-common
 brltty
+browser-plugin-vlc
 bsdmainutils
 bsdutils
 build-essential
@@ -85,9 +86,6 @@ cgroupfs-mount
 cheese
 cheese-common
 chktex
-chromium-browser
-chromium-browser-l10n
-chromium-codecs-ffmpeg-extra
 clang
 clang-3.8
 cli-common
@@ -161,7 +159,6 @@ diffstat
 diffutils
 dirmngr
 distro-info-data
-dkms
 dleyna-renderer
 dleyna-server
 dmeventd
@@ -188,6 +185,7 @@ eject
 elixir
 emacsen-common
 enchant
+enigmail
 enpass
 eog
 erlang-asn1
@@ -214,6 +212,8 @@ ffmpeg
 file
 file-roller
 findutils
+firefox
+firefox-globalmenu
 folks-common
 fontconfig
 fontconfig-config
@@ -308,7 +308,6 @@ gdb
 gdbserver
 gdisk
 gdm3
-geary
 gedit
 gedit-common
 gedit-plugins
@@ -437,7 +436,6 @@ gnome-mahjongg
 gnome-maps
 gnome-menus
 gnome-mines
-gnome-mplayer
 gnome-music
 gnome-online-accounts
 gnome-online-miners
@@ -721,6 +719,7 @@ libbabeltrace-ctf1:amd64
 libbabeltrace1:amd64
 libbabl-0.1-0:amd64
 libbareword-filehandles-perl
+libbasicusageenvironment1:amd64
 libbdplus0:amd64
 libbind9-140:amd64
 libblas-common
@@ -781,6 +780,7 @@ libcaribou-common
 libcaribou0:amd64
 libcc1-0:amd64
 libccolamd2.9.1:amd64
+libcddb2
 libcdio-cdda1:amd64
 libcdio-paranoia1:amd64
 libcdio13:amd64
@@ -880,7 +880,6 @@ libdevmapper1.02.1:amd64
 libdfu1:amd64
 libdigest-hmac-perl
 libdirectfb-1.2-9:amd64
-libdiscid0:amd64
 libdist-checkconflicts-perl
 libdjvulibre-text
 libdjvulibre21:amd64
@@ -905,11 +904,13 @@ libdrm2:amd64
 libdrm2:i386
 libdsfmt-19937-1:amd64
 libdv4:amd64
+libdvbpsi10:amd64
 libdvdnav4:amd64
 libdvdread4:amd64
 libdw1:amd64
 libe-book-0.1-1:amd64
 libebackend-1.2-10:amd64
+libebml4v5:amd64
 libebook-1.2-16:amd64
 libebook-contacts-1.2-2:amd64
 libecal-1.2-19:amd64
@@ -925,7 +926,6 @@ libegl1-mesa-dev:amd64
 libelf1:amd64
 libelf1:i386
 libemail-valid-perl
-libenca0:amd64
 libenchant1c2a:amd64
 libencode-locale-perl
 libenet7:amd64
@@ -989,6 +989,16 @@ libfontconfig1-dev:amd64
 libfontembed1:amd64
 libfontenc1:amd64
 libfreehand-0.1-1:amd64
+libfreerdp-cache1.1:amd64
+libfreerdp-client1.1:amd64
+libfreerdp-codec1.1:amd64
+libfreerdp-common1.1.0:amd64
+libfreerdp-core1.1:amd64
+libfreerdp-crypto1.1:amd64
+libfreerdp-gdi1.1:amd64
+libfreerdp-locale1.1:amd64
+libfreerdp-primitives1.1:amd64
+libfreerdp-utils1.1:amd64
 libfreetype6:amd64
 libfreetype6:i386
 libfreetype6-dev:amd64
@@ -1021,8 +1031,6 @@ libgcrypt20:i386
 libgcrypt20-dev
 libgd3:amd64
 libgd3:i386
-libgda-5.0-4
-libgda-5.0-common
 libgdal1i
 libgdata-common
 libgdata22:amd64
@@ -1064,6 +1072,7 @@ libgladeui-2-6
 libgladeui-common
 libglapi-mesa:amd64
 libglapi-mesa:i386
+libgles1-mesa:amd64
 libgles2-mesa:amd64
 libglew1.13:amd64
 libglib-perl
@@ -1081,13 +1090,10 @@ libglu1-mesa:amd64
 libglu1-mesa:i386
 libgme0:amd64
 libgmime-2.6-0:amd64
-libgmlib1:amd64
 libgmp-dev:amd64
 libgmp10:amd64
 libgmp10:i386
 libgmpxx4ldbl:amd64
-libgmtk1:amd64
-libgmtk1-data
 libgnome-2-0:amd64
 libgnome-bluetooth13:amd64
 libgnome-desktop-3-12:amd64
@@ -1134,6 +1140,7 @@ libgraphicsmagick-q16-3
 libgraphite2-3:amd64
 libgraphviz-perl
 libgrilo-0.2-1:amd64
+libgroupsock8:amd64
 libgs9:amd64
 libgs9-common
 libgsf-1-114:amd64
@@ -1261,6 +1268,7 @@ libisc160:amd64
 libisccc140:amd64
 libisccfg140:amd64
 libisl15:amd64
+libiso9660-8:amd64
 libisofs6:amd64
 libitm1:amd64
 libiw30:amd64
@@ -1328,6 +1336,7 @@ liblensfun0
 liblexical-sealrequirehints-perl
 liblircclient0:amd64
 liblist-moreutils-perl
+liblivemedia50:amd64
 liblldb-3.6
 libllvm3.6v5:amd64
 libllvm3.8:amd64
@@ -1365,6 +1374,7 @@ libmagickcore-6.q16-2-extra:amd64
 libmagickwand-6.q16-2:amd64
 libmail-sendmail-perl
 libmailtools-perl
+libmatroska6v5:amd64
 libmbim-glib4:amd64
 libmbim-proxy
 libmeanwhile1:amd64
@@ -1546,6 +1556,7 @@ libmount1:amd64
 libmozjs-24-0v5
 libmp3lame0:amd64
 libmpc3:amd64
+libmpcdec6:amd64
 libmpdec2:amd64
 libmpeg2-4:amd64
 libmpeg2encpp-2.1-0
@@ -1562,7 +1573,6 @@ libmtp-common
 libmtp-runtime
 libmtp9:amd64
 libmultidimensional-perl
-libmusicbrainz3-6v5
 libmusicbrainz5-2:amd64
 libmusicbrainz5cc2v5:amd64
 libmutter0g
@@ -1745,6 +1755,7 @@ libproj9
 libprotobuf-dev:amd64
 libprotobuf-lite9v5:amd64
 libprotobuf9v5:amd64
+libproxy-tools
 libproxy1-plugin-gsettings:amd64
 libproxy1-plugin-networkmanager:amd64
 libproxy1v5:amd64
@@ -1776,15 +1787,6 @@ libqmi-glib1:amd64
 libqmi-proxy
 libqpdf17:amd64
 libqqwing2v5:amd64
-libqt4-dbus:amd64
-libqt4-declarative:amd64
-libqt4-network:amd64
-libqt4-opengl:amd64
-libqt4-script:amd64
-libqt4-sql:amd64
-libqt4-sql-mysql:amd64
-libqt4-xml:amd64
-libqt4-xmlpatterns:amd64
 libqt5core5a:amd64
 libqt5dbus5:amd64
 libqt5gui5:amd64
@@ -1800,9 +1802,6 @@ libqt5webkit5:amd64
 libqt5widgets5:amd64
 libqt5x11extras5:amd64
 libqt5xml5:amd64
-libqtcore4:amd64
-libqtdbus4:amd64
-libqtgui4:amd64
 libquadmath0:amd64
 libquvi-scripts
 libquvi7:amd64
@@ -1836,6 +1835,7 @@ libreoffice-pdfimport
 libreoffice-style-galaxy
 libreoffice-style-tango
 libreoffice-writer
+libresid-builder0c2a
 librest-0.7-0:amd64
 librevenge-0.0-0:amd64
 librhythmbox-core9:amd64
@@ -1864,6 +1864,7 @@ libsasl2-modules-db:amd64
 libsasl2-modules-db:i386
 libsbc1:amd64
 libschroedinger-1.0-0:amd64
+libsdl-image1.2:amd64
 libsdl1.2debian:amd64
 libsdl2-2.0-0:amd64
 libseccomp2:amd64
@@ -1881,6 +1882,7 @@ libsgutils2-2
 libshine3:amd64
 libshout3:amd64
 libsidplay1v5
+libsidplay2v5
 libsigc++-2.0-0v5:amd64
 libsignon-extension1:amd64
 libsignon-glib1:amd64
@@ -2006,10 +2008,12 @@ libunity-protocol-private0:amd64
 libunity-scopes-json-def-desktop
 libunity9:amd64
 libunwind8
+libupnp6
 libupower-glib3:amd64
 liburcu4:amd64
 liburi-perl
 liburiparser1:amd64
+libusageenvironment3:amd64
 libusb-0.1-4:amd64
 libusb-1.0-0:amd64
 libusb-1.0-0:i386
@@ -2023,12 +2027,18 @@ libv4l-0:amd64
 libv4l-0:i386
 libv4lconvert0:amd64
 libv4lconvert0:i386
+libva-drm1:amd64
+libva-x11-1:amd64
 libva1:amd64
 libvala-0.30-0:amd64
 libvariable-magic-perl
+libvcdinfo0
 libvdpau1:amd64
 libvisio-0.1-1:amd64
 libvisual-0.4-0:amd64
+libvlc5
+libvlccore8
+libvncclient1:amd64
 libvo-aacenc0:amd64
 libvo-amrwbenc0:amd64
 libvorbis0a:amd64
@@ -2036,7 +2046,6 @@ libvorbis0a:i386
 libvorbisenc2:amd64
 libvorbisenc2:i386
 libvorbisfile3:amd64
-libvorbisidec1
 libvpx3:amd64
 libvpx3:i386
 libvsqlitepp3v5:amd64
@@ -2067,6 +2076,24 @@ libwildmidi-config
 libwildmidi1:amd64
 libwind0-heimdal:amd64
 libwind0-heimdal:i386
+libwinpr-crt0.1:amd64
+libwinpr-dsparse0.1:amd64
+libwinpr-environment0.1:amd64
+libwinpr-file0.1:amd64
+libwinpr-handle0.1:amd64
+libwinpr-heap0.1:amd64
+libwinpr-input0.1:amd64
+libwinpr-interlocked0.1:amd64
+libwinpr-library0.1:amd64
+libwinpr-path0.1:amd64
+libwinpr-pool0.1:amd64
+libwinpr-registry0.1:amd64
+libwinpr-rpc0.1:amd64
+libwinpr-sspi0.1:amd64
+libwinpr-synch0.1:amd64
+libwinpr-sysinfo0.1:amd64
+libwinpr-thread0.1:amd64
+libwinpr-utils0.1:amd64
 libwmf-bin
 libwmf0.2-7:amd64
 libwmf0.2-7-gtk
@@ -2109,6 +2136,7 @@ libxau-dev:amd64
 libxau6:amd64
 libxau6:i386
 libxaw7:amd64
+libxcb-composite0:amd64
 libxcb-dri2-0:amd64
 libxcb-dri2-0:i386
 libxcb-dri2-0-dev:amd64
@@ -2326,8 +2354,6 @@ monodoc-manual
 monodoc-nunit-manual
 mount
 mousetweaks
-mplayer
-mplayer2
 mscompress
 mtools
 mtr-tiny
@@ -2394,7 +2420,6 @@ pcmciautils
 pdfchain
 pdftk
 peek
-pepperflashplugin-nonfree
 perl
 perl-base
 perl-doc
@@ -2593,11 +2618,7 @@ python3-zmq
 python3.5
 python3.5-dev
 python3.5-minimal
-qdbus
 qpdf
-qt-at-spi:amd64
-qtchooser
-qtcore4-l10n
 qttranslations5-l10n
 readline-common
 realmd
@@ -2679,7 +2700,6 @@ tcpd
 tcpdump
 tdb-tools
 telepathy-gabble
-telepathy-haze
 telepathy-idle
 telepathy-logger
 telepathy-mission-control-5
@@ -2709,6 +2729,9 @@ texlive-pictures-doc
 texlive-pstricks
 texlive-pstricks-doc
 thermald
+thunderbird
+thunderbird-globalmenu
+thunderbird-gnome-support
 time
 tipa
 tk
@@ -2780,10 +2803,11 @@ vdpau-va-driver:amd64
 vim-common
 vim-tiny
 vino
-virtualbox
-virtualbox-dkms
-virtualbox-guest-additions-iso
-virtualbox-qt
+vlc
+vlc-data
+vlc-nox
+vlc-plugin-notify
+vlc-plugin-samba
 wamerican
 wbritish
 wget
@@ -2864,6 +2888,10 @@ xserver-xorg-video-vmware
 xsltproc
 xterm
 xtrans-dev
+xul-ext-calendar-timezones
+xul-ext-gdata-provider
+xul-ext-lightning
+xul-ext-ubufox
 xwayland
 xz-utils
 yelp
