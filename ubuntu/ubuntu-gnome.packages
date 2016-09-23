@@ -92,7 +92,6 @@ cli-common
 cmake
 cmake-data
 cmake-qt-gui
-code
 colord
 colord-data
 command-not-found
@@ -206,6 +205,8 @@ evince-common
 evolution-data-server
 evolution-data-server-common
 evolution-data-server-online-accounts
+exfat-fuse
+exfat-utils
 exuberant-ctags
 fakeroot
 ffmpeg
@@ -218,6 +219,8 @@ folks-common
 fontconfig
 fontconfig-config
 fonts-cantarell
+fonts-crosextra-caladea
+fonts-crosextra-carlito
 fonts-dejavu
 fonts-dejavu-core
 fonts-dejavu-extra
@@ -341,6 +344,7 @@ gir1.2-dee-1.0
 gir1.2-evince-3.0:amd64
 gir1.2-freedesktop:amd64
 gir1.2-gck-1:amd64
+gir1.2-gconf-2.0
 gir1.2-gcr-3:amd64
 gir1.2-gdata-0.0:amd64
 gir1.2-gdesktopenums-3.0
@@ -402,7 +406,6 @@ gir1.2-zpj-0.0
 git
 git-man
 gitg
-gitkraken
 gjs
 gkbd-capplet
 glade
@@ -459,6 +462,7 @@ gnome-software-common
 gnome-sudoku
 gnome-sushi
 gnome-system-monitor
+gnome-system-tools
 gnome-terminal
 gnome-terminal-data
 gnome-themes-standard:amd64
@@ -706,8 +710,11 @@ libavahi-common3:i386
 libavahi-core7:amd64
 libavahi-glib1:amd64
 libavahi-gobject0:amd64
+libavahi-ui-gtk3-0:amd64
 libavc1394-0:amd64
+libavcodec-extra
 libavcodec-ffmpeg56:amd64
+libavcodec-ffmpeg-extra56:amd64
 libavdevice-ffmpeg56:amd64
 libavfilter-ffmpeg5:amd64
 libavformat-ffmpeg56:amd64
@@ -1048,6 +1055,7 @@ libgeoclue-2-0:amd64
 libgeoclue0:amd64
 libgeocode-glib0:amd64
 libgeoip1:amd64
+libgeonames0:amd64
 libgeos-3.5.0
 libgeos-c1v5
 libgettextpo-dev:amd64
@@ -1138,6 +1146,7 @@ libgpod-common
 libgpod4:amd64
 libgraphicsmagick-q16-3
 libgraphite2-3:amd64
+libgraphviz-dev
 libgraphviz-perl
 libgrilo-0.2-1:amd64
 libgroupsock8:amd64
@@ -1915,6 +1924,8 @@ libspeechd2:amd64
 libspeex1:amd64
 libspeexdsp1:amd64
 libspeexdsp1:i386
+libspice-client-glib-2.0-8:amd64
+libspice-client-gtk-3.0-4:amd64
 libspnav0
 libspqr2.0.2:amd64
 libsqlite3-0:amd64
@@ -2802,6 +2813,7 @@ vdpau-driver-all:amd64
 vdpau-va-driver:amd64
 vim-common
 vim-tiny
+vinagre
 vino
 vlc
 vlc-data
