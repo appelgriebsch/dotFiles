@@ -10,6 +10,8 @@ if [[ "${OS}" == "Darwin" ]]; then
   export PATH=$PATH:$GOROOT/bin:/Library/TeX/texbin
 elif [[ "${OS}" == "Linux" ]]; then
   export ANDROID_HOME=/opt/android-sdk
+  export NIM_HOME=/opt/nim-0.14
+  export SWIFT_HOME=/opt/swift-3.0
 fi
 
-export PATH=$PATH:$ANDROID_HOME/tools:$GOPATH/bin
+export PATH=$PATH:$ANDROID_HOME/tools:$GOPATH/bin:$NIM_HOME/bin:$SWIFT_HOME/usr/bin

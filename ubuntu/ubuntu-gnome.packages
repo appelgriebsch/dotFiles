@@ -86,6 +86,7 @@ cgroupfs-mount
 cheese
 cheese-common
 chktex
+chromium
 clang
 clang-3.8
 cli-common
@@ -174,6 +175,7 @@ dotnet-hostfxr-1.0.1
 dotnet-sharedframework-microsoft.netcore.app-1.0.0
 dpkg
 dpkg-dev
+dripcap
 duplicity
 dvd+rw-tools
 e2fslibs:amd64
@@ -2909,7 +2911,6 @@ xz-utils
 yelp
 yelp-tools
 yelp-xsl
-zeal
 zeitgeist-core
 zenity
 zenity-common

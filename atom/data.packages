@@ -28,6 +28,7 @@ minimap
 minimap-bookmarks
 minimap-find-and-replace
 minimap-git-diff
+minimap-linter
 pdf-view
 terminal-panel
 tool-bar
