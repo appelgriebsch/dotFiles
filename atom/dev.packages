@@ -3,8 +3,6 @@ angularjs-snippets
 atom-angular-material-snippets
 atom-bootstrap3
 atom-elixir
-atom-material-ui
-atom-material-syntax
 atom-react-native-autocomplete
 autocomplete-angular-material
 autocomplete-emojis
@@ -26,6 +24,7 @@ ide-flow
 intentions
 language-babel
 language-docker
+language-julia
 language-graphql
 language-javascript-jsx
 language-rdf
@@ -44,6 +43,7 @@ minimap-find-and-replace
 minimap-git-diff
 minimap-linter
 nim
+pdf-view
 pigments
 react-snippets
 terminal-plus
