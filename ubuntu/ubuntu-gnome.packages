@@ -40,6 +40,7 @@ aspell-en
 at-spi2-core
 atom
 aufs-tools
+augeas-lenses
 autotools-dev
 avahi-autoipd
 avahi-daemon
@@ -62,6 +63,7 @@ bluez-obexd
 brasero
 brasero-cdrkit
 brasero-common
+bridge-utils
 brltty
 bsdmainutils
 bsdutils
@@ -73,6 +75,7 @@ ca-certificates
 ca-certificates-java
 ca-certificates-mono
 cabextract
+cgmanager
 cgroupfs-mount
 cheese
 cheese-common
@@ -90,6 +93,7 @@ coreutils
 cpio
 cpp
 cpp-5
+cpu-checker
 cracklib-runtime
 crda
 cron
@@ -156,6 +160,7 @@ duplicity
 dvd+rw-tools
 e2fslibs:amd64
 e2fsprogs
+ebtables
 ed
 efibootmgr
 eject
@@ -532,6 +537,7 @@ iptables
 iputils-arping
 iputils-ping
 iputils-tracepath
+ipxe-qemu
 irqbalance
 isc-dhcp-client
 isc-dhcp-common
@@ -581,6 +587,7 @@ libaccounts-glib0:amd64
 libaccounts-qt5-1:amd64
 libaccountsservice0:amd64
 libacl1:amd64
+libaio1:amd64
 libalgorithm-diff-perl
 libalgorithm-diff-xs-perl
 libalgorithm-merge-perl
@@ -635,6 +642,7 @@ libattr1:amd64
 libaudio2:amd64
 libaudit-common
 libaudit1:amd64
+libaugeas0
 libauthen-sasl-perl
 libavahi-client3:amd64
 libavahi-client3:i386
@@ -669,6 +677,7 @@ libboost-date-time1.58.0:amd64
 libboost-filesystem1.58.0:amd64
 libboost-iostreams1.58.0:amd64
 libboost-locale1.58.0:amd64
+libboost-random1.58.0:amd64
 libboost-regex1.58.0:amd64
 libboost-system1.58.0:amd64
 libboost-thread1.58.0:amd64
@@ -690,6 +699,7 @@ libc6-dev-x32
 libc6-i386
 libc6-x32
 libcaca0:amd64
+libcacard0:amd64
 libcairo-gobject2:amd64
 libcairo-script-interpreter2:amd64
 libcairo2:amd64
@@ -720,6 +730,7 @@ libcdr-0.1-1:amd64
 libcdt5
 libcgi-fast-perl
 libcgi-pm-perl
+libcgmanager0:amd64
 libcgraph6
 libchamplain-0.12-0:amd64
 libchamplain-gtk-0.12-0:amd64
@@ -857,6 +868,7 @@ libfakeroot:amd64
 libfarstream-0.2-5:amd64
 libfcgi-perl
 libfdisk1:amd64
+libfdt1:amd64
 libffi-dev:amd64
 libffi6:amd64
 libffi6:i386
@@ -1125,6 +1137,7 @@ libisc-export160
 libisc160:amd64
 libisccc140:amd64
 libisccfg140:amd64
+libiscsi2:amd64
 libisl15:amd64
 libisofs6:amd64
 libitm1:amd64
@@ -1417,6 +1430,7 @@ libnet-ip-perl
 libnet-libidn-perl
 libnet-smtp-ssl-perl
 libnet-ssleay-perl
+libnetcf1:amd64
 libnetfilter-conntrack3:amd64
 libnetpbm10
 libnettle6:amd64
@@ -1424,9 +1438,11 @@ libnettle6:i386
 libnewt0.52:amd64
 libnfnetlink0:amd64
 libnice10:amd64
+libnih-dbus1:amd64
 libnih1:amd64
 libnl-3-200:amd64
 libnl-genl-3-200:amd64
+libnl-route-3-200:amd64
 libnm-glib-vpn1:amd64
 libnm-glib4:amd64
 libnm-gtk-common
@@ -1602,10 +1618,12 @@ libqt5xml5:amd64
 libquadmath0:amd64
 libquvi-scripts
 libquvi7:amd64
+librados2
 libraptor2-0:amd64
 librasqal3:amd64
 libraw1394-11:amd64
 libraw15:amd64
+librbd1
 librdf0:amd64
 libreadline5:amd64
 libreadline6:amd64
@@ -1699,6 +1717,7 @@ libspeechd2:amd64
 libspeex1:amd64
 libspeexdsp1:amd64
 libspeexdsp1:i386
+libspice-server1:amd64
 libspnav0
 libspqr2.0.2:amd64
 libsqlite3-0:amd64
@@ -1777,6 +1796,7 @@ libusb-0.1-4:amd64
 libusb-1.0-0:amd64
 libusb-1.0-0:i386
 libusbmuxd4:amd64
+libusbredirparser1:amd64
 libustr-1.0-1:amd64
 libutempter0:amd64
 libutf8proc1:amd64
@@ -1789,6 +1809,8 @@ libv4lconvert0:i386
 libva1:amd64
 libvala-0.30-0:amd64
 libvdpau1:amd64
+libvirt-bin
+libvirt0:amd64
 libvisio-0.1-1:amd64
 libvisual-0.4-0:amd64
 libvo-aacenc0:amd64
@@ -1862,6 +1884,7 @@ libx32quadmath0
 libx32stdc++-5-dev
 libx32stdc++6
 libx32ubsan0
+libx86-1:amd64
 libxapian22v5:amd64
 libxatracker2:amd64
 libxau-dev:amd64
@@ -1916,6 +1939,8 @@ libxdamage1:i386
 libxdmcp-dev:amd64
 libxdmcp6:amd64
 libxdmcp6:i386
+libxen-4.6:amd64
+libxenstore3.0:amd64
 libxext-dev:amd64
 libxext6:amd64
 libxext6:i386
@@ -2058,6 +2083,7 @@ monodoc-manual
 mount
 mousetweaks
 mscompress
+msr-tools
 mtools
 mtr-tiny
 multiarch-support
@@ -2123,6 +2149,7 @@ plymouth-label
 plymouth-theme-ubuntu-gnome-logo
 plymouth-theme-ubuntu-gnome-text
 plymouth-theme-ubuntu-text
+pm-utils
 po-debconf
 policykit-1
 policykit-1-gnome
@@ -2261,6 +2288,11 @@ python3-xkit
 python3.5
 python3.5-dev
 python3.5-minimal
+qemu-block-extra:amd64
+qemu-kvm
+qemu-system-common
+qemu-system-x86
+qemu-utils
 qpdf
 qttranslations5-l10n
 readline-common
@@ -2288,6 +2320,7 @@ s-nail
 samba-libs:amd64
 sane-utils
 sbsigntool
+seabios
 seahorse
 seahorse-daemon
 secureboot-db
@@ -2297,6 +2330,7 @@ session-migration
 sessioninstaller
 sgml-base
 shared-mime-info
+sharutils
 signon-plugin-password
 signon-ui
 signon-ui-service
@@ -2406,6 +2440,7 @@ util-linux
 uuid-runtime
 va-driver-all:amd64
 valac-0.30-vapi
+vbetool
 vdpau-driver-all:amd64
 vdpau-va-driver:amd64
 vim
