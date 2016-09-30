@@ -57,6 +57,7 @@ binutils
 blender
 blender-data
 blt
+blueman
 bluez
 bluez-cups
 bluez-obexd
@@ -390,6 +391,7 @@ git-man
 gitg
 gjs
 gkbd-capplet
+gksu
 glade
 glib-networking:amd64
 glib-networking-common
@@ -977,6 +979,7 @@ libgirepository-1.0-1:amd64
 libgit2-24:amd64
 libgit2-glib-1.0-0:amd64
 libgjs0e
+libgksu2-0
 libgl1-mesa-dri:amd64
 libgl1-mesa-dri:i386
 libgl1-mesa-glx:amd64
@@ -1428,6 +1431,7 @@ libmono-xbuild-tasks4.0-cil
 libmonoboehm-2.0-1
 libmonoboehm-2.0-dev
 libmonosgen-2.0-1
+libmonosgen-2.0-dev
 libmount1:amd64
 libmozjs-24-0v5
 libmp3lame0:amd64
@@ -1522,6 +1526,7 @@ libopencc1:amd64
 libopencolorio1v5
 libopencore-amrnb0:amd64
 libopencore-amrwb0:amd64
+libopencryptoki0
 libopencv-calib3d2.4v5:amd64
 libopencv-contrib2.4v5:amd64
 libopencv-core2.4v5:amd64
@@ -1550,6 +1555,7 @@ libp11-kit0:amd64
 libp11-kit0:i386
 libpackagekit-glib2-16:amd64
 libpagemaker-0.0-0:amd64
+libpam-fprintd:amd64
 libpam-gnome-keyring:amd64
 libpam-modules:amd64
 libpam-modules-bin
@@ -1816,10 +1822,12 @@ libtk8.6:amd64
 libtotem-plparser-common
 libtotem-plparser18:amd64
 libtotem0:amd64
+libtpm-unseal1
 libtracker-control-1.0-0:amd64
 libtracker-miner-1.0-0:amd64
 libtracker-sparql-1.0-0:amd64
 libtsan0:amd64
+libtspi1
 libtwolame0:amd64
 libtxc-dxtn-s2tc0:amd64
 libtxc-dxtn-s2tc0:i386
@@ -2181,6 +2189,7 @@ ocl-icd-libopencl1:amd64
 ocl-icd-libopencl1:i386
 odbcinst
 odbcinst1debian2:amd64
+opencryptoki
 openjdk-8-jdk:amd64
 openjdk-8-jdk-headless:amd64
 openjdk-8-jre:amd64
@@ -2493,12 +2502,14 @@ toshset
 totem
 totem-common
 totem-plugins
+tpm-tools
 tracker
 tracker-extract
 tracker-miner-fs
 transfig
 transmission-common
 transmission-gtk
+trousers
 ttf-ancient-fonts-symbola
 ttf-bitstream-vera
 ttf-mscorefonts-installer
