@@ -21,6 +21,7 @@ emmet
 file-icons
 git-plus
 git-time-machine
+go-plus
 graphviz-preview
 ide-flow
 intentions
@@ -50,7 +51,6 @@ minimap-bookmarks
 minimap-find-and-replace
 minimap-git-diff
 minimap-linter
-nim
 pdf-view
 pigments
 react-snippets
