@@ -7,6 +7,7 @@ accountsservice
 acl
 acpi-support
 acpid
+adapta-gtk-theme
 adduser
 adwaita-icon-theme
 adwaita-icon-theme-full
@@ -81,6 +82,9 @@ cgroupfs-mount
 cheese
 cheese-common
 chktex
+chromium-browser
+chromium-browser-l10n
+chromium-codecs-ffmpeg-extra
 clang
 clang-3.8
 cli-common
@@ -400,6 +404,7 @@ gnome-accessibility-profiles
 gnome-accessibility-themes
 gnome-backgrounds
 gnome-bluetooth
+gnome-boxes
 gnome-builder
 gnome-calculator
 gnome-calendar
@@ -507,6 +512,7 @@ hicolor-icon-theme
 hostname
 hplip
 hplip-data
+htop
 hunspell-en-us
 hwdata
 hyphen-en-us
@@ -569,6 +575,7 @@ kitematic
 klibc-utils
 kmod
 krb5-locales
+kubectl
 language-pack-en
 language-pack-en-base
 language-pack-gnome-en
@@ -1548,6 +1555,8 @@ liborbit-2-0:amd64
 liborc-0.4-0:amd64
 liborc-0.4-0:i386
 liborcus-0.10-0v5:amd64
+libosinfo-1.0-0:amd64
+libosinfo-bin
 libosmesa6:amd64
 libosmesa6:i386
 libp11-kit-gnome-keyring:amd64
@@ -1863,6 +1872,7 @@ libva1:amd64
 libvala-0.30-0:amd64
 libvdpau1:amd64
 libvirt-bin
+libvirt-glib-1.0-0:amd64
 libvirt0:amd64
 libvisio-0.1-1:amd64
 libvisual-0.4-0:amd64
@@ -2204,6 +2214,7 @@ p11-kit-modules:amd64
 p11-kit-modules:i386
 p7zip
 p7zip-full
+papirus-icons
 parted
 passwd
 patch
@@ -2453,6 +2464,7 @@ speech-dispatcher-audio-plugins:amd64
 spice-client-glib-usb-acl-helper
 squashfs-tools
 ssh-askpass-gnome
+ssh-import-id
 ssl-cert
 steam-launcher
 strace
@@ -2555,6 +2567,7 @@ usbutils
 util-linux
 uuid-runtime
 va-driver-all:amd64
+vagrant
 valac-0.30-vapi
 vbetool
 vdpau-driver-all:amd64
@@ -2565,7 +2578,6 @@ vim-runtime
 vim-tiny
 vinagre
 vino
-vivaldi-stable
 wamerican
 wbritish
 wget
