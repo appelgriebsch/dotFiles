@@ -16,6 +16,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 " status lines
 Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'edkolev/promptline.vim'
 " undo support
@@ -33,7 +34,7 @@ Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 " JavaScript language
-Bundle 'marijnh/tern_for_vim'
+Bundle 'flowtype/vim-flow'
 " Markdown language
 Bundle 'plasticboy/vim-markdown'
 " Emmet support
