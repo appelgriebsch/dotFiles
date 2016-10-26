@@ -7,3 +7,6 @@
 [submodule "terminal-spacegray"]
 	path = terminal-spacegray
 	url = git@github.com:antonk52/Spacegray-OSX-Terminal-Theme
+[submodule "pure-zsh"]
+	path = pure-zsh
+	url = git@github.com:sindresorhus/pure.git
