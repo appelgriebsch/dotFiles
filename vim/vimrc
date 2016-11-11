@@ -17,8 +17,6 @@ Bundle 'airblade/vim-gitgutter'
 " status lines
 Bundle 'bling/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'edkolev/promptline.vim'
 " undo support
 Bundle 'sjl/gundo.vim'
 " syntax checker
