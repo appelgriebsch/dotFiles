@@ -1,12 +1,3 @@
 [submodule "vim/Vundle.vim"]
 	path = vim/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "terminal-snazzy"]
-	path = terminal-snazzy
-	url = git@github.com:sindresorhus/terminal-snazzy.git
-[submodule "terminal-spacegray"]
-	path = terminal-spacegray
-	url = git@github.com:antonk52/Spacegray-OSX-Terminal-Theme
-[submodule "pure-zsh"]
-	path = pure-zsh
-	url = git@github.com:sindresorhus/pure.git
