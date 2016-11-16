@@ -16,6 +16,7 @@ binutils
 bison
 blender
 blueman
+brasero
 btrfs-progs
 bzip2
 cmake
@@ -48,7 +49,6 @@ emscripten
 enpass-bin
 eog
 eog-plugins
-epiphany
 eslint
 ethtool
 evince
@@ -84,7 +84,6 @@ gnome-boxes
 gnome-builder
 gnome-calculator
 gnome-calendar
-gnome-characters
 gnome-code-assistance
 gnome-contacts
 gnome-control-center
@@ -123,6 +122,7 @@ go
 go-bindata
 go-tools
 gocode-bin
+godep
 gparted
 grep
 grilo-plugins
@@ -144,6 +144,7 @@ gulp
 gvfs-afc
 gvfs-gphoto2
 gvfs-mtp
+gvfs-nfs
 gvfs-smb
 gvim
 gzip
@@ -168,7 +169,6 @@ julia
 julia-docs
 jupyter
 jupyter-notebook
-kitematic
 less
 lib32-mesa
 lib32-mesa-demos
@@ -276,9 +276,11 @@ rsync
 s-nail
 screenfetch
 sdparm
+seahorse
 sed
 shadow
 smartmontools
+sound-juicer
 soundconverter
 squashfs-tools
 steam-manjaro

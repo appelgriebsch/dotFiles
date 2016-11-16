@@ -48,6 +48,7 @@ blueman
 bluez
 bluez-libs
 boost-libs
+brasero
 bridge-utils
 brltty
 browserify
@@ -64,6 +65,7 @@ cairomm
 cantarell-fonts
 caribou
 cdparanoia
+cdrdao
 cdrkit
 celt
 celt0.5.1
@@ -126,6 +128,7 @@ docker-compose
 docker-machine
 dosfstools
 downgrade
+dvd+rw-tools
 e2fsprogs
 ecryptfs-utils
 efibootmgr
@@ -140,7 +143,6 @@ enet
 enpass-bin
 eog
 eog-plugins
-epiphany
 erlang-nox
 eslint
 espeak
@@ -232,7 +234,6 @@ gnome-boxes
 gnome-builder
 gnome-calculator
 gnome-calendar
-gnome-characters
 gnome-code-assistance
 gnome-color-manager
 gnome-contacts
@@ -289,6 +290,7 @@ go-bindata
 go-tools
 gobject-introspection-runtime
 gocode-bin
+godep
 gom
 gparted
 gperftools
@@ -352,6 +354,7 @@ gvfs
 gvfs-afc
 gvfs-gphoto2
 gvfs-mtp
+gvfs-nfs
 gvfs-smb
 gvim
 gzip
@@ -420,7 +423,6 @@ kbd
 kbproto
 kcoreaddons
 keyutils
-kitematic
 kitemmodels
 kmod
 krb5
@@ -566,6 +568,7 @@ libdaemon
 libdatrie
 libdc1394
 libdca
+libdiscid
 libdmapsharing
 libdmx
 libdrm
@@ -1111,6 +1114,7 @@ sdl_image
 sdl_mixer
 sdparm
 seabios
+seahorse
 sed
 semver
 serf
@@ -1123,6 +1127,7 @@ smartmontools
 smbclient
 smpeg
 snappy
+sound-juicer
 sound-theme-freedesktop
 soundconverter
 soundtouch
