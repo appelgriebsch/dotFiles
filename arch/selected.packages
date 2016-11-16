@@ -4,6 +4,7 @@ adwaita-icon-theme
 alacarte
 alsa-firmware
 alsa-utils
+android-sdk
 atom
 autoconf
 automake
@@ -153,6 +154,7 @@ hdparm
 inetutils
 inkscape
 intel-ucode
+intellij-idea-ultimate-edition
 inxi
 iproute2
 iptables
@@ -169,11 +171,11 @@ julia
 julia-docs
 jupyter
 jupyter-notebook
+kubectl-bin
 less
 lib32-mesa
 lib32-mesa-demos
 libdvdcss
-libgit2-glib
 libreoffice-still
 libtool
 licenses
@@ -213,6 +215,7 @@ mesa-demos
 mhwd
 mhwd-db
 mhwd-tui
+minikube
 mkinitcpio-nfs-utils
 mkinitcpio-openswap
 mobile-broadband-provider-info
@@ -245,6 +248,7 @@ numlockx
 openjdk8-doc
 openjdk8-src
 openresolv
+openshift-origin-client-tools
 openssh
 os-prober
 pacli
@@ -267,6 +271,7 @@ psmisc
 pulseaudio-bluetooth
 pulseaudio-ctl
 pulseaudio-zeroconf
+react-native-cli
 redis
 redshift
 refind-efi
@@ -294,7 +299,6 @@ tar
 terminus-font
 testdisk
 texinfo
-thunderbird
 tlp
 totem
 tracker
@@ -317,6 +321,7 @@ usbutils
 util-linux
 vertex-maia-icon-theme
 vino
+webstorm
 wget
 which
 wireless_tools
@@ -342,6 +347,7 @@ xorg-utils
 xorg-xinit
 xz
 yaourt
+yarn
 yelp
 zd1211-firmware
 zip

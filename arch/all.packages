@@ -12,6 +12,7 @@ alsa-firmware
 alsa-lib
 alsa-plugins
 alsa-utils
+android-sdk
 apache
 apm
 apr
@@ -384,6 +385,7 @@ inkscape
 inputproto
 intel-tbb
 intel-ucode
+intellij-idea-ultimate-edition
 intltool
 inxi
 iproute2
@@ -426,6 +428,7 @@ keyutils
 kitemmodels
 kmod
 krb5
+kubectl-bin
 ladspa
 lame
 lapack
@@ -483,6 +486,7 @@ lib32-libpulse
 lib32-libsm
 lib32-libsndfile
 lib32-libssh2
+lib32-libstdc++5
 lib32-libtasn1
 lib32-libtiff
 lib32-libtxc_dxtn
@@ -505,6 +509,7 @@ lib32-libxrender
 lib32-libxshmfence
 lib32-libxt
 lib32-libxtst
+lib32-libxv
 lib32-libxxf86vm
 lib32-llvm-libs
 lib32-mesa
@@ -512,6 +517,7 @@ lib32-mesa-demos
 lib32-ncurses
 lib32-nettle
 lib32-nettle4
+lib32-openal
 lib32-openssl
 lib32-p11-kit
 lib32-pcre
@@ -848,6 +854,7 @@ mhwd-nvidia-304xx
 mhwd-nvidia-340xx
 mhwd-tui
 mime-types
+minikube
 miniupnpc
 minizip
 mjpegtools
@@ -923,6 +930,7 @@ openjpeg2
 openmpi
 openresolv
 openshadinglanguage
+openshift-origin-client-tools
 openssh
 openssl
 opensubdiv
@@ -1085,6 +1093,7 @@ randrproto
 raptor
 rasqal
 re2
+react-native-cli
 readline
 recode
 recordproto
@@ -1146,6 +1155,7 @@ subversion
 sudo
 suitesparse
 sushi
+swt
 sysfsutils
 syslinux
 sysprof
@@ -1168,7 +1178,6 @@ testdisk
 tevent
 texinfo
 thin-provisioning-tools
-thunderbird
 tlp
 totem
 totem-plparser
@@ -1218,6 +1227,7 @@ webkit2gtk
 webkitgtk
 webkitgtk2
 webrtc-audio-processing
+webstorm
 wget
 which
 wildmidi
@@ -1300,6 +1310,7 @@ xvidcore
 xz
 yajl
 yaourt
+yarn
 yelp
 yelp-xsl
 zd1211-firmware
