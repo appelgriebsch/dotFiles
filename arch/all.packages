@@ -6,6 +6,9 @@ accountsservice
 acl
 acorn
 acpid
+adobe-source-code-pro-fonts
+adobe-source-sans-pro-fonts
+adobe-source-serif-pro-fonts
 adwaita-icon-theme
 alacarte
 alsa-firmware
@@ -87,6 +90,7 @@ colord
 colord-gtk
 command-not-found
 compositeproto
+connect
 cordova
 corebird
 coreutils
@@ -1250,6 +1254,7 @@ vino
 virglrenderer
 virt-install
 virt-manager
+visual-studio-code
 vivaldi
 vpnc
 vte

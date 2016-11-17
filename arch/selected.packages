@@ -1,5 +1,8 @@
 0ad
 acpid
+adobe-source-code-pro-fonts
+adobe-source-sans-pro-fonts
+adobe-source-serif-pro-fonts
 adwaita-icon-theme
 alacarte
 alsa-firmware
@@ -23,6 +26,7 @@ btrfs-progs
 bzip2
 cmake
 command-not-found
+connect
 cordova
 corebird
 coreutils
@@ -338,6 +342,7 @@ util-linux
 vertex-maia-icon-theme
 vino
 virt-manager
+visual-studio-code
 vivaldi
 webstorm
 wget
