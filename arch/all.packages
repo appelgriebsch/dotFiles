@@ -23,6 +23,7 @@ archlinux-keyring
 arpack
 art-sharp
 aspell
+aspell-en
 at-spi2-atk
 at-spi2-core
 atk
@@ -127,10 +128,12 @@ dnssec-anchors
 docker
 docker-compose
 docker-machine
+docker-machine-kvm
 dosfstools
 downgrade
 dvd+rw-tools
 e2fsprogs
+ebtables
 ecryptfs-utils
 efibootmgr
 efitools
@@ -168,6 +171,8 @@ filesystem
 findutils
 firefox
 firefox-arc-maia-settings
+firefox-i18n-en-us
+firewalld
 fixesproto
 flac
 flatpak
@@ -345,7 +350,6 @@ gtkspell
 gtkspell3
 guake
 gucharmap
-gufw
 guile
 gulp
 gupnp
@@ -369,13 +373,16 @@ hplip
 hspell
 http-parser
 hunspell
+hunspell-en
 hwids
 hwinfo
 hwloc
 hyphen
+hyphen-en
 iana-etc
 icoutils
 icu
+ijavascript
 ijs
 ilmbase
 imagemagick
@@ -389,6 +396,7 @@ intellij-idea-ultimate-edition
 intltool
 inxi
 iproute2
+ipset
 iptables
 iputils
 ipw2100-fw
@@ -805,6 +813,7 @@ logrotate
 lollypop
 lpsolve
 lsb-release
+lshw
 lsof
 lua
 lua52
@@ -999,6 +1008,7 @@ polkit
 polkit-gnome
 polkit-qt5
 poppler
+poppler-data
 poppler-glib
 popt
 powertop
@@ -1058,6 +1068,7 @@ python-requests
 python-setuptools
 python-sip
 python-six
+python-slip
 python-terminado
 python-texttable
 python-tornado
@@ -1088,6 +1099,7 @@ qqwing
 qt5-base
 qt5-styleplugins
 qt5-svg
+qt5-translations
 qt5ct
 randrproto
 raptor
@@ -1195,7 +1207,6 @@ ttf-ms-fonts
 ttf-roboto
 tzdata
 udisks2
-ufw
 uget
 unarj
 unrar
@@ -1216,6 +1227,7 @@ videoproto
 vim-runtime
 vino
 virglrenderer
+vivaldi
 vpnc
 vte
 vte-common

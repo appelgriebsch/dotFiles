@@ -5,6 +5,7 @@ alacarte
 alsa-firmware
 alsa-utils
 android-sdk
+aspell-en
 atom
 autoconf
 automake
@@ -41,8 +42,10 @@ dnsmasq
 docker
 docker-compose
 docker-machine
+docker-machine-kvm
 dosfstools
 e2fsprogs
+ebtables
 ecryptfs-utils
 efitools
 empathy
@@ -61,6 +64,8 @@ file-roller
 filesystem
 findutils
 firefox
+firefox-i18n-en-us
+firewalld
 flex
 flow-bin
 gawk
@@ -140,7 +145,6 @@ gstreamer0.10-good-plugins
 gstreamer0.10-ugly-plugins
 guake
 gucharmap
-gufw
 gulp
 gvfs-afc
 gvfs-gphoto2
@@ -151,6 +155,9 @@ gvim
 gzip
 haveged
 hdparm
+hunspell-en
+hyphen-en
+ijavascript
 inetutils
 inkscape
 intel-ucode
@@ -187,6 +194,7 @@ linux44-ndiswrapper
 logrotate
 lollypop
 lsb-release
+lshw
 lsof
 lvm2
 lzop
@@ -264,6 +272,7 @@ pkg-config
 playonlinux
 plymouth-theme-manjaro-gnome
 polkit-gnome
+poppler-data
 powertop
 prezto-git
 procps-ng
@@ -271,6 +280,7 @@ psmisc
 pulseaudio-bluetooth
 pulseaudio-ctl
 pulseaudio-zeroconf
+qt5-translations
 react-native-cli
 redis
 redshift
@@ -321,6 +331,7 @@ usbutils
 util-linux
 vertex-maia-icon-theme
 vino
+vivaldi
 webstorm
 wget
 which
