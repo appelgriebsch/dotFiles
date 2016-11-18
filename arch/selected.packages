@@ -86,7 +86,6 @@ glade
 glibc
 gnome-2048
 gnome-backgrounds
-gnome-boxes
 gnome-builder
 gnome-calculator
 gnome-calendar
@@ -259,6 +258,7 @@ openresolv
 openshift-origin-client-tools
 openssh
 os-prober
+ovmf
 pacli
 pacman
 pamac
@@ -280,6 +280,8 @@ psmisc
 pulseaudio-bluetooth
 pulseaudio-ctl
 pulseaudio-zeroconf
+pygmentize
+qemu
 qt5-translations
 react-native-cli
 redis
@@ -309,6 +311,10 @@ tar
 terminus-font
 testdisk
 texinfo
+texlive-bibtexextra
+texlive-genericextra
+texlive-latexextra
+texlive-pictures
 tlp
 totem
 tracker
@@ -331,6 +337,7 @@ usbutils
 util-linux
 vertex-maia-icon-theme
 vino
+virt-manager
 vivaldi
 webstorm
 wget

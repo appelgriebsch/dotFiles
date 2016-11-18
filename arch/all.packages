@@ -236,7 +236,6 @@ gnome-2048
 gnome-autoar
 gnome-backgrounds
 gnome-bluetooth
-gnome-boxes
 gnome-builder
 gnome-calculator
 gnome-calendar
@@ -287,7 +286,6 @@ gnome-vfs-sharp
 gnome-video-effects
 gnome-wallpapers
 gnome-weather
-gnu-netcat
 gnupg
 gnutls
 gnutls28
@@ -716,6 +714,7 @@ libsecret
 libshout
 libsidplay
 libsigc++
+libsigsegv
 libsm
 libsndfile
 libsodium
@@ -728,6 +727,7 @@ libsrtp
 libssh
 libssh2
 libstemmer
+libsynctex
 libsystemd
 libtasn1
 libteam
@@ -742,6 +742,7 @@ libunistring
 libunwind
 libusb
 libusbmuxd
+libuser
 libutempter
 libutil-linux
 libuv
@@ -749,6 +750,7 @@ libva
 libvdpau
 libvirt
 libvirt-glib
+libvirt-python
 libvisio
 libvisual
 libvoikko
@@ -883,7 +885,6 @@ mozilla-common
 mpfr
 mpg123
 mtdev
-mtools
 musicbrainz
 mutter
 nano
@@ -909,6 +910,7 @@ networkmanager-openconnect
 networkmanager-openvpn
 networkmanager-pptp
 networkmanager-vpnc
+newt-syrup
 nfs-utils
 nfsidmap
 nilfs-utils
@@ -926,6 +928,7 @@ numactl
 numlockx
 ocl-icd
 openal
+openbsd-netcat
 opencollada
 opencolorio
 openconnect
@@ -951,6 +954,7 @@ orc
 os-prober
 osinfo-db
 ostree
+ovmf
 p11-kit
 p7zip
 package-query
@@ -979,6 +983,7 @@ perl-dbi
 perl-encode-locale
 perl-error
 perl-file-listing
+perl-file-which
 perl-html-parser
 perl-html-tagset
 perl-http-cookies
@@ -1011,6 +1016,7 @@ poppler
 poppler-data
 poppler-glib
 popt
+potrace
 powertop
 ppp
 pptpclient
@@ -1025,6 +1031,7 @@ pulseaudio-alsa
 pulseaudio-bluetooth
 pulseaudio-ctl
 pulseaudio-zeroconf
+pygmentize
 pygobject-devel
 pygobject2-devel
 pygtk
@@ -1081,16 +1088,22 @@ python-yaml
 python2
 python2-bonobo
 python2-cairo
+python2-chardet
 python2-dbus
 python2-gconf
 python2-gnomecanvas
 python2-gnomevfs
 python2-gobject
 python2-gobject2
+python2-ipaddr
+python2-ipy
 python2-keybinder2
 python2-libgnome
 python2-nautilus
 python2-notify
+python2-pycurl
+python2-requests
+python2-urllib3
 python2-xdg
 pywebkitgtk
 qemu
@@ -1103,6 +1116,7 @@ qt5-translations
 qt5ct
 randrproto
 raptor
+rarian
 rasqal
 re2
 react-native-cli
@@ -1189,6 +1203,12 @@ terminus-font
 testdisk
 tevent
 texinfo
+texlive-bibtexextra
+texlive-bin
+texlive-core
+texlive-genericextra
+texlive-latexextra
+texlive-pictures
 thin-provisioning-tools
 tlp
 totem
@@ -1212,6 +1232,7 @@ unarj
 unrar
 unzip
 upower
+urlgrabber
 usb_modeswitch
 usbmuxd
 usbredir
@@ -1227,6 +1248,8 @@ videoproto
 vim-runtime
 vino
 virglrenderer
+virt-install
+virt-manager
 vivaldi
 vpnc
 vte
@@ -1337,3 +1360,4 @@ zsh-completions
 zsh-doc
 zsh-syntax-highlighting
 zstd
+zziplib
