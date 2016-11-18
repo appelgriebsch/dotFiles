@@ -60,6 +60,9 @@ eog-plugins
 eslint
 ethtool
 evince
+evolution
+evolution-bogofilter
+evolution-ews
 exfat-utils
 f2fs-tools
 fakeroot
@@ -75,7 +78,6 @@ flow-bin
 gawk
 gcc-libs-multilib
 gcc-multilib
-geary
 gedit
 gedit-code-assistance
 gedit-plugins
@@ -92,9 +94,7 @@ gnome-2048
 gnome-backgrounds
 gnome-builder
 gnome-calculator
-gnome-calendar
 gnome-code-assistance
-gnome-contacts
 gnome-control-center
 gnome-desktop
 gnome-devel-docs
@@ -218,6 +218,7 @@ manjaro-release
 manjaro-settings-manager
 manjaro-system
 manjaro-welcome
+manjarobox-evolution-themes
 mc
 mdadm
 meld

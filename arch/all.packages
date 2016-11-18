@@ -52,6 +52,7 @@ blosc
 blueman
 bluez
 bluez-libs
+bogofilter
 boost-libs
 brasero
 bridge-utils
@@ -156,7 +157,10 @@ eslint
 espeak
 ethtool
 evince
+evolution
+evolution-bogofilter
 evolution-data-server
+evolution-ews
 exempi
 exfat-utils
 exiv2
@@ -206,7 +210,6 @@ gdbm
 gdk-pixbuf2
 gdl
 gdlmm
-geary
 gedit
 gedit-code-assistance
 gedit-plugins
@@ -242,10 +245,8 @@ gnome-backgrounds
 gnome-bluetooth
 gnome-builder
 gnome-calculator
-gnome-calendar
 gnome-code-assistance
 gnome-color-manager
-gnome-contacts
 gnome-control-center
 gnome-desktop
 gnome-devel-docs
@@ -577,6 +578,7 @@ libcdr
 libchamplain
 libcmis
 libcroco
+libcryptui
 libcue
 libcups
 libcurl-gnutls
@@ -668,6 +670,7 @@ libmp4v2
 libmpc
 libmpcdec
 libmpeg2
+libmspack
 libmspub
 libmtp
 libmusicbrainz5
@@ -701,6 +704,7 @@ libpipeline
 libplist
 libpng
 libproxy
+libpst
 libpulse
 libpwquality
 libqmi
@@ -804,6 +808,7 @@ libxvmc
 libxxf86dga
 libxxf86vm
 libyaml
+libytnef
 libzapojit
 licenses
 lightdm
@@ -852,6 +857,7 @@ manjaro-release
 manjaro-settings-manager
 manjaro-system
 manjaro-welcome
+manjarobox-evolution-themes
 mc
 mdadm
 meld
