@@ -1,9 +1,6 @@
 Hydrogen
 angularjs
-angularjs-snippets
-atom-angular-material-snippets
 atom-bootstrap3
-atom-elixir
 atom-react-native-autocomplete
 autocomplete-angular-material
 autocomplete-emojis
@@ -53,7 +50,5 @@ minimap-git-diff
 minimap-linter
 pdf-view
 pigments
-react-snippets
-terminal-plus
 tool-bar
 tool-bar-almighty
