@@ -1,0 +1,32 @@
+{
+    "extensions": [
+        "13xforever.language-x86-64-assembly",
+        "DotJoshJohnson.xml",
+        "EditorConfig.EditorConfig",
+        "PeterJausovec.vscode-docker",
+        "TimonVS.ReactSnippetsStandard",
+        "abusaidm.html-snippets",
+        "alefragnani.Bookmarks",
+        "anseki.vscode-color",
+        "chenxsan.vscode-standardjs",
+        "deerawan.vscode-dash",
+        "eg2.tslint",
+        "golf1052.code-sync",
+        "jtlowe.vscode-icon-theme",
+        "julialang.language-julia",
+        "justusadam.language-asciidoc",
+        "kisstkondoros.vscode-codemetrics",
+        "kumar-harsh.graphql-for-vscode",
+        "lkytal.FlatUI",
+        "mrmlnc.vscode-less",
+        "ms-vscode.PowerShell",
+        "ms-vscode.cpptools",
+        "ms-vscode.csharp",
+        "msjsdiag.debugger-for-edge",
+        "redhat.java",
+        "samverschueren.yo",
+        "slevesque.vscode-hexdump",
+        "vsmobile.cordova-tools",
+        "yzane.markdown-pdf"
+    ]
+}
