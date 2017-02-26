@@ -1,4 +1,3 @@
-Hydrogen
 angularjs
 atom-bootstrap3
 atom-react-native-autocomplete
@@ -18,9 +17,7 @@ emmet
 file-icons
 git-plus
 git-time-machine
-go-plus
 graphviz-preview
-ide-flow
 intentions
 language-babel
 language-docker
@@ -31,11 +28,7 @@ language-julia
 language-latex
 language-rdf
 language-sparql
-latex
-latex-completions
-latexer
 linter
-linter-chktex
 linter-csslint
 linter-docker
 linter-eslint
