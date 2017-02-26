@@ -1,6 +1,7 @@
 angularjs
 atom-bootstrap3
 atom-react-native-autocomplete
+atom-typescript
 autocomplete-angular-material
 autocomplete-emojis
 autocomplete-flow
@@ -15,6 +16,7 @@ docblockr
 dockerletion
 emmet
 file-icons
+flow-ide
 git-plus
 git-time-machine
 graphviz-preview
@@ -43,5 +45,6 @@ minimap-git-diff
 minimap-linter
 pdf-view
 pigments
+terminal-plus
 tool-bar
 tool-bar-almighty
