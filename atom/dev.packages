@@ -4,7 +4,6 @@ atom-react-native-autocomplete
 atom-typescript
 autocomplete-angular-material
 autocomplete-emojis
-autocomplete-flow
 autocomplete-json
 autocomplete-modules
 autocomplete-paths
@@ -34,7 +33,6 @@ linter
 linter-csslint
 linter-docker
 linter-eslint
-linter-flow
 linter-less
 linter-tidy
 merge-conflicts
@@ -48,3 +46,4 @@ pigments
 terminal-plus
 tool-bar
 tool-bar-almighty
+vim-mode-plus
