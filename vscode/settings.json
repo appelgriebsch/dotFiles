@@ -1,5 +1,8 @@
 {
     "window.menuBarVisibility": "toggle",
     "editor.fontFamily": "'Source Code Pro', Consolas, 'Courier New', monospace",
-    "window.zoomLevel": 1.15
+    "window.zoomLevel": 1.15,
+    "editor.minimap.enabled": true,
+    "workbench.colorTheme": "FlatUI",
+    "workbench.iconTheme": "vscode-icon-theme"
 }
