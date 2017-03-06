@@ -1,6 +1,7 @@
 {
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 1.15,
+    "window.reopenFolders": "none",
     "editor.fontFamily": "'Source Code Pro', Consolas, 'Courier New', monospace",
     "editor.minimap.enabled": true,
     "editor.insertSpaces": true,
