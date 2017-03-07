@@ -1,6 +1,7 @@
 angularjs
 atom-beautify
 atom-bootstrap3
+atom-npm-outdated
 atom-react-native-autocomplete
 atom-typescript
 autocomplete-angular-material
@@ -16,6 +17,7 @@ docblockr
 dockerletion
 emmet
 file-icons
+flow-ide
 git-plus
 git-time-machine
 graphviz-preview
