@@ -1,0 +1,14 @@
+babel-cli
+cordova
+electron-forge
+eslint
+eslint-plugin-react
+flow-bin
+horizon
+node-gyp
+react-native-cli
+standard
+tslint
+typescript
+typings
+yarn
