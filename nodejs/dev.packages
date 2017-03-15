@@ -1,14 +1,13 @@
 babel-cli
 cordova
+create-react-app
+create-react-native-app
 electron-forge
 eslint
 eslint-plugin-react
-flow-bin
 horizon
 node-gyp
 react-native-cli
 standard
 tslint
 typescript
-typings
-yarn
