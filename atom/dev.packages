@@ -32,7 +32,6 @@ minimap-bookmarks
 minimap-find-and-replace
 minimap-git-diff
 minimap-linter
-omnisharp-atom
 platformio-ide-terminal 
 pdf-view
 pigments
