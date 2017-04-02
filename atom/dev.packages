@@ -19,6 +19,7 @@ language-graphql
 language-julia
 language-rdf
 language-sparql
+language-vue
 linter
 linter-csslint
 linter-docker
@@ -32,10 +33,11 @@ minimap-bookmarks
 minimap-find-and-replace
 minimap-git-diff
 minimap-linter
-platformio-ide-terminal 
 pdf-view
 pigments
+platformio-ide-terminal
 tool-bar
 tool-bar-almighty
-vim-mode-plus
 vim-mode-clipboard-plus
+vim-mode-plus
+vue2-autocomplete
