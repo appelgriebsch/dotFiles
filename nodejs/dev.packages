@@ -7,7 +7,6 @@ eslint
 eslint-plugin-react
 flow-bin
 horizon
-ionic
 node-gyp
 react-native-cli
 standard
