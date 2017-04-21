@@ -15,6 +15,7 @@ EditorConfig.EditorConfig
 eg2.tslint
 emmanuelbeziat.vscode-great-icons
 eridem.vscode-nupkg
+evilz.vscode-reveal
 flowtype.flow-for-vscode
 humao.rest-client
 IBM.output-colorizer
@@ -29,7 +30,6 @@ julialang.language-julia
 k--kato.docomment
 kisstkondoros.typelens
 kisstkondoros.vscode-codemetrics
-lkytal.FlatUI
 lukehoban.Go
 mkaufman.HTMLHint
 mrmlnc.vscode-less
@@ -42,7 +42,6 @@ octref.vetur
 Orta.vscode-jest
 PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
-polymer.polymer-ide
 pranaygp.vscode-css-peek
 redhat.java
 robinbentley.sass-indented
