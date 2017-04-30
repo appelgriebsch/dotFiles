@@ -1,5 +1,6 @@
 babel-cli
 cordova
+create-next-app
 create-react-app
 create-react-native-app
 electron-forge
@@ -8,6 +9,7 @@ eslint-plugin-react
 flow-bin
 horizon
 node-gyp
+pkg
 react-native-cli
 standard
 tslint

@@ -2,6 +2,7 @@
 abierbaum.vscode-file-peek
 alefragnani.Bookmarks
 Arjun.swagger-viewer
+brendandburns.vs-kubernetes
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codezombiech.gitignore
@@ -16,10 +17,11 @@ eg2.tslint
 emmanuelbeziat.vscode-great-icons
 eridem.vscode-nupkg
 evilz.vscode-reveal
-flowtype.flow-for-vscode
+gcazaciuc.vscode-flow-ide
 humao.rest-client
 IBM.output-colorizer
 idleberg.icon-fonts
+ipedrazas.kubernetes-snippets
 jebbs.plantuml
 jmrog.vscode-nuget-package-manager
 joelday.docthis
