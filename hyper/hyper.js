@@ -29,7 +29,7 @@ module.exports = {
     borderColor: '#333',
 
     // custom css to embed in the main window
-    css: '.header_shape { color: #808080 }',
+    css: '.header_shape, .header_appTitle { color: #808080 }',
 
     // custom css to embed in the terminal window
     termCSS: '',
@@ -73,7 +73,7 @@ module.exports = {
     // make sure to use a full path if the binary name doesn't work
     // (e.g `C:\\Windows\\System32\\bash.exe` instead of just `bash.exe`)
     // if you're using powershell, make sure to remove the `--login` below
-    shell: '',
+    shell: 'C:\\Program Files\\Git\\bin\\bash.exe',
 
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
