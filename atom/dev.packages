@@ -5,7 +5,6 @@ autocomplete-json
 autocomplete-modules
 autocomplete-paths
 autocomplete-xml
-busy-signal
 clipboard-plus
 docblockr
 file-icons
@@ -16,7 +15,6 @@ intentions
 language-babel
 language-docker
 language-graphql
-language-julia
 language-rdf
 language-sparql
 language-vue
@@ -36,7 +34,6 @@ minimap-linter
 pdf-view
 pigments
 platformio-ide-terminal
-solarized-dark-syntax
 tool-bar
 tool-bar-almighty
 vim-mode-clipboard-plus

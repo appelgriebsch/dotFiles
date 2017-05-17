@@ -1,6 +1,4 @@
 {
-    "flow.runOnEdit": false,
-    "flow.stopFlowOnExit": true,
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 1.75,
     "window.reopenFolders": "none",

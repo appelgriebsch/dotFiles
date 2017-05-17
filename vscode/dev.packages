@@ -17,7 +17,6 @@ eg2.tslint
 emmanuelbeziat.vscode-great-icons
 eridem.vscode-nupkg
 evilz.vscode-reveal
-flowtype.flow-for-vscode
 humao.rest-client
 IBM.output-colorizer
 idleberg.icon-fonts
@@ -32,7 +31,6 @@ k--kato.docomment
 kisstkondoros.typelens
 kisstkondoros.vscode-codemetrics
 kumar-harsh.graphql-for-vscode
-lukehoban.Go
 mkaufman.HTMLHint
 mrmlnc.vscode-less
 ms-mssql.mssql
@@ -41,13 +39,10 @@ ms-vscode.csharp
 ms-vscode.PowerShell
 msjsdiag.debugger-for-edge
 octref.vetur
-Orta.vscode-jest
 PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
 pranaygp.vscode-css-peek
-redhat.java
 robinbentley.sass-indented
-silverlakesoftware.searchdocsets-vscode
 slevesque.vscode-hexdump
 tomoki1207.pdf
 vector-of-bool.gitflow
