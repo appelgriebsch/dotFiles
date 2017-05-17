@@ -5,7 +5,7 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 16,
+    fontSize: 14,
 
     // font family with optional fallbacks
     fontFamily: '"Source Code Pro", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -29,7 +29,7 @@ module.exports = {
     borderColor: '#333',
 
     // custom css to embed in the main window
-    css: '',
+    css: '.header_shape { color: #808080 }',
 
     // custom css to embed in the terminal window
     termCSS: '',
@@ -86,11 +86,11 @@ module.exports = {
     bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false,
+    copyOnSelect: false
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)
-    quickEdit: true
+    // quickEdit: true
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
@@ -105,8 +105,8 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    'hyper-solarized-dark',
-    'hyper-statusline'
+    "hyper-statusline",
+    "hyper-one-light"
   ],
 
   // in development, you can create a directory under
