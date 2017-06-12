@@ -1,4 +1,5 @@
 13xforever.language-x86-64-assembly
+akamud.vscode-theme-onelight
 alefragnani.Bookmarks
 alefragnani.project-manager
 Angular.ng-template
@@ -22,6 +23,7 @@ formulahendry.auto-rename-tag
 ipedrazas.kubernetes-snippets
 jasonnutter.search-node-modules
 jchannon.csharpextensions
+jebbs.plantuml
 jeremyrajan.webpack
 jmrog.vscode-nuget-package-manager
 joelday.docthis
@@ -31,7 +33,6 @@ k--kato.docomment
 kisstkondoros.typelens
 kisstkondoros.vscode-codemetrics
 kumar-harsh.graphql-for-vscode
-LaurentTreguier.vscode-simple-icons
 leizongmin.node-module-intellisense
 ms-mssql.mssql
 ms-vscode.cpptools
@@ -47,7 +48,7 @@ pflannery.vscode-versionlens
 redhat.java
 robinbentley.sass-indented
 slevesque.vscode-hexdump
-Tyriar.terminal-tabs
+tomoki1207.pdf
 vscodevim.vim
 vsmobile.cordova-tools
 vsmobile.vscode-react-native
