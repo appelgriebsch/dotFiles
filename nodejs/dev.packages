@@ -6,6 +6,8 @@ create-reactxp-app
 electron-forge
 manifoldjs
 pkg
+preact-cli
 standard
 tslint
 typescript
+vue-cli
