@@ -7,6 +7,7 @@ brendandburns.vs-kubernetes
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codezombiech.gitignore
+cssho.vscode-svgviewer
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
 donjayamanne.git-extension-pack
@@ -20,6 +21,9 @@ eg2.vscode-npm-script
 flowtype.flow-for-vscode
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
+formulahendry.code-runner
+formulahendry.docker-explorer
+humao.rest-client
 ipedrazas.kubernetes-snippets
 jasonnutter.search-node-modules
 jchannon.csharpextensions
@@ -35,6 +39,7 @@ kisstkondoros.typelens
 kisstkondoros.vscode-codemetrics
 kumar-harsh.graphql-for-vscode
 leizongmin.node-module-intellisense
+lukehoban.Go
 ms-mssql.mssql
 ms-vscode.cpptools
 ms-vscode.csharp
@@ -46,6 +51,7 @@ Orta.vscode-jest
 oysun.vuehelper
 PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
+Pivotal.vscode-manifest-yaml
 redhat.java
 robinbentley.sass-indented
 slevesque.vscode-hexdump

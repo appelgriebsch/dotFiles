@@ -1,9 +1,14 @@
+@angular/cli
 babel-cli
 cordova
 create-react-app
 create-react-native-app
 create-reactxp-app
 electron-forge
+eslint
+eslint-plugin-react
+flow-bin
+http-server
 manifoldjs
 pkg
 preact-cli
