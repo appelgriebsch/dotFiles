@@ -1,7 +1,8 @@
 {
+    "vim.disableAnnoyingNeovimMessage": true,
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1.75,
-    "window.reopenFolders": "none",
+    "window.zoomLevel": 1.5,
+    "window.restoreWindows": "none",
     "editor.fontFamily": "'Source Code Pro', Consolas, 'Courier New', monospace",
     "editor.minimap.enabled": true,
     "editor.insertSpaces": true,
