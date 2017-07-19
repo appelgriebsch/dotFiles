@@ -8,6 +8,5 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "workbench.colorTheme": "Quiet Light",
-    "workbench.iconTheme": "vscode-great-icons",
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+    "workbench.iconTheme": "simple-icons"
 }
