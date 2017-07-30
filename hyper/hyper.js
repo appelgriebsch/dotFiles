@@ -1,4 +1,4 @@
-// Future versions of Hyper may add additional config options,
+﻿// Future versions of Hyper may add additional config options,
 // which will not automatically be merged into this file.
 // See https://hyper.is#cfg for all currently supported options.
 
@@ -73,11 +73,13 @@ module.exports = {
     // make sure to use a full path if the binary name doesn't work
     // (e.g `C:\\Windows\\System32\\bash.exe` instead of just `bash.exe`)
     // if you're using powershell, make sure to remove the `--login` below
-    shell: 'C:\\Program Files\\Git\\bin\\bash.exe',
+    //shell: 'C:\\Program Files\\Git\\bin\\bash.exe',
+    shell: 'powershell.exe',
 
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
-    shellArgs: ['--login'],
+    //shellArgs: ['--login'],
+    shellArgs: [''],
 
     // for environment variables
     env: {},
@@ -105,8 +107,7 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    "hyper-statusline",
-    "hyper-one-light"
+   "hyper-one-light"
   ],
 
   // in development, you can create a directory under
