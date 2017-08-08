@@ -8,5 +8,5 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "workbench.colorTheme": "Quiet Light",
-    "workbench.iconTheme": "simple-icons"
+    "workbench.iconTheme": "vscode-icons"
 }
