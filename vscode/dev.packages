@@ -8,7 +8,6 @@ loiane.angular-extension-pack
 doddzycodes.codecpp-full
 formulahendry.docker-extension-pack
 formulahendry.iot-extension-pack
-akamud.vscode-theme-onelight
 agauniyal.vscode-caniuse
 cssho.vscode-svgviewer
 vscodevim.vim
@@ -23,3 +22,7 @@ jchannon.csharpextensions
 dzannotti.vscode-babel-coloring
 jebbs.plantuml
 mrmlnc.vscode-less
+joelday.docthis
+Telerik.nativescript
+wix.vscode-import-cost
+teabyii.ayu

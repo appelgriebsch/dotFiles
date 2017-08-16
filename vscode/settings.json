@@ -7,6 +7,6 @@
     "editor.minimap.enabled": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "workbench.colorTheme": "Quiet Light",
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.colorTheme": "Ayu Light",
+    "workbench.iconTheme": "ayu"
 }
