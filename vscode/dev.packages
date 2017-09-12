@@ -11,7 +11,7 @@ formulahendry.docker-extension-pack
 agauniyal.vscode-caniuse
 cssho.vscode-svgviewer
 vscodevim.vim
-//vsmobile.vscode-react-native
+vsmobile.vscode-react-native
 hbenl.vscode-firefox-debug
 msjsdiag.debugger-for-edge
 ms-vscode.powershell
@@ -29,5 +29,11 @@ dariofuzinato.vue-peek
 eg2.tslint
 Zignd.html-css-class-completion
 EditorConfig.editorconfig
+lukehoban.go
+ms-mssql.mssql
+ms-vscode.mono-debug
+vsmobile.cordova-tools
+ms-vsts.team
+Angular.ng-template
 shinnn.stylelint
 teabyii.ayu
