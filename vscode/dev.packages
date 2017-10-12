@@ -2,7 +2,7 @@ waderyan.nodejs-extension-pack
 mubaidr.vuejs-extension-pack
 FelschR.extbundles-csharp
 donjayamanne.python-extension-pack
-doddzycodes.codecpp-full
+doddzycodes.codecpp-minimum
 formulahendry.docker-extension-pack
 vscjava.vscode-java-pack
 agauniyal.vscode-caniuse
@@ -22,7 +22,7 @@ joelday.docthis
 wix.vscode-import-cost
 dariofuzinato.vue-peek
 eg2.tslint
-Zignd.html-css-class-completion
+ecmel.vscode-html-css
 EditorConfig.editorconfig
 ms-mssql.mssql
 shinnn.stylelint
