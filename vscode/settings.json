@@ -1,12 +1,19 @@
 {
     "vim.disableAnnoyingNeovimMessage": true,
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1.5,
+    "window.zoomLevel": 1.2,
     "window.restoreWindows": "none",
-    "editor.fontFamily": "'Source Code Pro', Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "Hack, 'Source Code Pro', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.fontWeight": "500",
     "editor.minimap.enabled": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "workbench.colorTheme": "Ayu Light",
-    "workbench.iconTheme": "ayu"
+    "workbench.colorTheme": "Nord",
+    "workbench.iconTheme": "file-icons",
+    "git.enabled": true,
+    "git.path": "C:\\Program Files\\cmder\\vendor\\git-for-windows\\bin\\git.exe",
+    "gitlens.advanced.git": "C:\\Program Files\\cmder\\vendor\\git-for-windows\\bin\\git.exe"
+
 }
