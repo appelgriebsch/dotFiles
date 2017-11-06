@@ -7,9 +7,7 @@ eslint-plugin-vue
 http-server
 lib.cli
 manifoldjs
-npm
 pkg
-preact-cli
 standard
 tslint
 typescript

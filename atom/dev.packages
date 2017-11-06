@@ -25,10 +25,10 @@ minimap
 minimap-codeglance
 minimap-find-and-replace
 minimap-git-diff
-nord-atom-syntax
-nord-atom-ui
 pdf-view
 pigments
+pop-syntax
+pop-ui
 tool-bar
 tool-bar-atom
 vim-mode

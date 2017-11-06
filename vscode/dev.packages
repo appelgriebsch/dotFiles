@@ -9,8 +9,6 @@ agauniyal.vscode-caniuse
 cssho.vscode-svgviewer
 vscodevim.vim
 hbenl.vscode-firefox-debug
-msjsdiag.debugger-for-edge
-ms-vscode.powershell
 kisstkondoros.typelens
 kisstkondoros.vscode-codemetrics
 kumar-harsh.graphql-for-vscode
@@ -28,7 +26,7 @@ ms-mssql.mssql
 shinnn.stylelint
 eamodio.gitlens
 Ionide.ionide-fsharp
+lukehoban.go
 rbbit.typescript-hero
-arcticicestudio.nord-visual-studio-code
 file-icons.file-icons
-ms-vscode.azurecli
+ArtisanByteCrafter.poptheme
