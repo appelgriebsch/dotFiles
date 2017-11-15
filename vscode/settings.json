@@ -1,9 +1,8 @@
 {
-    "vim.disableAnnoyingNeovimMessage": true,
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 1.2,
     "window.restoreWindows": "none",
-    "editor.fontFamily": "'Fira Mono', Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "'Fira Mono', Hack, Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
     "editor.fontWeight": "500",

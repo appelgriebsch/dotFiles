@@ -29,6 +29,7 @@ pdf-view
 pigments
 pop-syntax
 pop-ui
+teletype
 tool-bar
 tool-bar-atom
 vim-mode
