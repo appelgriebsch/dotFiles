@@ -9,6 +9,8 @@
     "editor.minimap.enabled": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "workbench.colorTheme": "Pop Dark",
+    "editor.tabCompletion": true,
+    "editor.formatOnSave": true,
+    "workbench.colorTheme": "Arc+ (Dark Monochrome)",
     "workbench.iconTheme": "file-icons"
 }

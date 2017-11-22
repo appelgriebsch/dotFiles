@@ -1,3 +1,4 @@
+arc-ui
 atom-ide-ui
 atom-terminal-tab
 docblockr
@@ -27,9 +28,5 @@ minimap-find-and-replace
 minimap-git-diff
 pdf-view
 pigments
-pop-syntax
-pop-ui
 teletype
-tool-bar
-tool-bar-atom
 vim-mode
