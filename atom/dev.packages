@@ -7,6 +7,7 @@ git-time-machine
 ide-csharp
 ide-css
 ide-docker
+ide-go
 ide-html
 ide-java
 ide-typescript
