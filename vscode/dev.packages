@@ -5,6 +5,7 @@ doddzycodes.codecpp-minimum
 formulahendry.docker-extension-pack
 vscjava.vscode-java-pack
 sdras.vue-vscode-extensionpack
+FelschR.extbundles-csharp
 agauniyal.vscode-caniuse
 vscodevim.vim
 hbenl.vscode-firefox-debug
@@ -18,9 +19,10 @@ shinnn.stylelint
 DavidAnson.vscode-markdownlint
 eamodio.gitlens
 rbbit.typescript-hero
-James-Yu.latex-workshop
+lukehoban.go
 vsmobile.cordova-tools
 ms-vscode.powershell
 ms-mssql.mssql
 file-icons.file-icons
+jchannon.csharpextensions
 arcticicestudio.nord-visual-studio-code
