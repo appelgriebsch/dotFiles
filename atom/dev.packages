@@ -31,4 +31,6 @@ nord-atom-ui
 pdf-view
 pigments
 teletype
+tester
+tester-jest
 vim-mode
