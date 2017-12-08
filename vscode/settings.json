@@ -1,4 +1,6 @@
 {
+  "workbench.colorTheme": "Pop Dark",
+  "workbench.iconTheme": "file-icons-colourless",
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": 1,
   "window.restoreWindows": "none",
@@ -11,12 +13,6 @@
   "editor.tabSize": 2,
   "editor.tabCompletion": true,
   "editor.formatOnSave": true,
-  "git.path":
-    "C:\\Program Files (x86)\\fournova\\Tower\\vendor\\Git\\bin\\git.exe",
-  "gitlens.advanced.git":
-    "C:\\Program Files (x86)\\fournova\\Tower\\vendor\\Git\\bin\\git.exe",
-  "workbench.colorTheme": "Nord",
-  "workbench.iconTheme": "file-icons",
   "explorer.confirmDelete": false,
   "docker-explorer.showAzureRegistries": false,
   "docker-explorer.showSuggestedDockerImages": false

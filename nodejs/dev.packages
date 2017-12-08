@@ -1,3 +1,4 @@
+@angular/cli
 babel-cli
 create-react-app
 eslint
@@ -7,7 +8,7 @@ eslint-plugin-vue
 http-server
 lib.cli
 manifoldjs
-pkg
+pkg@4.2.6
 standard
 tslint
 typescript

@@ -4,6 +4,7 @@ docblockr
 file-icons
 git-plus
 git-time-machine
+hydrogen
 ide-csharp
 ide-css
 ide-docker
@@ -26,8 +27,8 @@ minimap
 minimap-codeglance
 minimap-find-and-replace
 minimap-git-diff
-nord-atom-syntax
-nord-atom-ui
+pop-syntax
+pop-ui
 pdf-view
 pigments
 teletype
