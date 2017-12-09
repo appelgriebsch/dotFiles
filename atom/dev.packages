@@ -11,6 +11,7 @@ ide-docker
 ide-go
 ide-html
 ide-java
+ide-rust
 ide-typescript
 ide-vue
 ide-yaml
