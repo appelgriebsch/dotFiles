@@ -4,7 +4,7 @@ docblockr
 file-icons
 git-plus
 git-time-machine
-hydrogen
+graphviz-preview-plus
 ide-csharp
 ide-css
 ide-docker
@@ -18,8 +18,11 @@ ide-yaml
 intentions
 language-babel
 language-docker
+language-dot
 language-graphql
+language-plantuml
 language-rdf
+language-rust
 language-sparql
 language-typescript-grammars-only
 language-vue
@@ -28,10 +31,11 @@ minimap
 minimap-codeglance
 minimap-find-and-replace
 minimap-git-diff
-pop-syntax
-pop-ui
 pdf-view
 pigments
+plantuml-preview
+pop-syntax
+pop-ui
 teletype
 tester
 tester-jest
