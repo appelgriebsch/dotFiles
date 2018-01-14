@@ -1,5 +1,5 @@
 atom-ide-ui
-atom-terminal-tab
+atom-npm-outdated
 docblockr
 file-icons
 git-plus
@@ -8,9 +8,10 @@ graphviz-preview-plus
 ide-csharp
 ide-css
 ide-docker
-ide-go
 ide-html
 ide-java
+ide-json
+ide-python
 ide-rust
 ide-typescript
 ide-vue
@@ -31,12 +32,14 @@ minimap
 minimap-codeglance
 minimap-find-and-replace
 minimap-git-diff
+npm-helper
 pdf-view
 pigments
 plantuml-preview
 pop-syntax
 pop-ui
 teletype
+terminal-tab
 tester
 tester-jest
-vim-mode
+vim-mode-plus
