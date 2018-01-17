@@ -6,12 +6,12 @@ file-icons
 git-plus
 git-time-machine
 graphviz-preview-plus
-ide-csharp
 ide-css
 ide-docker
 ide-html
 ide-java
 ide-json
+ide-powershell
 ide-python
 ide-rust
 ide-typescript
