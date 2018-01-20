@@ -9,7 +9,6 @@ graphviz-preview-plus
 ide-css
 ide-docker
 ide-html
-ide-java
 ide-json
 ide-powershell
 ide-python
@@ -21,7 +20,6 @@ language-babel
 language-docker
 language-dot
 language-graphql
-language-plantuml
 language-rdf
 language-rust
 language-sparql
@@ -34,7 +32,6 @@ minimap-git-diff
 npm-helper
 pdf-view
 pigments
-plantuml-preview
 pop-syntax
 pop-ui
 prettier-atom
