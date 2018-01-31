@@ -4,6 +4,6 @@ electron-forge
 fuge
 http-server
 lib.cli
-nativescript
-pkg@4.2.6
+pkg
 standard
+typescript
