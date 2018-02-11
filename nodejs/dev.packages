@@ -4,6 +4,7 @@ electron-forge
 fuge
 http-server
 lib.cli
+parcel-bundler
 pkg
 standard
 typescript
