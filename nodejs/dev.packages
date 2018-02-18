@@ -1,5 +1,4 @@
 create-react-app
-create-react-native-app
 electron-forge
 fuge
 http-server
@@ -7,4 +6,3 @@ lib.cli
 parcel-bundler
 pkg
 standard
-typescript

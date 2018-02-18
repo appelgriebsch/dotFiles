@@ -8,9 +8,9 @@ git-time-machine
 graphviz-preview-plus
 ide-css
 ide-docker
+ide-go
 ide-html
 ide-json
-ide-powershell
 ide-python
 ide-rust
 ide-typescript
@@ -32,8 +32,6 @@ minimap-git-diff
 npm-helper
 pdf-view
 pigments
-pop-syntax
-pop-ui
 prettier-atom
 teletype
 terminal-tab
