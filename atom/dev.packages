@@ -8,14 +8,11 @@ git-time-machine
 go-plus
 graphviz-preview-plus
 ide-cquery
-ide-csharp
 ide-css
 ide-docker
 ide-go
 ide-html
-ide-java
 ide-json
-ide-powershell
 ide-python
 ide-rust
 ide-typescript
@@ -25,7 +22,6 @@ language-babel
 language-docker
 language-dot
 language-graphql
-language-powershell
 language-rdf
 language-rust
 language-sparql
