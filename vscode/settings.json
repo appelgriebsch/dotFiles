@@ -1,39 +1,17 @@
 {
-    "workbench.iconTheme": "file-icons-colourless",
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1,
-    "window.restoreWindows": "none",
-    "editor.fontFamily": "'Fira Mono', Hack, Consolas, 'Courier New', monospace",
-    "editor.fontLigatures": true,
-    "editor.fontSize": 14,
-    "editor.fontWeight": "500",
-    "editor.minimap.enabled": true,
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.tabCompletion": true,
-    "editor.formatOnSave": true,
-    "explorer.confirmDelete": false,
-    "git.path": "C:\\Program Files (x86)\\fournova\\Tower\\vendor\\Git\\bin\\git.exe",
-    "workbench.colorTheme": "City Lights",
-    "msbuildProjectTools": {
-        "logging": {
-            "level": "Information",
-            "seq": {},
-            "file": "",
-            "trace": false
-        },
-        "language": {
-            "disableFeature": {},
-            "useClassicProvider": false,
-            "disable": {
-                "hover": false
-            }
-        },
-        "nuget": {
-            "newestVersionsFirst": true,
-            "includePreRelease": true,
-            "disablePrefetch": false
-        },
-        "schemaVersion": 1
-    }
+  "workbench.iconTheme": "file-icons-colourless",
+  "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": 1,
+  "window.restoreWindows": "none",
+  "editor.fontFamily": "'Fira Mono', Hack, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.fontWeight": "500",
+  "editor.minimap.enabled": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.tabCompletion": true,
+  "editor.formatOnSave": true,
+  "explorer.confirmDelete": false,
+  "workbench.colorTheme": "City Lights"
 }
