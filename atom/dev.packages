@@ -5,14 +5,12 @@ city-lights-icons
 city-lights-syntax
 city-lights-ui
 docblockr
-file-icons
 git-plus
 git-time-machine
-gitkraken-glo
 graphviz-preview-plus
-ide-cquery
 ide-css
 ide-docker
+ide-go
 ide-html
 ide-json
 ide-python
@@ -39,7 +37,6 @@ pigments
 prettier-atom
 teletype
 terminal-tab
-terminal-tab-service
 tester
 tester-jest
 vim-mode-plus
