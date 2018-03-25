@@ -13,5 +13,6 @@
   "editor.tabCompletion": true,
   "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
-  "workbench.colorTheme": "City Lights"
+  "workbench.colorTheme": "City Lights",
+  "git.autofetch": true
 }

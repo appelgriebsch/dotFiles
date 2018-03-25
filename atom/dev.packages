@@ -1,5 +1,4 @@
 atom-ide-ui
-atom-npm-outdated
 city-lights-icons
 city-lights-syntax
 city-lights-ui
@@ -8,7 +7,6 @@ docblockr
 git-plus
 git-time-machine
 graphviz-preview-plus
-ide-csharp
 ide-css
 ide-docker
 ide-go
