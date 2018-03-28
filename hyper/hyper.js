@@ -117,7 +117,8 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
   	'hyperterm-deep-space',
-	'hyper-statusline'
+	  'hyper-statusline',
+    'hyper-transparent'
   ],
 
   // in development, you can create a directory under

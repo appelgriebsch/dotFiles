@@ -22,6 +22,7 @@ esbenp.prettier-vscode
 file-icons.file-icons
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
+gamunu.vscode-yarn
 geeklearningio.graphviz-markdown-preview
 goessner.mdmath
 hbenl.vscode-firefox-debug
@@ -35,10 +36,12 @@ kisstkondoros.vscode-codemetrics
 kumar-harsh.graphql-for-vscode
 lukehoban.Go
 maddouri.cmake-tools-helper
+mauve.terraform
 ms-python.anaconda-extension-pack
 ms-python.python
 ms-vscode.cpptools
 natewallace.angular2-inline
+octref.vetur
 rbbit.typescript-hero
 redhat.java
 redhat.vscode-yaml
