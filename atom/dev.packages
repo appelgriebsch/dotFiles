@@ -26,6 +26,7 @@ language-plantuml
 language-rdf
 language-rust
 language-sparql
+language-terraform
 language-typescript-grammars-only
 markdown-preview-enhanced
 merge-conflicts
