@@ -1,1 +1,11 @@
-yarn
+create-react-app
+electron-forge
+fuge
+http-server
+lib.cli
+parcel-bundler
+pkg
+stenciljs
+tslint
+typescript
+verdaccio

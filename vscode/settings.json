@@ -14,5 +14,6 @@
   "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
   "workbench.colorTheme": "City Lights",
-  "git.autofetch": true
+  "git.autofetch": true,
+  "rust-client.channel": "stable"
 }
