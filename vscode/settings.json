@@ -15,5 +15,6 @@
   "explorer.confirmDelete": false,
   "workbench.colorTheme": "City Lights",
   "git.autofetch": true,
-  "rust-client.channel": "stable"
+  "rust-client.channel": "stable",
+  "telemetry.enableTelemetry": false
 }
