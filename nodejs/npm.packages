@@ -1,11 +1,11 @@
 create-react-app
 electron-forge
+eslint
 fuge
 http-server
 lib.cli
 parcel-bundler
 pkg
-stenciljs
 tslint
 typescript
 verdaccio
