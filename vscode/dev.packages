@@ -14,7 +14,6 @@ bungcip.better-toml
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codezombiech.gitignore
-cquery-project.cquery
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
 eg2.tslint
@@ -37,13 +36,16 @@ lukehoban.Go
 mauve.terraform
 ms-python.anaconda-extension-pack
 ms-python.python
+ms-vscode.cpptools
 natewallace.angular2-inline
 octref.vetur
+pranaygp.vscode-css-peek
 rbbit.typescript-hero
 redhat.java
 redhat.vscode-yaml
 robinbentley.sass-indented
 rust-lang.rust
+ryu1kn.partial-diff
 shd101wyy.markdown-preview-enhanced
 shinnn.stylelint
 slevesque.vscode-hexdump
@@ -53,6 +55,7 @@ vscjava.vscode-java-test
 vscjava.vscode-maven
 vscodevim.vim
 waderyan.nodejs-extension-pack
+wix.vscode-import-cost
 xabikos.JavaScriptSnippets
 yummygum.city-lights-theme
 yzane.markdown-pdf
