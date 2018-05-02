@@ -32,8 +32,11 @@ kisstkondoros.vscode-codemetrics
 kumar-harsh.graphql-for-vscode
 lukehoban.Go
 mauve.terraform
+ms-azuretools.vscode-azureterraform
+ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.anaconda-extension-pack
 ms-python.python
+ms-vscode.azure-account
 ms-vscode.cpptools
 natewallace.angular2-inline
 octref.vetur
@@ -56,6 +59,7 @@ vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
 vscodevim.vim
+vscoss.vscode-ansible
 waderyan.nodejs-extension-pack
 wix.vscode-import-cost
 xabikos.JavaScriptSnippets
