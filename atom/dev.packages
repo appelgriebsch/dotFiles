@@ -14,7 +14,6 @@ ide-bash
 ide-cquery
 ide-css
 ide-docker
-ide-flowtype
 ide-go
 ide-html
 ide-java
