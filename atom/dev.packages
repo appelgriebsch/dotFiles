@@ -1,7 +1,7 @@
-atom-ide-ui
-atom-ide-debugger-java
 atom-ide-debugger-node
 atom-ide-debugger-python
+atom-ide-ui
+atom-npm-outdated
 city-lights-icons
 city-lights-syntax
 city-lights-ui
@@ -14,6 +14,7 @@ ide-bash
 ide-cquery
 ide-css
 ide-docker
+ide-flowtype
 ide-go
 ide-html
 ide-java
