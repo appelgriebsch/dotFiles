@@ -2,14 +2,14 @@ atom-ide-debugger-node
 atom-ide-debugger-python
 atom-ide-ui
 atom-npm-outdated
-city-lights-icons
-city-lights-syntax
-city-lights-ui
 dash
 docblockr
+file-icons
 git-plus
 git-time-machine
 graphviz-preview-plus
+gruvbox
+gruvbox-dark-ui
 ide-bash
 ide-cquery
 ide-css

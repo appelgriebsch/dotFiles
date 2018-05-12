@@ -27,7 +27,7 @@ export const configuration = {
 
     "autoUpdate.enabled": true,
    
-    "ui.colorscheme": "nord",
+    "ui.colorscheme": "gruvbox",
 
     //"oni.useDefaultConfig": true,
     //"oni.bookmarks": ["~/Documents"],
