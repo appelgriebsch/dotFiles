@@ -25,11 +25,9 @@ export const deactivate = (oni: Oni.Plugin.Api) => {
 export const configuration = {
     //add custom config here, such as
 
-    "autoUpdate.enabled": true,
-   
-    "ui.colorscheme": "gruvbox",
+    "ui.colorscheme": "gruvbox_dark",
 
-    //"oni.useDefaultConfig": true,
+    //"oi.useDefaultConfig": true,
     //"oni.bookmarks": ["~/Documents"],
     //"oni.loadInitVim": false,
     
@@ -41,4 +39,9 @@ export const configuration = {
     // UI customizations
     "ui.animations.enabled": true,
     "ui.fontSmoothing": "auto",
+
+    // Language Support - Rust
+"language.rust.languageServer.command": "/Users/agerlach/.cargo/bin/rustup",
+"language.rust.languageServer.arguments": ["run", "stable", "rls"],
+"language.rust.languageServer.rootFiles": ["Cargo.toml"],
 }
