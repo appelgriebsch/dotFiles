@@ -1,8 +1,10 @@
+babel-cli
 create-react-app
 electron-forge
 eslint
 fuge
 http-server
+jest
 lib.cli
 parcel-bundler
 pkg
