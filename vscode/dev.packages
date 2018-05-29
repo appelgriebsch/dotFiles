@@ -34,9 +34,11 @@ mauve.terraform
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.anaconda-extension-pack
 ms-python.python
+ms-vscode.azurecli
 ms-vscode.cpptools
 ms-vscode.csharp
 ms-vscode.Go
+ms-vscode.PowerShell
 ms-vsliveshare.vsliveshare
 mtxr.sqltools
 mycelo.embrace
@@ -54,6 +56,7 @@ robinbentley.sass-indented
 rust-lang.rust
 ryu1kn.partial-diff
 salbert.awesome-dotnetcore-pack
+salbert.copy-text
 serayuzgur.crates
 shd101wyy.markdown-preview-enhanced
 shinnn.stylelint
@@ -64,6 +67,7 @@ vscjava.vscode-java-debug
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
+vscodevim.vim
 vscoss.vscode-ansible
 waderyan.nodejs-extension-pack
 wix.vscode-import-cost
