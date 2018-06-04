@@ -5,9 +5,6 @@ eslint
 fuge
 http-server
 jest
-lib.cli
 parcel-bundler
 pkg
-tslint
-typescript
 verdaccio
