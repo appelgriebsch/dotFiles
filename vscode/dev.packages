@@ -1,4 +1,5 @@
 bat67.markdown-extension-pack
+doddzycodes.codecpp-minimum
 file-icons.file-icons
 formulahendry.docker-extension-pack
 jawandarajbir.react-vscode-extension-pack
@@ -10,8 +11,10 @@ vscjava.vscode-java-pack
 waderyan.nodejs-extension-pack
 joelday.docthis
 geeklearningio.graphviz-markdown-preview
+kishoreithadi.dotnet-core-essentials
 kumar-harsh.graphql-for-vscode
 mauve.terraform
+ms-vscode.csharp
 Orta.vscode-jest
 pflannery.vscode-versionlens
 pranaygp.vscode-css-peek
