@@ -1,7 +1,6 @@
 babel-cli
 create-react-app
-electron-forge
-eslint
+create-react-native-app
 fuge
 http-server
 jest
