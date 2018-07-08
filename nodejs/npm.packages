@@ -1,6 +1,9 @@
 babel-cli
+bash-language-server
 create-react-app
 create-react-native-app
+dockerfile-language-server-nodejs
+eslint
 fuge
 http-server
 jest
