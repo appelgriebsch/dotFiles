@@ -39,16 +39,8 @@ export const configuration = {
   "ui.animations.enabled": true,
   "ui.fontSmoothing": "auto",
 
-  // Language Support - Bash scripts
-  "language.sh.languageServer.command": "bash-language-server",
-  "language.sh.languageServer.arguments": ["start"],
-
-  // Language Support - Docker files
-  "language.dockerfile.languageServer.command": "docker-langserver",
-  "language.dockerfile.languageServer.arguments": ["--stdio"],
-
   // Language Support - Rust
-  "language.rust.languageServer.command": "rustup",
+  "language.rust.languageServer.command": "/Users/agerlach/.cargo/bin/rustup",
   "language.rust.languageServer.arguments": ["run", "stable", "rls"],
   "language.rust.languageServer.rootFiles": ["Cargo.toml"]
 };
