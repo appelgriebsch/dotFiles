@@ -4,6 +4,7 @@ dash
 docblockr
 file-icons
 fonts
+git-time-machine
 gruvbox
 gruvbox-dark-ui
 ide-bash
@@ -11,6 +12,7 @@ ide-css
 ide-docker
 ide-html
 ide-json
+ide-python
 ide-rust
 ide-typescript
 ide-yaml
