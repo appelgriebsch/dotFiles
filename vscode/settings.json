@@ -13,8 +13,16 @@
   "editor.tabCompletion": true,
   "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
-  "workbench.colorTheme": "★★★★★ GRUVBOX ★★",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "git.autofetch": true,
   "rust-client.channel": "stable",
-  "telemetry.enableTelemetry": false
+  "telemetry.enableTelemetry": false,
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "gitlens.gitExplorer.location": "scm",
+  "gitlens.historyExplorer.location": "scm",
+  "gitlens.resultsExplorer.location": "scm",
+  "nativescript.analytics.enabled": false,
+  "workbench.editor.showTabs": false
 }

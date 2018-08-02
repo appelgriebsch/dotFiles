@@ -3,6 +3,7 @@ christian-kohler.path-intellisense
 CoenraadS.bracket-pair-colorizer
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
+doddzycodes.codecpp-minimum
 eamodio.gitlens
 EditorConfig.EditorConfig
 eg2.tslint
@@ -11,8 +12,10 @@ esbenp.prettier-vscode
 file-icons.file-icons
 geeklearningio.graphviz-markdown-preview
 jasonnutter.search-node-modules
+jdinhlife.gruvbox
 joelday.docthis
 kumar-harsh.graphql-for-vscode
+maddouri.cmake-tools-helper
 mauve.terraform
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.anaconda-extension-pack
@@ -30,9 +33,9 @@ robinbentley.sass-indented
 rust-lang.rust
 serayuzgur.crates
 shd101wyy.markdown-preview-enhanced
-sldobri.gruvbox-5-stars
 Stephanvs.dot
 Telerik.nativescript
+twxs.cmake
 vector-of-bool.cmake-tools
 vector-of-bool.gitflow
 vscodevim.vim
