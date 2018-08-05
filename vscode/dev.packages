@@ -1,3 +1,4 @@
+bungcip.better-toml
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 CoenraadS.bracket-pair-colorizer
@@ -36,6 +37,7 @@ shd101wyy.markdown-preview-enhanced
 Stephanvs.dot
 Telerik.nativescript
 twxs.cmake
+vadimcn.vscode-lldb
 vector-of-bool.cmake-tools
 vector-of-bool.gitflow
 vscodevim.vim
@@ -43,5 +45,4 @@ vsmobile.vscode-react-native
 waderyan.nodejs-extension-pack
 wmaurer.vscode-jumpy
 xabikos.JavaScriptSnippets
-yzane.markdown-pdf
 yzhang.markdown-all-in-one
