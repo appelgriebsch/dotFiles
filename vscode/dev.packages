@@ -25,6 +25,7 @@ ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.PowerShell
 mtxr.sqltools
+natemoo-re.vscode-stencil-tools
 Orta.vscode-jest
 PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
