@@ -1,28 +1,19 @@
-" Preamble ---------------------------------------------------------------- {{{
-
-set nocompatible              " be iMproved
-filetype off                  " required!
-
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim')
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
-    \ }
-
-" (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/echodoc.vim'
-
 " git support
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+" nerd tree
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" ctrlp
+Plug 'ctrlpvim/ctrlp.vim'
+
 " status lines
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -30,114 +21,271 @@ Plug 'vim-airline/vim-airline-themes'
 " color theme bundles
 Plug 'morhetz/gruvbox'
 
+" javascript / jsx
+Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+
+" typescript
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+
+" less
+Plug 'JulesWang/css.vim', { 'for': ['css', 'less'] }
+Plug 'groenewege/vim-less', { 'for': ['less'] }
+
+" rust
+Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
+
+" markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+
+" json
+Plug 'elzr/vim-json', { 'for': ['json'] }
+
+" editorconfig
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
+
+" language server support
+" A dependency of 'ncm2'.
+Plug 'roxma/nvim-yarp'
+
+" v2 of the nvim-completion-manager.
+Plug 'ncm2/ncm2'
+
+" LanguageServer client for NeoVim.
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+
 call plug#end()
 
-" Basic options ----------------------------------------------------------- {{{
-"language eng_US
-syntax on                     " syntax highlighing
-filetype on                   " try to detect filetypes
-filetype plugin indent on     " enable loading indent file for filetype
-set nocompatible
-set langmenu=en_US.UTF8
-set helplang=en
-set encoding=utf-8
-set modelines=0
-set autoindent
-set showmode
-set showcmd
-set hidden
-set visualbell
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set laststatus=2
-set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
-set history=1000
-set undofile
-set undoreload=10000
-set list
-set listchars=tab:▸\ ,eol:¬,extends:›,precedes:‹
+" Base Configuration {{{
+" Core Behavior {{{
+" Read .vimrc from current dir, if present
+set exrc
+
+" Don't allow shell and write commands in exrc
+set secure
+
+" Enable loading plugin / indent settings based on filetype
+filetype plugin indent on
+
+" Don't redraw while executing macros, etc
 set lazyredraw
-set matchtime=3
-set splitbelow
-set splitright
-set fillchars=diff:░,vert:│
-set shiftround
-set title
-set linebreak
-set colorcolumn=+1
-set number
-set numberwidth=1             " using only 1 column (and 1 space) while possible
-set norelativenumber
-set noautowrite             " Never write a file unless I request it.
-set noautowriteall          " NEVER.
-set noautoread              " Don't automatically re-read changed files.
-set modeline                " Allow vim options to be embedded in files;
-set modelines=5             " they must be within the first or last 5 lines.
-set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
-set confirm                 " Y-N-C prompt if closing with unsaved changes.
-set showcmd                 " Show incomplete normal mode commands as I type.
-set report=0                " : commands always print changed line count.
-set shortmess+=a            " Use [+]/[RO]/[w] for modified/readonly/written.
-set ruler                   " Show some info, even without statuslines.
-set cursorline
 
-" Don't try to highlight lines longer than 800 characters.
-set synmaxcol=800
+" Wait just under a second before CursorHold is fired
+set updatetime=750
 
-" Time out on key codes but not mappings.
-" Basically this makes terminal Vim work sanely.
-set notimeout
+" Mapping & keycode timeouts
+set timeoutlen=600
 set ttimeout
-set ttimeoutlen=10
-
-" Make Vim able to edit crontab files again.
-set backupskip=/tmp/*,/private/tmp/*"
-
-" Better Completion
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
-
-" Save when losing focus
-au FocusLost * :silent! wall
-
-" Resize splits when the window is resized
-au VimResized * :wincmd =
-
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
-set signcolumn=yes
-set noshowmode
+set ttimeoutlen=200
 " }}}
 
-" Cursorline {{{
-" Only show cursorline in the current window and in normal mode.
-augroup cline
-    au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
+" UI {{{
+" Maintain indent when wrapping
+if exists('+breakindent')
+  set breakindent
+endif
+
+" Highlight textwidth column
+set colorcolumn=+1
+
+" Folds {{{
+" Auto-close folds below current foldlevel when cursor leaves
+set foldclose=all
+
+" Enable folds, using markers by default
+set foldenable
+set foldmethod=marker
+
+" Default to having all folds open
+set foldlevelstart=99
+
+" Limit folds when using indent or syntax
+set foldnestmax=5
+
+set foldopen+=jump
+" }}}
+
+" Always show statusline
+set laststatus=2
+
+" Let same document scroll differently in separate panes
+set noscrollbind
+
+" Hide default mode text (i.e. INSERT below status line)
+set noshowmode
+
+" Use 5 characters for number well
+set numberwidth=5
+
+" Disable visual bell
+set noerrorbells
+set visualbell t_vb=
+
+" Show cursor position in bottom right
+set ruler
+
+" Keep lines in view at edges of screen
+set scrolloff=5
+set sidescrolloff=5
+set sidescroll=1
+
+" Hide the intro screen, use [+] instead of [Modified], use [RO] instead
+" of [readyonly], and don't give completion match messages
+set shortmess+=Imrc
+
+" Display incomplete commands
+set showcmd
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Reasonable tab completion
+set wildmode=full
+
+" Resize splits when the window is resized
+augroup on_vim_resized
+  autocmd!
+  autocmd VimResized * wincmd =
 augroup END
 " }}}
 
-" Tabs, spaces, wrapping {{{
-set tabstop=4
+" File Handling {{{
+" Automatically write files on :next, :make, etc
+set autowriteall
+
+" Save automatically all the time
+augroup auto_save
+  autocmd!
+  " Frequently save automatically
+  autocmd BufLeave,FocusLost,InsertLeave,TextChanged * silent! wall
+  " Check for file changes
+  autocmd BufEnter,BufWinEnter,CursorHold,FocusGained * silent! checktime
+augroup END
+
+" Hide buffers instead of closing them (useful for switching between files)
+set hidden
+
+" Don't use backup files, we have Git for that
+set nobackup
+set noswapfile
+set nowritebackup
+
+" Search within subfolders by default
+set path+=**
+" But ignore noise
+set path-=.git,build,lib,node_modules,public,_site,third_party
+
+" Ignore autogenerated files
+set wildignore+=*.o,*.obj,*.pyc
+" Ignore source control
+set wildignore+=.git
+" Ignore lib/ dirs since the contain compiled libraries typically
+set wildignore+=build,lib,node_modules,public,_site,third_party
+" Ignore images and fonts
+set wildignore+=*.gif,*.jpg,*.jpeg,*.otf,*.png,*.svg,*.ttf
+" Ignore case when completing
+set wildignorecase
+" }}}
+
+" Editing Behavior {{{
+" Indentation {{{
+" C-style indentation
+set cindent
+
+" Tabs are spaces
+set expandtab
+
+" 2 spaces, not tabs
 set shiftwidth=2
 set softtabstop=2
-set expandtab
-set wrap
+set tabstop=2
+
+" Round up indents
+set shiftround
+" }}}
+
+" Completion {{{
+" Enable tab/enter if completion menu is open
+inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
+inoremap <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<S-Tab>")
+" }}}
+
+" Default formatoptions (as of neovim): tcqj
+" Only break the line if wasn't longer than 80 chars when editing began
+" and there is a blank somewhere in the line
+set formatoptions+=lb
+" Don't continue comments when pressing o/O
+set formatoptions-=o
+" Recognize numbered lists and wrap accordingly
+set formatoptions+=n
+
+" Show special indicators
+set list
+" Highlight trailing spaces
+set listchars=trail:·,tab:»·
+" Show wrap indicators
+set listchars+=extends:»,precedes:«
+" Show non-breaking spaces
+set listchars+=nbsp:%
+
+" Allow incrementing letters
+set nrformats+=alpha
+
+" Always assume decimal numbers
+set nrformats-=octal
+
+" Show matching brackets for half a second
+set showmatch
+set matchtime=5
+
+" Wrap at 80 characters
 set textwidth=80
-set formatoptions=qrn1
-set colorcolumn=+1
+
+" Make h/l move across beginning/end of line
+set whichwrap+=hl
+
+" Soft wrap, with indicator
+set wrap
+set showbreak=«
 " }}}
 
-" Backups {{{
-set nobackup                      " disable backups
-set nowritebackup
-set noswapfile                    " It's 2012, Vim.
+" Enable syntax highlighting by default
+syntax enable
+
+" Only highlight first 500 chars for better performance
+set synmaxcol=500
 " }}}
 
-" Leader {{{
-let mapleader = ","
-let maplocalleader = "\\"
+" Searching {{{
+" Match all results in a line by default (/g at end will undo this)
+set gdefault
+
+" Ignore case, except when using some uppercase
+set ignorecase
+set smartcase
+
+" Netrw config {{{
+" Disable annoying banner
+let g:netrw_banner=0
+
+" Open in same window
+let g:netrw_browse_split=0
+
+" Open splits to the right
+let g:netrw_altv=1
+
+" Tree view
+let g:netrw_liststyle=3
+
+" Hide files in .gitignore
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " }}}
 
 " Color scheme {{{
@@ -145,128 +293,50 @@ syntax on
 set background=dark
 set guifont=Source\ Code\ Pro:h14
 colorscheme gruvbox
+hi CursorLineNr  cterm=bold ctermfg=136
 " }}}
 
-" Searching and movement -------------------------------------------------- {{{
-set ignorecase
-set smartcase
-set incsearch
-set showmatch
-set hlsearch
-set gdefault
-set scrolloff=3
-set sidescroll=1
-set sidescrolloff=10
-set smarttab                " Handle tabs more intelligently
-set virtualedit+=block
-set ruler                   " show the cursor position all the time
-set nostartofline           " Avoid moving cursor to BOL when jumping around
-set backspace=2             " Allow backspacing over autoindent, EOL, and BOL
-set linebreak               " don't wrap textin the middle of a word
-set autoindent              " always set autoindenting on
-set smartindent             " use smart indent if there is no indent file
-set shiftround              " rounds indent to a multiple of shiftwidth
-set matchpairs+=<:>         " show matching <> (html mainly) as well
+" completion settings
+autocmd BufEnter  *  call ncm2#enable_for_buffer()
 
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
 
-" Same when jumping around
-nnoremap g; g;zz
-nnoremap g, g,zz
-nnoremap <c-o> <c-o>zz
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
 
-" Easier to type, and I never use the default behavior.
-noremap H ^
-noremap L $
-vnoremap L g_
+" Use location list instead of quickfix
+let g:LanguageClient_diagnosticsList = 'location'
 
-" Heresy
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
+augroup LanguageClientConfig
+  autocmd!
 
-" It's 2012.
-noremap j gj
-noremap k gk
-noremap gj j
-noremap gk k
+  " <leader>ld to go to definition
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust nnoremap <buffer> <leader>ld :call LanguageClient_textDocument_definition()<cr>
+  " <leader>lf to autoformat document
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust nnoremap <buffer> <leader>lf :call LanguageClient_textDocument_formatting()<cr>
+  " <leader>lh for type info under cursor
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust nnoremap <buffer> <leader>lh :call LanguageClient_textDocument_hover()<cr>
+  " <leader>lr to rename variable under cursor
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust nnoremap <buffer> <leader>lr :call LanguageClient_textDocument_rename()<cr>
+  " <leader>lc to switch omnifunc to LanguageClient
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust nnoremap <buffer> <leader>lc :setlocal omnifunc=LanguageClient#complete<cr>
+  " <leader>ls to fuzzy find the symbols in the current document
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust nnoremap <buffer> <leader>ls :call LanguageClient_textDocument_documentSymbol()<cr>
 
-" Easy buffer navigation
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
-noremap <leader>v <C-w>v
-noremap <leader>h <C-w>s
-
-" easy window resizing
-noremap <C-w>j <C-w>-
-noremap <C-w>k <C-w>+
-noremap <C-w>h <C-w><
-noremap <C-w>l <C-w>>
-
-" easy command execution
-cnoremap <C-r> <C-r>"
-
-" Folding ----------------------------------------------------------------- {{{
-set foldlevelstart=99
-set foldmethod=indent       " allow us to fold on indents
-set foldlevel=99            " don't fold by default
-
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-" }}}
-
-" }}}
-
-" Convenience mappings ---------------------------------------------------- {{{
-" Tabs
-nnoremap <leader>< :bprev<cr>
-nnoremap <leader>> :bnext<cr>
-
-" Select entire buffer
-nnoremap vaa ggvGg_
-nnoremap Vaa ggVG
-
-" open/close the quickfix window
-nmap <leader>c :copen<CR>
-nmap <leader>cl :cclose<CR>
-
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-" Paste from clipboard
-map <leader>p "+p
-
-" Quit window on <leader>q
-nnoremap <leader>q :bd<CR>
-
-" hide matches on <leader>space
-nnoremap <leader><space> :nohlsearch<cr>
-
-" }}}
-
-" Plugin settings --------------------------------------------------------- {{{
-
-augroup filetype_rust
-    autocmd!
-    autocmd BufReadPost *.rs setlocal filetype=rust
+  " Use as omnifunc by default
+  autocmd FileType javascript,python,typescript,json,css,less,html,rust setlocal omnifunc=LanguageClient#complete
 augroup END
-
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-\ }
-
-let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = "C:/ProgramData/Python37/python.exe"
-let g:python_host_prog = "C:/ProgramData/Python27/python.exe"
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  \ 'css': ['css-languageserver', '--stdio'],
+  \ 'html': ['html-languageserver', '--stdio'],
+  \ 'less': ['css-languageserver', '--stdio'],
+  \ 'json': ['json-languageserver', '--stdio'],
+  \ }
 
 " status line (airline)
 let g:airline#extensions#tabline#enabled = 1
@@ -282,5 +352,19 @@ let g:tmuxline_separators = {
     \ 'right' : '',
     \ 'right_alt' : '<',
     \ 'space' : ' '}
+" }}}
 
+" Ctrl-P file / buffer management {{{
+nnoremap <leader>n :CtrlP<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>r :CtrlPClearCache<CR>
+"}}}
+
+" Javascript libraries syntax {{{
+let g:used_javascript_libs='react'
+" }}}
+
+" vim-jsx config {{{
+" Don't require .jsx extension
+let g:jsx_ext_required=0
 " }}}
