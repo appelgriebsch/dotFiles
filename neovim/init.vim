@@ -1,7 +1,7 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.config/nvim')
+call plug#begin('~/.config/nvim/packages')
 
 " git support
 Plug 'tpope/vim-fugitive'
@@ -47,12 +47,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 
 " language server support
-" A dependency of 'ncm2'.
-Plug 'roxma/nvim-yarp'
-
-" v2 of the nvim-completion-manager.
-Plug 'ncm2/ncm2'
-
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " LanguageServer client for NeoVim.
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
@@ -296,12 +291,10 @@ colorscheme gruvbox
 hi CursorLineNr  cterm=bold ctermfg=136
 " }}}
 
-" completion settings
-autocmd BufEnter  *  call ncm2#enable_for_buffer()
-
 " Better Completion
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
+let g:deoplete#enable_at_startup = 1
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
