@@ -2,6 +2,7 @@ bungcip.better-toml
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 CoenraadS.bracket-pair-colorizer
+DavidAnson.vscode-markdownlint
 dbaeumer.vscode-eslint
 deerawan.vscode-dash
 doddzycodes.codecpp-minimum
