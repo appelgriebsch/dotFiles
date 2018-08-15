@@ -23,8 +23,8 @@ ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.anaconda-extension-pack
 ms-python.python
 ms-vscode.cpptools
-ms-vscode.Go
 ms-vscode.PowerShell
+msjsdiag.debugger-for-chrome
 mtxr.sqltools
 natemoo-re.vscode-stencil-tools
 Orta.vscode-jest
@@ -35,9 +35,7 @@ redhat.vscode-yaml
 robinbentley.sass-indented
 rust-lang.rust
 serayuzgur.crates
-shd101wyy.markdown-preview-enhanced
 Stephanvs.dot
-Telerik.nativescript
 twxs.cmake
 vadimcn.vscode-lldb
 vector-of-bool.cmake-tools
