@@ -47,7 +47,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 
 " language server support
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" A dependency of 'ncm2'.
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+
 " LanguageServer client for NeoVim.
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
@@ -293,8 +296,10 @@ hi CursorLineNr  cterm=bold ctermfg=136
 
 " Better Completion
 set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
-let g:deoplete#enable_at_startup = 1
+set completeopt=longest,noselect,menuone,preview
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
