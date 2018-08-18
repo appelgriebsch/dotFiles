@@ -208,6 +208,11 @@ set tabstop=2
 set shiftround
 " }}}
 
+" Leader {{{
+let mapleader = ","
+let maplocalleader = "\\"
+" }}}
+
 " Completion {{{
 " Enable tab/enter if completion menu is open
 inoremap <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<Tab>")
@@ -328,6 +333,7 @@ augroup LanguageClientConfig
 augroup END
 let g:LanguageClient_serverCommands = {
   \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'javascript.jsx': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
   \ 'css': ['css-languageserver', '--stdio'],
