@@ -4,12 +4,9 @@ create-react-native-app
 eslint
 fuge
 http-server
-javascript-typescript-langserver
 jest
-neovim
 parcel-bundler
 pkg
+tslint
+typescript
 verdaccio
-vscode-css-languageserver-bin
-vscode-html-languageserver-bin
-vscode-json-languageserver-bin
