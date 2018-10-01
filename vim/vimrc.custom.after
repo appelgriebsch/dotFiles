@@ -6,6 +6,9 @@ set guifontwide=Fira\ Code:h12
 set background=dark
 colorscheme gruvbox
 
+let g:asyncomplete_smart_completion = 1
+let g:asyncomplete_auto_popup = 1
+
 if executable('rls')
   au User lsp_setup call lsp#register_server({
           \ 'name': 'rls',
