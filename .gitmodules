@@ -1,0 +1,3 @@
+[submodule "vimbox"]
+	path = vim/VimBox
+	url = git@github.com:jordwalke/VimBox.git

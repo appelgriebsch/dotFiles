@@ -1,0 +1,7 @@
+" Add custom bundles here using the `NeoBundle` command.
+Plug 'morhetz/gruvbox'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
