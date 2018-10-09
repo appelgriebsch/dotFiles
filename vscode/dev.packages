@@ -19,8 +19,10 @@ fwcd.kotlindebug
 geeklearningio.graphviz-markdown-preview
 jasonnutter.search-node-modules
 jdinhlife.gruvbox
+jebbs.plantuml
 joelday.docthis
 k--kato.docomment
+karigari.chat
 KishoreIthadi.dotnet-core-essentials
 kumar-harsh.graphql-for-vscode
 maddouri.cmake-tools-helper
@@ -32,9 +34,13 @@ ms-vscode.cpptools
 ms-vscode.csharp
 ms-vscode.Go
 ms-vscode.PowerShell
+ms-vsliveshare.vsliveshare
+ms-vsliveshare.vsliveshare-audio
+ms-vsliveshare.vsliveshare-pack
 msjsdiag.debugger-for-chrome
 mtxr.sqltools
 natemoo-re.vscode-stencil-tools
+numso.prettier-standard-vscode
 octref.vetur
 Orta.vscode-jest
 PeterJausovec.vscode-docker
