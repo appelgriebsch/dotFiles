@@ -15,7 +15,7 @@
   "explorer.confirmDelete": false,
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "git.autofetch": true,
-  "rust-client.channel": "nightly",
+  "rust-client.channel": "stable",
   "telemetry.enableTelemetry": false,
   "gitlens.advanced.messages": {
     "suppressShowKeyBindingsNotice": true
@@ -26,5 +26,6 @@
   "nativescript.analytics.enabled": false,
   "workbench.editor.showTabs": false,
   "debug.allowBreakpointsEverywhere": true,
-  "breadcrumbs.enabled": true
+  "breadcrumbs.enabled": true,
+  "window.titleBarStyle": "custom"
 }
