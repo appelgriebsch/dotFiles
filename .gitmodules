@@ -1,3 +1,6 @@
 [submodule "vimbox"]
 	path = vim/VimBox
 	url = git@github.com:jordwalke/VimBox.git
+[submodule "jetbrains"]
+	path = jetbrains
+	url = git@github.com:caleb/gruvbox-idea.git
