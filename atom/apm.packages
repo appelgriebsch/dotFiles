@@ -27,10 +27,12 @@ language-rust
 language-sparql
 language-terraform
 language-typescript-grammars-only
+markdown-pdf
 minimap
 minimap-codeglance
 minimap-find-and-replace
 minimap-git-diff
+pdf-view
 pigments
 prettier-atom
 teletype
