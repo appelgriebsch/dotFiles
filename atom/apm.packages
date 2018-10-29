@@ -35,6 +35,7 @@ minimap-git-diff
 pdf-view
 pigments
 prettier-atom
+split-diff
 teletype
 terminal-tab
 terminal-tab-service
