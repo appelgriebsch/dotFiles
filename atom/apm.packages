@@ -7,6 +7,7 @@ docblockr
 file-icons
 fonts
 git-time-machine
+go-plus
 gruvbox
 gruvbox-dark-ui
 ide-bash
@@ -39,6 +40,7 @@ split-diff
 teletype
 terminal-tab
 terminal-tab-service
+terraform-fmt
 tester
 tester-jest
 vim-mode-plus
