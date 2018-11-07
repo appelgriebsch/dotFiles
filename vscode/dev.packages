@@ -32,6 +32,7 @@ Orta.vscode-jest
 PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
 pranaygp.vscode-css-peek
+redhat.java
 redhat.vscode-yaml
 robinbentley.sass-indented
 rust-lang.rust
@@ -41,6 +42,8 @@ twxs.cmake
 vadimcn.vscode-lldb
 vector-of-bool.cmake-tools
 vector-of-bool.gitflow
+vscjava.vscode-java-debug
+vscjava.vscode-java-test
 vscodevim.vim
 vsmobile.vscode-react-native
 waderyan.nodejs-extension-pack
