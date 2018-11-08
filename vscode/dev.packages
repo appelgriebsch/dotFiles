@@ -12,8 +12,11 @@ EditorConfig.EditorConfig
 eg2.tslint
 eg2.vscode-npm-script
 esbenp.prettier-vscode
+fatihacet.gitlab-workflow
 file-icons.file-icons
 geeklearningio.graphviz-markdown-preview
+GitHub.vscode-pull-request-github
+hbenl.vscode-firefox-debug
 jasonnutter.search-node-modules
 jdinhlife.gruvbox
 joelday.docthis
