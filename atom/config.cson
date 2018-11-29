@@ -26,6 +26,7 @@
   fonts:
     fontFamily: "FiraCode"
     secondaryFonts: "Hack"
+  "ide-golang": {}
   "ide-rust":
     rlsToolchain: "stable"
   minimap:

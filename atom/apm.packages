@@ -10,6 +10,7 @@ gruvbox
 gruvbox-dark-ui
 hey-pane
 ide-css
+ide-golang
 ide-html
 ide-json
 ide-rust
