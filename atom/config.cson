@@ -8,7 +8,14 @@
       autoVisibility: true
     "atom-ide-terminal":
       fontFamily: "Fira Mono, Source Code Pro, Hack"
+  "atom-package-deps":
+    ignored: [
+      "atom-npm-outdated"
+    ]
   core:
+    disabledPackages: [
+      "linter"
+    ]
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [

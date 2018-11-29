@@ -1,12 +1,6 @@
 babel-cli
-create-react-app
-create-react-native-app
 eslint
-fuge
-http-server
 jest
 parcel-bundler
 pkg
-tslint
-typescript
-verdaccio
+@zeit/ncc
