@@ -9,8 +9,12 @@ git-time-machine
 gruvbox
 gruvbox-dark-ui
 hey-pane
+ide-css
+ide-html
+ide-json
 ide-rust
 ide-typescript
+ide-yaml
 language-babel
 language-graphql
 language-terraform

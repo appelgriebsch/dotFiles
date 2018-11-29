@@ -29,6 +29,7 @@
   "ide-rust":
     rlsToolchain: "stable"
   minimap:
+    absoluteMode: true
     plugins:
       codeglance: true
       codeglanceDecorationsZIndex: 0
