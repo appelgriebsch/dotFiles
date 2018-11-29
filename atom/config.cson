@@ -1,8 +1,13 @@
 "*":
-  "atom-package-deps":
-    ignored: [
-      "prettier-atom"
-    ]
+  "atom-browser":
+    viewShowBackground: false
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+    "atom-ide-diagnostics-ui":
+      autoVisibility: true
+    "atom-ide-terminal":
+      fontFamily: "Fira Mono, Source Code Pro, Hack"
   core:
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
@@ -16,6 +21,8 @@
     fontSize: 16
   "exception-reporting":
     userId: "c3568722-65a6-407f-bef4-daed9bc79bcf"
+  "file-icons":
+    coloured: false
   fonts:
     fontFamily: "FiraCode"
     secondaryFonts: "Hack"
@@ -29,10 +36,5 @@
       "find-and-replaceDecorationsZIndex": 0
       "git-diff": true
       "git-diffDecorationsZIndex": 0
-  "prettier-atom":
-    formatOnSaveOptions:
-      showInStatusBar: true
-    useEslint: true
-    useStylelint: true
   welcome:
     showOnStartup: false
