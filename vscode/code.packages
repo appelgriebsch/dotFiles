@@ -1,4 +1,5 @@
 belfz.search-crates-io
+bierner.markdown-mermaid
 bungcip.better-toml
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
@@ -19,14 +20,19 @@ GitHub.vscode-pull-request-github
 Gruntfuggly.activitusbar
 humao.rest-client
 jasonnutter.search-node-modules
+jock.svg
 joelday.docthis
+k--kato.docomment
 kumar-harsh.graphql-for-vscode
 maddouri.cmake-tools-helper
+matijarmk.dotnet-core-commands
 mauve.terraform
+mgmcdermott.vscode-language-babel
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.anaconda-extension-pack
 ms-python.python
 ms-vscode.cpptools
+ms-vscode.csharp
 ms-vscode.Go
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
@@ -36,6 +42,7 @@ Orta.vscode-jest
 PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
 Pivotal.vscode-spring-boot
+pnp.polacode
 redhat.java
 redhat.vscode-yaml
 rust-lang.rust
