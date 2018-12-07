@@ -39,5 +39,12 @@
   "gitlens.views.search.location": "scm",
   "gitlens.views.lineHistory.location": "scm",
   "gitlens.views.fileHistory.location": "scm",
-  "gitlens.views.repositories.location": "scm"
+  "gitlens.views.repositories.location": "scm",
+  "githubPullRequests.hosts": [
+    {
+      "host": "https://github.com",
+      "username": "oauth",
+      "token": "system"
+    }
+  ]
 }

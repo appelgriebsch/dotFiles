@@ -1,6 +1,7 @@
 atom-browser
 atom-ide-debugger-node
 atom-ide-ui
+atom-mermaid
 atom-npm-outdated
 dash
 docblockr
