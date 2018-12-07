@@ -35,4 +35,9 @@
     "extension.kubernetesView": "cloud-upload",
     "extension.liveshare": "radio-tower"
   },
+  "gitlens.views.compare.location": "scm",
+  "gitlens.views.search.location": "scm",
+  "gitlens.views.lineHistory.location": "scm",
+  "gitlens.views.fileHistory.location": "scm",
+  "gitlens.views.repositories.location": "scm"
 }
