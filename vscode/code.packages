@@ -23,17 +23,14 @@ humao.rest-client
 jasonnutter.search-node-modules
 jock.svg
 joelday.docthis
-k--kato.docomment
 kumar-harsh.graphql-for-vscode
 maddouri.cmake-tools-helper
-matijarmk.dotnet-core-commands
 mauve.terraform
 mgmcdermott.vscode-language-babel
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.anaconda-extension-pack
 ms-python.python
 ms-vscode.cpptools
-ms-vscode.csharp
 ms-vscode.Go
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
@@ -55,6 +52,7 @@ twxs.cmake
 vadimcn.vscode-lldb
 vector-of-bool.cmake-tools
 vscjava.vscode-java-debug
+vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
