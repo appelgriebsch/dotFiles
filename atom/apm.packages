@@ -15,7 +15,6 @@ Hydrogen
 ide-css
 ide-golang
 ide-html
-ide-java
 ide-json
 ide-python
 ide-rust
@@ -24,6 +23,7 @@ ide-yaml
 language-babel
 language-dot
 language-graphql
+language-julia
 language-terraform
 markdown-pdf
 minimap
@@ -33,7 +33,6 @@ minimap-git-diff
 pdf-view
 pigments
 split-diff
-spring-boot
 teletype
 terraform-fmt
 tester
