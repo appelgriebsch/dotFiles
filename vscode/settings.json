@@ -13,7 +13,7 @@
   "editor.tabCompletion": "on",
   "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
-  "workbench.colorTheme": "★★★★★ GRUVBOX ★★★★",
+  "workbench.colorTheme": "Ayu Dark",
   "git.autofetch": true,
   "rust-client.channel": "stable",
   "telemetry.enableTelemetry": false,
