@@ -23,15 +23,11 @@ humao.rest-client
 jasonnutter.search-node-modules
 jock.svg
 joelday.docthis
-jpoissonnier.vscode-styled-components
 julialang.language-julia
-kumar-harsh.graphql-for-vscode
 lucaperret.vscode-now
 mauve.terraform
 mgmcdermott.vscode-language-babel
 ms-kubernetes-tools.vscode-kubernetes-tools
-ms-python.anaconda-extension-pack
-ms-python.python
 ms-vscode.Go
 ms-vscode.vscode-typescript-tslint-plugin
 ms-vsliveshare.vsliveshare
@@ -48,6 +44,7 @@ rust-lang.rust
 serayuzgur.crates
 shinnn.stylelint
 Stephanvs.dot
+stpn.vscode-graphql
 teabyii.ayu
 vadimcn.vscode-lldb
 vscodevim.vim
