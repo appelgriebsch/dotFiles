@@ -46,7 +46,7 @@ module.exports = {
     borderColor: '#333',
 
     // custom CSS to embed in the main window
-    css: '',
+    css: 'footer.footer_footer { background-color: inherit; }',
 
     // custom CSS to embed in the terminal window
     termCSS: '',
@@ -133,7 +133,8 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
   	'hyper-statusline',
-  	'hyper-ayu-mirage'
+  	'hyper-ayu-mirage',
+  	'hyper-pane'
   ],
 	
   // in development, you can create a directory under
