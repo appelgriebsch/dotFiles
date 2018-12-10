@@ -20,6 +20,7 @@ geequlim.godot-tools
 GitHub.vscode-pull-request-github
 Gruntfuggly.activitusbar
 humao.rest-client
+idleberg.applescript
 jasonnutter.search-node-modules
 jock.svg
 joelday.docthis
@@ -39,6 +40,7 @@ PeterJausovec.vscode-docker
 pflannery.vscode-versionlens
 pnp.polacode
 pranaygp.vscode-css-peek
+redhat.vscode-xml
 redhat.vscode-yaml
 rust-lang.rust
 serayuzgur.crates
