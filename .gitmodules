@@ -1,3 +1,6 @@
 [submodule "xcode"]
 	path = xcode
 	url = git@github.com:vburojevic/ayu-xcode-theme.git
+[submodule "jetbrains"]
+	path = jetbrains
+	url = git@github.com:jesse-c/ayu-jetbrains.git
