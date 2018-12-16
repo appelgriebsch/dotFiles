@@ -1,6 +1,5 @@
 belfz.search-crates-io
 bierner.markdown-mermaid
-bierner.markdown-preview-github-styles
 bungcip.better-toml
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
@@ -25,6 +24,8 @@ jasonnutter.search-node-modules
 jock.svg
 joelday.docthis
 julialang.language-julia
+karigari.chat
+kumar-harsh.graphql-for-vscode
 lucaperret.vscode-now
 mauve.terraform
 mgmcdermott.vscode-language-babel
@@ -45,11 +46,9 @@ rust-lang.rust
 serayuzgur.crates
 shinnn.stylelint
 Stephanvs.dot
-stpn.vscode-graphql
 teabyii.ayu
 vadimcn.vscode-lldb
 vscodevim.vim
-vsmobile.vscode-react-native
 waderyan.nodejs-extension-pack
 xabikos.JavaScriptSnippets
 yzhang.markdown-all-in-one
