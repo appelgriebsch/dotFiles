@@ -1,6 +1,3 @@
-[submodule "jetbrains"]
-	path = jetbrains
-	url = git@github.com:caleb/gruvbox-idea.git
 [submodule "xcode"]
 	path = xcode
 	url = git@github.com:vburojevic/ayu-xcode-theme.git
