@@ -28,6 +28,7 @@
     "scm": "repo-forked",
     "debug": "bug",
     "extensions": "package",
+    "extension.test": "checklist",
     "extension.dockerView": "server",
     "extension.kubernetesView": "cloud-upload",
     "extension.liveshare": "radio-tower"
