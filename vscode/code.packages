@@ -11,6 +11,8 @@ file-icons.file-icons
 geeklearningio.graphviz-markdown-preview
 GitHub.vscode-pull-request-github
 Gruntfuggly.activitusbar
+hbenl.vscode-test-explorer
+hbenl.vscode-test-explorer-liveshare
 jasonnutter.search-node-modules
 jawandarajbir.react-vscode-extension-pack
 jock.svg
@@ -34,6 +36,7 @@ nodesource.vscode-for-node-js-development-pack
 PeterJausovec.vscode-docker
 pnp.polacode
 redhat.vscode-yaml
+rtbenfield.vscode-jest-test-adapter
 rust-lang.rust
 serayuzgur.crates
 Shan.code-settings-sync
