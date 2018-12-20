@@ -1,5 +1,4 @@
 atom-browser
-busy-signal
 dash
 docblockr
 file-icons
@@ -10,14 +9,11 @@ hey-pane
 ide-css
 ide-html
 ide-typescript
-intentions
 language-babel
 language-dot
 language-graphql
 language-julia
 language-terraform
-linter
-linter-ui-default
 markdown-pdf
 minimap
 minimap-find-and-replace
