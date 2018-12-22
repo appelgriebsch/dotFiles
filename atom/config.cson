@@ -1,30 +1,14 @@
 "*":
   "atom-browser":
     viewShowBackground: false
-  "atom-ide-ui":
-    "atom-ide-code-format":
-      formatOnSave: true
-    "atom-ide-diagnostics-ui":
-      autoVisibility: true
-    "atom-ide-terminal":
-      allowTransparency: true
-      fontFamily: "Fira Mono, Source Code Pro, Hack"
-  "atom-package-deps":
-    ignored: [
-      "atom-npm-outdated"
-    ]
   core:
     autoHideMenuBar: true
-    disabledPackages: [
-      "linter"
-    ]
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "ayu-mirage-ish-syntax"
     ]
-    titleBar: "custom"
   editor:
     fontFamily: "Fira Code, Hack Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
@@ -35,11 +19,11 @@
   fonts:
     fontFamily: "FiraCode"
     secondaryFonts: "Hack"
-  "ide-golang": {}
   "ide-rust":
     rlsToolchain: "stable"
+  "ide-typescript":
+    returnTypeInAutocomplete: "right"
   minimap:
-    absoluteMode: true
     plugins:
       codeglance: true
       codeglanceDecorationsZIndex: 0
