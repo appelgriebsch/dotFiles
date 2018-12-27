@@ -1,4 +1,6 @@
 atom-browser
+atom-ide-datatip
+busy-signal
 dash
 docblockr
 file-icons
@@ -7,8 +9,10 @@ git-time-machine
 graphviz-preview-plus
 hey-pane
 ide-css
+ide-go
 ide-html
 ide-typescript
+intentions
 language-babel
 language-dot
 language-graphql

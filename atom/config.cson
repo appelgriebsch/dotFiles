@@ -1,6 +1,11 @@
 "*":
   "atom-browser":
     viewShowBackground: false
+  "atom-package-deps":
+    ignored: [
+      "atom-ide-ui"
+      "go-plus"
+    ]
   core:
     autoHideMenuBar: true
     restorePreviousWindowsOnStart: "no"
