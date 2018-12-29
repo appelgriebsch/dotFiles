@@ -133,7 +133,7 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
   	'hyper-statusline',
-  	'hyper-ayu-mirage',
+  	'hyper-ayu',
   	'hyper-pane'
   ],
 	
