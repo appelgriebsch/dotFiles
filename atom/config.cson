@@ -24,6 +24,9 @@
   fonts:
     fontFamily: "FiraCode"
     secondaryFonts: "Hack"
+  "ide-go":
+    customServerPath: "/usr/local/go/bin/go-langserver"
+    diagnosticsEnabled: true
   "ide-rust":
     rlsToolchain: "stable"
   "ide-typescript":
