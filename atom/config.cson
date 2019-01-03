@@ -6,6 +6,8 @@
       "atom-ide-ui"
       "go-plus"
     ]
+  "atom-soft-tabs-length":
+    softTabsLength: "2"
   core:
     autoHideMenuBar: true
     restorePreviousWindowsOnStart: "no"
