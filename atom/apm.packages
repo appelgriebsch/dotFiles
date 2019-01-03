@@ -1,8 +1,11 @@
 atom-browser
 atom-ide-datatip
+atom-import-cost
+atom-soft-tabs-length
 busy-signal
 dash
 docblockr
+editorconfig
 file-icons
 fonts
 git-time-machine
@@ -11,6 +14,8 @@ hey-pane
 ide-css
 ide-go
 ide-html
+ide-java
+ide-python
 ide-typescript
 intentions
 language-babel
@@ -24,6 +29,7 @@ minimap-find-and-replace
 minimap-git-diff
 pdf-view
 pigments
+project-manager
 split-diff
 teletype
 terminal-tab-plus
