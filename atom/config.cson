@@ -1,10 +1,22 @@
 "*":
   "atom-browser":
     viewShowBackground: false
+  "atom-material-ui":
+    colors:
+      abaseColor: "#ffa726"
+      accentColor: "#9f6918"
+      predefinedColor: "Orange"
+    fonts: {}
+    tabs:
+      compactTabs: true
+      noTabMinWidth: true
+    ui:
+      panelContrast: true
   "atom-package-deps":
     ignored: [
       "atom-ide-ui"
       "go-plus"
+      "spring-boot"
     ]
   "atom-soft-tabs-length":
     softTabsLength: "2"
@@ -13,8 +25,8 @@
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
-      "one-dark-ui"
-      "ayu-mirage-ish-syntax"
+      "atom-material-ui"
+      "ayu"
     ]
   editor:
     fontFamily: "Fira Code, Hack Menlo, Consolas, DejaVu Sans Mono, monospace"
@@ -41,5 +53,10 @@
       "find-and-replaceDecorationsZIndex": 0
       "git-diff": true
       "git-diffDecorationsZIndex": 0
+  "tool-bar":
+    iconSize: "16px"
+    position: "Left"
+    useTouchBar: false
+    visible: false
   welcome:
     showOnStartup: false
