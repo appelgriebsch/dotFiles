@@ -9,7 +9,6 @@
     fonts: {}
     tabs:
       compactTabs: true
-      noTabMinWidth: true
     ui:
       panelContrast: true
   "atom-package-deps":
