@@ -5,6 +5,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'ayu-theme/ayu-vim'
+Plug 'exvim/ex-aftercolors'
 
 " various language-server extensions
 VeonimExt 'veonim/ext-css'
@@ -73,5 +74,6 @@ endif
 " let ayucolor="mirage" " for mirage version of theme
 let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
+
 set number
 set tabstop=2
