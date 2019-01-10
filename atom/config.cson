@@ -44,6 +44,8 @@
     rlsToolchain: "stable"
   "ide-typescript":
     returnTypeInAutocomplete: "right"
+  "linter-ui-default":
+    showPanel: true
   minimap:
     plugins:
       codeglance: true

@@ -6,6 +6,7 @@ atom-soft-tabs-length
 ayu
 busy-signal
 dash
+data-atom
 docblockr
 editorconfig
 expose
@@ -20,6 +21,7 @@ ide-go
 ide-html
 ide-java
 ide-python
+ide-rust
 ide-typescript
 intentions
 language-babel
@@ -27,6 +29,8 @@ language-dot
 language-graphql
 language-julia
 language-terraform
+linter
+linter-ui-default
 markdown-pdf
 minimap
 minimap-find-and-replace
