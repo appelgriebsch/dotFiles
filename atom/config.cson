@@ -16,6 +16,7 @@
       "atom-ide-ui"
       "go-plus"
       "spring-boot"
+      "ide-rust"
     ]
   "atom-soft-tabs-length":
     softTabsLength: "2"
