@@ -4,6 +4,11 @@ atom-material-ui
 atom-npm-outdated
 atom-soft-tabs-length
 ayu
+build
+build-cargo
+build-gradle
+build-npm-apm
+build-xcodebuild
 busy-signal
 dash
 data-atom

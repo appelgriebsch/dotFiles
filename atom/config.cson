@@ -45,7 +45,8 @@
   "ide-typescript":
     returnTypeInAutocomplete: "right"
   "linter-ui-default":
-    showPanel: true
+    decorateOnTreeView: "Files and Directories"
+    panelRepresents: "Entire Project"
   minimap:
     plugins:
       codeglance: true
