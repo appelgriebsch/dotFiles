@@ -1,5 +1,6 @@
 atom-browser
 atom-ide-datatip
+atom-ide-signature-help
 atom-material-ui
 atom-npm-outdated
 atom-soft-tabs-length
@@ -40,6 +41,7 @@ markdown-pdf
 minimap
 minimap-find-and-replace
 minimap-git-diff
+minimap-linter
 pdf-view
 pigments
 project-manager
