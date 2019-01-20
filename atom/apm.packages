@@ -4,7 +4,7 @@ atom-ide-signature-help
 atom-material-ui
 atom-npm-outdated
 atom-soft-tabs-length
-ayu
+ayu-mirage-atom-syntax
 build
 build-cargo
 build-gradle
@@ -41,6 +41,7 @@ markdown-pdf
 minimap
 minimap-find-and-replace
 minimap-git-diff
+minimap-lens
 minimap-linter
 pdf-view
 pigments

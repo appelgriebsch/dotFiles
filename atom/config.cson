@@ -1,7 +1,8 @@
 "*":
   "atom-browser":
     viewShowBackground: false
-  "atom-ide-datatip": {}
+  "atom-ide-datatip":
+    showDataTipOnCursorMove: false
   "atom-material-ui":
     colors:
       abaseColor: "#ffa726"
@@ -27,7 +28,7 @@
     telemetryConsent: "no"
     themes: [
       "atom-material-ui"
-      "ayu"
+      "ayu-mirage-atom-syntax"
     ]
   editor:
     fontFamily: "Fira Code, Hack Menlo, Consolas, DejaVu Sans Mono, monospace"
@@ -50,7 +51,6 @@
     decorateOnTreeView: "Files and Directories"
     panelHeight: 176
     panelRepresents: "Entire Project"
-    showPanel: true
   minimap:
     plugins:
       codeglance: true
@@ -59,6 +59,8 @@
       "find-and-replaceDecorationsZIndex": 0
       "git-diff": true
       "git-diffDecorationsZIndex": 0
+      "lens-mode": true
+      "lens-modeDecorationsZIndex": 0
       linter: true
       linterDecorationsZIndex: 0
   "minimap-linter": {}
