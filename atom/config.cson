@@ -28,7 +28,7 @@
     telemetryConsent: "no"
     themes: [
       "atom-material-ui"
-      "ayu-mirage-atom-syntax"
+      "ayu-mirage-syntax"
     ]
   editor:
     fontFamily: "Fira Code, Hack Menlo, Consolas, DejaVu Sans Mono, monospace"
