@@ -2,7 +2,7 @@
   "atom-browser":
     viewShowBackground: false
   "atom-ide-datatip":
-    showDataTipOnCursorMove: false
+    showDataTipOnMouseMove: true
   "atom-material-ui":
     colors:
       abaseColor: "#ffa726"
@@ -62,6 +62,8 @@
       "lens-modeDecorationsZIndex": 0
       linter: true
       linterDecorationsZIndex: 0
+      "minimap-autohide": true
+      "minimap-autohideDecorationsZIndex": 0
   "minimap-linter": {}
   welcome:
     showOnStartup: false
