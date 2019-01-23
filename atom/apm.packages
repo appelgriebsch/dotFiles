@@ -4,10 +4,11 @@ atom-ide-signature-help
 atom-material-ui
 atom-npm-outdated
 atom-soft-tabs-length
-ayu-mirage-atom-syntax
+ayu-dark-syntax
+ayu-light-syntax
+ayu-mirage-syntax
 build
 build-cargo
-build-gradle
 build-npm-apm
 build-xcodebuild
 busy-signal
@@ -17,7 +18,6 @@ docblockr
 editorconfig
 expose
 file-icons
-flex-tool-bar
 fonts
 git-time-machine
 graphviz-preview-plus
@@ -25,7 +25,6 @@ hey-pane
 ide-css
 ide-go
 ide-html
-ide-java
 ide-python
 ide-rust
 ide-typescript
@@ -39,6 +38,7 @@ linter
 linter-ui-default
 markdown-pdf
 minimap
+minimap-autohide
 minimap-find-and-replace
 minimap-git-diff
 minimap-lens
@@ -47,11 +47,9 @@ pdf-view
 pigments
 project-manager
 split-diff
-spring-boot
 teletype
 terminal-tab-plus
 terraform-fmt
 tester
 tester-jest
-tool-bar
 vim-mode-plus

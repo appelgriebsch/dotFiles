@@ -17,7 +17,6 @@
     ignored: [
       "atom-ide-ui"
       "go-plus"
-      "spring-boot"
       "ide-rust"
     ]
   "atom-soft-tabs-length":
@@ -64,10 +63,5 @@
       linter: true
       linterDecorationsZIndex: 0
   "minimap-linter": {}
-  "tool-bar":
-    iconSize: "16px"
-    position: "Left"
-    useTouchBar: false
-    visible: false
   welcome:
     showOnStartup: false
