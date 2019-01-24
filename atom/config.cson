@@ -3,6 +3,8 @@
     viewShowBackground: false
   "atom-ide-datatip":
     showDataTipOnMouseMove: true
+  "atom-ide-signature-help":
+    showSignatureHelpOnTyping: true
   "atom-material-ui":
     colors:
       abaseColor: "#ffa726"
@@ -16,7 +18,6 @@
   "atom-package-deps":
     ignored: [
       "atom-ide-ui"
-      "go-plus"
       "ide-rust"
     ]
   "atom-soft-tabs-length":
@@ -39,9 +40,6 @@
   fonts:
     fontFamily: "FiraCode"
     secondaryFonts: "Hack"
-  "ide-go":
-    customServerPath: "/usr/local/go/bin/go-langserver"
-    diagnosticsEnabled: true
   "ide-rust":
     rlsToolchain: "stable"
   "ide-typescript":

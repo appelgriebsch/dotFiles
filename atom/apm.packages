@@ -10,7 +10,6 @@ ayu-mirage-syntax
 build
 build-cargo
 build-npm-apm
-build-xcodebuild
 busy-signal
 dash
 data-atom
@@ -23,7 +22,6 @@ git-time-machine
 graphviz-preview-plus
 hey-pane
 ide-css
-ide-go
 ide-html
 ide-python
 ide-rust

@@ -3,6 +3,4 @@ eslint
 jest
 parcel-bundler
 pkg
-tslint
-typescript
 @zeit/ncc
