@@ -63,5 +63,8 @@
       "minimap-autohide": true
       "minimap-autohideDecorationsZIndex": 0
   "minimap-linter": {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false

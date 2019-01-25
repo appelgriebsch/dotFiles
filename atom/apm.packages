@@ -23,6 +23,7 @@ graphviz-preview-plus
 hey-pane
 ide-css
 ide-html
+ide-java
 ide-python
 ide-rust
 ide-typescript
@@ -36,7 +37,6 @@ linter
 linter-ui-default
 markdown-pdf
 minimap
-minimap-autohide
 minimap-find-and-replace
 minimap-git-diff
 minimap-lens
@@ -45,6 +45,7 @@ pdf-view
 pigments
 project-manager
 split-diff
+spring-boot
 teletype
 terminal-tab-plus
 terraform-fmt
