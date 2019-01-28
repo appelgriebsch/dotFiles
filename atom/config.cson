@@ -30,6 +30,7 @@
       "atom-material-ui"
       "ayu-mirage-syntax"
     ]
+    titleBar: "custom"
   editor:
     fontFamily: "Fira Code, Hack Menlo, Consolas, DejaVu Sans Mono, monospace"
     fontSize: 16
@@ -44,6 +45,8 @@
     rlsToolchain: "stable"
   "ide-typescript":
     returnTypeInAutocomplete: "right"
+  "linter-terraform-syntax":
+    useTerraformFormat: true
   "linter-ui-default":
     decorateOnTreeView: "Files and Directories"
     panelHeight: 176

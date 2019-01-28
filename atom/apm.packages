@@ -22,6 +22,7 @@ git-time-machine
 graphviz-preview-plus
 hey-pane
 ide-css
+ide-go
 ide-html
 ide-java
 ide-python
@@ -34,6 +35,7 @@ language-graphql
 language-julia
 language-terraform
 linter
+linter-terraform-syntax
 linter-ui-default
 markdown-pdf
 minimap
@@ -48,7 +50,6 @@ split-diff
 spring-boot
 teletype
 terminal-tab-plus
-terraform-fmt
 tester
 tester-jest
 vim-mode-plus
