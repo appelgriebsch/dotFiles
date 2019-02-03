@@ -3,8 +3,6 @@
     viewShowBackground: false
   "atom-ide-datatip":
     showDataTipOnMouseMove: true
-  "atom-ide-signature-help":
-    showSignatureHelpOnTyping: true
   "atom-material-ui":
     colors:
       abaseColor: "#ffa726"
@@ -28,7 +26,7 @@
     telemetryConsent: "no"
     themes: [
       "atom-material-ui"
-      "ayu-mirage-syntax"
+      "ayu-dark-syntax"
     ]
     titleBar: "custom"
   editor:
