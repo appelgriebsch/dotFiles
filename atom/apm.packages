@@ -24,7 +24,6 @@ hey-pane
 ide-css
 ide-go
 ide-html
-ide-java
 ide-python
 ide-rust
 ide-typescript
@@ -37,7 +36,6 @@ language-terraform
 linter
 linter-terraform-syntax
 linter-ui-default
-markdown-pdf
 minimap
 minimap-find-and-replace
 minimap-git-diff
@@ -47,7 +45,6 @@ pdf-view
 pigments
 project-manager
 split-diff
-spring-boot
 teletype
 terminal-tab-plus
 tester
