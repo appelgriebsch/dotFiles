@@ -1,3 +1,4 @@
+Hydrogen
 atom-browser
 atom-ide-datatip
 atom-ide-signature-help
@@ -24,6 +25,7 @@ hey-pane
 ide-css
 ide-go
 ide-html
+ide-java
 ide-python
 ide-rust
 ide-typescript
@@ -45,6 +47,7 @@ pdf-view
 pigments
 project-manager
 split-diff
+spring-boot
 teletype
 terminal-tab-plus
 tester
