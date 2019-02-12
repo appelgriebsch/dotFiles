@@ -23,9 +23,7 @@ git-time-machine
 graphviz-preview-plus
 hey-pane
 ide-css
-ide-go
 ide-html
-ide-java
 ide-python
 ide-rust
 ide-typescript
@@ -33,7 +31,6 @@ intentions
 language-babel
 language-dot
 language-graphql
-language-julia
 language-terraform
 linter
 linter-terraform-syntax
@@ -47,7 +44,6 @@ pdf-view
 pigments
 project-manager
 split-diff
-spring-boot
 teletype
 terminal-tab-plus
 tester
