@@ -26,7 +26,7 @@
     telemetryConsent: "no"
     themes: [
       "atom-material-ui"
-      "ayu-dark-syntax"
+      "ayu-mirage-syntax"
     ]
     titleBar: "custom"
   editor:
