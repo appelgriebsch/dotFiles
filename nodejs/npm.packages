@@ -1,6 +1,7 @@
 babel-cli
 eslint
 jest
+moleculer-cli
 parcel-bundler
 pkg
 @zeit/ncc

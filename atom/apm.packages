@@ -24,6 +24,7 @@ graphviz-preview-plus
 hey-pane
 ide-css
 ide-html
+ide-java
 ide-python
 ide-rust
 ide-typescript
@@ -44,8 +45,10 @@ pdf-view
 pigments
 project-manager
 split-diff
+spring-boot
 teletype
 terminal-tab-plus
 tester
 tester-jest
+tester-mocha
 vim-mode-plus
