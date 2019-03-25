@@ -21,7 +21,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " theme
-Plug 'ayu-theme/ayu-vim'
+Plug 'agreco/vim-citylights'
 
 " language server support
 Plug 'natebosch/vim-lsc'
@@ -36,6 +36,10 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 syntax on
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+colorscheme citylights
 
 set termguicolors
 
@@ -56,11 +60,6 @@ set number           "line number
 set nowrap           "no line wrapping
 set guifont=FuraCode\ Nerd\ Font:h14
 
-" let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let mapleader=","
 nmap <leader>q :NERDTreeToggle<CR>
