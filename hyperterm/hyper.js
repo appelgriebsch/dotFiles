@@ -132,8 +132,9 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-  	'hyper-statusline',
-  	'hyper-city-lights',
+    'hyper-statusline',
+    'hyper-tabs-enhanced',
+    'hyper-nord',
   	'hyper-pane'
   ],
 	

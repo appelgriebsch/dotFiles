@@ -21,7 +21,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " theme
-Plug 'agreco/vim-citylights'
+Plug 'arcticicestudio/nord-vim'
 
 " language server support
 Plug 'natebosch/vim-lsc'
@@ -39,7 +39,7 @@ syntax on
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-colorscheme citylights
+colorscheme nord
 
 set termguicolors
 
