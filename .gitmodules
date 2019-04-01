@@ -1,9 +1,3 @@
-[submodule "xcode"]
-	path = xcode
-	url = git@github.com:arcticicestudio/nord-xcode.git
 [submodule "neovim/vim-plug"]
 	path = neovim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
-[submodule "hyperterm/dircolors"]
-	path = hyperterm/dircolors
-	url = git@github.com:arcticicestudio/nord-dircolors.git

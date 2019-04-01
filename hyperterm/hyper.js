@@ -134,7 +134,7 @@ module.exports = {
   plugins: [
     'hyper-statusline',
     'hyper-tabs-enhanced',
-    'hyper-nord',
+    'hyper-gruv',
   	'hyper-pane'
   ],
 	
