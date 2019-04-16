@@ -21,7 +21,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " theme
-Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim' " or other package manager
 
 " language server support
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -39,10 +39,11 @@ syntax on
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-set background=dark    " Setting dark mode
-colorscheme gruvbox
-
-set termguicolors
+set termguicolors     " enable true colors support
+" let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 
 set smartindent
 set expandtab         "tab to spaces
