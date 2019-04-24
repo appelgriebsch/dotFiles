@@ -38,8 +38,8 @@ filetype plugin indent on
 syntax on
 
 "set termguicolors     " enable true colors support
-" let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
+let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 
@@ -80,6 +80,8 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+let g:airline_theme = 'light'
 
 " if hidden is not set, TextEdit might fail.
 set hidden
