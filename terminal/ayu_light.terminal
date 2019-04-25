@@ -159,8 +159,19 @@
 	b3KiEhRYTlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLRFxhUcm9vdIABCBEaIy0yNztB
 	SE5bYnZ4en+Kk5uep7m8wQAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAADD
 	</data>
+	<key>Font</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
+	YXNzI0AqAAAAAAAAEBCAAoADXxAQRmlyYU1vbm8tUmVndWxhctITFBUWWiRjbGFzc25h
+	bWVYJGNsYXNzZXNWTlNGb250ohUXWE5TT2JqZWN0XxAPTlNLZXllZEFyY2hpdmVy0Rob
+	VHJvb3SAAQgRGiMtMjc8QktSW2JpcnR2eIuQm6SrrrfJzNEAAAAAAAABAQAAAAAAAAAc
+	AAAAAAAAAAAAAAAAAAAA0w==
+	</data>
+	<key>FontAntialias</key>
+	<true/>
 	<key>ProfileCurrentVersion</key>
-	<real>2.04</real>
+	<real>2.0600000000000001</real>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -189,11 +200,11 @@
 	AAAZAAAAAAAAAAAAAAAAAAAA2Q==
 	</data>
 	<key>columnCount</key>
-	<integer>90</integer>
+	<integer>120</integer>
 	<key>name</key>
 	<string>ayu_light</string>
 	<key>rowCount</key>
-	<integer>50</integer>
+	<integer>30</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
