@@ -8,7 +8,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 
 Plug 'airblade/vim-gitgutter'
-Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -38,8 +37,8 @@ filetype plugin indent on
 syntax on
 
 "set termguicolors     " enable true colors support
-let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 
@@ -58,7 +57,7 @@ set list listchars=trail:»,tab:»-
 set fillchars+=vert:\ 
 set number           "line number
 set nowrap           "no line wrapping
-set guifont=FuraCode\ Nerd\ Font:h14
+set guifont=Fira\ Code:h14
 
 let mapleader=","
 nmap <leader>q :NERDTreeToggle<CR>
@@ -76,12 +75,12 @@ let g:NERDTreeDirArrowCollapsible = '↡'
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_theme = 'light'
+let g:airline_theme = 'powerlineish'
 
 " if hidden is not set, TextEdit might fail.
 set hidden
