@@ -1,11 +1,10 @@
 babel-cli
 eslint
+javascript-typescript-langserver
 jest
 moleculer-cli
 parcel-bundler
 pkg
-typescript
-typescript-language-server
 vscode-css-languageserver-bin
 vscode-html-languageserver-bin
 vscode-json-languageserver-bin
