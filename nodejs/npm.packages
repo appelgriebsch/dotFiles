@@ -1,9 +1,7 @@
 babel-cli
 eslint
 javascript-typescript-langserver
-jest
 moleculer-cli
-parcel-bundler
 pkg
 vscode-css-languageserver-bin
 vscode-html-languageserver-bin
