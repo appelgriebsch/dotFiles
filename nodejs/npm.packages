@@ -1,4 +1,5 @@
 babel-cli
+dockerfile-language-server-nodejs
 eslint
 javascript-typescript-langserver
 moleculer-cli
