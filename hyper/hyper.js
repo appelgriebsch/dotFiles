@@ -147,7 +147,7 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-  	'hyper-one-dark-vivid',
+  	'hyperterm-gruvbox-dark',
   	'hyper-statusline'
   ],
 
