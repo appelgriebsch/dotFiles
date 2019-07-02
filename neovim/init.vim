@@ -20,7 +20,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " theme
-Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'iCyMind/NeoSolarized'
 
 " language server support
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -36,11 +36,9 @@ filetype plugin on
 filetype plugin indent on
 syntax on
 
-"set termguicolors     " enable true colors support
-" let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
+set termguicolors     " enable true colors support
+set background=dark
+colorscheme NeoSolarized
 
 set smartindent
 set expandtab         "tab to spaces
@@ -80,7 +78,8 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg = 'dark'
 
 " if hidden is not set, TextEdit might fail.
 set hidden
