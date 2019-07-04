@@ -49,7 +49,7 @@ interval=30
 #
 [time]
 label=
-command=echo "<span color='#93a1a1'>`date '+ %m-%d %H:%M '`</span>"
+command=echo "<span font_desc='Source Code Pro Medium 13' color='#93a1a1'>`date '+ %m-%d %H:%M '`</span>"
 #command=date '+ %m-%d %H:%M '
 interval=60
 
