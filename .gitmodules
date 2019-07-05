@@ -4,3 +4,6 @@
 [submodule "telegram/solarized"]
 	path = telegram/solarized
 	url = git@github.com:granin/Telegram-Solarized.git
+[submodule "sublime/settings"]
+	path = sublime/settings
+	url = git@github.com:1144c5a16a58facf5b6ed9249272fdce
