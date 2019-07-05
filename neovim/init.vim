@@ -66,6 +66,9 @@ nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 
+" terminal
+tnoremap <Esc> <C-\><C-n>
+
 " nerdtree
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '↠'
