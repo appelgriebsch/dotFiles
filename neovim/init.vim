@@ -55,7 +55,8 @@ set shortmess+=c
 
 " Enable true color support
 set termguicolors
-set guifont=Fira\ Code:h14
+set guifont=Fura\ Code\ Nerd\ Font\ Retina\ Complete\ 14
+set encoding=UTF-8
 
 " Editor theme
 set background=dark
