@@ -33,8 +33,8 @@ Plug 'easymotion/vim-easymotion'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
-" Denite - Fuzzy finding, buffer management
-Plug 'Shougo/denite.nvim'
+" Fuzzy finding, buffer management
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
