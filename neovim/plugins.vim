@@ -35,8 +35,6 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " Fuzzy finding, buffer management
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 " Snippet support
 Plug 'Shougo/neosnippet'

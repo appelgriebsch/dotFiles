@@ -194,12 +194,13 @@ let g:echodoc#enable_at_startup = 1
 " buffer navigation
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
+nmap <silent> <leader>q :bdelete<CR>
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
 
 " fuzzy search
-nmap <leader>t :FZF<CR>
+nmap <leader>t :CtrlP<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 
 " === Nerdtree shorcuts === "
