@@ -200,8 +200,8 @@ nmap <silent> <leader>q :bdelete<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " fuzzy search
-nmap <leader>t :CtrlP<CR>
-nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>t :FZF<CR>
+nmap <leader>b :Buffer<CR>
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off

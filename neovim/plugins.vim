@@ -19,7 +19,7 @@ if !filereadable(plugpath)
 endif
 
 " Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
+" - For Neovim: ~/.config/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/extensions')
 
@@ -34,7 +34,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " Fuzzy finding, buffer management
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Snippet support
 Plug 'Shougo/neosnippet'
