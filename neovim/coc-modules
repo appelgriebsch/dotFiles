@@ -8,6 +8,7 @@ coc-java
 coc-json
 coc-python
 coc-rls
+coc-sh
 coc-snippets
 coc-svg
 coc-tsserver
