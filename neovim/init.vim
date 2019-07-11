@@ -195,6 +195,10 @@ let g:echodoc#enable_at_startup = 1
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 nmap <silent> <leader>q :bdelete<CR>
+nmap <silent> <C-h> <C-w>h
+nmap <silent> <C-j> <C-w>j
+nmap <silent> <C-k> <C-w>k
+nmap <silent> <C-l> <C-w>l
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
@@ -220,6 +224,8 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nmap <leader>p <Plug>(coc-format-selected)
+xmap <leader>p <Plug>(coc-format-selected)
 
 " === Search shorcuts === "
 "   <leader>h - Find and replace
