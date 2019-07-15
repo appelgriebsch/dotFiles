@@ -77,6 +77,9 @@ hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
 
+" space line theme tbd
+let g:spaceline_colorscheme = 'solarized_dark'
+
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
