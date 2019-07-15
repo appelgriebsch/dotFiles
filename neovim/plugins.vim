@@ -44,6 +44,9 @@ Plug 'Shougo/neosnippet-snippets'
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
 
+" lsp based outline and symbols
+Plug 'liuchengxu/vista.vim'
+
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
 Plug 'mhinz/vim-signify'
@@ -51,6 +54,9 @@ Plug 'tpope/vim-fugitive'
 
 " Syntax highlighting for different languages
 Plug 'sheerun/vim-polyglot'
+
+" better start screen
+Plug 'mhinz/vim-startify'
 
 " === UI === "
 " File explorer
@@ -60,8 +66,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'iCyMind/NeoSolarized'
 
 " Customized vim status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'taigacute/spaceline.vim'
 
 " enhanced terminal features
 Plug 'kassio/neoterm'
