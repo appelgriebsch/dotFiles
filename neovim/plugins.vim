@@ -63,7 +63,8 @@ Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 
 " color theme
-Plug 'iCyMind/NeoSolarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'taigacute/gruvbox9'
 
 " Customized vim status line
 Plug 'taigacute/spaceline.vim'

@@ -61,7 +61,7 @@ set encoding=UTF-8
 " Editor theme
 set background=dark
 try
-colorscheme NeoSolarized
+colorscheme solarized8
 catch
   echo 'NeoSolarized not installed. It should work after running :PlugInstall'
 endtry
@@ -95,6 +95,30 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+try
+  call coc#add_extension(
+        \ 'coc-css',
+        \ 'coc-docker',
+        \ 'coc-emmet',
+        \ 'coc-git',
+        \ 'coc-go',
+        \ 'coc-highlight',
+        \ 'coc-html',
+        \ 'coc-java',
+        \ 'coc-json',
+        \ 'coc-python',
+        \ 'coc-rls',
+        \ 'coc-sh',
+        \ 'coc-snippets',
+        \ 'coc-svg',
+        \ 'coc-tsserver',
+        \ 'coc-yaml',
+        \ 'coc-yank',
+        \ 'coc-xml')
+catch
+  echo 'coc.vim not installed. It should work after running :PlugInstall'
+endtry
 
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
