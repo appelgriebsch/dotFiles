@@ -96,6 +96,27 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
+let s:code_actions = []
+
+func! ActionMenuCodeActions() abort
+  let s:code_actions = CocAction('codeActions')
+  if len(s:code_actions) > 0
+    let l:menu_items = map(copy(s:code_actions), { index, item -> item['title'] })
+    try
+      call actionmenu#open(l:menu_items, 'ActionMenuCodeActionsCallback')
+    catch
+      CocList actions
+    endtry
+  endif
+endfunc
+
+func! ActionMenuCodeActionsCallback(index, item) abort
+  if a:index >= 0
+    let l:selected_code_action = s:code_actions[a:index]
+    let l:response = CocAction('doCodeAction', l:selected_code_action)
+  endif
+endfunc
+
 try
   call coc#add_extension(
         \ 'coc-css',
@@ -187,6 +208,7 @@ nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
 " === coc.nvim === "
+nnoremap <silent> <Leader>s :call ActionMenuCodeActions()<CR>
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)

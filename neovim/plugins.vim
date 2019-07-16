@@ -32,6 +32,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'kizza/actionmenu.nvim'
 
 " Fuzzy finding, buffer management
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
