@@ -163,14 +163,30 @@ let g:NERDTreeShowHidden = 1
 " Remove bookmarks and help text from NERDTree
 let g:NERDTreeMinimalUI = 1
 " Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
+let g:NERDTreeDirArrowExpandable = '▷'
+let g:NERDTreeDirArrowCollapsible = '▼'
 
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " Hide the Nerdtree status line to avoid clutter
 let g:NERDTreeStatusline = ''
+
+let g:NERDTreeQuitOnOpen = 0
+let g:NERDTreeWinSize = 33
+
+let g:nerdtreeindicatormapcustom = {
+        \ "modified"  : "✹",
+        \ "staged"    : "✚",
+        \ "untracked" : "✭",
+        \ "renamed"   : "➜",
+        \ "unmerged"  : "═",
+        \ "deleted"   : "✖",
+        \ "dirty"     : "✗",
+        \ "clean"     : "✔︎",
+        \ 'ignored'   : '☒',
+        \ "unknown"   : "?"
+        \ }
 
 " spaceline
 let g:spaceline_seperate_style= 'arrow-fade'
@@ -181,6 +197,8 @@ let g:echodoc#enable_at_startup = 1
 
 " === lsp outline view === "
 let g:vista_default_executive = 'coc'
+let g:vista_icon_indent = ["▸ ", ""]
+let g:vista_fzf_preview = ['right:33%']
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "

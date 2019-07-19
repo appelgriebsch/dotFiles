@@ -60,8 +60,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-startify'
 
 " === UI === "
-" File explorer
+" File management
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " color theme
 Plug 'lifepillar/vim-solarized8'
@@ -78,4 +79,4 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Initialize plugin system
-call plug#end() 
+call plug#end()
