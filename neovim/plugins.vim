@@ -52,6 +52,7 @@ Plug 'liuchengxu/vista.vim'
 " Enable git changes to be shown in sign column
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 
 " Syntax highlighting for different languages
 Plug 'sheerun/vim-polyglot'
