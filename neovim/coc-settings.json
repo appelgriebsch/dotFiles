@@ -1,4 +1,11 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "rootPatterns": ["main.tf", ".vim/", ".git/"]
+    }
+  }
 }
