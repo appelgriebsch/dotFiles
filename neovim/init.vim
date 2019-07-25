@@ -182,14 +182,11 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
-
-" Hide the Nerdtree status line to avoid clutter
-let g:NERDTreeStatusline = ''
-
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeWinSize = 33
+let g:NERDTreeWinSizeMax = 50
 
-let g:nerdtreeindicatormapcustom = {
+let g:NERDTreeIndicatorMapCustom = {
         \ "modified"  : "✹",
         \ "staged"    : "✚",
         \ "untracked" : "✭",
@@ -219,8 +216,9 @@ let g:vista_fzf_preview = ['right:33%']
 " ============================================================================ "
 
 " buffer navigation
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
+nmap <silent> <Tab> :bnext<CR>
+nmap <silent> <S-Tab> :bprevious<CR>
+nmap <silent> <leader>q :bdelete<CR>
 nmap <silent> <C-h> <C-w>h
 nmap <silent> <C-j> <C-w>j
 nmap <silent> <C-k> <C-w>k
@@ -230,14 +228,14 @@ nmap <silent> <C-l> <C-w>l
 tnoremap <Esc> <C-\><C-n>
 
 " fuzzy search
-nmap <leader>t :FZF<CR>
-nmap <leader>b :Buffer<CR>
+nmap <silent> <leader>t :FZF<CR>
+nmap <silent> <leader>b :Buffer<CR>
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>f :NERDTreeFind<CR>
 
 " === coc.nvim === "
 nnoremap <silent> <Leader>s :call ActionMenuCodeActions()<CR>
@@ -246,6 +244,7 @@ nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 nmap <silent> <leader>ac <Plug>(coc-codeaction)
 nmap <silent> <leader>qf <Plug>(coc-fix-current)
+nmap <silent> <leader>o :Vista!!<CR>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
@@ -272,7 +271,8 @@ cmap w!! w !sudo tee %
 " ============================================================================ "
 
 " Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | bd | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:Vista")) | bd | endif
 
 " === Search === "
 " ignore case when searching
