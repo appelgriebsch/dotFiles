@@ -60,6 +60,9 @@ Plug 'sheerun/vim-polyglot'
 " better start screen
 Plug 'mhinz/vim-startify'
 
+" database
+Plug 'vim-scripts/dbext.vim'
+
 " === UI === "
 " File management
 Plug 'scrooloose/nerdtree'

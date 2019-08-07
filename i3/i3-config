@@ -272,7 +272,7 @@ bar {
   font $i3-wm.bar.font
   separator_symbol " "
   status_command i3xrocks -c ~/.config/i3xrocks/i3xrocks.conf
-  tray_output none
+  tray_output primary
   strip_workspace_numbers yes
 
   colors {
