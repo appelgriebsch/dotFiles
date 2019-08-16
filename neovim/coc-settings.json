@@ -7,5 +7,6 @@
       "filetypes": ["terraform"],
       "rootPatterns": ["main.tf", ".vim/", ".git/"]
     }
-  }
+  },
+  "java.errors.incompleteClasspath.severity": "ignore"
 }

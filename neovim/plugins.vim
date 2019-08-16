@@ -34,14 +34,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kizza/actionmenu.nvim'
 
-" Fuzzy finding, buffer management
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" Snippet support
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
 

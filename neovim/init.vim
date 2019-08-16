@@ -90,8 +90,22 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 let g:coc_status_error_sign = '•'
 let g:coc_status_warning_sign = '•'
 
@@ -121,6 +135,7 @@ try
         \ 'coc-import-cost',
         \ 'coc-java',
         \ 'coc-json',
+        \ 'coc-lists',
         \ 'coc-python',
         \ 'coc-rls',
         \ 'coc-sh',
@@ -137,18 +152,6 @@ endtry
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" === NeoSnippet === "
-" Map <C-k> as shortcut to activate snippet if available
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" Load custom snippets from snippets folder
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-
-" Hide conceal markers
-let g:neosnippet#enable_conceal_markers = 0
-
 " === NERDTree === "
 " Show hidden files/directories
 let g:NERDTreeShowHidden = 1
@@ -161,7 +164,7 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
-let g:NERDTreeQuitOnOpen = 0
+let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinSize = 33
 let g:NERDTreeWinSizeMax = 50
 
@@ -214,6 +217,7 @@ nmap <silent> <leader>b :Buffer<CR>
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
 nmap <silent> <leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>f :NERDTreeFind<CR>
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
@@ -250,8 +254,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>p  <Plug>(coc-format-selected)
+nmap <leader>p  <Plug>(coc-format-selected)
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -261,11 +265,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -313,10 +312,6 @@ cmap w!! w !sudo tee %
 " ============================================================================ "
 " ===                                 MISC.                                === "
 " ============================================================================ "
-
-" Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | bd | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:Vista")) | bd | endif
 
 " === Search === "
 " ignore case when searching
