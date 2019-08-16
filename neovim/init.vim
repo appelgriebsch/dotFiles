@@ -135,7 +135,6 @@ try
         \ 'coc-import-cost',
         \ 'coc-java',
         \ 'coc-json',
-        \ 'coc-lists',
         \ 'coc-python',
         \ 'coc-rls',
         \ 'coc-sh',
