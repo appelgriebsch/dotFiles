@@ -209,8 +209,8 @@ nmap <silent> <C-l> <C-w>l
 tnoremap <Esc> <C-\><C-n>
 
 " fuzzy search
-nmap <silent> <leader>t :FZF<CR>
-nmap <silent> <leader>b :Buffer<CR>
+nmap <silent> <leader>t :<C-u>CocList files<cr>
+nmap <silent> <leader>b :<C-u>CocList buffers<cr>
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
