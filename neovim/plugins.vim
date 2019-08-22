@@ -28,7 +28,7 @@ call plug#begin('~/.config/nvim/extensions')
 Plug 'ntpeters/vim-better-whitespace'
 
 " EditorConfig support
-Plugin 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
