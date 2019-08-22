@@ -14,5 +14,10 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     }
   },
-  "java.errors.incompleteClasspath.severity": "ignore"
+  "java.format.enabled": false,
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.referencesCodeLens.enabled": true,
+  "java.implementationsCodeLens.enabled": true,
+  "java.signatureHelp.enabled": true,
+  "java.completion.guessMethodArguments": true
 }
