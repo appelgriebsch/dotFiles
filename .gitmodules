@@ -4,3 +4,9 @@
 [submodule "telegram/solarized"]
 	path = telegram/solarized
 	url = git@github.com:granin/Telegram-Solarized.git
+[submodule "terminal"]
+	path = terminal
+	url = https://github.com/hwyncho/ayu-Terminal-app.git
+[submodule "iterm2"]
+	path = iterm2
+	url = https://github.com/hwyncho/ayu-iTerm.git
