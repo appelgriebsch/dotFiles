@@ -59,15 +59,8 @@ set guifont=Fura\ Code\ Nerd\ Font\ Retina\ Complete\ 14
 set encoding=UTF-8
 " Editor theme
 set background=dark
-try
-" let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
-" colorscheme solarized8
-catch
-  echo 'NeoSolarized not installed. It should work after running :PlugInstall'
-endtry
+
+source ~/.config/nvim/colors.vim
 
 " Set preview window to appear at bottom
 set splitbelow
@@ -79,9 +72,6 @@ set noshowmode
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
-
-" space line theme tbd
-let g:spaceline_colorscheme = 'space'
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
