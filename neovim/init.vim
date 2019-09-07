@@ -69,6 +69,8 @@ catch
   echo 'Ayu Vim not installed. It should work after running :PlugInstall'
 endtry
 
+let g:eleline_powerline_fonts = 1
+
 " Set preview window to appear at bottom
 set splitbelow
 
