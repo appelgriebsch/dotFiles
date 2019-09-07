@@ -60,7 +60,14 @@ set encoding=UTF-8
 " Editor theme
 set background=dark
 
-source ~/.config/nvim/colors.vim
+try
+" let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+catch
+  echo 'Ayu Vim not installed. It should work after running :PlugInstall'
+endtry
 
 " Set preview window to appear at bottom
 set splitbelow
