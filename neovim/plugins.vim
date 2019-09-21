@@ -65,9 +65,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " color theme
 Plug 'ayu-theme/ayu-vim'
+Plug 'lifepillar/vim-solarized8'
 
 " Customized vim status line
-Plug 'liuchengxu/eleline.vim'
+Plug 'taigacute/spaceline.vim'
 
 " enhanced terminal features
 Plug 'kassio/neoterm'
