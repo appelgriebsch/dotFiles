@@ -59,9 +59,6 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/dbext.vim'
 
 " === UI === "
-" File management
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " color theme
 Plug 'ayu-theme/ayu-vim'
@@ -75,7 +72,6 @@ Plug 'kassio/neoterm'
 
 " Icons
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Initialize plugin system
 call plug#end()

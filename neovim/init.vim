@@ -146,35 +146,6 @@ endtry
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" === NERDTree === "
-" Show hidden files/directories
-let g:NERDTreeShowHidden = 1
-
-" Remove bookmarks and help text from NERDTree
-let g:NERDTreeMinimalUI = 1
-" Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '▷'
-let g:NERDTreeDirArrowCollapsible = '▼'
-
-" Hide certain files and directories from NERDTree
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinSize = 33
-let g:NERDTreeWinSizeMax = 50
-
-let g:NERDTreeIndicatorMapCustom = {
-        \ "modified"  : "✹",
-        \ "staged"    : "✚",
-        \ "untracked" : "✭",
-        \ "renamed"   : "➜",
-        \ "unmerged"  : "═",
-        \ "deleted"   : "✖",
-        \ "dirty"     : "!",
-        \ "clean"     : "✔︎",
-        \ 'ignored'   : '☒',
-        \ "unknown"   : "?"
-        \ }
-
 " spaceline
 let g:spaceline_seperate_style= 'arrow-fade'
 
@@ -208,10 +179,8 @@ nmap <silent> <leader>t :<C-u>CocList files<cr>
 nmap <silent> <leader>b :<C-u>CocList buffers<cr>
 
 " === Nerdtree shorcuts === "
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-nmap <silent> <leader>n :NERDTreeToggle<CR>
-nmap <silent> <leader>f :NERDTreeFind<CR>
+"  <leader>n - Toggle Explorer on/off
+nmap <silent> <leader>n :CocCommand explorer --toggle<CR>
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
