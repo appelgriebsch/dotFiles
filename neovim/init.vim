@@ -146,8 +146,10 @@ endtry
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" spaceline
-let g:spaceline_seperate_style= 'arrow-fade'
+" lightline integration of coc status
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
 " === echodoc === "
 " Enable echodoc on startup
@@ -180,7 +182,7 @@ nmap <silent> <leader>b :<C-u>CocList buffers<cr>
 
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle Explorer on/off
-nmap <silent> <leader>n :CocCommand explorer --toggle<CR>
+nmap <silent> <leader>n :CocCommand explorer<CR>
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>

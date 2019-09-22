@@ -6,4 +6,12 @@ endtry
 
 let g:lightline = {
 \ 'colorscheme': 'nord',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': {
+\   'cocstatus': 'coc#status',
+\   'currentfunction': 'CocCurrentFunction'
+\ },
 \ }

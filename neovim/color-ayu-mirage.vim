@@ -9,4 +9,12 @@ endtry
 
 let g:lightline = {
 \ 'colorscheme': 'ayu_mirage',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': {
+\   'cocstatus': 'coc#status',
+\   'currentfunction': 'CocCurrentFunction'
+\ },
 \ }
