@@ -63,6 +63,7 @@ Plug 'vim-scripts/dbext.vim'
 " color theme
 Plug 'ayu-theme/ayu-vim'
 Plug 'lifepillar/vim-solarized8'
+Plug 'arcticicestudio/nord-vim'
 
 " Customized vim status line
 Plug 'taigacute/spaceline.vim'
