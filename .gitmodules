@@ -1,9 +1,6 @@
 [submodule "neovim/vim-plug"]
 	path = neovim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
-[submodule "telegram/solarized"]
-	path = telegram/solarized
-	url = git@github.com:granin/Telegram-Solarized.git
 [submodule "terminal"]
 	path = terminal
 	url = https://github.com/hwyncho/ayu-Terminal-app.git
