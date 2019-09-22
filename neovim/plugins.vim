@@ -60,13 +60,13 @@ Plug 'vim-scripts/dbext.vim'
 
 " === UI === "
 
-" color theme
+" color themes
 Plug 'ayu-theme/ayu-vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'arcticicestudio/nord-vim'
 
 " Customized vim status line
-Plug 'taigacute/spaceline.vim'
+Plug 'itchyny/lightline.vim'
 
 " enhanced terminal features
 Plug 'kassio/neoterm'
