@@ -11,10 +11,11 @@ let g:lightline = {
 \ 'colorscheme': 'ayu_mirage',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified', 'gitbranch' ] ]
 \ },
 \ 'component_function': {
 \   'cocstatus': 'coc#status',
-\   'currentfunction': 'CocCurrentFunction'
+\   'currentfunction': 'CocCurrentFunction',
+\   'gitbranch': 'fugitive#head'
 \ },
 \ }
