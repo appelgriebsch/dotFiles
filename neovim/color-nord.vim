@@ -8,7 +8,7 @@ let g:lightline = {
 \ 'colorscheme': 'nord',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+\             [ 'currentfunction', 'readonly', 'filename', 'modified', 'gitbranch', 'cocstatus'] ]
 \ },
 \ 'component_function': {
 \   'cocstatus': 'coc#status',

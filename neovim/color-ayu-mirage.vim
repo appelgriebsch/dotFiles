@@ -11,7 +11,7 @@ let g:lightline = {
 \ 'colorscheme': 'ayu_mirage',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+\             [ 'currentfunction', 'readonly', 'filename', 'modified', 'gitbranch', 'cocstatus'] ]
 \ },
 \ 'component_function': {
 \   'cocstatus': 'coc#status',
