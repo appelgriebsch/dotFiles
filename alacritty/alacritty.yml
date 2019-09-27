@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -34,11 +34,11 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 10
-    y: 10
+    x: 1
+    y: 1
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -96,7 +96,7 @@ scrolling:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 4
+tabspaces: 2
 
 # Font configuration (changes require restart)
 font:
@@ -171,6 +171,33 @@ font:
 draw_bold_text_with_bright_colors: true
 
 schemes:
+  ayu_light: &ayuLight
+    # Default colors
+    primary:
+      background: '0xfafafa'
+      foreground: '0x6c7680'
+
+    # Normal colors
+    normal:
+      black: '0x6c7680'
+      red: '0xf51818'
+      green: '0x86b300'
+      yellow: '0xfa8d3e'
+      blue: '0x399ee6'
+      magenta: '0xf07171'
+      cyan: '0x4cbf99'
+      white: '0xffffff'
+
+    # Bright colors
+    bright:
+      black: '0xcbccc6'
+      red: '0xff3333'
+      green: '0xbae67e'
+      yellow: '0xffa759'
+      blue: '0x73d0ff'
+      magenta: '0xf28779'
+      cyan: '0x95e6cb'
+      white: '0xffffff'
   ayu_dark: &ayuDark
     # Default colors
     primary:
@@ -198,6 +225,33 @@ schemes:
       magenta: '0xFFEE99'
       cyan: '0x95E6CB'
       white: '0xFFFFFF'
+  ayu_mirage: &ayuMirage
+    # Default colors
+    primary:
+      background: '0x1f2430'
+      foreground: '0xbfbab0'
+
+    # Normal colors
+    normal:
+      black: '0x1f2430'
+      red: '0xff3333'
+      green: '0xbae67e'
+      yellow: '0xffd580'
+      blue: '0x73d0ff'
+      magenta: '0xf28779'
+      cyan: '0x95e6cb'
+      white: '0xffffff'
+
+    # Bright colors
+    bright:
+      black: '0x292b30'
+      red: '0xff6666'
+      green: '0xcee6ac'
+      yellow: '0xffe6b3'
+      blue: '0xa6e1ff'
+      magenta: '0xffd6da'
+      cyan: '0xffffff'
+      white: '0xffffff'
   nord: &nord
     # Default colors
     primary:
@@ -258,8 +312,8 @@ schemes:
       cyan:    '0x93a1a1' # base1
       white:   '0xfdf6e3' # base3
 
-# Colors (Solarized Dark)
-colors: *solDark
+# Colors (Ayu Mirage)
+colors: *ayuMirage
 
 # Visual Bell
 #
