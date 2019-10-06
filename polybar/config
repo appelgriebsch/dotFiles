@@ -106,7 +106,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = FuraCode Nerd Font Mono:weight=medium:size=12;1
 
 modules-left = i3
-modules-center =
+modules-center = xwindow
 modules-right = date
 
 ;tray-position = right
@@ -162,6 +162,8 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+
+enable-click = false
 
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
