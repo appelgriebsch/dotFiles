@@ -28,7 +28,7 @@ secondary = ${xrdb:color_blue:#a6e1ff}
 alert = ${xrdb:color_red:#ff6666}
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:LVDS-0}
 width = 100%
 height = 27
 offset-x = 0%
@@ -64,9 +64,59 @@ modules-right = pulseaudio cpu memory wlan battery temperature date
 ;tray-background = ${xrdb:color_base03:#1f2430}
 
 ;wm-restack = bspwm
-wm-restack = i3
+;wm-restack = i3
 
-;override-redirect = true
+override-redirect = false
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/second]
+monitor = ${env:EXT-MONITOR:DVI-I-2}
+width = 100%
+height = 27
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+;border-bottom-size = 1
+;border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FuraCode Nerd Font Mono:weight=medium:size=12;1
+
+modules-left = i3
+modules-center =
+modules-right = date
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = ${xrdb:color_base03:#1f2430}
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+override-redirect = false
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -114,7 +164,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
