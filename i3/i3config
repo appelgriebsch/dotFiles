@@ -101,7 +101,7 @@ bindsym $mod+Shift+f floating toggle
 bindsym $mod+Shift+t focus mode_toggle
 
 # toggle tabbed mode
-bindsym $mod+t layout toggle tabbed splith splitv
+bindsym $mod+t layout toggle stacked tabbed split
 
 # move to workspace
 bindsym $mod+1 workspace $ws1
