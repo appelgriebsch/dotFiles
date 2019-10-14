@@ -10,3 +10,6 @@
 [submodule "flatpak"]
 	path = flatpak
 	url = https://github.com/refi64/pakitheme
+[submodule "geometry.zsh"]
+	path = geometry.zsh
+	url = https://github.com/geometry-zsh/geometry
