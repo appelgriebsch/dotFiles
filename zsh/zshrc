@@ -19,3 +19,5 @@ export NVS_HOME="$HOME/.nvs"
 [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
 
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+
+export GOPATH="$HOME/Projects/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
