@@ -135,6 +135,7 @@ try
         \ 'coc-sh',
         \ 'coc-snippets',
         \ 'coc-svg',
+        \ 'coc-terminal',
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-yank',
@@ -175,12 +176,12 @@ nmap <silent> <C-l> <C-w>l
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
+nmap <silent> <leader>t :<C-u>CocCommand terminal.Toggle<cr>
 
 " fuzzy search
-nmap <silent> <leader>t :<C-u>CocList files<cr>
+nmap <silent> <leader>f :<C-u>CocList files<cr>
 nmap <silent> <leader>b :<C-u>CocList buffers<cr>
 
-" === Nerdtree shorcuts === "
 "  <leader>n - Toggle Explorer on/off
 nmap <silent> <leader>n :CocCommand explorer<CR>
 
