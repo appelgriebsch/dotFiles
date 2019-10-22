@@ -135,7 +135,6 @@ try
         \ 'coc-sh',
         \ 'coc-snippets',
         \ 'coc-svg',
-        \ 'coc-terminal',
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-yank',
@@ -274,6 +273,9 @@ map <leader>w <Plug>(easymotion-bd-w)
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
+
+" git diff hunk preview
+nmap <leader>g :GitGutterPreviewHunk<CR>
 
 " ============================================================================ "
 " ===                                 MISC.                                === "
