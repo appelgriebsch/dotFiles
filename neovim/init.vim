@@ -128,6 +128,7 @@ try
         \ 'coc-highlight',
         \ 'coc-html',
         \ 'coc-import-cost',
+        \ 'coc-lit-html',
         \ 'coc-java',
         \ 'coc-json',
         \ 'coc-python',

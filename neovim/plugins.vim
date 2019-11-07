@@ -57,6 +57,9 @@ Plug 'mhinz/vim-startify'
 " database
 Plug 'vim-scripts/dbext.vim'
 
+" rust crates
+Plug 'mhinz/vim-crates'
+
 " === UI === "
 
 " color themes
