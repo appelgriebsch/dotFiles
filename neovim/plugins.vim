@@ -47,6 +47,7 @@ Plug 'liuchengxu/vista.vim'
 " Enable git changes to be shown in sign column
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " Syntax highlighting for different languages
 Plug 'sheerun/vim-polyglot'
@@ -69,6 +70,7 @@ Plug 'arcticicestudio/nord-vim'
 
 " Customized vim status line
 Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-buftabline'
 
 " enhanced terminal features
 Plug 'kassio/neoterm'
