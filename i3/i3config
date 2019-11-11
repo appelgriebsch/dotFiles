@@ -14,7 +14,7 @@ set $i3xrocks_config /etc/regolith/config/i3xrocks
 set $compton_config /etc/regolith/compton/config
 
 # path to terminal. Override this to specify a custom terminal.
-set $terminal_path /usr/bin/alacritty
+set $terminal_path /usr/bin/st
 
 # Color values are defined in ~/.Xresources-regolith
 # These are the labels which define each i3 workspace.
