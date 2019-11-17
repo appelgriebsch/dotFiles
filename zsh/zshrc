@@ -13,5 +13,3 @@ export EDITOR='nvim'
 #
 
 source $HOME/.bash_aliases
-
-export GOPATH="$HOME/Projects/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g

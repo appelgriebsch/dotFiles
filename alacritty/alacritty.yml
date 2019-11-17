@@ -313,7 +313,7 @@ schemes:
       white:   '0xfdf6e3' # base3
 
 # Colors (Ayu Mirage)
-colors: *ayuMirage
+colors: *ayuDark
 
 # Visual Bell
 #

@@ -1,15 +1,12 @@
 [submodule "neovim/vim-plug"]
 	path = neovim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
-[submodule "terminal"]
-	path = terminal
-	url = https://github.com/hwyncho/ayu-Terminal-app.git
 [submodule "iterm2"]
 	path = iterm2
 	url = https://github.com/hwyncho/ayu-iTerm.git
-[submodule "flatpak"]
-	path = flatpak
-	url = https://github.com/refi64/pakitheme
 [submodule "geometry.zsh"]
 	path = zsh/geometry.zsh
 	url = https://github.com/geometry-zsh/geometry
+[submodule "gtk-themes/eOS-X"]
+	path = gtk-themes/eOS-X
+	url = git@github.com:ipproductions/eOS-X.git
