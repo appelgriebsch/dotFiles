@@ -13,3 +13,7 @@ export EDITOR='nvim'
 #
 
 source $HOME/.bash_aliases
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
