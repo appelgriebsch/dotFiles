@@ -7,6 +7,6 @@
 [submodule "geometry.zsh"]
 	path = zsh/geometry.zsh
 	url = https://github.com/geometry-zsh/geometry
-[submodule "gtk-themes/eOS-X"]
-	path = gtk-themes/eOS-X
-	url = git@github.com:ipproductions/eOS-X.git
+[submodule "tools/flatpak-theming"]
+	path = tools/flatpak-theming
+	url = https://github.com/refi64/pakitheme
