@@ -40,7 +40,7 @@
 
 ! The following theme requires Ayu-Mirage and Arc-icon-theme to be installed
 ! (https://github.com/appelgriebsch/ayu-theme/releases/tag/ayu-mirage-0.1.0)
-#include "/etc/regolith/styles/theme-ayu-mirage"
+#include ".config/regolith/styles/theme-ayu-mirage"
 
 ! -- Applications
 ! These files map values defined above into specific app settings.
