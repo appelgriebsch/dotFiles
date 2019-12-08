@@ -1,2 +1,1 @@
-export JAVA_HOME=/usr/lib/jvm/default-java
 export PATH=$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:$PATH

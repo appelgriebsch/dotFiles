@@ -2,7 +2,7 @@
 	path = neovim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
 [submodule "iterm2"]
-	path = iterm2
+	path = tools/iterm2
 	url = https://github.com/hwyncho/ayu-iTerm.git
 [submodule "geometry.zsh"]
 	path = zsh/geometry.zsh
