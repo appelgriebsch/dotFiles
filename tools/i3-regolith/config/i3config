@@ -2,10 +2,10 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# This defines which key super maps to on your keyboard.  
+# This defines which key super maps to on your keyboard.
 # Alt key is Mod1, and Windows key is Mod4
-set $mod Mod4
-set $alt Mod1
+set $mod Mod1
+set $alt Mod4
 
 # i3xrocks config file
 set $i3xrocks_config /etc/regolith/i3xrocks/config
@@ -14,7 +14,7 @@ set $i3xrocks_config /etc/regolith/i3xrocks/config
 set $compton_config /etc/regolith/compton/config
 
 # path to terminal. Override this to specify a custom terminal.
-set $terminal_path /usr/bin/st
+set $terminal_path /usr/bin/alacritty
 
 # Color values are defined in ~/.Xresources-regolith
 # These are the labels which define each i3 workspace.
@@ -150,7 +150,7 @@ bindsym $mod+Shift+Ctrl+8 move container to workspace $ws18
 bindsym $mod+Shift+Ctrl+9 move container to workspace $ws19
 
 # move focused container to workspace, move to workspace
-bindsym $mod+$alt+1 move container to workspace $ws1; workspace $ws1  
+bindsym $mod+$alt+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+$alt+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+$alt+3 move container to workspace $ws3; workspace $ws3
 bindsym $mod+$alt+4 move container to workspace $ws4; workspace $ws4
