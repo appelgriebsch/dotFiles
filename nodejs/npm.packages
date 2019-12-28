@@ -1,6 +1,5 @@
 babel-cli
 eslint
 moleculer-cli
-neovim
 pkg
 @zeit/ncc
