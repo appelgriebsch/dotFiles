@@ -7,6 +7,3 @@
 [submodule "geometry.zsh"]
 	path = zsh/geometry.zsh
 	url = https://github.com/geometry-zsh/geometry
-[submodule "tools/flatpak-theming"]
-	path = tools/flatpak-theming
-	url = https://github.com/refi64/pakitheme

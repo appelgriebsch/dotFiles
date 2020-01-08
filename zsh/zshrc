@@ -14,4 +14,3 @@ export EDITOR='nvim'
 
 source $HOME/.zprofile
 source $HOME/.bash_aliases
-
