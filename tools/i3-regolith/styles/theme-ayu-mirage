@@ -1,3 +1,4 @@
 #define gtk_theme       Ayu-Mirage-Dark
 #define icon_theme      Arc
+#define rofi_theme      ~/.config/regolith/rofi/rofi-ayu-mirage 
 

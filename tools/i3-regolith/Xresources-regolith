@@ -28,7 +28,7 @@
 !#include "/etc/regolith/styles/theme-ubuntu-dark"
 !
 ! The following theme requires nordic and paper-icon-theme to be installed
-#include "/etc/regolith/styles/theme-nordic"
+!#include "/etc/regolith/styles/theme-nordic"
 
 ! The following theme requires Ayu and Arc-icon-theme to be installed
 ! (https://github.com/appelgriebsch/ayu-theme/releases/tag/ayu-0.1.0)
