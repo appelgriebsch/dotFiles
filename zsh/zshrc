@@ -12,5 +12,9 @@ export EDITOR='nvim'
 # For a full list of active aliases, run `alias`.
 #
 
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
+
 source $HOME/.zprofile
 source $HOME/.bash_aliases
