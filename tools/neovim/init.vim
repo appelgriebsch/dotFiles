@@ -1,5 +1,5 @@
 scriptencoding utf-8
-source ~/.config/nvim/plugins.vim
+source ~/.vim/plugins.vim
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
@@ -60,7 +60,7 @@ set encoding=UTF-8
 " Editor theme
 set background=dark
 
-source ~/.config/nvim/colors.vim
+source ~/.vim/colors.vim
 
 let g:eleline_powerline_fonts = 1
 
@@ -281,7 +281,7 @@ if has('persistent_undo')
   set undolevels=3000
   set undoreload=10000
 endif
-set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
+set backupdir=~/.local/share/vim/backup " Don't put backups in current dir
 set backup
 set noswapfile
 

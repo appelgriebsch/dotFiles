@@ -21,7 +21,7 @@ endif
 " Specify a directory for plugins
 " - For Neovim: ~/.config/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.config/nvim/extensions')
+call plug#begin('~/.vim/extensions')
 
 " === Editing Plugins === "
 " Trailing whitespace highlighting & automatic fixing
