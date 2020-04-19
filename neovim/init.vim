@@ -1,5 +1,5 @@
 scriptencoding utf-8
-source ~/.vim/plugins.vim
+source ~/.config/nvim/plugins.vim
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
@@ -55,12 +55,12 @@ set shortmess+=c
 
 " Enable true color support
 set termguicolors
-set guifont=Fura\ Code\ Nerd\ Font\ Retina\ Complete\ 14
+set guifont=Fira\ Code\ Nerd\ Font:h12
 set encoding=UTF-8
 " Editor theme
 set background=dark
 
-source ~/.vim/colors.vim
+source ~/.config/nvim/colors.vim
 
 let g:eleline_powerline_fonts = 1
 
@@ -203,9 +203,12 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>p  <Plug>(coc-format-selected)
 nmap <leader>p  <Plug>(coc-format-selected)
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -281,7 +284,7 @@ if has('persistent_undo')
   set undolevels=3000
   set undoreload=10000
 endif
-set backupdir=~/.local/share/vim/backup " Don't put backups in current dir
+set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
 set backup
 set noswapfile
 
