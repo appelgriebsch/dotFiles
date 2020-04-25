@@ -17,9 +17,6 @@ backlight_partial3 = "☀️ "
 backlight_full = "☀️ "
 
 [[block]]
-block = "pacman"
-
-[[block]]
 block = "backlight"
 
 [[block]]
