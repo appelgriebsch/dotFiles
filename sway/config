@@ -67,6 +67,12 @@ input "9610:30:HAILUCK_CO.,LTD_USB_KEYBOARD_Touchpad" {
       natural_scroll enabled
 }
 
+input type:keyboard {
+    xkb_layout gb
+    xkb_variant gb-intl,nodeadkeys
+    xkb_options ctrl:nocaps
+}
+
 ### Key bindings
 #
 # Basics:
@@ -79,13 +85,6 @@ input "9610:30:HAILUCK_CO.,LTD_USB_KEYBOARD_Touchpad" {
 
     # Start your launcher
     bindsym $mod+d exec $menu
-
-    bindsym XF86AudioLowerVolume exec amixer -q sset 'Master' 5%-
-    bindsym XF86AudioMute exec amixer -q sset 'Master' toggle
-    bindsym XF86AudioRaiseVolume exec amixer -q sset 'Master' 5%+
-
-    bindsym XF86MonBrightnessDown exec light -U 5
-    bindsym XF86MonBrightnessUp exec light -A 5
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -212,6 +211,16 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+set $screenshot_file \"$HOME/Pictures/screenshot-$(date '+%Y-%m-%d_%H-%M-%S').png\"
+bindsym Print exec grim -s1 $screenshot_file
+bindsym Alt+Print exec (slurp | grim -g- -s1 $screenshot_file)
+
+bindsym XF86AudioLowerVolume exec amixer -q sset 'Master' 5%-
+bindsym XF86AudioMute exec amixer -q sset 'Master' toggle
+bindsym XF86AudioRaiseVolume exec amixer -q sset 'Master' 5%+
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 5
+
 #
 # Status Bar:
 #
@@ -241,5 +250,9 @@ client.focused          #458588 #1d2021 #a89984 #458588 #458588
 client.focused_inactive #282828 #1d2021 #a89984 #282828 #282828
 client.unfocused        #282828 #1d2021 #a89984 #282828 #282828
 client.urgent           #cc241d #1d2021 #a89984 #cc241d #cc241d
+
+xwayland disable
+
+exec mako
 
 include /etc/sway/config.d/*
