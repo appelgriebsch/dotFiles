@@ -61,9 +61,13 @@ exec swayidle -w \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-input "9610:30:HAILUCK_CO.,LTD_USB_KEYBOARD_Touchpad" {
+input type:touchpad {
       dwt enabled
       tap enabled
+      natural_scroll enabled
+}
+
+input type:pointer {
       natural_scroll enabled
 }
 
