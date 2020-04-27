@@ -4,6 +4,3 @@
 [submodule "iterm2"]
 	path = iterm2
 	url = https://github.com/hwyncho/ayu-iTerm.git
-[submodule "geometry.zsh"]
-	path = zsh/geometry.zsh
-	url = https://github.com/geometry-zsh/geometry

@@ -1,4 +1,0 @@
-alias ls="ls -alh --color=auto"
-alias du="du -h"
-alias df="df -h"
-alias free="free -h"

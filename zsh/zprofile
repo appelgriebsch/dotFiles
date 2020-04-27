@@ -1,3 +1,0 @@
-export GOPATH="$HOME/Projects/go"
-export WASMTIME_HOME="$HOME/.wasmtime"
-export PATH="$WASMTIME_HOME/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
