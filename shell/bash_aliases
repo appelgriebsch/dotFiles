@@ -1,0 +1,5 @@
+alias ls="exa -alh"
+alias du="du -h"
+alias df="df -h"
+alias free="free -h"
+alias cat="bat"
