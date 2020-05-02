@@ -8,3 +8,4 @@
 SILVER=(status:black:white dir:blue:black git:green:black cmdtime:magenta:black)
 export SILVER_SHELL=$0 # bash, zsh, or fish
 eval "$(silver init)"
+source ~/.bash_aliases
