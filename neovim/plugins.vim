@@ -65,6 +65,7 @@ Plug 'mhinz/vim-crates'
 " color themes
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
+Plug 'arcticicestudio/nord-vim'
 
 " Customized vim status line
 Plug 'itchyny/lightline.vim'
