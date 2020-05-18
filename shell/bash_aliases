@@ -3,3 +3,4 @@ alias du="du -h"
 alias df="df -h"
 alias free="free -h"
 alias cat="bat"
+alias sshkeypass='[ "$SSH_AGENT_PID" = "" ] && eval `ssh-agent -s` && ssh-add -t 3600 || ssh-add -t 3600'
