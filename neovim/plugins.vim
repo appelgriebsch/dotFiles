@@ -36,6 +36,9 @@ Plug 'easymotion/vim-easymotion'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Test runner
+Plug 'vim-test/vim-test'
+
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
 
@@ -47,6 +50,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'APZelos/blamer.nvim'
 
 " Syntax highlighting for different languages
 Plug 'sheerun/vim-polyglot'
@@ -55,16 +59,20 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-startify'
 
 " database
-Plug 'vim-scripts/dbext.vim'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 " rust crates
 Plug 'mhinz/vim-crates'
 
 " === UI === "
 
+" action menu
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'vn-ki/coc-clap'
+
 " color themes
 Plug 'ayu-theme/ayu-vim'
-Plug 'chriskempson/base16-vim'
 Plug 'arcticicestudio/nord-vim'
 
 " Customized vim status line

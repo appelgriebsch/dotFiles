@@ -120,6 +120,32 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 try
   call coc#add_extension(
         \ 'coc-marketplace')
+  call coc#add_extension(
+        \ 'coc-explorer')
+  call coc#add_extension(
+        \ 'coc-yank')
+  call coc#add_extension(
+        \ 'coc-todolist')
+  call coc#add_extension(
+        \ 'coc-terminal')
+  call coc#add_extension(
+        \ 'coc-smartf')
+  call coc#add_extension(
+        \ 'coc-snippets')
+  call coc#add_extension(
+        \ 'coc-pairs')
+  call coc#add_extension(
+        \ 'coc-lists')
+  call coc#add_extension(
+        \ 'coc-highlight')
+  call coc#add_extension(
+        \ 'coc-git')
+  call coc#add_extension(
+        \ 'coc-dictionary')
+  call coc#add_extension(
+        \ 'coc-bookmark')
+  call coc#add_extension(
+        \ 'coc-actions')
 catch
   echo 'coc.vim not installed. It should work after running :PlugInstall'
 endtry
