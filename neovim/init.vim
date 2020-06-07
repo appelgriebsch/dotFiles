@@ -335,6 +335,10 @@ cmap w!! w !sudo tee %
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
 
-" open ranger when vim open a directory
-let g:ranger_replace_netrw = 1
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_pick_enable = 1
+
 nmap <space>r :RnvimrToggle<CR>
