@@ -283,15 +283,9 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>p  <Plug>(coc-format-selected)
 nmap <leader>p  <Plug>(coc-format-selected)
 
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <silent> <leader>ac :<C-u>CocCommand actions.open<cr>
+
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -341,3 +335,6 @@ cmap w!! w !sudo tee %
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
 
+" open ranger when vim open a directory
+let g:ranger_replace_netrw = 1
+nmap <space>r :RnvimrToggle<CR>

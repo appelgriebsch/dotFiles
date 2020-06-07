@@ -67,6 +67,11 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " rust crates
 Plug 'mhinz/vim-crates'
 
+" floating terminal and file manager
+Plug 'voldikss/vim-floaterm'
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'rbgrouleff/bclose.vim'
+
 " === UI === "
 
 " which-key?
