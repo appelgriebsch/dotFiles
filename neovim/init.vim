@@ -8,14 +8,11 @@ source ~/.config/nvim/plugins.vim
 " Remap leader key to ,
 let g:mapleader=','
 
-" Disable line numbers
-set nonumber
-
 " Don't show last command
 set noshowcmd
 
 " Yank and paste with the system clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Hides buffers instead of closing them
 set hidden
@@ -43,11 +40,45 @@ set noruler
 " Only one line for command line
 set cmdheight=1
 
-" === Completion Settings === "
+" always show tab bar
+set showtabline=2
 
-" Don't give completion messages like 'match 1 of 2'
-" or 'The only match'
-set shortmess+=c
+" Set preview window to appear at bottom
+set splitbelow
+
+" Don't dispay mode in command line (airilne already shows it)
+set noshowmode
+
+" === Search === "
+" ignore case when searching
+set ignorecase
+
+" if the search string has an upper case letter in it, the search will be case sensitive
+set smartcase
+
+" Automatically re-read file if a change was detected outside of vim
+set autoread
+
+" Enable line numbers
+set number
+set relativenumber
+
+" Enable cursor line
+set cursorline
+
+" Set backups
+if has('persistent_undo')
+  set undofile
+  set undolevels=3000
+  set undoreload=10000
+endif
+
+set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
+set backup
+set noswapfile
+
+set encoding=UTF-8
+set fileencoding=utf-8
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -56,7 +87,7 @@ set shortmess+=c
 " Enable true color support
 set termguicolors
 set guifont=Fira\ Code\ Nerd\ Font:h12
-set encoding=UTF-8
+
 " Editor theme
 set background=dark
 
@@ -64,11 +95,25 @@ source ~/.config/nvim/colors.vim
 
 let g:eleline_powerline_fonts = 1
 
-" Set preview window to appear at bottom
-set splitbelow
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
-" Don't dispay mode in command line (airilne already shows it)
-set noshowmode
+autocmd FileType * RainbowParentheses
+
+" === Completion Settings === "
+
+" Don't give completion messages like 'match 1 of 2'
+" or 'The only match'
+set shortmess+=c
+
+if has('nvim-0.3.2') || has("patch-8.1.0360")
+  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
+
+" Reload icons after init source
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 
 " coc.nvim color changes
 hi! link CocErrorSign WarningMsg
@@ -190,6 +235,7 @@ nmap <silent> <leader>b :<C-u>CocList buffers<cr>
 
 "  <leader>n - Toggle Explorer on/off
 nmap <silent> <leader>n :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
@@ -287,38 +333,3 @@ cmap w!! w !sudo tee %
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
 
-" ============================================================================ "
-" ===                                 MISC.                                === "
-" ============================================================================ "
-
-" === Search === "
-" ignore case when searching
-set ignorecase
-
-" if the search string has an upper case letter in it, the search will be case sensitive
-set smartcase
-
-" Automatically re-read file if a change was detected outside of vim
-set autoread
-
-" Enable line numbers
-set number
-
-" Set backups
-if has('persistent_undo')
-  set undofile
-  set undolevels=3000
-  set undoreload=10000
-endif
-set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
-set backup
-set noswapfile
-
-" Reload icons after init source
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-
-if has('nvim-0.3.2') || has("patch-8.1.0360")
-  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
-endif

@@ -1,13 +1,9 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "languageserver": {
-    "terraform": {
-      "command": "terraform-lsp",
-      "filetypes": ["terraform"],
-      "rootPatterns": ["main.tf", ".vim/", ".git/"]
-    },
-  },
+  "explorer.width": 40,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
   "java.format.enabled": false,
   "java.errors.incompleteClasspath.severity": "ignore",
   "java.referencesCodeLens.enabled": true,

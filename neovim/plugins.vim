@@ -16,6 +16,8 @@ if !filereadable(plugpath)
         echom "vim-plug not installed. Please install it manually or install curl.\n"
         exit
     endif
+    autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
 " Specify a directory for plugins
@@ -67,6 +69,9 @@ Plug 'mhinz/vim-crates'
 
 " === UI === "
 
+" which-key?
+Plug 'liuchengxu/vim-which-key'
+
 " action menu
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'vn-ki/coc-clap'
@@ -83,6 +88,9 @@ Plug 'kassio/neoterm'
 
 " Icons
 Plug 'ryanoasis/vim-devicons'
+
+" Rainbow parantheses
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " Initialize plugin system
 call plug#end()
