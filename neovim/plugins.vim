@@ -72,10 +72,6 @@ Plug 'mhinz/vim-crates'
 " which-key?
 Plug 'liuchengxu/vim-which-key'
 
-" action menu
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'vn-ki/coc-clap'
-
 " color themes
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'

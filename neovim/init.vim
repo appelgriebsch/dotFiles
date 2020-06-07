@@ -191,6 +191,14 @@ try
         \ 'coc-bookmark')
   call coc#add_extension(
         \ 'coc-actions')
+  call coc#add_extension(
+        \ 'coc-json')
+  call coc#add_extension(
+        \ 'coc-html')
+  call coc#add_extension(
+        \ 'coc-css')
+  call coc#add_extension(
+        \ 'coc-eslint')
 catch
   echo 'coc.vim not installed. It should work after running :PlugInstall'
 endtry

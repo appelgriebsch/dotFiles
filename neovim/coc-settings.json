@@ -4,6 +4,7 @@
   "explorer.width": 40,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
+  "rust-analyzer.updates.channel": "stable",
   "java.format.enabled": false,
   "java.errors.incompleteClasspath.severity": "ignore",
   "java.referencesCodeLens.enabled": true,
