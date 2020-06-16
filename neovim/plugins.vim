@@ -87,9 +87,6 @@ Plug 'itchyny/lightline.vim'
 " enhanced terminal features
 Plug 'kassio/neoterm'
 
-" Icons
-Plug 'ryanoasis/vim-devicons'
-
 " Rainbow parantheses
 Plug 'junegunn/rainbow_parentheses.vim'
 
