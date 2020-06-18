@@ -80,6 +80,7 @@ Plug 'liuchengxu/vim-which-key'
 " color themes
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/base16-vim'
 
 " Customized vim status line
 Plug 'itchyny/lightline.vim'
