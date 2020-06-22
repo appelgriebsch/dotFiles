@@ -60,10 +60,6 @@ Plug 'sheerun/vim-polyglot'
 " better start screen
 Plug 'mhinz/vim-startify'
 
-" database
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-
 " rust crates
 Plug 'mhinz/vim-crates'
 
@@ -73,9 +69,6 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'rbgrouleff/bclose.vim'
 
 " === UI === "
-
-" which-key?
-Plug 'liuchengxu/vim-which-key'
 
 " color themes
 Plug 'ayu-theme/ayu-vim'

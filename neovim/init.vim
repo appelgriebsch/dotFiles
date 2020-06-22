@@ -161,8 +161,6 @@ try
   call coc#add_extension(
         \ 'coc-marketplace')
   call coc#add_extension(
-        \ 'coc-explorer')
-  call coc#add_extension(
         \ 'coc-yank')
   call coc#add_extension(
         \ 'coc-todolist')
@@ -194,6 +192,42 @@ try
         \ 'coc-css')
   call coc#add_extension(
         \ 'coc-eslint')
+  call coc#add_extension(
+        \ 'coc-yaml')
+  call coc#add_extension(
+        \ 'coc-tsserver')
+  call coc#add_extension(
+        \ 'coc-tslint-plugin')
+  call coc#add_extension(
+        \ 'coc-template')
+  call coc#add_extension(
+        \ 'coc-stylelint')
+  call coc#add_extension(
+        \ 'coc-sh')
+  call coc#add_extension(
+        \ 'coc-rust-analyzer')
+  call coc#add_extension(
+        \ 'coc-python')
+  call coc#add_extension(
+        \ 'coc-prettier')
+  call coc#add_extension(
+        \ 'coc-markdownlint')
+  call coc#add_extension(
+        \ 'coc-lit-html')
+  call coc#add_extension(
+        \ 'coc-julia')
+  call coc#add_extension(
+        \ 'coc-jest')
+  call coc#add_extension(
+        \ 'coc-floaterm')
+  call coc#add_extension(
+        \ 'coc-emmet')
+  call coc#add_extension(
+        \ 'coc-docthis')
+  call coc#add_extension(
+        \ 'coc-docker')
+  call coc#add_extension(
+        \ 'coc-deno')
 catch
   echo 'coc.vim not installed. It should work after running :PlugInstall'
 endtry
@@ -235,10 +269,6 @@ nmap <silent> <leader>t :<C-u>CocCommand terminal.Toggle<cr>
 " fuzzy search
 nmap <silent> <leader>f :<C-u>CocList files<cr>
 nmap <silent> <leader>b :<C-u>CocList buffers<cr>
-
-"  <leader>n - Toggle Explorer on/off
-nmap <silent> <leader>n :CocCommand explorer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
@@ -329,6 +359,9 @@ cmap w!! w !sudo tee %
 
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
+nmap <space>g :FloatermNew gitui<CR>
+
+nmap <space>r :RnvimrToggle<CR>
 
 " Make Ranger replace Netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
@@ -341,4 +374,5 @@ let g:rnvimr_draw_border = 1
 " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
 let g:rnvimr_bw_enable = 1
 
-nmap <space>r :RnvimrToggle<CR>
+nmap <space>t :FloatermToggle<CR>
+nmap <space>m :FloatermNew aerc<CR>

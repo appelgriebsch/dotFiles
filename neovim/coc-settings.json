@@ -1,9 +1,6 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "explorer.width": 40,
-  "explorer.icon.enableNerdfont": false,
-  "explorer.previewAction.onHover": false,
   "rust-analyzer.updates.channel": "stable",
   "rust-analyzer.updates.askBeforeDownload": false,
   "java.format.enabled": false,
