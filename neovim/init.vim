@@ -228,6 +228,8 @@ try
         \ 'coc-docker')
   call coc#add_extension(
         \ 'coc-deno')
+  call coc#add_extension(
+        \ 'coc-db')
 catch
   echo 'coc.vim not installed. It should work after running :PlugInstall'
 endtry

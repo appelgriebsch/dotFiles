@@ -68,6 +68,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'rbgrouleff/bclose.vim'
 
+" Database
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 " === UI === "
 
 " color themes
