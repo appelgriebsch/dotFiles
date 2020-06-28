@@ -230,6 +230,8 @@ try
         \ 'coc-deno')
   call coc#add_extension(
         \ 'coc-db')
+  call coc#add_extension(
+        \ 'coc-explorer')
 catch
   echo 'coc.vim not installed. It should work after running :PlugInstall'
 endtry
@@ -271,6 +273,10 @@ nmap <silent> <leader>t :<C-u>CocCommand terminal.Toggle<cr>
 " fuzzy search
 nmap <silent> <leader>f :<C-u>CocList files<cr>
 nmap <silent> <leader>b :<C-u>CocList buffers<cr>
+
+"  <leader>n - Toggle Explorer on/off
+nmap <silent> <leader>n :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>

@@ -9,4 +9,5 @@ SILVER=(status:black:white user:yellow:black dir:blue:black git:green:black cmdt
 export SILVER_ICONS=unicode
 export SILVER_SHELL=$0 # bash, zsh, or fish
 eval "$(silver init)"
+export EDITOR=nvim
 source ~/.bash_aliases
