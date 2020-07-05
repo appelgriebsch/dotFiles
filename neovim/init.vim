@@ -27,8 +27,8 @@ set softtabstop=2
 " Indentation amount for < and > commands.
 set shiftwidth=2
 
-" do not wrap long lines by default
-set nowrap
+" do wrap long lines by default at margin 80
+set wrap
 
 " Don't highlight current cursor line
 set nocursorline
@@ -254,6 +254,12 @@ let g:vista_fzf_preview = ['right:33%']
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
+
+" visual lines navigation
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+noremap <silent> $ g$
 
 " buffer navigation
 nmap <silent> <Tab> :bnext<CR>
