@@ -209,8 +209,6 @@ try
   call coc#add_extension(
         \ 'coc-python')
   call coc#add_extension(
-        \ 'coc-prettier')
-  call coc#add_extension(
         \ 'coc-markdownlint')
   call coc#add_extension(
         \ 'coc-lit-html')
