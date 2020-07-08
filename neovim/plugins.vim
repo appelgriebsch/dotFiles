@@ -79,6 +79,9 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chriskempson/base16-vim'
 
+" Nerd Icons
+Plug 'ryanoasis/vim-devicons'
+
 " Customized vim status line
 Plug 'itchyny/lightline.vim'
 

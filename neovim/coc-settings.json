@@ -3,7 +3,7 @@
   "suggest.maxCompleteItemCount": 20,
   "rust-analyzer.updates.channel": "stable",
   "explorer.width": 40,
-  "explorer.icon.enableNerdfont": false,
+  "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "java.format.enabled": false,
   "java.errors.incompleteClasspath.severity": "ignore",

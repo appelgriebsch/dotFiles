@@ -86,10 +86,15 @@ set fileencoding=utf-8
 
 " Enable true color support
 set termguicolors
-set guifont=JetBrains\ Mono:h13
+set guifont=JetBrainsMono\ Nerd\ Font:h13
 
 " Editor theme
 set background=dark
+
+" Reload icons after init source
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 
 source ~/.config/nvim/colors.vim
 
