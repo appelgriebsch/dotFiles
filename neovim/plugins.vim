@@ -32,8 +32,9 @@ Plug 'ntpeters/vim-better-whitespace'
 " EditorConfig support
 Plug 'editorconfig/editorconfig-vim'
 
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
+" Async Tasks
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -75,8 +76,6 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " === UI === "
 
 " color themes
-Plug 'ayu-theme/ayu-vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'chriskempson/base16-vim'
 
 " Nerd Icons

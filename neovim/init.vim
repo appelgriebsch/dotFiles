@@ -166,75 +166,81 @@ try
   call coc#add_extension(
         \ 'coc-marketplace')
   call coc#add_extension(
-        \ 'coc-yank')
+        \ 'coc-actions')
   call coc#add_extension(
-        \ 'coc-todolist')
+        \ 'coc-bookmark')
   call coc#add_extension(
-        \ 'coc-terminal')
+        \ 'coc-ccls')
+  call coc#add_extension(
+        \ 'coc-cspell-dicts')
+  call coc#add_extension(
+        \ 'coc-css')
+  call coc#add_extension(
+        \ 'coc-db')
+  call coc#add_extension(
+        \ 'coc-deno')
+  call coc#add_extension(
+        \ 'coc-docker')
+  call coc#add_extension(
+        \ 'coc-docthis')
+  call coc#add_extension(
+        \ 'coc-emmet')
+  call coc#add_extension(
+        \ 'coc-eslint')
+  call coc#add_extension(
+        \ 'coc-explorer')
+  call coc#add_extension(
+        \ 'coc-floaterm')
+  call coc#add_extension(
+        \ 'coc-git')
+  call coc#add_extension(
+        \ 'coc-highlight')
+  call coc#add_extension(
+        \ 'coc-html')
+  call coc#add_extension(
+        \ 'coc-json')
+  call coc#add_extension(
+        \ 'coc-julia')
+  call coc#add_extension(
+        \ 'coc-lists')
+  call coc#add_extension(
+        \ 'coc-lit-html')
+  call coc#add_extension(
+        \ 'coc-markdownlint')
+  call coc#add_extension(
+        \ 'coc-python')
+  call coc#add_extension(
+        \ 'coc-restclient')
+  call coc#add_extension(
+        \ 'coc-rust-analyzer')
+  call coc#add_extension(
+        \ 'coc-sh')
   call coc#add_extension(
         \ 'coc-smartf')
   call coc#add_extension(
         \ 'coc-snippets')
   call coc#add_extension(
-        \ 'coc-pairs')
-  call coc#add_extension(
-        \ 'coc-lists')
-  call coc#add_extension(
-        \ 'coc-highlight')
-  call coc#add_extension(
-        \ 'coc-git')
-  call coc#add_extension(
-        \ 'coc-dictionary')
-  call coc#add_extension(
-        \ 'coc-bookmark')
-  call coc#add_extension(
-        \ 'coc-actions')
-  call coc#add_extension(
-        \ 'coc-json')
-  call coc#add_extension(
-        \ 'coc-html')
-  call coc#add_extension(
-        \ 'coc-css')
-  call coc#add_extension(
-        \ 'coc-eslint')
-  call coc#add_extension(
-        \ 'coc-yaml')
-  call coc#add_extension(
-        \ 'coc-tsserver')
-  call coc#add_extension(
-        \ 'coc-tslint-plugin')
-  call coc#add_extension(
-        \ 'coc-template')
+        \ 'coc-spell-checker')
   call coc#add_extension(
         \ 'coc-stylelint')
   call coc#add_extension(
-        \ 'coc-sh')
+        \ 'coc-svg')
   call coc#add_extension(
-        \ 'coc-rust-analyzer')
+        \ 'coc-tasks')
   call coc#add_extension(
-        \ 'coc-python')
+        \ 'coc-template')
   call coc#add_extension(
-        \ 'coc-markdownlint')
+        \ 'coc-terminal')
   call coc#add_extension(
-        \ 'coc-lit-html')
+        \ 'coc-todolist')
   call coc#add_extension(
-        \ 'coc-julia')
+        \ 'coc-tslint-plugin')
   call coc#add_extension(
-        \ 'coc-jest')
+        \ 'coc-tsserver')
   call coc#add_extension(
-        \ 'coc-floaterm')
+        \ 'coc-yaml')
   call coc#add_extension(
-        \ 'coc-emmet')
-  call coc#add_extension(
-        \ 'coc-docthis')
-  call coc#add_extension(
-        \ 'coc-docker')
-  call coc#add_extension(
-        \ 'coc-deno')
-  call coc#add_extension(
-        \ 'coc-db')
-  call coc#add_extension(
-        \ 'coc-explorer')
+        \ 'coc-yank')
 catch
   echo 'coc.vim not installed. It should work after running :PlugInstall'
 endtry
@@ -368,8 +374,8 @@ map <leader>h :%s///<left><left>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 " === Easy-motion shortcuts ==="
-"   <leader>w - Easy-motion highlights first word letters bi-directionally
-map <leader>w <Plug>(easymotion-bd-w)
+map <leader>w <Plug>(coc-smartf-forward)
+map <leader>W <Plug>(coc-smartf-backward)
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
