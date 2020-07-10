@@ -86,7 +86,6 @@ set fileencoding=utf-8
 
 " Enable true color support
 set termguicolors
-set guifont=JetBrainsMono\ Nerd\ Font:h13
 
 " Editor theme
 set background=dark
