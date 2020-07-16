@@ -66,7 +66,7 @@ Plug 'mhinz/vim-crates'
 
 " floating terminal and file manager
 Plug 'voldikss/vim-floaterm'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'kevinhwang91/rnvimr'
 Plug 'rbgrouleff/bclose.vim'
 
 " Database
