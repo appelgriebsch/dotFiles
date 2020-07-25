@@ -1,5 +1,5 @@
 try
-colorscheme base16-solarflare
+colorscheme base16-ashes
 catch
   echo 'Base16 Vim not installed. It should work after running :PlugInstall'
 endtry
