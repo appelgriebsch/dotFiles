@@ -40,9 +40,6 @@ set noruler
 " Only one line for command line
 set cmdheight=1
 
-" always show tab bar
-set showtabline=2
-
 " Set preview window to appear at bottom
 set splitbelow
 
@@ -95,9 +92,11 @@ if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
 
-source ~/.config/nvim/colors.vim
+if !has('gui_running')
+  set t_Co=256
+endif
 
-let g:eleline_powerline_fonts = 1
+source ~/.config/nvim/base16.vim
 
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
@@ -177,8 +176,6 @@ try
   call coc#add_extension(
         \ 'coc-db')
   call coc#add_extension(
-        \ 'coc-deno')
-  call coc#add_extension(
         \ 'coc-docker')
   call coc#add_extension(
         \ 'coc-docthis')
@@ -186,8 +183,6 @@ try
         \ 'coc-emmet')
   call coc#add_extension(
         \ 'coc-eslint')
-  call coc#add_extension(
-        \ 'coc-explorer')
   call coc#add_extension(
         \ 'coc-floaterm')
   call coc#add_extension(
@@ -249,11 +244,6 @@ endtry
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" lightline integration of coc status
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 " === echodoc === "
 " Enable echodoc on startup
 let g:echodoc#enable_at_startup = 1
@@ -286,13 +276,30 @@ nmap <silent> <C-l> <C-w>l
 tnoremap <Esc> <C-\><C-n>
 nmap <silent> <leader>t :<C-u>CocCommand terminal.Toggle<cr>
 
+" git diff hunk preview
+nmap <leader>g :GitGutterPreviewHunk<CR>
+nmap <space>g :FloatermNew gitui<CR>
+
+" ranger window
+nmap <space>r :RnvimrToggle<CR>
+
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_pick_enable = 1
+
+let g:rnvimr_draw_border = 1
+
+" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+let g:rnvimr_bw_enable = 1
+
+nmap <space>t :FloatermToggle<CR>
+nmap <space>m :FloatermNew aerc<CR>
+
 " fuzzy search
 nmap <silent> <leader>f :<C-u>CocList files<cr>
 nmap <silent> <leader>b :<C-u>CocList buffers<cr>
-
-"  <leader>n - Toggle Explorer on/off
-nmap <silent> <leader>n :CocCommand explorer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
@@ -368,7 +375,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" === Search shorcuts === "
+" === Search shortcuts === "
 "   <leader>h - Find and replace
 "   <leader>/ - Clear highlighted search terms while preserving history
 map <leader>h :%s///<left><left>
@@ -381,22 +388,3 @@ map <leader>W <Plug>(coc-smartf-backward)
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
 
-" git diff hunk preview
-nmap <leader>g :GitGutterPreviewHunk<CR>
-nmap <space>g :FloatermNew gitui<CR>
-
-nmap <space>r :RnvimrToggle<CR>
-
-" Make Ranger replace Netrw and be the file explorer
-let g:rnvimr_ex_enable = 1
-
-" Make Ranger to be hidden after picking a file
-let g:rnvimr_pick_enable = 1
-
-let g:rnvimr_draw_border = 1
-
-" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
-let g:rnvimr_bw_enable = 1
-
-nmap <space>t :FloatermToggle<CR>
-nmap <space>m :FloatermNew aerc<CR>

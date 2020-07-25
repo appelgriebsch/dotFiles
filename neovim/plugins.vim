@@ -38,6 +38,10 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vn-ki/coc-clap'
+
+" Command Launcher
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " Test runner
 Plug 'vim-test/vim-test'
@@ -83,6 +87,9 @@ Plug 'ryanoasis/vim-devicons'
 
 " Customized vim status line
 Plug 'itchyny/lightline.vim'
+Plug 'josa42/vim-lightline-coc'
+Plug 'APZelos/gitline.vim'
+Plug 'mark-westerhof/vim-lightline-base16'
 
 " enhanced terminal features
 Plug 'kassio/neoterm'
