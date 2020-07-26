@@ -1,11 +1,11 @@
 try
-colorscheme base16-atelier-lakeside
+colorscheme base16-seti
 catch
   echo 'Base16 Vim not installed. It should work after running :PlugInstall'
 endtry
 
 let g:lightline = {
-\ 'colorscheme': 'base16_atelier_lakeside',
+\ 'colorscheme': 'base16_seti',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
 \             [ 'readonly', 'branchname', 'fetchstatus', 'filecount', 'filename', 'coc_errors', 'coc_warnings', 'coc_ok' ],
