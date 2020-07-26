@@ -60,8 +60,8 @@ set autoread
 set number
 set relativenumber
 
-" Enable cursor line
-set cursorline
+" show tab bar on top
+set showtabline=2
 
 " Set backups
 if has('persistent_undo')

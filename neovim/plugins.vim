@@ -81,6 +81,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 
 " color themes
 Plug 'chriskempson/base16-vim'
+Plug 'mike-hearn/base16-vim-lightline'
 
 " Nerd Icons
 Plug 'ryanoasis/vim-devicons'
@@ -89,7 +90,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'josa42/vim-lightline-coc'
 Plug 'APZelos/gitline.vim'
-Plug 'mark-westerhof/vim-lightline-base16'
 
 " enhanced terminal features
 Plug 'kassio/neoterm'
