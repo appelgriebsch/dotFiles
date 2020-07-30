@@ -298,8 +298,9 @@ nmap <space>t :FloatermToggle<CR>
 nmap <space>m :FloatermNew aerc<CR>
 
 " fuzzy search
-nmap <silent> <leader>f :<C-u>CocList files<cr>
-nmap <silent> <leader>b :<C-u>CocList buffers<cr>
+nmap <silent> <leader>f :<C-u>Clap files<cr>
+nmap <silent> <leader>n :<C-u>Clap filer<cr>
+nmap <silent> <leader>b :<C-u>Clap buffers<cr>
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
@@ -359,15 +360,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>Clap coc_diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>Clap coc_extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>Clap coc_commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>Clap coc_outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>Clap coc_symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
