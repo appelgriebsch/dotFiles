@@ -111,9 +111,9 @@ if has("nvim")
   let g:terminal_color_9 =  "#Cd3f45"
   let g:terminal_color_10 = "#9fca56"
   let g:terminal_color_11 = "#e6cd69"
-  let g:terminal_color_12 = "#55b5db"
+  let g:terminal_color_12 = "#16a085"
   let g:terminal_color_13 = "#a074c4"
-  let g:terminal_color_14 = "#16a085"
+  let g:terminal_color_14 = "#55b5db"
   let g:terminal_color_15 = "#ffffff"
   let g:terminal_color_background = g:terminal_color_0
   let g:terminal_color_foreground = g:terminal_color_5
@@ -135,9 +135,9 @@ elseif has("terminal")
         \ "#Cd3f45",
         \ "#9fca56",
         \ "#e6cd69",
-        \ "#55b5db",
-        \ "#a074c4",
         \ "#16a085",
+        \ "#a074c4",
+        \ "#55b5db",
         \ "#ffffff",
         \ ]
 endif
@@ -210,13 +210,13 @@ call <sid>hi("Cursor",        s:gui00, s:gui05, s:cterm00, s:cterm05, "", "")
 call <sid>hi("NonText",       s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("LineNr",        s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
 call <sid>hi("SignColumn",    s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
-call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none", "")
+call <sid>hi("StatusLine",    s:gui0B, s:gui02, s:cterm04, s:cterm02, "none", "")
 call <sid>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
 call <sid>hi("VertSplit",     s:gui02, s:gui02, s:cterm02, s:cterm02, "none", "")
 call <sid>hi("ColorColumn",   "", s:gui01, "", s:cterm01, "none", "")
 call <sid>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none", "")
 call <sid>hi("CursorLine",    "", s:gui01, "", s:cterm01, "none", "")
-call <sid>hi("CursorLineNr",  s:gui04, s:gui01, s:cterm04, s:cterm01, "", "")
+call <sid>hi("CursorLineNr",  s:gui0B, s:gui01, s:cterm04, s:cterm01, "", "")
 call <sid>hi("QuickFixLine",  "", s:gui01, "", s:cterm01, "none", "")
 call <sid>hi("PMenu",         s:gui05, s:gui01, s:cterm05, s:cterm01, "none", "")
 call <sid>hi("PMenuSel",      s:gui01, s:gui05, s:cterm01, s:cterm05, "", "")

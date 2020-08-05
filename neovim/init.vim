@@ -92,10 +92,6 @@ if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
 
-if !has('gui_running')
-  set t_Co=256
-endif
-
 source ~/.config/nvim/base16.vim
 
 let g:rainbow#max_level = 16
