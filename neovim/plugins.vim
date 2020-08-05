@@ -79,10 +79,6 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 
 " === UI === "
 
-" color themes
-Plug 'chriskempson/base16-vim'
-Plug 'mike-hearn/base16-vim-lightline'
-
 " Nerd Icons
 Plug 'ryanoasis/vim-devicons'
 
