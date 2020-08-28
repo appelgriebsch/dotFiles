@@ -164,13 +164,13 @@ try
   call coc#add_extension(
         \ 'coc-bookmark')
   call coc#add_extension(
-        \ 'coc-ccls')
-  call coc#add_extension(
         \ 'coc-cspell-dicts')
   call coc#add_extension(
         \ 'coc-css')
   call coc#add_extension(
         \ 'coc-db')
+  call coc#add_extension(
+        \ 'coc-deno')
   call coc#add_extension(
         \ 'coc-docker')
   call coc#add_extension(
@@ -187,6 +187,8 @@ try
         \ 'coc-highlight')
   call coc#add_extension(
         \ 'coc-html')
+  call coc#add_extension(
+        \ 'coc-java')
   call coc#add_extension(
         \ 'coc-json')
   call coc#add_extension(
