@@ -180,6 +180,8 @@ try
   call coc#add_extension(
         \ 'coc-eslint')
   call coc#add_extension(
+        \ 'coc-explorer')
+  call coc#add_extension(
         \ 'coc-floaterm')
   call coc#add_extension(
         \ 'coc-git')
@@ -191,8 +193,6 @@ try
         \ 'coc-java')
   call coc#add_extension(
         \ 'coc-json')
-  call coc#add_extension(
-        \ 'coc-julia')
   call coc#add_extension(
         \ 'coc-lists')
   call coc#add_extension(
@@ -293,11 +293,13 @@ let g:rnvimr_draw_border = 1
 let g:rnvimr_bw_enable = 1
 
 nmap <space>t :FloatermToggle<CR>
-nmap <space>m :FloatermNew aerc<CR>
+
+"  <leader>n - Toggle Explorer on/off
+nmap <silent> <leader>n :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " fuzzy search
 nmap <silent> <leader>f :<C-u>Clap files<cr>
-nmap <silent> <leader>n :<C-u>Clap filer<cr>
 nmap <silent> <leader>b :<C-u>Clap buffers<cr>
 
 " === Vista === "
