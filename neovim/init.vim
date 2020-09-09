@@ -299,8 +299,8 @@ nmap <silent> <leader>n :CocCommand explorer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " fuzzy search
-nmap <silent> <leader>f :<C-u>Clap files<cr>
-nmap <silent> <leader>b :<C-u>Clap buffers<cr>
+nmap <silent> <leader>f :CocList files<cr>
+nmap <silent> <leader>b :CocList buffers<cr>
 
 " === Vista === "
 nmap <silent> <leader>o :Vista!!<CR>
@@ -360,15 +360,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>Clap coc_diagnostics<cr>
+nnoremap <silent> <space>a  :CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>Clap coc_extensions<cr>
+nnoremap <silent> <space>e  :CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>Clap coc_commands<cr>
+nnoremap <silent> <space>c  :CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>Clap coc_outline<cr>
+nnoremap <silent> <space>o  :CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>Clap coc_symbols<cr>
+nnoremap <silent> <space>s  :CocList symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.

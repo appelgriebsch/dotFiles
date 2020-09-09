@@ -38,10 +38,6 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vn-ki/coc-clap'
-
-" Command Launcher
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " Test runner
 Plug 'vim-test/vim-test'
