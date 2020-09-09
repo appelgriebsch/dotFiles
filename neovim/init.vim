@@ -277,6 +277,7 @@ nmap <silent> <leader>t :<C-u>CocCommand terminal.Toggle<cr>
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
 nmap <space>g :FloatermNew gitui<CR>
+nmap <space>b :BlamerToggle<CR>
 
 " ranger window
 nmap <space>r :RnvimrToggle<CR>
