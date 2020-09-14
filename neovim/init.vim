@@ -202,7 +202,7 @@ try
   call coc#add_extension(
         \ 'coc-prettier')
   call coc#add_extension(
-        \ 'coc-python')
+        \ 'coc-pyright')
   call coc#add_extension(
         \ 'coc-restclient')
   call coc#add_extension(
@@ -210,11 +210,11 @@ try
   call coc#add_extension(
         \ 'coc-sh')
   call coc#add_extension(
-        \ 'coc-smartf')
-  call coc#add_extension(
         \ 'coc-snippets')
   call coc#add_extension(
         \ 'coc-spell-checker')
+  call coc#add_extension(
+        \ 'coc-styled-components')
   call coc#add_extension(
         \ 'coc-stylelint')
   call coc#add_extension(
