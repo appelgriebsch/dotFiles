@@ -89,5 +89,8 @@ Plug 'kassio/neoterm'
 " Rainbow parantheses
 Plug 'junegunn/rainbow_parentheses.vim'
 
+" ijq playground
+Plug 'bfrg/vim-jqplay'
+
 " Initialize plugin system
 call plug#end()
