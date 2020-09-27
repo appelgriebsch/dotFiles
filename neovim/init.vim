@@ -200,8 +200,6 @@ try
   call coc#add_extension(
         \ 'coc-markdownlint')
   call coc#add_extension(
-        \ 'coc-prettier')
-  call coc#add_extension(
         \ 'coc-pyright')
   call coc#add_extension(
         \ 'coc-restclient')
