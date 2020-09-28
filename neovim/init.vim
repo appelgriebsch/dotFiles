@@ -186,6 +186,8 @@ try
   call coc#add_extension(
         \ 'coc-git')
   call coc#add_extension(
+        \ 'coc-github')
+  call coc#add_extension(
         \ 'coc-highlight')
   call coc#add_extension(
         \ 'coc-html')
@@ -199,6 +201,8 @@ try
         \ 'coc-lit-html')
   call coc#add_extension(
         \ 'coc-markdownlint')
+  call coc#add_extension(
+        \ 'coc-pairs')
   call coc#add_extension(
         \ 'coc-pyright')
   call coc#add_extension(
