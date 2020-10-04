@@ -170,8 +170,6 @@ try
   call coc#add_extension(
         \ 'coc-db')
   call coc#add_extension(
-        \ 'coc-deno')
-  call coc#add_extension(
         \ 'coc-docker')
   call coc#add_extension(
         \ 'coc-docthis')
