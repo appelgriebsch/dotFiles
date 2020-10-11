@@ -194,6 +194,8 @@ try
   call coc#add_extension(
         \ 'coc-json')
   call coc#add_extension(
+        \ 'coc-julia')
+  call coc#add_extension(
         \ 'coc-lists')
   call coc#add_extension(
         \ 'coc-lit-html')
