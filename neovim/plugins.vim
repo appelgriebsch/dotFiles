@@ -92,5 +92,9 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " ijq playground
 Plug 'bfrg/vim-jqplay'
 
+" vim clap
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'vn-ki/coc-clap'
+
 " Initialize plugin system
 call plug#end()
