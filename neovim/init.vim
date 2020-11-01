@@ -60,9 +60,6 @@ set autoread
 set number
 set relativenumber
 
-" show tab bar on top
-set showtabline=2
-
 " Set backups
 if has('persistent_undo')
   set undofile
