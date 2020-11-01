@@ -393,3 +393,9 @@ map <leader>W <Plug>(coc-smartf-backward)
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
 
+" custom fzf coc lists
+call coc_fzf#common#add_list_source('bcommits', 'display git commits', 'BCommits')
+call coc_fzf#common#add_list_source('branches', 'display git branches', 'GBranches')
+call coc_fzf#common#add_list_source('buffers', 'display open buffers', 'Buffers')
+call coc_fzf#common#add_list_source('grep', 'grep for file contents', 'Rg')
+call coc_fzf#common#add_list_source('floaterm', 'display open terminals', 'Floaterms')
