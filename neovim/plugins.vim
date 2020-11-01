@@ -86,5 +86,8 @@ Plug 'bfrg/vim-jqplay'
 " fzf
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'stsewd/fzf-checkout.vim'
+Plug 'voldikss/fzf-floaterm'
+
 " Initialize plugin system
 call plug#end()
