@@ -168,6 +168,8 @@ try
   call coc#add_extension(
         \ 'coc-db')
   call coc#add_extension(
+        \ 'coc-deno')
+  call coc#add_extension(
         \ 'coc-docker')
   call coc#add_extension(
         \ 'coc-docthis')
@@ -247,6 +249,9 @@ let g:echodoc#type = 'virtual'
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 
+" vim-test
+let test#strategy = "floaterm"
+
 " Make Ranger replace Netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
 
@@ -256,12 +261,6 @@ let g:rnvimr_draw_border = 1
 
 " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
 let g:rnvimr_bw_enable = 1
-
-" popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-" Show icons, icons are shown by default
-let g:Lf_ShowDevIcons = 1
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
