@@ -83,10 +83,5 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " ijq playground
 Plug 'bfrg/vim-jqplay'
 
-" LeaderF
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'tamago324/LeaderF-filer'
-Plug 'linjiX/LeaderF-git'
-
 " Initialize plugin system
 call plug#end()

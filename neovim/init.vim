@@ -160,8 +160,6 @@ try
   call coc#add_extension(
         \ 'coc-marketplace')
   call coc#add_extension(
-        \ 'coc-actions')
-  call coc#add_extension(
         \ 'coc-bookmark')
   call coc#add_extension(
         \ 'coc-cspell-dicts')
@@ -296,9 +294,8 @@ nmap <space>b :BlamerToggle<CR>
 nmap <space>r :RnvimrToggle<CR>
 
 " fuzzy search
-nmap <silent> <leader>n :LeaderfFiler<cr>
-nmap <silent> <leader>f :LeaderfFile<cr>
-nmap <silent> <leader>b :LeaderfBuffer<cr>
+nmap <silent> <leader>f :CocList files<cr>
+nmap <silent> <leader>b :CocList buffers<cr>
 
 " === coc.nvim === "
 " Use <c-space> to trigger completion.
@@ -333,7 +330,7 @@ xmap <leader>p  <Plug>(coc-format-selected)
 nmap <leader>p  <Plug>(coc-format-selected)
 
 " Remap for do codeAction of current line
-nmap <silent> <leader>ac :<C-u>CocCommand actions.open<cr>
+nmap <silent> <leader>ac :<C-u>CocAction<cr>
 
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
