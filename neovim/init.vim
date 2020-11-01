@@ -246,6 +246,23 @@ let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'virtual'
 
 " asunc task / run
+function! s:runner_proc(opts)
+  let curr_bufnr = floaterm#curr()
+  if has_key(a:opts, 'silent') && a:opts.silent == 1
+    FloatermHide!
+  endif
+  let cmd = 'cd ' . shellescape(getcwd())
+  call floaterm#terminal#send(curr_bufnr, [cmd])
+  call floaterm#terminal#send(curr_bufnr, [a:opts.cmd])
+  stopinsert
+  if &filetype == 'floaterm' && g:floaterm_autoinsert
+    call floaterm#util#startinsert()
+  endif
+endfunction
+
+let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
+let g:asyncrun_runner.floaterm = function('s:runner_proc')
+let g:asynctasks_term_pos = 'floaterm'
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 
@@ -282,6 +299,7 @@ nmap <silent> <C-k> <C-w>k
 nmap <silent> <C-l> <C-w>l
 
 " terminal
+tnoremap <Esc> <C-\><C-n>
 nmap <space>t :FloatermToggle<CR>
 
 " git diff hunk preview
