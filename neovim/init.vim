@@ -311,8 +311,8 @@ nmap <space>b :BlamerToggle<CR>
 nmap <space>r :RnvimrToggle<CR>
 
 " fuzzy search
-nmap <silent> <leader>f :CocList files<cr>
-nmap <silent> <leader>b :CocList buffers<cr>
+nmap <silent> <leader>f :Files<cr>
+nmap <silent> <leader>b :Buffers<cr>
 
 " === coc.nvim === "
 " Use <c-space> to trigger completion.
@@ -356,25 +356,26 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call   CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
+nnoremap <silent> <space><space> :<C-u>CocFzfList<CR>
 " Show all diagnostics
-nnoremap <silent> <space>a  :CocList diagnostics<cr>
+nnoremap <silent> <space>a  :CocFzfList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :CocList extensions<cr>
+nnoremap <silent> <space>e  :CocFzfList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :CocList commands<cr>
+nnoremap <silent> <space>c  :CocFzfList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :CocList outline<cr>
+nnoremap <silent> <space>o  :CocFzfList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :CocList symbols<cr>
+nnoremap <silent> <space>s  :CocFzfList symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
