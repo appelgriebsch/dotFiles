@@ -178,8 +178,6 @@ try
   call coc#add_extension(
         \ 'coc-eslint')
   call coc#add_extension(
-        \ 'coc-explorer')
-  call coc#add_extension(
         \ 'coc-floaterm')
   call coc#add_extension(
         \ 'coc-git')
@@ -226,8 +224,6 @@ try
   call coc#add_extension(
         \ 'coc-template')
   call coc#add_extension(
-        \ 'coc-terminal')
-  call coc#add_extension(
         \ 'coc-todolist')
   call coc#add_extension(
         \ 'coc-tslint-plugin')
@@ -247,11 +243,27 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " === echodoc === "
 " Enable echodoc on startup
 let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'virtual'
 
-" === lsp outline view === "
-let g:vista_default_executive = 'coc'
-let g:vista_icon_indent = ["▸ ", ""]
-let g:vista_fzf_preview = ['right:33%']
+" asunc task / run
+let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_pick_enable = 1
+let g:rnvimr_draw_border = 1
+
+" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+let g:rnvimr_bw_enable = 1
+
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+" Show icons, icons are shown by default
+let g:Lf_ShowDevIcons = 1
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -273,8 +285,7 @@ nmap <silent> <C-k> <C-w>k
 nmap <silent> <C-l> <C-w>l
 
 " terminal
-tnoremap <Esc> <C-\><C-n>
-nmap <silent> <leader>t :<C-u>CocCommand terminal.Toggle<cr>
+nmap <space>t :FloatermToggle<CR>
 
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
@@ -284,29 +295,10 @@ nmap <space>b :BlamerToggle<CR>
 " ranger window
 nmap <space>r :RnvimrToggle<CR>
 
-" Make Ranger replace Netrw and be the file explorer
-let g:rnvimr_ex_enable = 1
-
-" Make Ranger to be hidden after picking a file
-let g:rnvimr_pick_enable = 1
-
-let g:rnvimr_draw_border = 1
-
-" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
-let g:rnvimr_bw_enable = 1
-
-nmap <space>t :FloatermToggle<CR>
-
-"  <leader>n - Toggle Explorer on/off
-nmap <silent> <leader>n :CocCommand explorer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-
 " fuzzy search
-nmap <silent> <leader>f :CocList files<cr>
-nmap <silent> <leader>b :CocList buffers<cr>
-
-" === Vista === "
-nmap <silent> <leader>o :Vista!!<CR>
+nmap <silent> <leader>n :LeaderfFiler<cr>
+nmap <silent> <leader>f :LeaderfFile<cr>
+nmap <silent> <leader>b :LeaderfBuffer<cr>
 
 " === coc.nvim === "
 " Use <c-space> to trigger completion.
@@ -332,9 +324,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)

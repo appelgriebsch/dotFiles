@@ -45,9 +45,6 @@ Plug 'vim-test/vim-test'
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
 
-" lsp based outline and symbols
-Plug 'liuchengxu/vista.vim'
-
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
 Plug 'airblade/vim-gitgutter'
@@ -67,13 +64,10 @@ Plug 'mhinz/vim-crates'
 " floating terminal and file manager
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr'
-Plug 'rbgrouleff/bclose.vim'
 
 " Database
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-
-" === UI === "
 
 " Nerd Icons
 Plug 'ryanoasis/vim-devicons'
@@ -83,18 +77,16 @@ Plug 'itchyny/lightline.vim'
 Plug 'josa42/vim-lightline-coc'
 Plug 'APZelos/gitline.vim'
 
-" enhanced terminal features
-Plug 'kassio/neoterm'
-
 " Rainbow parantheses
 Plug 'junegunn/rainbow_parentheses.vim'
 
 " ijq playground
 Plug 'bfrg/vim-jqplay'
 
-" vim clap
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'vn-ki/coc-clap'
+" LeaderF
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'tamago324/LeaderF-filer'
+Plug 'linjiX/LeaderF-git'
 
 " Initialize plugin system
 call plug#end()
