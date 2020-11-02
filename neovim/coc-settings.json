@@ -1,5 +1,8 @@
 {
+  "signature.enable": false,
+  "suggest.floatEnable": true,
   "suggest.echodocSupport": true,
+  "suggest.enablePreview": true,
   "suggest.maxCompleteItemCount": 20,
   "rust-analyzer.updates.channel": "stable",
   "java.format.enabled": false,

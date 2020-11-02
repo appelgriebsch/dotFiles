@@ -179,8 +179,6 @@ try
   call coc#add_extension(
         \ 'coc-git')
   call coc#add_extension(
-        \ 'coc-github')
-  call coc#add_extension(
         \ 'coc-highlight')
   call coc#add_extension(
         \ 'coc-html')
@@ -308,7 +306,7 @@ nmap <space>b :BlamerToggle<CR>
 nmap <space>r :RnvimrToggle<CR>
 
 " fuzzy search
-nmap <silent> <leader>f :Files<cr>
+nmap <silent> <leader>f :GFiles<cr>
 nmap <silent> <leader>b :Buffers<cr>
 
 " === coc.nvim === "
