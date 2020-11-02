@@ -88,6 +88,7 @@ Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'voldikss/fzf-floaterm'
+Plug 'benwainwright/fzf-project'
 
 " Initialize plugin system
 call plug#end()
