@@ -66,6 +66,10 @@
           "snippetSupport": true
         }
       }
+    },
+    "vala": {
+      "command": "vala-language-server",
+      "filetypes": ["vala", "genie"]
     }
   }
 }
