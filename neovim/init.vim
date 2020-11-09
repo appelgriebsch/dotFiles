@@ -274,6 +274,8 @@ let g:rnvimr_draw_border = 1
 " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
 let g:rnvimr_bw_enable = 1
 
+let g:db_ui_use_nerd_fonts = 1
+
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
@@ -306,7 +308,7 @@ nmap <space>b :BlamerToggle<CR>
 nmap <space>r :RnvimrToggle<CR>
 
 " fuzzy search
-nmap <silent> <leader>f :GFiles<cr>
+nmap <silent> <leader>f :Files<cr>
 nmap <silent> <leader>b :Buffers<cr>
 
 " === coc.nvim === "
