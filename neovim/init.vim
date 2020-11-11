@@ -394,8 +394,13 @@ map <leader>W <Plug>(coc-smartf-backward)
 cmap w!! w !sudo tee %
 
 " custom fzf coc lists
-call coc_fzf#common#add_list_source('bcommits', 'display git commits', 'BCommits')
+call coc_fzf#common#add_list_source('bcommits', 'display git commits for buffer', 'BCommits')
 call coc_fzf#common#add_list_source('branches', 'display git branches', 'GBranches')
 call coc_fzf#common#add_list_source('buffers', 'display open buffers', 'Buffers')
+call coc_fzf#common#add_list_source('colors', 'display color schemes', 'Colors')
+call coc_fzf#common#add_list_source('commits', 'display git commits', 'Commits')
+call coc_fzf#common#add_list_source('gfiles', 'display git files', 'GFiles')
 call coc_fzf#common#add_list_source('grep', 'grep for file contents', 'Rg')
+call coc_fzf#common#add_list_source('files', 'display files', 'Files')
+call coc_fzf#common#add_list_source('filetypes', 'display file types', 'Filetypes')
 call coc_fzf#common#add_list_source('floaterm', 'display open terminals', 'Floaterms')
