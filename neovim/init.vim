@@ -355,6 +355,8 @@ nnoremap <silent> <space>b  :CocFzfList buffers<cr>
 nnoremap <silent> <space>g  :CocFzfList grep<cr>
 " Show all diagnostics
 nnoremap <silent> <space>d  :CocFzfList diagnostics<cr>
+" Show diagnostics of current buffer
+nnoremap <silent> <space>D  :CocFzfList diagnostics --current-buf<cr>
 " Show commands
 nnoremap <silent> <space>c  :CocFzfList commands<cr>
 " Find symbol of current document
@@ -374,11 +376,11 @@ call coc_fzf#common#add_list_source('branches', 'display git branches', 'GBranch
 call coc_fzf#common#add_list_source('buffers', 'display open buffers', 'Buffers')
 call coc_fzf#common#add_list_source('colors', 'display color schemes', 'Colors')
 call coc_fzf#common#add_list_source('commits', 'display git commits', 'Commits')
-call coc_fzf#common#add_list_source('gfiles', 'display git files', 'GFiles')
-call coc_fzf#common#add_list_source('grep', 'grep for file contents', 'Rg')
 call coc_fzf#common#add_list_source('files', 'display files', 'Files')
 call coc_fzf#common#add_list_source('filetypes', 'display file types', 'Filetypes')
 call coc_fzf#common#add_list_source('floaterm', 'display open terminals', 'Floaterms')
+call coc_fzf#common#add_list_source('gfiles', 'display git files', 'GFiles')
+call coc_fzf#common#add_list_source('grep', 'grep for file contents', 'Rg')
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
@@ -387,7 +389,6 @@ nmap <space>t :FloatermToggle<CR>
 " git diff hunk preview
 nmap <leader>g :GitGutterPreviewHunk<CR>
 nmap <leader>b :BlamerToggle<CR>
-nmap <space>g :FloatermNew gitui<CR>
 
 " ranger window
 nmap <space>r :RnvimrToggle<CR>
