@@ -38,7 +38,7 @@ set nocursorline
 set noruler
 
 " Only one line for command line
-set cmdheight=1
+set cmdheight=2
 
 " Set preview window to appear at bottom
 set splitbelow
@@ -59,6 +59,8 @@ set autoread
 " Enable line numbers
 set number
 set relativenumber
+
+set updatetime=300
 
 " Set backups
 if has('persistent_undo')
@@ -105,6 +107,19 @@ set shortmess+=c
 if has('nvim-0.3.2') || has("patch-8.1.0360")
   set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 endif
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Single column signs
+let g:coc_status_error_sign = "\U2717 "
+let g:coc_status_warning_sign = "\U26A0 "
 
 " coc.nvim color changes
 hi! link CocErrorSign WarningMsg
@@ -275,6 +290,11 @@ let g:rnvimr_draw_border = 1
 let g:rnvimr_bw_enable = 1
 
 let g:db_ui_use_nerd_fonts = 1
+
+" fzf and floaterm layout options
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.7 } }
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.7
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
