@@ -38,7 +38,7 @@ set nocursorline
 set noruler
 
 " Only one line for command line
-set cmdheight=2
+set cmdheight=1
 
 " Set preview window to appear at bottom
 set splitbelow
@@ -253,7 +253,6 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " === echodoc === "
 " Enable echodoc on startup
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'virtual'
 
 " asunc task / run
 function! s:runner_proc(opts)

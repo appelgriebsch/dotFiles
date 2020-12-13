@@ -1,5 +1,5 @@
 {
-  "signature.enable": false,
+  "signature.enable": true,
   "suggest.floatEnable": true,
   "suggest.echodocSupport": true,
   "suggest.enablePreview": true,
