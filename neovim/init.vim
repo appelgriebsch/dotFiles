@@ -216,8 +216,6 @@ try
   call coc#add_extension(
         \ 'coc-restclient')
   call coc#add_extension(
-        \ 'coc-rust-analyzer')
-  call coc#add_extension(
         \ 'coc-sh')
   call coc#add_extension(
         \ 'coc-snippets')
