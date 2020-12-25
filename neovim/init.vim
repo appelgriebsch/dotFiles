@@ -200,9 +200,9 @@ try
   call coc#add_extension(
         \ 'coc-java')
   call coc#add_extension(
-        \ 'coc-json')
+        \ 'coc-jest')
   call coc#add_extension(
-        \ 'coc-julia')
+        \ 'coc-json')
   call coc#add_extension(
         \ 'coc-lists')
   call coc#add_extension(
@@ -233,6 +233,8 @@ try
         \ 'coc-template')
   call coc#add_extension(
         \ 'coc-todolist')
+  call coc#add_extension(
+        \ 'coc-toml')
   call coc#add_extension(
         \ 'coc-tslint-plugin')
   call coc#add_extension(
