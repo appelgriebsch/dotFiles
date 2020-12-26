@@ -180,8 +180,6 @@ try
   call coc#add_extension(
         \ 'coc-db')
   call coc#add_extension(
-        \ 'coc-deno')
-  call coc#add_extension(
         \ 'coc-docker')
   call coc#add_extension(
         \ 'coc-docthis')
@@ -235,8 +233,6 @@ try
         \ 'coc-todolist')
   call coc#add_extension(
         \ 'coc-toml')
-  call coc#add_extension(
-        \ 'coc-tslint-plugin')
   call coc#add_extension(
         \ 'coc-tsserver')
   call coc#add_extension(
@@ -426,4 +422,4 @@ map <leader>W <Plug>(coc-smartf-backward)
 cmap w!! w !sudo tee %
 " replace currently selected text with default register
 " without yanking it
-vnoremap <leader>p "_dP
+vnoremap <leader>p _dP
