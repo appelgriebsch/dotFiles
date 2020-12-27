@@ -250,20 +250,21 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Enable echodoc on startup
 let g:echodoc#enable_at_startup = 1
 
-" asunc task / run
-function! s:runner_proc(opts)
-  let curr_bufnr = floaterm#curr()
-  if has_key(a:opts, 'silent') && a:opts.silent == 1
-    FloatermHide!
-  endif
-  let cmd = 'cd ' . shellescape(getcwd())
-  call floaterm#terminal#send(curr_bufnr, [cmd])
-  call floaterm#terminal#send(curr_bufnr, [a:opts.cmd])
-  stopinsert
-  if &filetype == 'floaterm' && g:floaterm_autoinsert
-    call floaterm#util#startinsert()
-  endif
+" async task / run
+let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+
+function! s:run_floaterm(opts)
+  let cwd = getcwd()
+  let cmd = 'cd ' . shellescape(cwd) . ' && ' . a:opts.cmd
+  execute 'FloatermNew --title=floaterm_runner --autoclose=0 ' . cmd
+  " Back to the normal mode
+  " stopinsert
 endfunction
+
+let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
+let g:asyncrun_runner.floaterm = function('s:run_floaterm')
+let g:asynctasks_term_pos = 'floaterm'
 
 function! s:fzf_sink(what)
 	let p1 = stridx(a:what, '<')
@@ -292,12 +293,6 @@ function! s:fzf_task()
 	endif
 	call fzf#run(opts)
 endfunction
-
-let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
-let g:asyncrun_runner.floaterm = function('s:runner_proc')
-let g:asynctasks_term_pos = 'floaterm'
-let g:asyncrun_open = 6
-let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 
 command! -nargs=0 AsyncTaskFzf call s:fzf_task()
 
