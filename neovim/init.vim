@@ -265,14 +265,41 @@ function! s:runner_proc(opts)
   endif
 endfunction
 
+function! s:fzf_sink(what)
+	let p1 = stridx(a:what, '<')
+	if p1 >= 0
+		let name = strpart(a:what, 0, p1)
+		let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
+		if name != ''
+			exec "AsyncTask ". fnameescape(name)
+		endif
+	endif
+endfunction
+
+function! s:fzf_task()
+	let rows = asynctasks#source(&columns * 48 / 100)
+	let source = []
+	for row in rows
+		let name = row[0]
+		let source += [name . '  ' . row[1] . '  : ' . row[2]]
+	endfor
+	let opts = { 'source': source, 'sink': function('s:fzf_sink'),
+				\ 'options': '+m --nth 1 --inline-info --tac' }
+	if exists('g:fzf_layout')
+		for key in keys(g:fzf_layout)
+			let opts[key] = deepcopy(g:fzf_layout[key])
+		endfor
+	endif
+	call fzf#run(opts)
+endfunction
+
 let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
 let g:asyncrun_runner.floaterm = function('s:runner_proc')
 let g:asynctasks_term_pos = 'floaterm'
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 
-" vim-test
-let test#strategy = "floaterm"
+command! -nargs=0 AsyncTaskFzf call s:fzf_task()
 
 " Make Ranger replace Netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
@@ -284,6 +311,7 @@ let g:rnvimr_draw_border = 1
 " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
 let g:rnvimr_bw_enable = 1
 
+" make db ui use nerd icon fonts
 let g:db_ui_use_nerd_fonts = 1
 
 " fzf and floaterm layout options
@@ -396,6 +424,7 @@ call coc_fzf#common#add_list_source('filetypes', 'display file types', 'Filetype
 call coc_fzf#common#add_list_source('floaterm', 'display open terminals', 'Floaterms')
 call coc_fzf#common#add_list_source('gfiles', 'display git files', 'GFiles')
 call coc_fzf#common#add_list_source('grep', 'grep for file contents', 'Rg')
+call coc_fzf#common#add_list_source('tasks', 'shows all registered tasks', 'AsyncTaskFzf')
 
 " terminal
 tnoremap <Esc> <C-\><C-n>

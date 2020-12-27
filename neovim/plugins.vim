@@ -39,9 +39,6 @@ Plug 'skywind3000/asyncrun.vim'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Test runner
-Plug 'vim-test/vim-test'
-
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
 
@@ -57,9 +54,6 @@ Plug 'sheerun/vim-polyglot'
 
 " better start screen
 Plug 'mhinz/vim-startify'
-
-" rust crates
-Plug 'mhinz/vim-crates'
 
 " floating terminal and file manager
 Plug 'voldikss/vim-floaterm'
