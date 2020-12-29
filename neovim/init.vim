@@ -309,6 +309,9 @@ let g:rnvimr_bw_enable = 1
 " make db ui use nerd icon fonts
 let g:db_ui_use_nerd_fonts = 1
 
+" enable git blamer
+let g:blamer_enabled = 1
+
 " fzf and floaterm layout options
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.7 } }
 let g:floaterm_width = 0.8
@@ -426,8 +429,7 @@ tnoremap <Esc> <C-\><C-n>
 nmap <space>t :FloatermToggle<CR>
 
 " git diff hunk preview
-nmap <leader>g :GitGutterPreviewHunk<CR>
-nmap <leader>b :BlamerToggle<CR>
+nmap <leader>gh :GitGutterPreviewHunk<CR>
 
 " ranger window
 nmap <space>r :RnvimrToggle<CR>

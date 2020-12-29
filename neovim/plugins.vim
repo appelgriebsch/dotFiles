@@ -48,6 +48,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'APZelos/blamer.nvim'
+Plug 'rhysd/git-messenger.vim'
 
 " Syntax highlighting for different languages
 Plug 'sheerun/vim-polyglot'
