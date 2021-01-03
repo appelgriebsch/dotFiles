@@ -192,6 +192,8 @@ try
   call coc#add_extension(
         \ 'coc-git')
   call coc#add_extension(
+        \ 'coc-go')
+  call coc#add_extension(
         \ 'coc-highlight')
   call coc#add_extension(
         \ 'coc-html')
