@@ -9,6 +9,7 @@
   "java.signatureHelp.enabled": true,
   "java.completion.guessMethodArguments": true,
   "coc.preferences.extensionUpdateCheck": "daily",
+  "go.goplsPath": "/usr/bin/gopls",
   "javascript.suggest.enabled": true,
   "javascript.validate.enable": true,
   "javascript.suggest.completeFunctionCalls": true,
