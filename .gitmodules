@@ -1,6 +1,3 @@
-[submodule "neovim/vim-plug"]
-	path = neovim/vim-plug
-	url = git@github.com:junegunn/vim-plug.git
 [submodule "forgit"]
 	path = forgit
 	url = git@github.com:wfxr/forgit.git
