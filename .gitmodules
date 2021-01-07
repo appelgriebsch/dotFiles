@@ -1,3 +1,6 @@
 [submodule "forgit"]
 	path = forgit
 	url = git@github.com:wfxr/forgit.git
+[submodule "geometry-zsh"]
+	path = geometry-zsh
+	url = git@github.com:geometry-zsh/geometry.git
