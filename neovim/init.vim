@@ -172,8 +172,6 @@ try
   call coc#add_extension(
         \ 'coc-marketplace')
   call coc#add_extension(
-        \ 'coc-bookmark')
-  call coc#add_extension(
         \ 'coc-cspell-dicts')
   call coc#add_extension(
         \ 'coc-css')
@@ -229,8 +227,6 @@ try
         \ 'coc-svg')
   call coc#add_extension(
         \ 'coc-tasks')
-  call coc#add_extension(
-        \ 'coc-template')
   call coc#add_extension(
         \ 'coc-todolist')
   call coc#add_extension(
