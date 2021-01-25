@@ -4,3 +4,6 @@
 [submodule "geometry-zsh"]
 	path = geometry-zsh
 	url = git@github.com:geometry-zsh/geometry.git
+[submodule "fzf-marks"]
+	path = fzf-marks
+	url = git@github.com:urbainvaes/fzf-marks.git
