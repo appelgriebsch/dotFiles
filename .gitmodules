@@ -1,9 +1,9 @@
 [submodule "forgit"]
 	path = forgit
 	url = git@github.com:wfxr/forgit.git
-[submodule "geometry-zsh"]
-	path = geometry-zsh
-	url = git@github.com:geometry-zsh/geometry.git
 [submodule "fzf-marks"]
 	path = fzf-marks
 	url = git@github.com:urbainvaes/fzf-marks.git
+[submodule "fif"]
+	path = fif
+	url = git@github.com:roosta/fif.git
