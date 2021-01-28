@@ -75,9 +75,6 @@ Plug 'APZelos/gitline.vim'
 " Rainbow parantheses
 Plug 'junegunn/rainbow_parentheses.vim'
 
-" ijq playground
-Plug 'bfrg/vim-jqplay'
-
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " needed for previews
