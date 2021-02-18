@@ -1,6 +1,3 @@
-[submodule "forgit"]
-	path = forgit
-	url = git@github.com:wfxr/forgit.git
 [submodule "fzf-marks"]
 	path = fzf-marks
 	url = git@github.com:urbainvaes/fzf-marks.git
