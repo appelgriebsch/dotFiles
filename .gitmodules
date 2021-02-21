@@ -1,6 +1,0 @@
-[submodule "fzf-marks"]
-	path = fzf-marks
-	url = git@github.com:urbainvaes/fzf-marks.git
-[submodule "fif"]
-	path = fif
-	url = git@github.com:roosta/fif.git
