@@ -176,6 +176,8 @@ try
   call coc#add_extension(
         \ 'coc-css')
   call coc#add_extension(
+        \ 'coc-cssmodules')
+  call coc#add_extension(
         \ 'coc-db')
   call coc#add_extension(
         \ 'coc-docker')
@@ -190,7 +192,7 @@ try
   call coc#add_extension(
         \ 'coc-git')
   call coc#add_extension(
-        \ 'coc-go')
+        \ 'coc-github')
   call coc#add_extension(
         \ 'coc-highlight')
   call coc#add_extension(
@@ -202,9 +204,9 @@ try
   call coc#add_extension(
         \ 'coc-json')
   call coc#add_extension(
-        \ 'coc-lists')
+        \ 'coc-lua')
   call coc#add_extension(
-        \ 'coc-lit-html')
+        \ 'coc-lists')
   call coc#add_extension(
         \ 'coc-markdownlint')
   call coc#add_extension(
@@ -212,25 +214,19 @@ try
   call coc#add_extension(
         \ 'coc-pyright')
   call coc#add_extension(
-        \ 'coc-restclient')
-  call coc#add_extension(
         \ 'coc-sh')
   call coc#add_extension(
         \ 'coc-snippets')
   call coc#add_extension(
         \ 'coc-spell-checker')
   call coc#add_extension(
-        \ 'coc-styled-components')
-  call coc#add_extension(
         \ 'coc-stylelint')
-  call coc#add_extension(
-        \ 'coc-svg')
   call coc#add_extension(
         \ 'coc-tasks')
   call coc#add_extension(
         \ 'coc-todolist')
   call coc#add_extension(
-        \ 'coc-toml')
+        \ 'coc-tslint-plugin')
   call coc#add_extension(
         \ 'coc-tsserver')
   call coc#add_extension(
