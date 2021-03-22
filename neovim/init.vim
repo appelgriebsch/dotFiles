@@ -214,6 +214,8 @@ try
   call coc#add_extension(
         \ 'coc-pyright')
   call coc#add_extension(
+        \ 'coc-rust-analyzer')
+  call coc#add_extension(
         \ 'coc-sh')
   call coc#add_extension(
         \ 'coc-snippets')
@@ -243,6 +245,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " === echodoc === "
 " Enable echodoc on startup
 let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'virtual'
 
 " async task / run
 let g:asyncrun_open = 6

@@ -1,5 +1,5 @@
 {
-  "signature.enable": true,
+  "signature.enable": false,
   "suggest.floatEnable": true,
   "suggest.echodocSupport": true,
   "suggest.enablePreview": true,
@@ -9,7 +9,6 @@
   "java.signatureHelp.enabled": true,
   "java.completion.guessMethodArguments": true,
   "coc.preferences.extensionUpdateCheck": "daily",
-  "go.goplsPath": "/usr/bin/gopls",
   "javascript.suggest.enabled": true,
   "javascript.validate.enable": true,
   "javascript.suggest.completeFunctionCalls": true,
