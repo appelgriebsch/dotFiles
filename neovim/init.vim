@@ -212,7 +212,7 @@ try
   call coc#add_extension(
         \ 'coc-pairs')
   call coc#add_extension(
-        \ 'coc-pyright')
+        \ 'coc-pyls')
   call coc#add_extension(
         \ 'coc-rust-analyzer')
   call coc#add_extension(
