@@ -212,7 +212,7 @@ try
   call coc#add_extension(
         \ 'coc-pairs')
   call coc#add_extension(
-        \ 'coc-pyls')
+        \ 'coc-pyright')
   call coc#add_extension(
         \ 'coc-rust-analyzer')
   call coc#add_extension(
@@ -227,6 +227,8 @@ try
         \ 'coc-tasks')
   call coc#add_extension(
         \ 'coc-todolist')
+  call coc#add_extension(
+        \ 'coc-toml')
   call coc#add_extension(
         \ 'coc-tslint-plugin')
   call coc#add_extension(
