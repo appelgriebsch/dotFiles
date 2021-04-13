@@ -117,137 +117,12 @@ else
   set signcolumn=yes
 endif
 
-" Single column signs
-let g:coc_status_error_sign = "\U2717 "
-let g:coc_status_warning_sign = "\U26A0 "
-
-" coc.nvim color changes
-hi! link CocErrorSign WarningMsg
-hi! link CocWarningSign Number
-hi! link CocInfoSign Type
-
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
-" === Coc.nvim === "
-" use <tab> for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-let g:coc_status_error_sign = '•'
-let g:coc_status_warning_sign = '•'
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"Use tab for trigger completion with characters ahead and navigate
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-try
-  call coc#add_extension(
-        \ 'coc-marketplace')
-  call coc#add_extension(
-        \ 'coc-cspell-dicts')
-  call coc#add_extension(
-        \ 'coc-css')
-  call coc#add_extension(
-        \ 'coc-cssmodules')
-  call coc#add_extension(
-        \ 'coc-db')
-  call coc#add_extension(
-        \ 'coc-docker')
-  call coc#add_extension(
-        \ 'coc-docthis')
-  call coc#add_extension(
-        \ 'coc-emmet')
-  call coc#add_extension(
-        \ 'coc-eslint')
-  call coc#add_extension(
-        \ 'coc-floaterm')
-  call coc#add_extension(
-        \ 'coc-git')
-  call coc#add_extension(
-        \ 'coc-github')
-  call coc#add_extension(
-        \ 'coc-highlight')
-  call coc#add_extension(
-        \ 'coc-html')
-  call coc#add_extension(
-        \ 'coc-java')
-  call coc#add_extension(
-        \ 'coc-jest')
-  call coc#add_extension(
-        \ 'coc-json')
-  call coc#add_extension(
-        \ 'coc-lua')
-  call coc#add_extension(
-        \ 'coc-lists')
-  call coc#add_extension(
-        \ 'coc-markdownlint')
-  call coc#add_extension(
-        \ 'coc-pairs')
-  call coc#add_extension(
-        \ 'coc-pyright')
-  call coc#add_extension(
-        \ 'coc-rust-analyzer')
-  call coc#add_extension(
-        \ 'coc-sh')
-  call coc#add_extension(
-        \ 'coc-snippets')
-  call coc#add_extension(
-        \ 'coc-spell-checker')
-  call coc#add_extension(
-        \ 'coc-stylelint')
-  call coc#add_extension(
-        \ 'coc-tasks')
-  call coc#add_extension(
-        \ 'coc-todolist')
-  call coc#add_extension(
-        \ 'coc-toml')
-  call coc#add_extension(
-        \ 'coc-tslint-plugin')
-  call coc#add_extension(
-        \ 'coc-tsserver')
-  call coc#add_extension(
-        \ 'coc-yaml')
-  call coc#add_extension(
-        \ 'coc-yank')
-catch
-  echo 'coc.vim not installed. It should work after running :PlugInstall'
-endtry
-
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" === echodoc === "
-" Enable echodoc on startup
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'virtual'
 
 " async task / run
 let g:asyncrun_open = 6
@@ -335,100 +210,15 @@ nmap <silent> <C-j> <C-w>j
 nmap <silent> <C-k> <C-w>k
 nmap <silent> <C-l> <C-w>l
 
-" === coc.nvim === "
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> dj <Plug>(coc-diagnostic-prev)
-nmap <silent> dk <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>p  <Plug>(coc-format-selected)
-nmap <leader>p  <Plug>(coc-format-selected)
-
-" Remap for do codeAction of current line
-nmap <silent> <leader>ac :<C-u>CocAction<cr>
-
-" Fix autofix problem of current line
-nmap <silent> <leader>qf  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call   CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-nnoremap <silent> <space><space> :<C-u>CocFzfList<CR>
-" Show files
-nnoremap <silent> <space>f  :CocFzfList files<cr>
-" Show buffers
-nnoremap <silent> <space>b  :CocFzfList buffers<cr>
-" Show grep
-nnoremap <silent> <space>g  :CocFzfList grep<cr>
-" Show all diagnostics
-nnoremap <silent> <space>d  :CocFzfList diagnostics<cr>
-" Show diagnostics of current buffer
-nnoremap <silent> <space>D  :CocFzfList diagnostics --current-buf<cr>
-" Show commands
-nnoremap <silent> <space>c  :CocFzfList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :CocFzfList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :CocFzfList symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
-
-" custom fzf coc lists
-call coc_fzf#common#add_list_source('bcommits', 'display git commits for buffer', 'BCommits')
-call coc_fzf#common#add_list_source('branches', 'display git branches', 'GBranches')
-call coc_fzf#common#add_list_source('buffers', 'display open buffers', 'Buffers')
-call coc_fzf#common#add_list_source('colors', 'display color schemes', 'Colors')
-call coc_fzf#common#add_list_source('commits', 'display git commits', 'Commits')
-call coc_fzf#common#add_list_source('files', 'display files', 'Files')
-call coc_fzf#common#add_list_source('filetypes', 'display file types', 'Filetypes')
-call coc_fzf#common#add_list_source('floaterm', 'display open terminals', 'Floaterms')
-call coc_fzf#common#add_list_source('gfiles', 'display git files', 'GFiles')
-call coc_fzf#common#add_list_source('grep', 'grep for file contents', 'Rg')
-call coc_fzf#common#add_list_source('tasks', 'shows all registered tasks', 'AsyncTaskFzf')
-
 " terminal
 tnoremap <Esc> <C-\><C-n>
 nmap <space>t :FloatermToggle<CR>
 
 " git diff hunk preview
 nmap <leader>gh :GitGutterPreviewHunk<CR>
+
+" fzf
+nmap <space>f :FZF<CR>
 
 " ranger window
 nmap <space>r :RnvimrToggle<CR>
@@ -438,10 +228,6 @@ nmap <space>r :RnvimrToggle<CR>
 "   <leader>/ - Clear highlighted search terms while preserving history
 map <leader>h :%s///<left><left>
 nmap <silent> <leader>/ :nohlsearch<CR>
-
-" === Easy-motion shortcuts ==="
-map <leader>w <Plug>(coc-smartf-forward)
-map <leader>W <Plug>(coc-smartf-backward)
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %

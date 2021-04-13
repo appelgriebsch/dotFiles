@@ -36,12 +36,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 
-" Intellisense Engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Print function signatures in echo area
-Plug 'Shougo/echodoc.vim'
-
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
 Plug 'airblade/vim-gitgutter'
@@ -78,7 +72,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " needed for previews
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'voldikss/fzf-floaterm'
 Plug 'benwainwright/fzf-project'
