@@ -218,7 +218,11 @@ nmap <space>t :FloatermToggle<CR>
 nmap <leader>gh :GitGutterPreviewHunk<CR>
 
 " fzf
-nmap <space>f :FZF<CR>
+nmap <space>f :Files<CR>
+nmap <space>b :Buffers<CR>
+nmap <space>s :Rg<CR>
+nmap <space>g :Commits<CR>
+nmap <space>o :Tags<CR>
 
 " ranger window
 nmap <space>r :RnvimrToggle<CR>
