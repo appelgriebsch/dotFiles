@@ -8,8 +8,10 @@ let g:lightline = {
 \ 'colorscheme': 'base16_matcha_blue',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'readonly', 'branchname', 'fetchstatus', 'filecount', 'filename', 'coc_errors', 'coc_warnings', 'coc_ok' ],
-\             [ 'coc_status'  ] ]
+\             [ 'readonly', 'branchname', 'fetchstatus', 'filecount', 'filename' ] ] ,
+\   'right': [ [ 'lineinfo' ],
+\              [ 'percent' ],
+\              [ 'fileformat', 'fileencoding', 'filetype' ] ]
 \ },
 \ 'component_function': {
 \   'filecount': 'gitline#FileCount',
@@ -19,5 +21,3 @@ let g:lightline = {
 \ },
 \}
 
-" register compoments:
-call lightline#coc#register()

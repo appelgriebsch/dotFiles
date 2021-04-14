@@ -63,7 +63,6 @@ Plug 'ryanoasis/vim-devicons'
 
 " Customized vim status line
 Plug 'itchyny/lightline.vim'
-Plug 'josa42/vim-lightline-coc'
 Plug 'APZelos/gitline.vim'
 
 " Rainbow parantheses
