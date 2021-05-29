@@ -1,0 +1,76 @@
+{
+  "signature.enable": false,
+  "suggest.floatEnable": true,
+  "suggest.echodocSupport": true,
+  "suggest.enablePreview": true,
+  "suggest.maxCompleteItemCount": 20,
+  "java.format.enabled": false,
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.signatureHelp.enabled": true,
+  "java.completion.guessMethodArguments": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "javascript.suggest.enabled": true,
+  "javascript.validate.enable": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "c",
+    "cpp",
+    "csharp",
+    "css",
+    "en-us",
+    "git-commit",
+    "go",
+    "handlebars",
+    "haskell",
+    "html",
+    "jade",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "latex",
+    "less",
+    "markdown",
+    "php",
+    "plaintext",
+    "pug",
+    "python",
+    "restructuredtext",
+    "rust",
+    "scala",
+    "scss",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "vim",
+    "yaml",
+    "yml"
+  ],
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    },
+    "vala": {
+      "command": "vala-language-server",
+      "filetypes": ["vala", "genie"]
+    }
+  }
+}
