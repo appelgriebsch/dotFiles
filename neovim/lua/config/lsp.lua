@@ -23,12 +23,8 @@ end
 
 -- keymaps
 local on_attach = function(client, bufnr)
-  
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  -- set omnifunc to lsp version
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- enable completion framework
   require'completion'.on_attach(client, bufnr)
@@ -69,6 +65,9 @@ local on_attach = function(client, bufnr)
     augroup END
     ]], false)
   end
+
+  -- enable inlay hints for Rust
+  vim.cmd([[ autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints { enabled = {"TypeHint", "ChainingHint", "ParameterHint"} } ]])
 end
 
 -- config that activates keymaps and enables snippet support
@@ -113,4 +112,3 @@ require'lspinstall'.post_install_hook = function ()
   setup_servers() -- reload installed servers
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
-

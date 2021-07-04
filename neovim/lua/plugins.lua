@@ -22,7 +22,7 @@ return require('packer').startup(function()
     config = function()
       require("config.lsp")
     end,
-    requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" } }
+    requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" }, { "nvim-lua/lsp_extensions.nvim" } }
   }
   use {
     "norcalli/snippets.nvim",
