@@ -1,106 +1,105 @@
--- Global
-vim.opt.fillchars = { vert = ' ' }
-vim.opt.showtabline = 2
-vim.opt.scrolloff = 5
-vim.opt.mouse = 'a'
-vim.opt.backupcopy = 'yes'
-vim.opt.undolevels = 1000
-vim.opt.shortmess:append { c = true, S = true }
-vim.opt.showmode = false
-vim.opt.hidden = true
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.wrapscan = true
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.showcmd = true
-vim.opt.showmatch = true
-vim.opt.ignorecase = true
-vim.opt.hlsearch = true
-vim.opt.smartcase = true
-vim.opt.errorbells = false
-vim.opt.joinspaces = false
-vim.opt.title = true
-vim.opt.lazyredraw = true
-vim.opt.encoding = 'UTF-8'
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-vim.opt.clipboard = 'unnamedplus'
-vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
+local o = vim.opt
+local g = vim.g
 
--- Buffer
-vim.opt.fileformat = 'unix'
-vim.opt.tabstop = 2
-vim.opt.spelllang = 'it'
-vim.opt.softtabstop = 2
-vim.opt.swapfile = false
-vim.opt.undofile = false
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
+-- Remap , as leader key
+g.mapleader = ","
+g.maplocalleader = ","
 
--- Window
-vim.opt.number = true
-vim.opt.colorcolumn = "+1"
-vim.opt.foldmethod = 'indent'
-vim.opt.foldlevel = 1
-vim.opt.list = false
-vim.opt.foldnestmax = 10
-vim.opt.signcolumn = 'yes'
-vim.opt.relativenumber = true
-vim.opt.foldenable = false
-vim.opt.cursorline = true
+-- don't show last command
+o.showcmd = false
 
---Incremental live completion
-vim.o.inccommand = "nosplit"
+-- Yank and paste with the system clipboard
+o.clipboard = 'unnamedplus'
 
---Set highlight on search
-vim.o.hlsearch = false
-vim.o.incsearch = true
+-- Hides buffers instead of closing them
+o.hidden = true
 
---Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
+-- Insert spaces when TAB is pressed.
+o.expandtab = true
 
---Do not save when switching buffers
-vim.o.hidden = true
+-- Change number of spaces that a <Tab> counts for during editing ops
+o.softtabstop = 2
+o.tabstop = 2
 
---Enable mouse mode
-vim.o.mouse = "a"
+-- Indentation amount for < and > commands.
+o.shiftwidth = 2
 
---Enable break indent
-vim.o.breakindent = true
+-- do wrap long lines by default at margin 80
+o.wrap = true
 
---Save undo history
-vim.cmd[[set undofile]]
+-- Don't highlight current cursor line
+o.cursorline = false
 
--- set color theme
-vim.o.background = "dark"
-vim.opt.termguicolors = true
-vim.g.ayu_mirage = true
-vim.cmd[[colorscheme ayu]]
+-- Disable line/column number in status line
+o.ruler = false
+
+-- Only one line for command line
+o.cmdheight = 1
+
+-- Set preview window to appear at bottom
+o.splitbelow = true
+
+-- Don't dispay mode in command line
+o.showmode = false
+
+-- ignore case when searching
+o.ignorecase = true
+
+-- if the search string has an upper case letter in it, the search will be case sensitive
+o.smartcase = true
+
+-- Automatically re-read file if a change was detected outside of vim
+o.autoread = true
+
+-- Enable relative line numbers
+o.number = true
+o.relativenumber = true
 
 --Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn="yes"
+o.updatetime = 250
 
---Remap , as leader key
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+-- Always show the signcolumn, otherwise it would shift the text each time
+-- diagnostics appear/become resolved.
+o.signcolumn = "yes"
 
---Remap for dealing with word wrap
+-- Save undo history
+o.undolevels = 1000
+o.undofile = false
+
+-- Don't put backups in current dir
+o.backup = false
+o.writebackup = false
+o.backupdir = "~/.local/share/nvim/backup"
+
+-- default to utf-8
+o.encoding = 'UTF-8'
+o.fileencoding = 'UTF-8'
+
+--  showing special non-printable chars
+o.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
+
+-- Incremental live completion
+o.inccommand = "nosplit"
+
+-- Set completeopt to have a better completion experience
+o.completeopt = { 'menu', 'menuone', 'noselect' }
+
+--Set highlight on search
+o.hlsearch = false
+o.incsearch = true
+
+-- Enable mouse mode
+o.mouse = "a"
+
+-- Don't give completion messages like 'match 1 of 2'
+-- or 'The only match'
+o.shortmess:append { c = true, S = true }
+
+-- Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap=true, expr = true, silent = true})
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap= true, expr = true, silent = true})
-
---Remap escape to leave terminal mode
-vim.api.nvim_exec([[
-  augroup Terminal
-    autocmd!
-    au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-    au TermOpen * set nonu
-  augroup end
-]], false)
-
--- Change preview window location
-vim.g.splitbelow = true
+vim.api.nvim_set_keymap('n', '0', "v:count == 0 ? 'g0' : '0'", {noremap= true, expr = true, silent = true})
+vim.api.nvim_set_keymap('n', '$', "v:count == 0 ? 'g$' : '$'", {noremap= true, expr = true, silent = true})
 
 -- Highlight on yank
 vim.api.nvim_exec([[
@@ -113,5 +112,11 @@ vim.api.nvim_exec([[
 -- Y yank until the end of line
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt="menuone,noinsert"
+-- buffer navigation
+vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>q', ':bdelete<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true})
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true})
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true})
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true})

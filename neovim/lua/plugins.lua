@@ -11,7 +11,7 @@ return require('packer').startup(function()
     event = "BufRead",
     module = "nvim-treesitter.fold",
     config = function()
-      require('config.treesitter')
+      require("config.treesitter")
     end
   }
 
@@ -30,7 +30,7 @@ return require('packer').startup(function()
     "mfussenegger/nvim-dap",
     requires = { "theHamsta/nvim-dap-virtual-text" },
     config = function()
-      require('config.dap')
+      require("config.dap")
     end
   }
 
@@ -39,7 +39,7 @@ return require('packer').startup(function()
     "glepnir/dashboard-nvim",
     requires = { "junegunn/fzf.vim" },
     config = function()
-      require('config.dashboard')
+      require("config.dashboard")
     end
   }
   use {
@@ -47,7 +47,7 @@ return require('packer').startup(function()
     requires = { { "kyazdani42/nvim-web-devicons" }, { "yamatsum/nvim-nonicons" } },
     event = "VimEnter",
     config = function() 
-      require('config.lualine')
+      require("config.lualine")
     end
   }
   use {
@@ -58,14 +58,14 @@ return require('packer').startup(function()
       require("config.bufferline")
     end,
   }
-  use({
+  use {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     branch = "lua",
     config = function()
       require("config.blankline")
     end,
-  })
+  }
   use { 
     "Xuyuanp/scrollbar.nvim",
     config = function() 
@@ -89,43 +89,53 @@ return require('packer').startup(function()
   }
 
   -- Theme
-  use "Shatur/neovim-ayu"
+  use {
+    "Shatur/neovim-ayu",
+    config = function() 
+      require("config.theme")
+    end
+  }
 
   -- FZF
   use {
     "gfanto/fzf-lsp.nvim",
     requires = { "junegunn/fzf.vim" },
     config = function()
-      require('fzf_lsp').setup()
+      require("config.fzf")
     end
   }
 
   -- split diff view
-  use({
+  use {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     requires = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("config.diffview")
     end,
-  })
+  }
 
   -- terminal
   use {
     "numtostr/FTerm.nvim",
     config = function()
-      require('config.fterm')
+      require("config.fterm")
     end
   }
 
-  -- rooter
-  use "ygm2/rooter.nvim"
+  -- lsp rooter
+  use {
+    "ahmedkhalf/lsp-rooter.nvim",
+    config = function()
+      require("lsp-rooter").setup() 
+    end
+  }
 
   -- sql
   use {
     "nanotee/sqls.nvim",
     config = function()
-      require('config.sqls')
+      require("config.sqls")
     end
   }
 
@@ -133,19 +143,27 @@ return require('packer').startup(function()
   use {
     "lewis6991/spellsitter.nvim",
     config = function()
-      require('spellsitter').setup()
+      require("spellsitter").setup()
     end
   }
 
   use "editorconfig/editorconfig-vim"
 
   -- colors in vim
-  use({
+  use {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
     config = function()
       require("config.colorizer")
     end,
-  })
+  }
+
+  -- ranger integration
+  use {
+    "kevinhwang91/rnvimr",
+    config = function() 
+      require("config.rancher")
+    end
+  }
 
 end)
