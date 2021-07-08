@@ -25,7 +25,7 @@ return require('packer').startup(function()
     requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" }, { "nvim-lua/lsp_extensions.nvim" } }
   }
   use {
-    "norcalli/snippets.nvim",
+    "L3MON4D3/LuaSnip",
     config = function() 
       require("config.snippets")
     end

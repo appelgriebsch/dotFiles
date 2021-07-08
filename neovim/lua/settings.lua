@@ -83,7 +83,11 @@ o.inccommand = "nosplit"
 
 -- Set completeopt to have a better completion experience
 o.completeopt = { 'menu', 'menuone', 'noselect' }
-g.completion_enable_snippet = 'snippets.nvim'
+g.completion_enable_snippet = 'vim-vsnip'
+
+-- Don't give completion messages like 'match 1 of 2'
+-- or 'The only match'
+o.shortmess:append { c = true }
 
 --Set highlight on search
 o.hlsearch = false
@@ -91,10 +95,6 @@ o.incsearch = true
 
 -- Enable mouse mode
 o.mouse = "a"
-
--- Don't give completion messages like 'match 1 of 2'
--- or 'The only match'
-o.shortmess:append { c = true }
 
 -- Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap=true, expr = true, silent = true})
