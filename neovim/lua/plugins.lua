@@ -96,7 +96,7 @@ return require('packer').startup(function()
 
   -- Theme
   use {
-    "Shatur/neovim-ayu",
+    "projekt0n/github-nvim-theme",
     config = function() 
       require("config.theme")
     end

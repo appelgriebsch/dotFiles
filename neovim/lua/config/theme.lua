@@ -1,10 +1,13 @@
-local o = vim.opt
-local g = vim.g
-
 -- Enable true color support
-o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- Editor theme
-o.background = "dark"
-g.ayu_mirage = true
-vim.cmd[[colorscheme ayu]]
+vim.opt.background = "dark"
+
+-- setup Github Dimmed Theme
+require('github-theme').setup({
+	themeStyle = "dimmed",
+	keywordStyle = "NONE",
+	functionStyle = "NONE",
+	variableStyle = "NONE"
+})
