@@ -10,7 +10,7 @@ vim.api.nvim_exec(
   false
 )
 
-vim.g.scrollbar_shape = { head = "▲", body = "█", tail = "▼" }
+vim.g.scrollbar_shape = { head = "", body = "│", tail = "" }
 
 local hi = "LineNr"
 vim.g.scrollbar_highlight = { head = hi, body = hi, tail = hi }
