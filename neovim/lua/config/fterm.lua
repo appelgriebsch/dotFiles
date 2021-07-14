@@ -8,7 +8,6 @@ require("FTerm").setup({
 
 -- trigger with <space>t
 vim.api.nvim_set_keymap('n', '<space>t', '<CMD>lua require("FTerm").toggle()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<space>t', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', {noremap = true, silent = true})
 
 -- Remap escape to leave terminal mode
 vim.api.nvim_exec([[
