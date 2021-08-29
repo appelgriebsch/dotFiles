@@ -29,7 +29,7 @@ vim.g.dashboard_custom_section = {
    command = 'FzfLua live_grep'
   },
   find_marks = {
-   description = {' Find marks                              SPC m'},
+   description = {'  Find marks                              SPC m'},
    command = 'FzfLua marks'
   },
 }

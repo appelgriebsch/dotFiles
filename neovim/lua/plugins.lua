@@ -22,7 +22,13 @@ return require('packer').startup(function()
     config = function()
       require("config.lsp")
     end,
-    requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" }, { "nvim-lua/lsp_extensions.nvim" }, { "ray-x/lsp_signature.nvim" } }
+    requires = {
+      { "kabouzeid/nvim-lspinstall" },
+      { "onsails/lspkind-nvim" },
+      { "nvim-lua/completion-nvim" },
+      { "nvim-lua/lsp_extensions.nvim" },
+      { "ray-x/lsp_signature.nvim" }
+    }
   }
 
   -- UI
@@ -35,7 +41,10 @@ return require('packer').startup(function()
   }
   use {
     "hoob3rt/lualine.nvim",
-    requires = { { "kyazdani42/nvim-web-devicons" }, { "yamatsum/nvim-nonicons" } },
+    requires = {
+      { "kyazdani42/nvim-web-devicons" },
+      { "yamatsum/nvim-nonicons" }
+    },
     event = "VimEnter",
     config = function() 
       require("config.lualine")
@@ -75,7 +84,10 @@ return require('packer').startup(function()
   use "f-person/git-blame.nvim"
   use { 
     "pwntester/octo.nvim", 
-    requires = { { "nvim-lua/plenary.nvim" }, { "nvim-lua/popup.nvim" } } 
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-lua/popup.nvim" }
+    }
   }
 
   -- Theme
@@ -89,7 +101,10 @@ return require('packer').startup(function()
   -- FZF
   use {
     "ibhagwan/fzf-lua",
-    requires = { { "vijaymarupudi/nvim-fzf" }, { "kyazdani42/nvim-web-devicons" } },
+    requires = {
+      { "vijaymarupudi/nvim-fzf" },
+      { "kyazdani42/nvim-web-devicons" }
+    },
     config = function()
       require("config.fzf")
     end
@@ -165,6 +180,20 @@ return require('packer').startup(function()
     "kevinhwang91/rnvimr",
     config = function() 
       require("config.rancher")
+    end
+  }
+
+  -- REST client
+  use {
+    "NTBBloodbath/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup({
+        -- Open request results in a horizontal split
+        result_split_horizontal = false,
+        -- Skip SSL verification, useful for unknown certificates
+        skip_ssl_verification = false,
+      })
     end
   }
 
