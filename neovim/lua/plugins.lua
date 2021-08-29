@@ -25,15 +25,6 @@ return require('packer').startup(function()
     requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" }, { "nvim-lua/lsp_extensions.nvim" }, { "ray-x/lsp_signature.nvim" } }
   }
 
-  -- DAP
-  use {
-    "rcarriga/nvim-dap-ui",
-    requires = { { "mfussenegger/nvim-dap" }, { "theHamsta/nvim-dap-virtual-text" }, { "Pocco81/DAPInstall.nvim" } },
-    config = function()
-      require("config.dap")
-    end
-  }
-
   -- UI
   use {
     "glepnir/dashboard-nvim",

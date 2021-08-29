@@ -25,9 +25,11 @@ vim.cmd([[ let g:fzf_colors = { 'fg':    ['fg', 'Normal'], 'bg':      ['bg', 'No
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space>f', ':FzfLua files<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<space>h', ':FzfLua oldfiles<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<space>s', ':FzfLua live_grep<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>b', ':FzfLua buffers<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<space>s', ':FzfLua grep<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>g', ':FzfLua git_files<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<space>m', ':FzfLua marks<CR>', {noremap = true, silent = true})
 
 -- LSP
 vim.api.nvim_set_keymap('n', '<space>d', ':FzfLua lsp_workspace_diagnostics<CR>', {noremap = true, silent = true})
