@@ -33,6 +33,11 @@ vim.api.nvim_set_keymap('n', '<space>g', ':FzfLua git_files<CR>', {noremap = tru
 vim.api.nvim_set_keymap('n', '<space>d', ':FzfLua lsp_workspace_diagnostics<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>D', ':FzfLua lsp_document_diagnostics<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>o', ':FzfLua lsp_document_symbols<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<space>w', ':FzfLua lsp_workspace_symbols<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<space>w', ':FzfLua lsp_live_workspace_symbols<CR>', {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap('n', '<space>a', ':FzfLua lsp_code_actions<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>a', ':FzfLua lsp_code_actions<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>d', ':FzfLua lsp_definitions<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>D', ':FzfLua lsp_declarations<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>i', ':FzfLua lsp_implementations<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>t', ':FzfLua lsp_typedefs<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>r', ':FzfLua lsp_references<CR>', {noremap = true, silent = true})

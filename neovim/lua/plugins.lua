@@ -24,12 +24,6 @@ return require('packer').startup(function()
     end,
     requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" }, { "nvim-lua/lsp_extensions.nvim" }, { "ray-x/lsp_signature.nvim" } }
   }
-  use {
-    "norcalli/snippets.nvim",
-    config = function() 
-      require("config.snippets")
-    end
-  }
 
   -- DAP
   use {
