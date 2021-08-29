@@ -25,7 +25,7 @@ return require('packer').startup(function()
     requires = { { "kabouzeid/nvim-lspinstall" }, { "onsails/lspkind-nvim" }, { "nvim-lua/completion-nvim" }, { "nvim-lua/lsp_extensions.nvim" }, { "ray-x/lsp_signature.nvim" } }
   }
   use {
-    "L3MON4D3/LuaSnip",
+    "norcalli/snippets.nvim",
     config = function() 
       require("config.snippets")
     end
@@ -33,8 +33,8 @@ return require('packer').startup(function()
 
   -- DAP
   use {
-    "mfussenegger/nvim-dap",
-    requires = { "theHamsta/nvim-dap-virtual-text" },
+    "rcarriga/nvim-dap-ui",
+    requires = { { "mfussenegger/nvim-dap" }, { "theHamsta/nvim-dap-virtual-text" }, { "Pocco81/DAPInstall.nvim" } },
     config = function()
       require("config.dap")
     end
@@ -43,7 +43,7 @@ return require('packer').startup(function()
   -- UI
   use {
     "glepnir/dashboard-nvim",
-    requires = { "junegunn/fzf.vim" },
+    requires = { "ibhagwan/fzf-lua" },
     config = function()
       require("config.dashboard")
     end
@@ -67,13 +67,12 @@ return require('packer').startup(function()
   use {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
-    branch = "lua",
     config = function()
       require("config.blankline")
     end,
   }
   use { 
-    "Xuyuanp/scrollbar.nvim",
+    "dstein64/nvim-scrollview",
     config = function() 
       require("config.scrollbar") 
     end 
@@ -104,11 +103,15 @@ return require('packer').startup(function()
 
   -- FZF
   use {
-    "gfanto/fzf-lsp.nvim",
-    requires = { "junegunn/fzf.vim" },
+    "ibhagwan/fzf-lua",
+    requires = { { "vijaymarupudi/nvim-fzf" }, { "kyazdani42/nvim-web-devicons" } },
     config = function()
       require("config.fzf")
     end
+  }
+  use {
+    "junegunn/fzf",
+    run = "./install --bin"
   }
 
   -- split diff view
@@ -162,6 +165,14 @@ return require('packer').startup(function()
     config = function()
       require("config.colorizer")
     end,
+  }
+
+  -- surround mode
+  use {
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require "surround".setup {}
+    end
   }
 
   -- ranger integration

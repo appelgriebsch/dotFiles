@@ -31,7 +31,16 @@ local on_attach = function(client, bufnr)
 
   -- enable completion framework
   require'completion'.on_attach(client, bufnr)
-  require'lsp_signature'.on_attach(client, bufnr) 
+
+  local cfg = {
+    bind = true,
+    handler_opts = {
+      border = "single"
+    },
+    floating_window = false,
+    hint_prefix = " "
+  }
+  require'lsp_signature'.on_attach(cfg, bufnr)
 
   -- Mappings.
   local opts = { noremap=true, silent=true }

@@ -83,7 +83,8 @@ o.inccommand = "nosplit"
 
 -- Set completeopt to have a better completion experience
 o.completeopt = { 'menu', 'menuone', 'noselect' }
-g.completion_enable_snippet = 'vim-vsnip'
+g.completion_enable_snippet = 'snippets.nvim'
+g.completion_enable_auto_signature = 0
 
 -- Don't give completion messages like 'match 1 of 2'
 -- or 'The only match'
