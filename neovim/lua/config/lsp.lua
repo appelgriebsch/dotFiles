@@ -107,6 +107,26 @@ local function setup_servers()
       config.filetypes = {"c", "cpp"}; -- we don't want objective-c and objective-cpp!
     end
 
+    if server == "java" then
+      config.init_options = {
+        settings = {
+          java = {
+            signatureHelp = { enabled = true };
+            completion = {
+              favoriteStaticMembers = {
+                  "org.hamcrest.MatcherAssert.assertThat",
+                  "org.hamcrest.Matchers.*",
+                  "org.hamcrest.CoreMatchers.*",
+              }
+            }
+          };
+        };
+        extendedClientCapabilities = {
+            classFileContentsSupport = true
+        }
+      };
+    end
+
     require'lspconfig'[server].setup(config)
   end
 end
