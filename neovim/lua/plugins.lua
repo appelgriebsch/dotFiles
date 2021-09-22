@@ -34,7 +34,6 @@ return require('packer').startup(function()
   -- UI
   use {
     "glepnir/dashboard-nvim",
-    requires = { "ibhagwan/fzf-lua" },
     config = function()
       require("config.dashboard")
     end
@@ -87,7 +86,10 @@ return require('packer').startup(function()
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-lua/popup.nvim" }
-    }
+    },
+    config = function()
+      require("octo").setup()
+    end
   }
 
   -- Theme
@@ -98,21 +100,19 @@ return require('packer').startup(function()
     end
   }
 
-  -- FZF
+  -- Telescope
   use {
-    "ibhagwan/fzf-lua",
-    requires = {
-      { "vijaymarupudi/nvim-fzf" },
+    "nvim-telescope/telescope.nvim",
+    requires = { 
+      { "nvim-lua/plenary.nvim" },
+      { "gbrlsnchs/telescope-lsp-handlers.nvim" },
       { "kyazdani42/nvim-web-devicons" }
     },
-    config = function()
-      require("config.fzf")
+    config = function() 
+      require("config.telescope")
     end
   }
-  use {
-    "junegunn/fzf",
-    run = "./install --bin"
-  }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- split diff view
   use {

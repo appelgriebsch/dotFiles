@@ -1,3 +1,3 @@
 require'sqls'.setup({
-  picker = 'fzf'
+  picker = 'telescope'
 })
