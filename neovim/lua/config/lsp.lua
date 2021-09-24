@@ -54,6 +54,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<leader>j', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
+  buf_set_keymap('n', '<leader>n', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>m', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
