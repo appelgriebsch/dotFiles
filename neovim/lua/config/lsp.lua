@@ -33,7 +33,7 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- enable completion framework
-  require'completion'.on_attach(client, bufnr)
+  require('completion').on_attach(client, bufnr)
 
   local cfg = {
     bind = true,
@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
     floating_window = false,
     hint_prefix = " "
   }
-  require'lsp_signature'.on_attach(cfg, bufnr)
+  require('lsp_signature').on_attach(cfg, bufnr)
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -75,8 +75,6 @@ local on_attach = function(client, bufnr)
     ]], false)
   end
 
-  -- enable inlay hints for Rust
-  vim.cmd([[ autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints { enabled = {"TypeHint", "ChainingHint", "ParameterHint"} } ]])
 end
 
 -- config that activates keymaps and enables snippet support

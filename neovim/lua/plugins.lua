@@ -26,7 +26,6 @@ return require('packer').startup(function()
       { "kabouzeid/nvim-lspinstall" },
       { "onsails/lspkind-nvim" },
       { "nvim-lua/completion-nvim" },
-      { "nvim-lua/lsp_extensions.nvim" },
       { "ray-x/lsp_signature.nvim" }
     }
   }
