@@ -1,5 +1,32 @@
 require('nvim-treesitter.configs').setup({
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {
+    "bash",
+    "c",
+    "cpp",
+    "css",
+    "dockerfile",
+    "dot",
+    "graphql",
+    "hcl",
+    "html",
+    "java",
+    "javascript",
+    "jsdoc",
+    "json",
+    "json5",
+    "jsonc",
+    "julia",
+    "llvm",
+    "lua",
+    "python",
+    "regex",
+    "rust",
+    "sparql",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml"
+  }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = { "haskell" },
   rainbow = {
     enable = true,

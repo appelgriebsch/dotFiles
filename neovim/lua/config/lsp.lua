@@ -121,7 +121,7 @@ local function setup_servers()
           };
         };
         extendedClientCapabilities = {
-            classFileContentsSupport = true
+          classFileContentsSupport = true
         }
       };
     end
