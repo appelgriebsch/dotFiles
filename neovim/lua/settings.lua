@@ -12,7 +12,7 @@ o.showcmd = false
 o.clipboard = 'unnamedplus'
 
 -- Hides buffers instead of closing them
-o.hidden = true
+o.hidden = false
 
 -- Insert spaces when TAB is pressed.
 o.expandtab = true
@@ -117,7 +117,7 @@ vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
 -- buffer navigation
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true})
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>q', ':bdelete<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>q', ':BDelete! this<CR>', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true})
