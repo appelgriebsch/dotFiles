@@ -88,25 +88,18 @@ local function make_config()
   }
 end
 
--- LSP settings
-local function setup_servers()
-  require'lspinstall'.setup()
+local lsp_installer = require("nvim-lsp-installer")
 
-  -- get all installed servers
-  local servers = require'lspinstall'.installed_servers()
-  -- ... and add manually installed servers
-  table.insert(servers, "ccls")
+-- initiate servers
+require('lspkind').init()
 
-  for _, server in pairs(servers) do
-    local config = make_config()
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+lsp_installer.on_server_ready(function(server)
 
-    -- language specific config
-    if server == "ccls" then
-      config.filetypes = {"c", "cpp"}; -- we don't want objective-c and objective-cpp!
-    end
+    local opts = make_config()
 
-    if server == "java" then
-      config.init_options = {
+    if server == "jdtls" then
+      opts.init_options = {
         settings = {
           java = {
             signatureHelp = { enabled = true };
@@ -125,16 +118,7 @@ local function setup_servers()
       };
     end
 
-    require'lspconfig'[server].setup(config)
-  end
-end
+    server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
 
--- initiate servers
-require('lspkind').init()
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+end)

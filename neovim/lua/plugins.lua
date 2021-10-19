@@ -23,7 +23,7 @@ return require('packer').startup(function()
       require("config.lsp")
     end,
     requires = {
-      { "kabouzeid/nvim-lspinstall" },
+      { "williamboman/nvim-lsp-installer" },
       { "onsails/lspkind-nvim" },
       { "nvim-lua/completion-nvim" },
       { "ray-x/lsp_signature.nvim" }
