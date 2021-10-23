@@ -12,7 +12,7 @@ o.showcmd = false
 o.clipboard = 'unnamedplus'
 
 -- Hides buffers instead of closing them
-o.hidden = false
+o.hidden = true
 
 -- Insert spaces when TAB is pressed.
 o.expandtab = true
