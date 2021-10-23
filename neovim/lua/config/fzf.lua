@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap('n', '<space>D', ':FzfLua lsp_document_diagnostics<CR>',
 vim.api.nvim_set_keymap('n', '<space>o', ':FzfLua lsp_document_symbols<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>w', ':FzfLua lsp_live_workspace_symbols<CR>', {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap('n', '<leader>a', ':FzfLua lsp_code_actions<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>a', ':CodeActionMenu<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gd', ':FzfLua lsp_definitions<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gD', ':FzfLua lsp_declarations<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gi', ':FzfLua lsp_implementations<CR>', {noremap = true, silent = true})

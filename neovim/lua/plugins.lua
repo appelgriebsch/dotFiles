@@ -17,17 +17,32 @@ return require('packer').startup(function()
 
   -- LSP
   use {
-    "neovim/nvim-lspconfig",
-    event = "BufReadPre",
+    "hrsh7th/nvim-cmp",
     config = function()
       require("config.lsp")
     end,
     requires = {
+      { "neovim/nvim-lspconfig" },
       { "williamboman/nvim-lsp-installer" },
       { "onsails/lspkind-nvim" },
-      { "nvim-lua/completion-nvim" },
-      { "ray-x/lsp_signature.nvim" }
+      { "ray-x/lsp_signature.nvim" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-vsnip" },
+      { "hrsh7th/vim-vsnip" },
+      { "Saecki/crates.nvim" }
     }
+  }
+  use {
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu"
+  }
+  use {
+    "ahmedkhalf/lsp-rooter.nvim",
+    config = function()
+      require("lsp-rooter").setup()
+    end
   }
 
   -- UI
@@ -72,13 +87,13 @@ return require('packer').startup(function()
   use {
     "kazhala/close-buffers.nvim",
     config = function()
-      require('close_buffers').setup({
-        filetype_ignore = {},  -- Filetype to ignore when running deletions
-        file_glob_ignore = {},  -- File name glob pattern to ignore when running deletions (e.g. '*.md')
-        file_regex_ignore = {}, -- File name regex pattern to ignore when running deletions (e.g. '.*[.]md')
-        preserve_window_layout = { 'this', 'nameless' },  -- Types of deletion that should preserve the window layout
-        next_buffer_cmd = nil,  -- Custom function to retrieve the next buffer when preserving window layout
-      })
+      require('close_buffers').setup()
+    end
+  }
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("config.notify")
     end
   }
 
@@ -92,16 +107,6 @@ return require('packer').startup(function()
     end,
   }
   use "f-person/git-blame.nvim"
-  use { 
-    "pwntester/octo.nvim", 
-    requires = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-lua/popup.nvim" }
-    },
-    config = function()
-      require("octo").setup()
-    end
-  }
 
   -- Theme
   use {
@@ -145,22 +150,6 @@ return require('packer').startup(function()
     end
   }
 
-  -- lsp rooter
-  use {
-    "ahmedkhalf/lsp-rooter.nvim",
-    config = function()
-      require("lsp-rooter").setup() 
-    end
-  }
-
-  -- sql
-  use {
-    "nanotee/sqls.nvim",
-    config = function()
-      require("config.sqls")
-    end
-  }
-
   -- spellchecker
   use {
     "lewis6991/spellsitter.nvim",
@@ -184,7 +173,7 @@ return require('packer').startup(function()
   use {
     "blackCauldron7/surround.nvim",
     config = function()
-      require "surround".setup {}
+      require("surround").setup({ mappings_style = "surround" })
     end
   }
 
@@ -207,6 +196,23 @@ return require('packer').startup(function()
         -- Skip SSL verification, useful for unknown certificates
         skip_ssl_verification = false,
       })
+    end
+  }
+
+  -- orgmode
+  use {
+    "kristijanhusak/orgmode.nvim",
+    config = function()
+      require('orgmode').setup{}
+    end
+  }
+
+  -- javascript packages
+  use {
+    "vuki656/package-info.nvim",
+    requires = "MunifTanjim/nui.nvim",
+    config = function()
+      require('package-info').setup()
     end
   }
 

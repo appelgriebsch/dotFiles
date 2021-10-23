@@ -1,12 +1,41 @@
--- Map :Format to vim.lsp.buf.formatting()
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+local lspkind = require('lspkind')
+lspkind.init()
 
--- map ctrl+space to bring up the completion dialog in insert mode
-vim.cmd([[ inoremap <expr> <C-space>  "\<C-p>" ]])
+require('crates').setup()
 
--- Use <Tab> and <S-Tab> to navigate through popup menu
-vim.cmd([[ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>" ]])
-vim.cmd([[ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>" ]])
+local cmp = require('cmp')
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  formatting = {
+    format = lspkind.cmp_format(),
+  },
+  mapping = {
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'crates' }
+  })
+})
 
 -- Automatically update diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -32,9 +61,6 @@ local on_attach = function(client, bufnr)
   -- set omnifunc to lsp version
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- enable completion framework
-  require('completion').on_attach(client, bufnr)
-
   local cfg = {
     bind = true,
     handler_opts = {
@@ -43,6 +69,7 @@ local on_attach = function(client, bufnr)
     floating_window = false,
     hint_prefix = " "
   }
+
   require('lsp_signature').on_attach(cfg, bufnr)
 
   -- Mappings.
@@ -78,8 +105,7 @@ end
 
 -- config that activates keymaps and enables snippet support
 local function make_config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   return {
     -- enable snippet support
     capabilities = capabilities,
@@ -90,8 +116,16 @@ end
 
 local lsp_installer = require("nvim-lsp-installer")
 
--- initiate servers
-require('lspkind').init()
+-- Provide settings first!
+lsp_installer.settings {
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+}
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 lsp_installer.on_server_ready(function(server)
