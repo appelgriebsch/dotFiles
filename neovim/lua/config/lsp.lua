@@ -1,9 +1,7 @@
 local lspkind = require('lspkind')
-lspkind.init()
-
-require('crates').setup()
 local luasnip = require('luasnip')
 local cmp = require('cmp')
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -48,6 +46,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+  }, {
     { name = 'buffer' },
     { name = 'path' },
     { name = 'crates' }
@@ -150,24 +149,16 @@ lsp_installer.on_server_ready(function(server)
 
     local opts = make_config()
 
-    if server == "jdtls" then
-      opts.init_options = {
-        settings = {
-          java = {
-            signatureHelp = { enabled = true };
-            completion = {
-              favoriteStaticMembers = {
-                  "org.hamcrest.MatcherAssert.assertThat",
-                  "org.hamcrest.Matchers.*",
-                  "org.hamcrest.CoreMatchers.*",
-              }
-            }
-          };
-        };
-        extendedClientCapabilities = {
-          classFileContentsSupport = true
-        }
-      };
+    if server.name == "jdtls" then
+      vim.env.WORKSPACE = vim.fn.getcwd()
+    end
+
+    if server.name == "jsonls" then
+      opts.settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+        },
+      }
     end
 
     server:setup(opts)

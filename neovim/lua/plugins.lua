@@ -24,19 +24,39 @@ return require('packer').startup(function()
     requires = {
       { "neovim/nvim-lspconfig" },
       { "williamboman/nvim-lsp-installer" },
-      { "onsails/lspkind-nvim" },
       { "ray-x/lsp_signature.nvim" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
-      { "L3MON4D3/LuaSnip" },
-      { "Saecki/crates.nvim" }
+      { "L3MON4D3/LuaSnip" }
     }
+  }
+  use {
+    "onsails/lspkind-nvim",
+    config = function ()
+      require("lspkind").init()
+    end
   }
   use {
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu"
+  }
+  use {
+    "b0o/schemastore.nvim"
+  }
+  use {
+    "Saecki/crates.nvim",
+    config = function ()
+      require("crates").setup()
+    end
+  }
+  use {
+    "vuki656/package-info.nvim",
+    requires = { "MunifTanjim/nui.nvim" },
+    config = function()
+      require("package-info").setup()
+    end
   }
 
   -- UI
@@ -201,15 +221,6 @@ return require('packer').startup(function()
     "kristijanhusak/orgmode.nvim",
     config = function()
       require('orgmode').setup{}
-    end
-  }
-
-  -- javascript packages
-  use {
-    "vuki656/package-info.nvim",
-    requires = "MunifTanjim/nui.nvim",
-    config = function()
-      require('package-info').setup()
     end
   }
 
