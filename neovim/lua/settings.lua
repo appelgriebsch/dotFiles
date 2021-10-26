@@ -101,6 +101,10 @@ o.mouse = "a"
 g.rooter_pattern = {'.git', 'node_modules', 'src', 'Makefile', 'cargo.toml', 'package.json', 'pom.xml'}
 g.outermost_root = true
 
+-- configure code actions menu
+g.code_action_menu_show_details = false
+g.code_action_menu_show_diff = true
+
 -- Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap=true, expr = true, silent = true})
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap= true, expr = true, silent = true})

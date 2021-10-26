@@ -149,10 +149,6 @@ lsp_installer.on_server_ready(function(server)
 
     local opts = make_config()
 
-    if server.name == "jdtls" then
-      vim.env.WORKSPACE = vim.fn.getcwd()
-    end
-
     if server.name == "jsonls" then
       opts.settings = {
         json = {
