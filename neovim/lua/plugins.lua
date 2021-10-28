@@ -61,9 +61,10 @@ return require('packer').startup(function()
   }
 
   -- UI
-  use {
-    "glepnir/dashboard-nvim",
-    config = function()
+use {
+    "goolord/alpha-nvim",
+    requires = { "kyazdani42/nvim-web-devicons" },
+    config = function ()
       require("config.dashboard")
     end
   }
