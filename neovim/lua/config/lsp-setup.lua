@@ -2,6 +2,8 @@ local lspkind = require('lspkind')
 local luasnip = require('luasnip')
 local cmp = require('cmp')
 
+local M = {}
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -121,7 +123,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- config that activates keymaps and enables snippet support
-local function make_config()
+function M.make_config()
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   return {
     -- enable snippet support
@@ -131,33 +133,4 @@ local function make_config()
   }
 end
 
-local lsp_installer = require("nvim-lsp-installer")
-
--- Provide settings first!
-lsp_installer.settings {
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
-    }
-  }
-}
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-lsp_installer.on_server_ready(function(server)
-
-    local opts = make_config()
-
-    if server.name == "jsonls" then
-      opts.settings = {
-        json = {
-          schemas = require('schemastore').json.schemas(),
-        },
-      }
-    end
-
-    server:setup(opts)
-    vim.cmd [[ do User LspAttachBuffers ]]
-
-end)
+return M

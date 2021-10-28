@@ -17,14 +17,14 @@ return require('packer').startup(function()
 
   -- LSP
   use {
-    "hrsh7th/nvim-cmp",
+    "williamboman/nvim-lsp-installer",
     config = function()
-      require("config.lsp")
+      require("config.lsp-installer")
     end,
     requires = {
       { "neovim/nvim-lspconfig" },
-      { "williamboman/nvim-lsp-installer" },
       { "ray-x/lsp_signature.nvim" },
+      { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
@@ -57,6 +57,13 @@ return require('packer').startup(function()
     requires = { "MunifTanjim/nui.nvim" },
     config = function()
       require("package-info").setup()
+    end
+  }
+  use {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+    config = function()
+      require("config.jdtls")
     end
   }
 
