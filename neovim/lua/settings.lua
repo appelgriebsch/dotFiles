@@ -103,7 +103,7 @@ g.outermost_root = true
 
 -- configure code actions menu
 g.code_action_menu_show_details = false
-g.code_action_menu_show_diff = true
+g.code_action_menu_show_diff = false
 
 -- Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap=true, expr = true, silent = true})

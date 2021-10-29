@@ -133,6 +133,16 @@ use {
     end,
   }
   use "f-person/git-blame.nvim"
+  use {
+    "pwntester/octo.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-lua/popup.nvim" }
+    },
+    config = function()
+      require("octo").setup()
+    end
+  }
 
   -- Theme
   use {
@@ -142,21 +152,18 @@ use {
     end
   }
 
-  -- FZF
+  -- Telescope
   use {
-    "ibhagwan/fzf-lua",
+    "nvim-telescope/telescope.nvim",
     requires = {
-      { "vijaymarupudi/nvim-fzf" },
+      { "nvim-lua/plenary.nvim" },
       { "kyazdani42/nvim-web-devicons" }
     },
     config = function()
-      require("config.fzf")
+      require("config.telescope")
     end
   }
-  use {
-    "junegunn/fzf",
-    run = "./install --bin"
-  }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- split diff view
   use {
@@ -222,14 +229,6 @@ use {
         -- Skip SSL verification, useful for unknown certificates
         skip_ssl_verification = false,
       })
-    end
-  }
-
-  -- orgmode
-  use {
-    "kristijanhusak/orgmode.nvim",
-    config = function()
-      require('orgmode').setup{}
     end
   }
 
