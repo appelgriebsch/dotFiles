@@ -61,14 +61,18 @@ return require('packer').startup(function()
   }
   use {
     "mfussenegger/nvim-jdtls",
-    ft = "java",
     config = function()
-      require("config.jdtls")
+      vim.cmd [[
+        augroup jdtls_lsp
+          autocmd!
+          autocmd FileType java lua require("config.jdtls").setup()
+        augroup end
+      ]]
     end
   }
 
   -- UI
-use {
+  use {
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
     config = function ()
