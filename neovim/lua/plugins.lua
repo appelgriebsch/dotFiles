@@ -229,12 +229,4 @@ return require('packer').startup(function()
     end
   }
 
-  -- orgmode
-  use {
-    "kristijanhusak/orgmode.nvim",
-    config = function()
-      require('orgmode').setup()
-    end
-  }
-
 end)
