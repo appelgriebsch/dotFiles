@@ -137,6 +137,16 @@ return require('packer').startup(function()
     end,
   }
   use "f-person/git-blame.nvim"
+  use {
+    "pwntester/octo.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-lua/popup.nvim" }
+    },
+    config = function()
+      require("octo").setup()
+    end
+  }
 
   -- Theme
   use {
@@ -146,21 +156,18 @@ return require('packer').startup(function()
     end
   }
 
-  -- FZF
+  -- Telescope
   use {
-    "ibhagwan/fzf-lua",
+    "nvim-telescope/telescope.nvim",
     requires = {
-      { "vijaymarupudi/nvim-fzf" },
+      { "nvim-lua/plenary.nvim" },
       { "kyazdani42/nvim-web-devicons" }
     },
     config = function()
-      require("config.fzf")
+      require("config.telescope")
     end
   }
-  use {
-    "junegunn/fzf",
-    run = "./install --bin"
-  }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- split diff view
   use {
@@ -204,14 +211,6 @@ return require('packer').startup(function()
     "blackCauldron7/surround.nvim",
     config = function()
       require("surround").setup({ mappings_style = "surround" })
-    end
-  }
-
-  -- ranger integration
-  use {
-    "kevinhwang91/rnvimr",
-    config = function() 
-      require("config.rancher")
     end
   }
 
