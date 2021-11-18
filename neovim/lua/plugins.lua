@@ -214,6 +214,14 @@ return require('packer').startup(function()
     end
   }
 
+  -- ranger integration
+  use {
+    "kevinhwang91/rnvimr",
+    config = function()
+      require("config.ranger")
+    end
+  }
+
   -- REST client
   use {
     "NTBBloodbath/rest.nvim",

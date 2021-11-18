@@ -1,4 +1,15 @@
 require('telescope').setup({
+  defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        preview_cutoff = 0.2,
+        preview_height = 0.4
+      },
+      height = 0.9,
+      width = 0.9
+    }
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
