@@ -1,0 +1,3 @@
+[submodule "iterm2/geometry-zsh"]
+	path = iterm2/geometry-zsh
+	url = https://github.com/geometry-zsh/geometry
