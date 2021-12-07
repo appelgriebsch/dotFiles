@@ -126,6 +126,17 @@ return require('packer').startup(function()
   use {
     "ygm2/rooter.nvim"
   }
+  use {
+    "stevearc/dressing.nvim"
+  }
+  use {
+    "sudormrfbin/cheatsheet.nvim",
+    requires = {
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    }
+  }
 
   -- GIT
   use {
