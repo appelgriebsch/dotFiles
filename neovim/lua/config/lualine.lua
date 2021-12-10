@@ -29,7 +29,7 @@ local config = {
   sections = {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
-    lualine_c = { { "diagnostics", sources = { "nvim_lsp" } }, "filename" },
+    lualine_c = { { "diagnostics", sources = { "nvim_diagnostic" } }, "filename" },
     lualine_x = { "filetype", lsp_progress },
     lualine_y = { "progress" },
     lualine_z = { clock },
