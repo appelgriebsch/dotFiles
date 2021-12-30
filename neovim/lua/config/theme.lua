@@ -1,16 +1,13 @@
--- Enable true color support
-vim.opt.termguicolors = true
-
 -- Editor theme
 vim.opt.background = "dark"
 
 -- setup Github Dimmed Theme
 require('github-theme').setup({
-  theme_style = "dimmed",
+  comment_style = "NONE",
   keyword_style = "NONE",
   function_style = "NONE",
   variable_style = "NONE",
-  dark_float = true,
+  theme_style = "dimmed",
+  dark_float = true
 })
 
-vim.g.colorscheme = "github_dimmed"

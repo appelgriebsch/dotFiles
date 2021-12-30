@@ -179,6 +179,7 @@ return require('packer').startup(function()
     end
   }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use { "nvim-telescope/telescope-file-browser.nvim" }
 
   -- split diff view
   use {
@@ -222,14 +223,6 @@ return require('packer').startup(function()
     "blackCauldron7/surround.nvim",
     config = function()
       require("surround").setup({ mappings_style = "surround" })
-    end
-  }
-
-  -- ranger integration
-  use {
-    "kevinhwang91/rnvimr",
-    config = function()
-      require("config.ranger")
     end
   }
 
