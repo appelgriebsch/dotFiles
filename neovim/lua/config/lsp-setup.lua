@@ -3,6 +3,7 @@ local luasnip = require('luasnip')
 local cmp = require('cmp')
 
 local M = {}
+M.signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
 cmp.setup({
   snippet = {
@@ -64,10 +65,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   severity_sort = true,
 })
 
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-
-for type, icon in pairs(signs) do
-  local hl = "LspDiagnosticsSign" .. type
+for type, icon in pairs(M.signs) do
+  local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
@@ -125,6 +124,7 @@ end
 -- config that activates keymaps and enables snippet support
 function M.make_config()
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
   return {
     -- enable snippet support
     capabilities = capabilities,
