@@ -41,10 +41,10 @@ vim.api.nvim_set_keymap('n', '<space>g', ':Telescope git_files<CR>', {noremap = 
 vim.api.nvim_set_keymap('n', '<space>m', ':Telescope marks<CR>', {noremap = true, silent = true})
 
 -- LSP
-vim.api.nvim_set_keymap('n', '<leader>dw', ':Telescope lsp_workspace_diagnostics<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>db', ':Telescope lsp_document_diagnostics<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>sd', ':Telescope lsp_document_symbols<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>dw', ':Telescope diagnostics<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>db', ':Telescope diagnostics bufno=0<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>sw', ':Telescope lsp_workspace_symbols<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>sb', ':Telescope lsp_document_symbols<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ca', ':CodeActionMenu<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gd', ':Telescope lsp_definitions<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gD', ':Telescope lsp_declarations<CR>', {noremap = true, silent = true})
