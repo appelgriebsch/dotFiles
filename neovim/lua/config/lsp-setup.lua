@@ -3,7 +3,6 @@ local luasnip = require('luasnip')
 local cmp = require('cmp')
 
 local M = {}
-M.signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
 cmp.setup({
   snippet = {
@@ -65,9 +64,27 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   severity_sort = true,
 })
 
-for type, icon in pairs(M.signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+local diagnostic_signs = {" ", " ", " ", " "}
+local diagnostic_severity_fullnames = {"Error", "Warning", "Information", "Hint"}
+local diagnostic_severity_shortnames = {"Error", "Warn", "Info", "Hint"}
+
+for index, icon in ipairs(diagnostic_signs) do
+  local fullname = diagnostic_severity_fullnames[index]
+  local shortname = diagnostic_severity_shortnames[index]
+
+  vim.fn.sign_define("DiagnosticSign" .. shortname, {
+    text = icon,
+    texthl = "Diagnostic" .. shortname,
+    linehl = "",
+    numhl = "",
+  })
+
+  vim.fn.sign_define("LspDiagnosticsSign" .. fullname, {
+    text = icon,
+    texthl = "LspDiagnosticsSign" .. fullname,
+    linehl = "",
+    numhl = "",
+  })
 end
 
 -- keymaps
