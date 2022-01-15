@@ -208,6 +208,10 @@ return require('packer').startup(function()
   }
 
   use "editorconfig/editorconfig-vim"
+  use({
+    "mrjones2014/dash.nvim",
+    run = "make install",
+  })
 
   -- colors in vim
   use {

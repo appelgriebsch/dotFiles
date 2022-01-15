@@ -20,6 +20,9 @@ require('telescope').setup({
     },
     file_browser = {
       theme = "ivy"
+    },
+    dash = {
+      search_engine = 'ddg',
     }
   }
 })
@@ -39,6 +42,7 @@ vim.api.nvim_set_keymap('n', '<space>s', ':Telescope live_grep<CR>', {noremap = 
 vim.api.nvim_set_keymap('n', '<space>b', ':Telescope buffers<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>g', ':Telescope git_files<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<space>m', ':Telescope marks<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<space>d', ':Dash<CR>', {noremap = true, silent = true})
 
 -- LSP
 vim.api.nvim_set_keymap('n', '<leader>dw', ':Telescope diagnostics<CR>', {noremap = true, silent = true})
@@ -46,6 +50,7 @@ vim.api.nvim_set_keymap('n', '<leader>db', ':Telescope diagnostics bufno=0<CR>',
 vim.api.nvim_set_keymap('n', '<leader>sw', ':Telescope lsp_workspace_symbols<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>sb', ':Telescope lsp_document_symbols<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ca', ':CodeActionMenu<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>cd', ':DashWord<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gd', ':Telescope lsp_definitions<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gD', ':Telescope lsp_declarations<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gi', ':Telescope lsp_implementations<CR>', {noremap = true, silent = true})
