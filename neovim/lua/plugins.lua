@@ -1,5 +1,3 @@
-local packer = require("packer")
-
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -229,6 +227,9 @@ return require('packer').startup(function()
       require("surround").setup({ mappings_style = "surround" })
     end
   }
+
+  -- registers
+  use "tversteeg/registers.nvim"
 
   -- REST client
   use {
