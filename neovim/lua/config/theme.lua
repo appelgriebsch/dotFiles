@@ -7,7 +7,7 @@ require('github-theme').setup({
   keyword_style = "NONE",
   function_style = "NONE",
   variable_style = "NONE",
-  theme_style = "dimmed",
+  theme_style = "dark_default",
   dark_float = true
 })
 
