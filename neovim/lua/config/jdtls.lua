@@ -1,6 +1,7 @@
 local root_markers = {'pom.xml', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local home = os.getenv('HOME')
+local cfg_folder = jit.os == 'OSX' and 'config_mac' or 'config_linux'
 local workspace_folder = home .. "/.local/share/nvim/jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
 local jdtls = require("jdtls")
@@ -21,7 +22,7 @@ function M.setup()
     '-Dlog.level=ALL',
     '-Xms1g',
     '-jar', vim.fn.glob(home .. '/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
-    '-configuration', home .. '/.local/share/nvim/lsp_servers/jdtls/config_linux',
+    '-configuration', home .. '/.local/share/nvim/lsp_servers/jdtls/' .. cfg_folder,
     '-data', workspace_folder,
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
