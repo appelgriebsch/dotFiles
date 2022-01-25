@@ -2,7 +2,7 @@ local root_markers = {'pom.xml', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local home = os.getenv('HOME')
 local cfg_folder = jit.os == 'OSX' and 'config_mac' or 'config_linux'
-local workspace_folder = home .. "/.local/share/nvim/jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local workspace_folder = "/tmp/nvim/jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
 local jdtls = require("jdtls")
 local lsp_setup = require("config.lsp-setup")
