@@ -2,6 +2,14 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Theme
+  use {
+    "Shatur/neovim-ayu",
+    config = function()
+      require("config.theme")
+    end
+  }
+
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use {
@@ -33,7 +41,9 @@ return require('packer').startup(function()
   use {
     "onsails/lspkind-nvim",
     config = function ()
-      require("lspkind").init()
+      require("lspkind").init({
+         mode = 'symbol'
+      })
     end
   }
   use {
@@ -81,7 +91,8 @@ return require('packer').startup(function()
     "hoob3rt/lualine.nvim",
     requires = {
       { "kyazdani42/nvim-web-devicons" },
-      { "yamatsum/nvim-nonicons" }
+      { "yamatsum/nvim-nonicons" },
+      { "Shatur/neovim-ayu" }
     },
     event = "VimEnter",
     config = function() 
@@ -127,14 +138,6 @@ return require('packer').startup(function()
   use {
     "stevearc/dressing.nvim"
   }
-  use {
-    "sudormrfbin/cheatsheet.nvim",
-    requires = {
-      { "nvim-telescope/telescope.nvim" },
-      { "nvim-lua/popup.nvim" },
-      { "nvim-lua/plenary.nvim" },
-    }
-  }
 
   -- GIT
   use {
@@ -146,24 +149,6 @@ return require('packer').startup(function()
     end,
   }
   use "f-person/git-blame.nvim"
-  use {
-    "pwntester/octo.nvim",
-    requires = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-lua/popup.nvim" }
-    },
-    config = function()
-      require("octo").setup()
-    end
-  }
-
-  -- Theme
-  use {
-    "projekt0n/github-nvim-theme",
-    config = function() 
-      require("config.theme")
-    end
-  }
 
   -- Telescope
   use {
@@ -206,10 +191,6 @@ return require('packer').startup(function()
   }
 
   use "editorconfig/editorconfig-vim"
-  use({
-    "mrjones2014/dash.nvim",
-    run = "make install",
-  })
 
   -- colors in vim
   use {
@@ -230,19 +211,5 @@ return require('packer').startup(function()
 
   -- registers
   use "tversteeg/registers.nvim"
-
-  -- REST client
-  use {
-    "NTBBloodbath/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("rest-nvim").setup({
-        -- Open request results in a horizontal split
-        result_split_horizontal = false,
-        -- Skip SSL verification, useful for unknown certificates
-        skip_ssl_verification = false,
-      })
-    end
-  }
 
 end)

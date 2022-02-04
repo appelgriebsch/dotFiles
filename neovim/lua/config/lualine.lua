@@ -21,7 +21,7 @@ vim.cmd([[autocmd User LspProgressUpdate let &ro = &ro]])
 
 local config = {
   options = {
-    theme = "github",
+    theme = "ayu_mirage",
     section_separators = { "", "" },
     component_separators = { "", "" },
     icons_enabled = true,
