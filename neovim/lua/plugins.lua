@@ -212,4 +212,11 @@ return require('packer').startup(function()
   -- registers
   use "tversteeg/registers.nvim"
 
+  if jit.os == 'OSX' then
+    use({
+      "mrjones2014/dash.nvim",
+      run = "make install",
+    })
+  end
+
 end)

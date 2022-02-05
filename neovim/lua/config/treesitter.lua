@@ -2,8 +2,7 @@
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.jsonc.used_by = "json"
 
-require('nvim-treesitter.configs').setup({
-  ensure_installed = {
+local install = {
     "bash",
     "c",
     "cmake",
@@ -36,13 +35,19 @@ require('nvim-treesitter.configs').setup({
     "rust",
     "scss",
     "sparql",
-    "swift",
     "toml",
     "tsx",
     "typescript",
     "vim",
     "yaml"
-  }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+};
+
+if jit.os == 'OSX' then
+  install["swift"] = 1
+end
+
+require('nvim-treesitter.configs').setup({
+  ensure_installed = install,
   ignore_install = { "haskell" },
   rainbow = {
     enable = true,
