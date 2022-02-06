@@ -1,8 +1,5 @@
--- Add Markdown
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.jsonc.used_by = "json"
-
-local install = {
+-- set up local treesitter plugins
+local local_install = {
     "bash",
     "c",
     "cmake",
@@ -43,11 +40,11 @@ local install = {
 };
 
 if jit.os == 'OSX' then
-  table.insert(install, "swift")
+  table.insert(local_install, "swift")
 end
 
 require('nvim-treesitter.configs').setup({
-  ensure_installed = install,
+  ensure_installed = local_install,
   ignore_install = { "haskell" },
   rainbow = {
     enable = true,
