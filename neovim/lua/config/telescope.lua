@@ -26,7 +26,7 @@ require('telescope').setup({
     },
     command_palette = {
       {"File",
-        { "repos", ":lua require('telescope').extensions.repo.list({shorten_path=true})", 1 },
+        { "projects", ":lua require('telescope').extensions.project.project{}", 1 },
         { "find",     ":lua require('telescope.builtin').find_files()", 1 },
         { "git", ":lua require('telescope.builtin').git_files()", 1 },
         { "browser", ":lua require('telescope').extensions.file_browser.file_browser()", 1 },
@@ -56,8 +56,9 @@ require('telescope').setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("notify")
-require("telescope").load_extension("repo")
+require("telescope").load_extension("project")
 require("telescope").load_extension("command_palette")
+require("telescope").load_extension("gh")
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space><space>', ':Telescope command_palette<CR>', {noremap = true, silent = true})

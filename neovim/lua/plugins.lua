@@ -2,7 +2,35 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Treesitter
+  -- core editing extensions
+  use { "editorconfig/editorconfig-vim" }
+  use { "tversteeg/registers.nvim" }
+  use {
+    "kazhala/close-buffers.nvim",
+    config = function()
+      require("close_buffers").setup()
+    end
+  }
+  use {
+    "lewis6991/spellsitter.nvim",
+    config = function()
+      require("spellsitter").setup()
+    end
+  }
+  use {
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require("surround").setup({ mappings_style = "surround" })
+    end
+  }
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+        require("Comment").setup()
+    end
+  }
+
+  -- Treesitter extensions
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use {
     "p00f/nvim-ts-rainbow",
@@ -13,7 +41,7 @@ return require('packer').startup(function()
     end
   }
 
-  -- LSP
+  -- LSP extensions
   use {
     "williamboman/nvim-lsp-installer",
     config = function()
@@ -28,202 +56,155 @@ return require('packer').startup(function()
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-nvim-lsp-document-symbol" },
       { "saadparwaiz1/cmp_luasnip" },
-      { "L3MON4D3/LuaSnip" }
+      { "L3MON4D3/LuaSnip" },
+      { "ygm2/rooter.nvim" },
+      { "b0o/schemastore.nvim" },
+      { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
+      {
+        "onsails/lspkind-nvim",
+        config = function ()
+          require("lspkind").init({
+             mode = "symbol"
+          })
+        end
+      },
+      {
+        "Saecki/crates.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("crates").setup()
+        end,
+      },
+      {
+        "vuki656/package-info.nvim",
+        requires = { "MunifTanjim/nui.nvim" },
+        config = function()
+          require("package-info").setup()
+        end
+      },
+      {
+        "mfussenegger/nvim-jdtls",
+        config = function()
+          vim.cmd [[
+            augroup jdtls_lsp
+              autocmd!
+              autocmd FileType java lua require("config.jdtls").setup()
+            augroup end
+          ]]
+        end
+      }
     }
   }
-  use {
-    "onsails/lspkind-nvim",
-    config = function ()
-      require("lspkind").init({
-         mode = "symbol"
-      })
-    end
-  }
-  use {
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu"
-  }
-  use {
-    "b0o/schemastore.nvim"
-  }
-  use {
-    "Saecki/crates.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-        require("crates").setup()
-    end,
-  }
-  use {
-    "vuki656/package-info.nvim",
-    requires = { "MunifTanjim/nui.nvim" },
-    config = function()
-      require("package-info").setup()
-    end
-  }
-  use {
-    "mfussenegger/nvim-jdtls",
-    config = function()
-      vim.cmd [[
-        augroup jdtls_lsp
-          autocmd!
-          autocmd FileType java lua require("config.jdtls").setup()
-        augroup end
-      ]]
-    end
-  }
-  use {
-      'numToStr/Comment.nvim',
-      config = function()
-          require('Comment').setup()
-      end
-  }
 
-  -- UI
+  -- UI extensions
   use {
     "Shatur/neovim-ayu",
-    config = function()
-      require("config.theme")
-    end
-  }
-  use {
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function ()
-      require("config.dashboard")
-    end
-  }
-  use {
-    "hoob3rt/lualine.nvim",
     requires = {
       { "kyazdani42/nvim-web-devicons" },
-      { "yamatsum/nvim-nonicons" },
-      { "Shatur/neovim-ayu" }
+      { "goolord/alpha-nvim",
+        config = function ()
+          require("config.dashboard")
+        end
+      },
+      {
+        "hoob3rt/lualine.nvim",
+        requires = {
+          { "kyazdani42/nvim-web-devicons" },
+          { "yamatsum/nvim-nonicons" },
+        },
+        event = "VimEnter",
+        config = function()
+          require("config.lualine")
+        end
+      },
+      {
+        "akinsho/nvim-bufferline.lua",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        event = "BufReadPre",
+        config = function()
+          require("config.bufferline")
+        end,
+      },
+      {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufReadPre",
+        config = function()
+          require("config.blankline")
+        end,
+      },
+      {
+        "dstein64/nvim-scrollview",
+        config = function()
+          require("config.scrollbar")
+        end
+      },
+      {
+        "rcarriga/nvim-notify",
+        config = function()
+          require("config.notify")
+        end
+      },
+      {
+        "norcalli/nvim-colorizer.lua",
+        event = "BufReadPre",
+        config = function()
+          require("config.colorizer")
+        end,
+      }
     },
-    event = "VimEnter",
     config = function()
-      require("config.lualine")
-    end
-  }
-  use {
-    "akinsho/nvim-bufferline.lua",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    event = "BufReadPre",
-    config = function()
-      require("config.bufferline")
+      require("config.theme")
     end,
   }
-  use {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("config.blankline")
-    end,
-  }
-  use { 
-    "dstein64/nvim-scrollview",
-    config = function()
-      require("config.scrollbar")
-    end
-  }
-  use {
-    "kazhala/close-buffers.nvim",
-    config = function()
-      require('close_buffers').setup()
-    end
-  }
-  use {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("config.notify")
-    end
-  }
-  use {
-    "ygm2/rooter.nvim"
-  }
-  use {
-    "stevearc/dressing.nvim"
-  }
-
-  -- GIT
-  use {
-    "lewis6991/gitsigns.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    event = "BufReadPre",
-    config = function()
-      require("config.gitsigns")
-    end,
-  }
-  use "f-person/git-blame.nvim"
 
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
       { "nvim-lua/plenary.nvim" },
-      { "kyazdani42/nvim-web-devicons" }
+      { "kyazdani42/nvim-web-devicons" },
+      { "nvim-telescope/telescope-github.nvim" },
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      { "nvim-telescope/telescope-file-browser.nvim" },
+      { "nvim-telescope/telescope-project.nvim" },
+      { "nvim-telescope/telescope-symbols.nvim" },
+      { "LinArcX/telescope-command-palette.nvim" },
+      { "stevearc/dressing.nvim" },
     },
     config = function()
       require("config.telescope")
     end
   }
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-  use { "nvim-telescope/telescope-file-browser.nvim" }
-  use { "cljoly/telescope-repo.nvim" }
-  use { "LinArcX/telescope-command-palette.nvim" }
 
-  -- split diff view
-  use {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("config.diffview")
-    end,
-  }
-
-  -- terminal
+  -- Terminal
   use {
     "numtostr/FTerm.nvim",
+    requires = {
+      {
+        "pianocomposer321/yabs.nvim",
+        requires = { "nvim-lua/plenary.nvim" }
+      }
+    },
     config = function()
       require("config.fterm")
     end
   }
 
-  -- spellchecker
+  -- GIT integrations
   use {
-    "lewis6991/spellsitter.nvim",
-    config = function()
-      require("spellsitter").setup()
-    end
-  }
-
-  use "editorconfig/editorconfig-vim"
-
-  -- colors in vim
-  use {
-    "norcalli/nvim-colorizer.lua",
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "f-person/git-blame.nvim" },
+    },
     event = "BufReadPre",
     config = function()
-      require("config.colorizer")
+      require("config.gitsigns")
     end,
   }
 
-  -- surround mode
-  use {
-    "blackCauldron7/surround.nvim",
-    config = function()
-      require("surround").setup({ mappings_style = "surround" })
-    end
-  }
-
-  -- registers
-  use "tversteeg/registers.nvim"
-
   if jit.os == 'OSX' then
-    use({
-      "mrjones2014/dash.nvim",
-      run = "make install",
-    })
+    use { "mrjones2014/dash.nvim", run = "make install" }
   end
 
 end)
