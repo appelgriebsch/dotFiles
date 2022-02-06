@@ -2,14 +2,6 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Theme
-  use {
-    "Shatur/neovim-ayu",
-    config = function()
-      require("config.theme")
-    end
-  }
-
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use {
@@ -34,6 +26,7 @@ return require('packer').startup(function()
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-nvim-lsp-document-symbol" },
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" }
     }
@@ -42,7 +35,7 @@ return require('packer').startup(function()
     "onsails/lspkind-nvim",
     config = function ()
       require("lspkind").init({
-         mode = 'symbol'
+         mode = "symbol"
       })
     end
   }
@@ -78,8 +71,20 @@ return require('packer').startup(function()
       ]]
     end
   }
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
 
   -- UI
+  use {
+    "Shatur/neovim-ayu",
+    config = function()
+      require("config.theme")
+    end
+  }
   use {
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -95,12 +100,12 @@ return require('packer').startup(function()
       { "Shatur/neovim-ayu" }
     },
     event = "VimEnter",
-    config = function() 
+    config = function()
       require("config.lualine")
     end
   }
   use {
-    "akinsho/nvim-bufferline.lua", 
+    "akinsho/nvim-bufferline.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
     event = "BufReadPre",
     config = function()
@@ -116,9 +121,9 @@ return require('packer').startup(function()
   }
   use { 
     "dstein64/nvim-scrollview",
-    config = function() 
-      require("config.scrollbar") 
-    end 
+    config = function()
+      require("config.scrollbar")
+    end
   }
   use {
     "kazhala/close-buffers.nvim",
@@ -163,6 +168,8 @@ return require('packer').startup(function()
   }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use { "nvim-telescope/telescope-file-browser.nvim" }
+  use { "cljoly/telescope-repo.nvim" }
+  use { "LinArcX/telescope-command-palette.nvim" }
 
   -- split diff view
   use {

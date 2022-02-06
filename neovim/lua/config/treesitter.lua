@@ -43,7 +43,7 @@ local install = {
 };
 
 if jit.os == 'OSX' then
-  install["swift"] = 1
+  table.insert(install, "swift")
 end
 
 require('nvim-treesitter.configs').setup({

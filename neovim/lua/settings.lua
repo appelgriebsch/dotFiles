@@ -2,8 +2,9 @@ local o = vim.opt
 local g = vim.g
 
 -- Remap , as leader key
-g.mapleader = ","
-g.maplocalleader = ","
+-- TODO: find better leader key
+-- g.mapleader = ","
+-- g.maplocalleader = ","
 
 -- don't show last command
 o.showcmd = false
@@ -128,8 +129,10 @@ vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
 -- buffer navigation
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true})
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>q', ':BDelete! this<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<space>q', ':BDelete! this<CR>', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true})
+
+vim.notify = require("notify")
