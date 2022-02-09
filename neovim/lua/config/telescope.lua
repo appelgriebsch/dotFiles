@@ -24,6 +24,11 @@ require('telescope').setup({
     dash = {
       search_engine = 'ddg',
     },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      },
+    },
     command_palette = {
       {"File",
         { "projects", ":lua require('telescope').extensions.project.project{}", 1 },
@@ -59,6 +64,7 @@ require("telescope").load_extension("notify")
 require("telescope").load_extension("project")
 require("telescope").load_extension("command_palette")
 require("telescope").load_extension("gh")
+require("telescope").load_extension("ui-select")
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space><space>', ':Telescope command_palette<CR>', {noremap = true, silent = true})
@@ -76,7 +82,7 @@ vim.api.nvim_set_keymap('n', '<leader>dw', ':Telescope diagnostics<CR>', {norema
 vim.api.nvim_set_keymap('n', '<leader>db', ':Telescope diagnostics bufno=0<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>sw', ':Telescope lsp_workspace_symbols<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>sb', ':Telescope lsp_document_symbols<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ca', ':CodeActionMenu<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>cd', ':DashWord<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gd', ':Telescope lsp_definitions<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gD', ':Telescope lsp_declarations<CR>', {noremap = true, silent = true})

@@ -59,7 +59,6 @@ return require('packer').startup(function()
       { "L3MON4D3/LuaSnip" },
       { "ygm2/rooter.nvim" },
       { "b0o/schemastore.nvim" },
-      { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
       {
         "onsails/lspkind-nvim",
         config = function ()
@@ -168,6 +167,7 @@ return require('packer').startup(function()
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
       { "LinArcX/telescope-command-palette.nvim" },
       { "stevearc/dressing.nvim" },
     },
