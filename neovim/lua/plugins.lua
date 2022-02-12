@@ -29,6 +29,10 @@ return require('packer').startup(function()
         require("Comment").setup()
     end
   }
+  use { 
+    "sindrets/diffview.nvim",
+    requires = "nvim-lua/plenary.nvim"
+  }
 
   -- Treesitter extensions
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -54,7 +58,6 @@ return require('packer').startup(function()
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-nvim-lsp-document-symbol" },
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "ygm2/rooter.nvim" },
@@ -148,6 +151,12 @@ return require('packer').startup(function()
         event = "BufReadPre",
         config = function()
           require("config.colorizer")
+        end,
+      },
+      {
+        "j-hui/fidget.nvim",
+        config = function()
+          require("fidget").setup{}
         end,
       }
     },
