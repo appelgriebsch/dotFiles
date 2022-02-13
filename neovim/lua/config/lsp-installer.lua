@@ -29,6 +29,33 @@ lsp_installer.on_server_ready(function(server)
       }
     end
 
+    if server.name == "tsserver" then
+      opts.settings = {
+        javascript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all", -- none | literals | all      
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          }
+        },
+        typescript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all", -- none | literals | all
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          }
+        }
+      }
+    end
+
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
 

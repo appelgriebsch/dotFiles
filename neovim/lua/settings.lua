@@ -94,9 +94,6 @@ o.shortmess:append { c = true }
 o.hlsearch = false
 o.incsearch = true
 
--- Enable mouse mode
-o.mouse = "a"
-
 -- searching for project root directory
 g.rooter_pattern = {'.git', 'node_modules', 'src', 'Makefile', 'cargo.toml', 'package.json', 'pom.xml'}
 g.outermost_root = true

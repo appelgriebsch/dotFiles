@@ -18,9 +18,9 @@ return require('packer').startup(function()
     end
   }
   use {
-    "blackCauldron7/surround.nvim",
+    "appelgriebsch/surround.nvim",
     config = function()
-      require("surround").setup({ mappings_style = "surround" })
+      require"surround".setup {mappings_style = "surround"}
     end
   }
   use {
@@ -28,10 +28,6 @@ return require('packer').startup(function()
     config = function()
         require("Comment").setup()
     end
-  }
-  use { 
-    "sindrets/diffview.nvim",
-    requires = "nvim-lua/plenary.nvim"
   }
 
   -- Treesitter extensions
@@ -110,7 +106,7 @@ return require('packer').startup(function()
         end
       },
       {
-        "hoob3rt/lualine.nvim",
+        "nvim-lualine/lualine.nvim",
         requires = {
           { "kyazdani42/nvim-web-devicons" },
           { "yamatsum/nvim-nonicons" },
@@ -121,7 +117,7 @@ return require('packer').startup(function()
         end
       },
       {
-        "akinsho/nvim-bufferline.lua",
+        "akinsho/bufferline.nvim",
         requires = { "kyazdani42/nvim-web-devicons" },
         event = "BufReadPre",
         config = function()
@@ -146,13 +142,6 @@ return require('packer').startup(function()
         config = function()
           require("config.notify")
         end
-      },
-      {
-        "norcalli/nvim-colorizer.lua",
-        event = "BufReadPre",
-        config = function()
-          require("config.colorizer")
-        end,
       },
       {
         "j-hui/fidget.nvim",
