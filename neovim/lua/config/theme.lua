@@ -1,9 +1,12 @@
 -- Editor theme
 vim.opt.background = "dark"
 
--- setup Ayu Mirage Theme
-require("ayu").setup({
-  mirage = false -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
+-- setup Github Dimmed Theme
+ require('github-theme').setup({
+   comment_style = "NONE",
+   keyword_style = "NONE",
+   function_style = "NONE",
+   variable_style = "NONE",
+   theme_style = "dimmed",
+   dark_float = true
 })
-
-require("ayu").colorscheme()

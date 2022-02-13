@@ -100,7 +100,8 @@ return require('packer').startup(function()
 
   -- UI extensions
   use {
-    "Shatur/neovim-ayu",
+    "projekt0n/github-nvim-theme",
+    after = "lualine.nvim",
     requires = {
       { "kyazdani42/nvim-web-devicons" },
       { "goolord/alpha-nvim",
