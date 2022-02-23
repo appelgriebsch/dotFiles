@@ -110,6 +110,7 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<C-space>', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('i', '<C-space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>k', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<leader>j', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -142,6 +143,9 @@ function M.make_config()
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   return {
+    flags = {
+      allow_incremental_sync = true,
+    },
     -- enable snippet support
     capabilities = capabilities,
     -- map buffer local keybindings when the language server attaches

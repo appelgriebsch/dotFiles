@@ -65,6 +65,7 @@ require("telescope").load_extension("project")
 require("telescope").load_extension("command_palette")
 require("telescope").load_extension("gh")
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("dap")
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space><space>', ':Telescope command_palette<CR>', {noremap = true, silent = true})

@@ -181,6 +181,17 @@ return require('packer').startup(function()
     end
   }
 
+  -- DAP
+  use {
+    "mfussenegger/nvim-dap",
+    requires = {
+      { "nvim-telescope/telescope-dap.nvim" }
+    },
+    config = function()
+      require("config.dap")
+    end
+  }
+
   -- Terminal
   use {
     "numtostr/FTerm.nvim",
