@@ -185,7 +185,8 @@ return require('packer').startup(function()
   use {
     "mfussenegger/nvim-dap",
     requires = {
-      { "nvim-telescope/telescope-dap.nvim" }
+      { "nvim-telescope/telescope-dap.nvim" },
+      { "theHamsta/nvim-dap-virtual-text" }
     },
     config = function()
       require("config.dap")
