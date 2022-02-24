@@ -67,6 +67,8 @@ require('telescope').setup({
         { "clear breakpoints", ":lua require('dap.breakpoints').clear()" },
         { "breakpoints", ":lua require'telescope'.extensions.dap.list_breakpoints{}" },
         { "toggle breakpoint", ":lua require'dap'.toggle_breakpoint()" },
+        { "toggle conditional breakpoint", "lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))"},
+        { "toggle logpoint", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))"},
         { "repl", ":lua require'dap'.repl.open(); vim.cmd(\"wincmd w|resize 12\")" },
         { "close", ":lua require'dap'.close(); require'dap'.repl.close()" },
       },
