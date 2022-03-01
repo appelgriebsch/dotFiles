@@ -20,7 +20,9 @@ return require('packer').startup(function()
   use {
     "appelgriebsch/surround.nvim",
     config = function()
-      require"surround".setup {mappings_style = "surround"}
+      require("surround").setup({
+        mappings_style = "surround"
+      })
     end
   }
   use {
@@ -172,7 +174,6 @@ return require('packer').startup(function()
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
-      { "nvim-telescope/telescope-ui-select.nvim" },
       { "LinArcX/telescope-command-palette.nvim" },
       { "stevearc/dressing.nvim" },
     },

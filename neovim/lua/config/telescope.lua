@@ -1,4 +1,4 @@
-require('telescope').setup({
+require("telescope").setup({
   defaults = {
     layout_strategy = 'vertical',
     layout_config = {
@@ -23,11 +23,6 @@ require('telescope').setup({
     },
     dash = {
       search_engine = 'ddg',
-    },
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      },
     },
     command_palette = {
       {"File",
@@ -84,8 +79,17 @@ require("telescope").load_extension("notify")
 require("telescope").load_extension("project")
 require("telescope").load_extension("command_palette")
 require("telescope").load_extension("gh")
-require("telescope").load_extension("ui-select")
 require("telescope").load_extension("dap")
+
+require("dressing").setup({
+  select = {
+    -- Options for telescope selector
+    telescope = {
+      -- can be 'dropdown', 'cursor', or 'ivy'
+      theme = "cursor",
+    }
+  }
+})
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space><space>', ':Telescope command_palette<CR>', {noremap = true, silent = true})
