@@ -16,6 +16,12 @@ lsp_installer.settings {
 lsp_installer.on_server_ready(function(server)
 
     if server.name == "jdtls" then
+      table.insert(require('command_palette').CpMenu,
+        {"Test",
+          { "execute test suite", ":lua require('jdtls').test_class()" },
+          { "execute test method", ":lua require('jdtls').test_nearest_method()" },
+        }
+      )
       return
     end
 
@@ -27,14 +33,14 @@ lsp_installer.on_server_ready(function(server)
 				Lua = {
 					diagnostics = {
 						-- Get the language server to recognize the 'vim', 'use' global
-						globals = {'vim', 'use', 'require'},
+						globals = { 'vim', 'use', 'require' },
 					},
 					workspace = {
 						-- Make the server aware of Neovim runtime files
 						library = vim.api.nvim_get_runtime_file("", true),
 					},
 					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = {enable = false},
+					telemetry = { enable = false },
 				},
 			}
 		end

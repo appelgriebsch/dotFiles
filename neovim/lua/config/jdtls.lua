@@ -92,12 +92,6 @@ function M.setup()
   jdtls_config.on_attach = jdtls_on_attach;
   jdtls.start_or_attach(jdtls_config)
 
-  table.insert(require('command_palette').CpMenu,
-    {"Test",
-      { "execute test suite", ":lua require('jdtls').test_class()" },
-      { "execute test method", ":lua require('jdtls').test_nearest_method()" },
-    }
-  )
 end
 
 return M
