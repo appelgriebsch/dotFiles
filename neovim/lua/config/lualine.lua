@@ -2,16 +2,9 @@ local function clock()
   return " " .. os.date("%H:%M")
 end
 
-vim.cmd([[autocmd User LspProgressUpdate let &ro = &ro]])
-
-vim.api.nvim_exec([[
-  autocmd ColorScheme * lua require("config.lualine").load();
-]], false)
-
 local config = {
   options = {
     theme = "github",
-    icons_enabled = true,
   },
   sections = {
     lualine_a = { "mode" },
