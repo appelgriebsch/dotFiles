@@ -42,7 +42,7 @@ require("telescope").setup({
         { "close others", ":lua require('close_buffers').delete({type = 'other'})" },
       },
       {"LSP",
-        { "buffer diagnostics", ":lua require('telescope.builtin').diagnostics({bufno=0})" },
+        { "buffer diagnostics", ":lua require('telescope.builtin').diagnostics({bufnr = 0})" },
         { "buffer symbols", ":lua require('telescope.builtin').lsp_document_symbols()" },
         { "workspace diagnostics", ":lua require('telescope.builtin').diagnostics()" },
         { "workspace symbols", ":lua require('telescope.builtin').lsp_workspace_symbols()" },
@@ -73,13 +73,13 @@ require("telescope").setup({
 
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-require("telescope").load_extension("fzf")
+require("telescope").load_extension("command_palette")
+require("telescope").load_extension("dap")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("gh")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("project")
-require("telescope").load_extension("command_palette")
-require("telescope").load_extension("gh")
-require("telescope").load_extension("dap")
 
 require("dressing").setup({
   select = {
