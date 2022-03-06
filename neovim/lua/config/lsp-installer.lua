@@ -15,6 +15,8 @@ lsp_installer.settings {
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 lsp_installer.on_server_ready(function(server)
 
+    local opts = lsp_setup.make_config()
+
     if server.name == "jdtls" then
       table.insert(require('command_palette').CpMenu,
         {"Test",
@@ -25,7 +27,33 @@ lsp_installer.on_server_ready(function(server)
       return
     end
 
-    local opts = lsp_setup.make_config()
+    if server.name == "rust_analyzer" then
+      -- Initialize the LSP via rust-tools instead
+      require("rust-tools").setup {
+        -- The "server" property provided in rust-tools setup function are the
+        -- settings rust-tools will provide to lspconfig during init.
+        -- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
+        -- with the user's own settings (opts).
+        server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+          settings = {
+            ["rust-analyzer"] = {
+              completion = {
+                postfix = {
+                  enable = false
+                }
+              },
+              checkOnSave = {
+                command = "clippy"
+              },
+            }
+          }
+        }),
+      }
+      server:attach_buffers()
+      -- Only if standalone support is needed
+      require("rust-tools").start_standalone_if_required()
+      return
+    end
 
 		if server.name == "sumneko_lua" then
 			-- only apply these settings for the "sumneko_lua" server

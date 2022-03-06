@@ -98,6 +98,10 @@ return require('packer').startup(function()
             augroup end
           ]]
         end
+      },
+      {
+        "simrat39/rust-tools.nvim",
+        requires = { "nvim-lua/plenary.nvim" }
       }
     }
   }
