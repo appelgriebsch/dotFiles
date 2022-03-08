@@ -102,6 +102,9 @@ return require('packer').startup(function()
       {
         "simrat39/rust-tools.nvim",
         requires = { "nvim-lua/plenary.nvim" }
+      },
+      {
+        "jose-elias-alvarez/nvim-lsp-ts-utils"
       }
     }
   }

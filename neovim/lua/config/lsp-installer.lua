@@ -82,30 +82,41 @@ lsp_installer.on_server_ready(function(server)
     end
 
     if server.name == "tsserver" then
-      opts.settings = {
-        javascript = {
-          inlayHints = {
-            includeInlayEnumMemberValueHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayParameterNameHints = "all", -- none | literals | all
-            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayVariableTypeHints = true,
+      -- Needed for inlayHints. Merge this table with your settings or copy
+      -- it from the source if you want to add your own init_options.
+      local init_options = require("nvim-lsp-ts-utils").init_options
+      local ts_opts = vim.tbl_deep_extend("force", server:get_default_options(), opts, init_options, {
+        settings = {
+          javascript = {
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayVariableTypeHints = true,
+            }
+          },
+          typescript = {
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayVariableTypeHints = true,
+            }
           }
         },
-        typescript = {
-          inlayHints = {
-            includeInlayEnumMemberValueHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayParameterNameHints = "all", -- none | literals | all
-            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayVariableTypeHints = true,
-          }
-        }
-      }
+        on_attach = function(client, bufnr)
+          local ts_utils = require("nvim-lsp-ts-utils")
+          ts_utils.setup({})
+          -- required to fix code action ranges and filter diagnostics
+          ts_utils.setup_client(client)
+          opts.on_attach(client, bufnr)
+        end
+      })
+      server:setup(ts_opts)
+      vim.cmd [[ do User LspAttachBuffers ]]
+      return
     end
 
     server:setup(opts)
