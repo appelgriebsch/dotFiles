@@ -1,7 +1,68 @@
-return require('packer').startup(function()
+return require("packer").startup(function()
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
+  use "wbthomason/packer.nvim"
+  -- UI extensions
+  use {
+    "projekt0n/github-nvim-theme",
+    commit = "715c554",             -- TODO: remove when 0.7 get stable
+    requires = {
+      { "kyazdani42/nvim-web-devicons" }
+    },
+    config = function()
+      require("config.theme")
+    end,
+  }
+  use {
+    "goolord/alpha-nvim",
+    config = function ()
+      require("config.dashboard")
+    end
+  }
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = {
+      { "kyazdani42/nvim-web-devicons" },
+      { "yamatsum/nvim-nonicons" }
+    },
+    event = "VimEnter",
+    config = function()
+      require("config.lualine")
+    end
+  }
+  use {
+    "akinsho/bufferline.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" },
+    event = "BufReadPre",
+    config = function()
+      require("config.bufferline")
+    end,
+  }
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("config.blankline")
+    end,
+  }
+  use {
+    "dstein64/nvim-scrollview",
+    event = "BufReadPre",
+    config = function()
+      require("config.scrollbar")
+    end
+  }
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("config.notify")
+    end
+  }
+  use {
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup{}
+    end,
+  }
   -- core editing extensions
   use { "editorconfig/editorconfig-vim" }
   use { "tversteeg/registers.nvim" }
@@ -37,7 +98,6 @@ return require('packer').startup(function()
       require("pears").setup()
     end
   }
-
   -- Treesitter extensions
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use {
@@ -48,7 +108,6 @@ return require('packer').startup(function()
       require("config.treesitter")
     end
   }
-
   -- LSP extensions
   use {
     "williamboman/nvim-lsp-installer",
@@ -65,111 +124,49 @@ return require('packer').startup(function()
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "ygm2/rooter.nvim" },
-      { "b0o/schemastore.nvim" },
-      {
-        "onsails/lspkind-nvim",
-        config = function ()
-          require("lspkind").init({
-             mode = "symbol"
-          })
-        end
-      },
-      {
-        "Saecki/crates.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("crates").setup()
-        end,
-      },
-      {
-        "vuki656/package-info.nvim",
-        requires = { "MunifTanjim/nui.nvim" },
-        config = function()
-          require("package-info").setup()
-        end
-      },
-      {
-        "mfussenegger/nvim-jdtls",
-        config = function()
-          vim.cmd [[
-            augroup jdtls_lsp
-              autocmd!
-              autocmd FileType java lua require("config.jdtls").setup()
-            augroup end
-          ]]
-        end
-      },
-      {
-        "simrat39/rust-tools.nvim",
-        requires = { "nvim-lua/plenary.nvim" }
-      },
-      {
-        "jose-elias-alvarez/nvim-lsp-ts-utils"
-      }
+      { "b0o/schemastore.nvim" }
     }
   }
-
-  -- UI extensions
   use {
-    "projekt0n/github-nvim-theme",
-    requires = {
-      { "kyazdani42/nvim-web-devicons" },
-      { "goolord/alpha-nvim",
-        config = function ()
-          require("config.dashboard")
-        end
-      },
-      {
-        "nvim-lualine/lualine.nvim",
-        after = "github-nvim-theme",
-        requires = {
-          { "kyazdani42/nvim-web-devicons" },
-          { "yamatsum/nvim-nonicons" },
-        },
-        event = "VimEnter",
-        config = function()
-          require("config.lualine")
-        end
-      },
-      {
-        "akinsho/bufferline.nvim",
-        requires = { "kyazdani42/nvim-web-devicons" },
-        event = "BufReadPre",
-        config = function()
-          require("config.bufferline")
-        end,
-      },
-      {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        config = function()
-          require("config.blankline")
-        end,
-      },
-      {
-        "dstein64/nvim-scrollview",
-        config = function()
-          require("config.scrollbar")
-        end
-      },
-      {
-        "rcarriga/nvim-notify",
-        config = function()
-          require("config.notify")
-        end
-      },
-      {
-        "j-hui/fidget.nvim",
-        config = function()
-          require("fidget").setup{}
-        end,
-      }
-    },
+    "onsails/lspkind-nvim",
+    config = function ()
+      require("lspkind").init({
+         mode = "symbol"
+      })
+    end
+  }
+  use {
+    "Saecki/crates.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("config.theme")
+      require("crates").setup()
     end,
   }
-
+  use {
+    "vuki656/package-info.nvim",
+    requires = { "MunifTanjim/nui.nvim" },
+    config = function()
+      require("package-info").setup()
+    end
+  }
+  use {
+    "mfussenegger/nvim-jdtls",
+    config = function()
+      vim.cmd [[
+        augroup jdtls_lsp
+          autocmd!
+          autocmd FileType java lua require("config.jdtls").setup()
+        augroup end
+      ]]
+    end
+  }
+  use {
+    "simrat39/rust-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim" }
+  }
+  use {
+    "jose-elias-alvarez/nvim-lsp-ts-utils"
+  }
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
@@ -182,13 +179,12 @@ return require('packer').startup(function()
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
       { "LinArcX/telescope-command-palette.nvim" },
-      { "stevearc/dressing.nvim" },
+      { "stevearc/dressing.nvim" }
     },
     config = function()
       require("config.telescope")
     end
   }
-
   -- DAP
   use {
     "mfussenegger/nvim-dap",
@@ -200,36 +196,31 @@ return require('packer').startup(function()
       require("config.dap")
     end
   }
-
   -- Terminal
   use {
     "numtostr/FTerm.nvim",
-    requires = {
-      {
-        "pianocomposer321/yabs.nvim",
-        requires = { "nvim-lua/plenary.nvim" }
-      }
-    },
     config = function()
       require("config.fterm")
     end
   }
-
+  use {
+    "pianocomposer321/yabs.nvim",
+    requires = { "nvim-lua/plenary.nvim" }
+  }
   -- GIT integrations
   use {
     "lewis6991/gitsigns.nvim",
     requires = {
       { "nvim-lua/plenary.nvim" },
-      { "f-person/git-blame.nvim" },
+      { "f-person/git-blame.nvim" }
     },
     event = "BufReadPre",
     config = function()
       require("config.gitsigns")
     end,
   }
-
+  -- Dash integration on macOS only
   if jit.os == 'OSX' then
     use { "mrjones2014/dash.nvim", run = "make install" }
   end
-
 end)
