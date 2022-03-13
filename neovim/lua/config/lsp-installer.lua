@@ -28,50 +28,58 @@ lsp_installer.on_server_ready(function(server)
     end
 
     if server.name == "rust_analyzer" then
-      -- Initialize the LSP via rust-tools instead
-      require("rust-tools").setup {
-        -- The "server" property provided in rust-tools setup function are the
-        -- settings rust-tools will provide to lspconfig during init.
-        -- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
-        -- with the user's own settings (opts).
-        server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
-          settings = {
-            ["rust-analyzer"] = {
-              completion = {
-                postfix = {
-                  enable = false
-                }
-              },
-              checkOnSave = {
-                command = "clippy"
-              },
+      -- Update this path
+      local extension_path = vim.env.HOME .. '/.local/share/nvim/dap_adapters/codelldb/'
+      local codelldb_path = extension_path .. 'adapter/codelldb'
+      local liblldb_path = jit.os == 'OSX' and extension_path ..  'lldb/lib/liblldb.dylib' or extension_path ..  'lldb/lib/liblldb.so'
+      local rust_opts = {
+        dap = {
+          adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+        },
+        tools = {
+            autoSetHints = true,
+            hover_with_actions = false,
+            inlay_hints = {
+              show_parameter_hints = true,
+            },
+          },
+          server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+            settings = {
+              ["rust-analyzer"] = {
+                completion = {
+                  postfix = {
+                    enable = false
+                  }
+                },
+                checkOnSave = {
+                  command = "clippy"
+                },
+              }
             }
-          }
-        }),
+          }),
       }
+      require("rust-tools").setup(rust_opts)
       server:attach_buffers()
-      -- Only if standalone support is needed
-      require("rust-tools").start_standalone_if_required()
       return
     end
 
-		if server.name == "sumneko_lua" then
-			-- only apply these settings for the "sumneko_lua" server
-			opts.settings = {
-				Lua = {
-					diagnostics = {
-						-- Get the language server to recognize the 'vim', 'use' global
-						globals = { 'vim', 'use', 'require' },
-					},
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file("", true),
-					},
-					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = { enable = false },
-				},
-			}
-		end
+    if server.name == "sumneko_lua" then
+      -- only apply these settings for the "sumneko_lua" server
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            -- Get the language server to recognize the 'vim', 'use' global
+            globals = { 'vim', 'use', 'require' },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = { enable = false },
+        },
+      }
+    end
 
     if server.name == "jsonls" then
       opts.settings = {
@@ -115,11 +123,11 @@ lsp_installer.on_server_ready(function(server)
         end
       })
       server:setup(ts_opts)
-      vim.cmd [[ do User LspAttachBuffers ]]
+      server:attach_buffers()
       return
     end
 
     server:setup(opts)
-    vim.cmd [[ do User LspAttachBuffers ]]
+    server:attach_buffers()
 
 end)
