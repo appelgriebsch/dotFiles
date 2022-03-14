@@ -22,13 +22,16 @@ lsp_installer.on_server_ready(function(server)
         {"Java",
           { "execute test suite", ":lua require('jdtls').test_class()" },
           { "execute test method", ":lua require('jdtls').test_nearest_method()" },
+          { "update project configurations", ":lua require('jdtls').update_project_config()" },
+          { "organize imports", ":lua require'jdtls'.organize_imports()" },
+          { "refresh run configurations", ":lua require('jdtls.dap').setup_dap_main_class_configs({ verbose = true })" }
         }
       )
       return
     end
 
     if server.name == "rust_analyzer" then
-      -- Update this path
+      -- rust tools configuration for debugging support
       local extension_path = vim.env.HOME .. '/.local/share/nvim/dap_adapters/codelldb/'
       local codelldb_path = extension_path .. 'adapter/codelldb'
       local liblldb_path = jit.os == 'OSX' and extension_path ..  'lldb/lib/liblldb.dylib' or extension_path ..  'lldb/lib/liblldb.so'
