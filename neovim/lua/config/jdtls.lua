@@ -68,8 +68,8 @@ function M.setup()
   }
 
   local jar_patterns = {
-    '/.local/share/nvim/jdtls/debug/server/com.microsoft.java.debug.plugin-*.jar',
-    '/.local/share/nvim/jdtls/test/server/*.jar'
+    '/.local/share/nvim/dap_adapters/jdtls/debug/server/com.microsoft.java.debug.plugin-*.jar',
+    '/.local/share/nvim/dap_adapters/jdtls/test/server/*.jar'
   }
 
   local bundles = {}
