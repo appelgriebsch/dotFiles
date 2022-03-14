@@ -19,7 +19,7 @@ lsp_installer.on_server_ready(function(server)
 
     if server.name == "jdtls" then
       table.insert(require('command_palette').CpMenu,
-        {"Test",
+        {"Java",
           { "execute test suite", ":lua require('jdtls').test_class()" },
           { "execute test method", ":lua require('jdtls').test_nearest_method()" },
         }

@@ -53,10 +53,11 @@ require("telescope").setup({
         { "step back", ":lua require'dap'.step_back()" },
         { "step over", ":lua require'dap'.step_over()" },
         { "step out", ":lua require'dap'.step_out()" },
-        { "frames", ":lua require'telescope'.extensions.dap.frames{}" },
         { "commands", ":lua require'telescope'.extensions.dap.commands{}" },
         { "configurations", ":lua require'telescope'.extensions.dap.configurations{}" },
-        { "variables", ":lua require'telescope'.extensions.dap.variables{}" },
+        { "variables", ":lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').scopes)" },
+        { "frames", ":lua require'telescope'.extensions.dap.frames{}" },
+        { "expression", ":lua require('dap.ui.widgets').hover(require('dap.ui.widgets').expression)" },
         { "run to cursor", ":lua require'dap'.run_to_cursor()" },
         { "continue", ":lua require'dap'.continue()" },
         { "clear breakpoints", ":lua require('dap.breakpoints').clear()" },
@@ -66,7 +67,7 @@ require("telescope").setup({
         { "toggle logpoint", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))"},
         { "repl", ":lua require'dap'.repl.open(); vim.cmd(\"wincmd w|resize 12\")" },
         { "close", ":lua require'dap'.close(); require'dap'.repl.close()" },
-      },
+      }
     }
   }
 })
@@ -114,3 +115,6 @@ vim.api.nvim_set_keymap('n', '<leader>gD', ':Telescope lsp_declarations<CR>', {n
 vim.api.nvim_set_keymap('n', '<leader>gi', ':Telescope lsp_implementations<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gt', ':Telescope lsp_typedefs<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gr', ':Telescope lsp_references<CR>', {noremap = true, silent = true})
+
+-- DAP
+-- TBD
