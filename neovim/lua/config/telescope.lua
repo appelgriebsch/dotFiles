@@ -82,15 +82,7 @@ require("telescope").load_extension("gh")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("project")
 
-require("dressing").setup({
-  select = {
-    -- Options for telescope selector
-    telescope = {
-      -- can be 'dropdown', 'cursor', or 'ivy'
-      theme = "cursor",
-    }
-  }
-})
+require("dressing").setup({})
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space><space>', ':Telescope command_palette<CR>', {noremap = true, silent = true})
