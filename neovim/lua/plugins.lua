@@ -3,8 +3,7 @@ return require("packer").startup(function()
   use "wbthomason/packer.nvim"
   -- UI extensions
   use {
-    "projekt0n/github-nvim-theme",
-    commit = "715c554",             -- TODO: remove when 0.7 get stable
+    "Shatur/neovim-ayu",
     requires = {
       { "kyazdani42/nvim-web-devicons" }
     },
