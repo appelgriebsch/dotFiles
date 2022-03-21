@@ -3,7 +3,7 @@ return require("packer").startup(function()
   use "wbthomason/packer.nvim"
   -- UI extensions
   use {
-    "Shatur/neovim-ayu",
+    "olimorris/onedarkpro.nvim",
     requires = {
       { "kyazdani42/nvim-web-devicons" }
     },

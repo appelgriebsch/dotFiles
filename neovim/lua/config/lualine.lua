@@ -4,7 +4,7 @@ end
 
 local config = {
   options = {
-    theme = "ayu",
+    theme = "auto",
   },
   sections = {
     lualine_a = { "mode" },
