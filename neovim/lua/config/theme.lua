@@ -11,9 +11,6 @@ onedarkpro.setup({
       functions = "NONE", -- Style that is applied to functions
       variables = "NONE", -- Style that is applied to variables
   },
-  options = {
-    terminal_colors = true
-  },
   colors = {
     onedark = {
       bg = "#21252B"
