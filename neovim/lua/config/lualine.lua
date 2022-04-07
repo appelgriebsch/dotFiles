@@ -4,7 +4,7 @@ end
 
 local config = {
   options = {
-    theme = "auto",
+    theme = "onedarkpro",
   },
   sections = {
     lualine_a = { "mode" },
