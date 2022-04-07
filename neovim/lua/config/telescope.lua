@@ -11,6 +11,11 @@ require("telescope").setup({
     }
   },
   extensions = {
+    project = {
+      base_dirs = {
+        '~/Projects',
+      }
+    },
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
       override_generic_sorter = true,  -- override the generic sorter
@@ -26,7 +31,7 @@ require("telescope").setup({
     },
     command_palette = {
       {"File",
-        { "projects", ":lua require('telescope').extensions.project.project{}", 1 },
+        { "projects", ":lua require('telescope').extensions.project.project{ display_type = 'full' }", 1 },
         { "find", ":lua require('telescope.builtin').find_files()", 1 },
         { "git", ":lua require('telescope.builtin').git_files()", 1 },
         { "browser", ":lua require('telescope').extensions.file_browser.file_browser()", 1 },
