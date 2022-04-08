@@ -10,12 +10,13 @@ require("notify").setup({
   background_colour = "Normal",
 
   -- Icons for the different levels
+  -- diagnostic_signs = {" ", " ", " ", " "}
   icons = {
     ERROR = "",
     WARN = "",
-    INFO = "",
+    INFO = "",
     DEBUG = "",
-    TRACE = "✎",
+    TRACE = "",
   },
 })
 
