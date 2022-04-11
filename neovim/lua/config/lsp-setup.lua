@@ -62,6 +62,22 @@ cmp.setup({
   })
 })
 
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
 -- Automatically update diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   signs = true,
@@ -71,9 +87,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   severity_sort = true,
 })
 
-local diagnostic_signs = {" ", " ", " ", " "}
-local diagnostic_severity_fullnames = {"Error", "Warning", "Information", "Hint"}
-local diagnostic_severity_shortnames = {"Error", "Warn", "Info", "Hint"}
+local diagnostic_signs = { " ", " ", " ", " " }
+local diagnostic_severity_fullnames = { "Error", "Warning", "Information", "Hint" }
+local diagnostic_severity_shortnames = { "Error", "Warn", "Info", "Hint" }
 
 for index, icon in ipairs(diagnostic_signs) do
   local fullname = diagnostic_severity_fullnames[index]
@@ -97,6 +113,7 @@ end
 -- keymaps
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   -- set omnifunc to lsp version
@@ -114,7 +131,7 @@ local on_attach = function(client, bufnr)
   require('lsp_signature').on_attach(cfg, bufnr)
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<C-space>', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -148,6 +165,7 @@ end
 -- config that activates keymaps and enables snippet support
 function M.make_config()
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   return {
     flags = {

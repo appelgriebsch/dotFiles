@@ -123,7 +123,8 @@ return require("packer").startup(function()
       { "saadparwaiz1/cmp_luasnip" },
       { "L3MON4D3/LuaSnip" },
       { "ygm2/rooter.nvim" },
-      { "b0o/schemastore.nvim" }
+      { "b0o/schemastore.nvim" },
+      { "hrsh7th/cmp-cmdline" }
     }
   }
   use {
