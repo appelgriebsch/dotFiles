@@ -18,15 +18,6 @@ lsp_installer.on_server_ready(function(server)
     local opts = lsp_setup.make_config()
 
     if server.name == "jdtls" then
-      table.insert(require('command_palette').CpMenu,
-        {"Java",
-          { "execute test suite", ":lua require('jdtls').test_class()" },
-          { "execute test method", ":lua require('jdtls').test_nearest_method()" },
-          { "update project configurations", ":lua require('jdtls').update_project_config()" },
-          { "organize imports", ":lua require'jdtls'.organize_imports()" },
-          { "refresh run configurations", ":lua require('jdtls.dap').setup_dap_main_class_configs({ verbose = true })" }
-        }
-      )
       return
     end
 

@@ -178,8 +178,8 @@ return require("packer").startup(function()
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
-      { "LinArcX/telescope-command-palette.nvim" },
-      { "stevearc/dressing.nvim" }
+      { "gfeiyou/command-center.nvim" },
+      { "stevearc/dressing.nvim" },
     },
     config = function()
       require("config.telescope")

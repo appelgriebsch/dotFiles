@@ -15,7 +15,7 @@ dashboard.section.header.val = {
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( "p", "  > Open project", ":lua require('telescope').extensions.project.project{ display_type = 'full' }<CR>"),
+    dashboard.button( "p", "  > Open project", ":Telescope project display_type=full<CR>"),
     dashboard.button( "e", "  > New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button( "f", "  > Find file", ":cd $HOME/Projects | Telescope find_files<CR>"),
     dashboard.button( "r", "  > Recent files", ":Telescope oldfiles<CR>"),
@@ -24,7 +24,7 @@ dashboard.section.buttons.val = {
 }
 
 -- Set footer
-local fortune = require("alpha.fortune") 
+local fortune = require("alpha.fortune")
 dashboard.section.footer.val = fortune()
 
 -- Send config to alpha
