@@ -1,1 +1,5 @@
-vim.g.scrollview_excluded_filetypes = { "nerdtree", "tagbar", "dashboard", "NvimTree" }
+require('scrollview').setup({
+  excluded_filetypes = {'nerdtree', 'dashboard'},
+  current_only = true,
+  winblend = 75,
+})

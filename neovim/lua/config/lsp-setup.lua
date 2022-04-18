@@ -1,5 +1,4 @@
 local lspkind = require('lspkind')
-local luasnip = require('luasnip')
 local cmp = require('cmp')
 
 local M = {}
@@ -10,11 +9,11 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
+  -- TODO snippet = {
+  --   expand = function(args)
+  --     require('luasnip').lsp_expand(args.body)
+  --   end,
+  -- },
   formatting = {
     format = lspkind.cmp_format(),
   },
@@ -34,8 +33,6 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -45,8 +42,6 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end

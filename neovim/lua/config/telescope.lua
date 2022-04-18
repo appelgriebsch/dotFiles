@@ -76,32 +76,32 @@ command_center.add({
   {
     description = "LSP: Code Actions",
     command = "lua vim.lsp.buf.code_action()",
-    keybindings = { "n", "<space>ca", silent_noremap },
+    keybindings = { "n", "<leader>ca", silent_noremap },
   },
   {
     description = "LSP: Goto definition",
     command = "Telescope lsp_definitions",
-    keybindings = { "n", "<space>gd", silent_noremap },
+    keybindings = { "n", "<leader>gd", silent_noremap },
   },
   {
     description = "LSP: Goto declaration",
     command = "Telescope lsp_declarations",
-    keybindings = { "n", "<space>gD", silent_noremap },
+    keybindings = { "n", "<leader>gD", silent_noremap },
   },
   {
     description = "LSP: Goto references",
     command = "Telescope lsp_references",
-    keybindings = { "n", "<space>gr", silent_noremap },
+    keybindings = { "n", "<leader>gr", silent_noremap },
   },
   {
     description = "LSP: Goto implementations",
     command = "Telescope lsp_implementations",
-    keybindings = { "n", "<space>gi", silent_noremap },
+    keybindings = { "n", "<leader>gi", silent_noremap },
   },
   {
     description = "LSP: Goto type definition",
     command = "Telescope lsp_typedefs",
-    keybindings = { "n", "<space>gt", silent_noremap },
+    keybindings = { "n", "<leader>gt", silent_noremap },
   },
   {
     description = "DAP: Pause",

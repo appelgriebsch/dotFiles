@@ -5,61 +5,61 @@ return require("packer").startup(function()
   use {
     "olimorris/onedarkpro.nvim",
     requires = {
-      { "kyazdani42/nvim-web-devicons" }
+      { "kyazdani42/nvim-web-devicons" },
+      {
+        "goolord/alpha-nvim",
+        config = function()
+          require("config.dashboard")
+        end
+      },
+      {
+        "nvim-lualine/lualine.nvim",
+        requires = {
+          { "kyazdani42/nvim-web-devicons" },
+          { "yamatsum/nvim-nonicons" }
+        },
+        event = "VimEnter",
+        config = function()
+          require("config.lualine")
+        end
+      },
+      {
+        "akinsho/bufferline.nvim",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        event = "BufReadPre",
+        config = function()
+          require("config.bufferline")
+        end,
+      },
+      {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufReadPre",
+        config = function()
+          require("config.blankline")
+        end,
+      },
+      {
+        "dstein64/nvim-scrollview",
+        event = "BufReadPre",
+        config = function()
+          require("config.scrollbar")
+        end
+      },
+      {
+        "rcarriga/nvim-notify",
+        config = function()
+          require("config.notify")
+        end
+      },
+      {
+        "j-hui/fidget.nvim",
+        config = function()
+          require("fidget").setup {}
+        end,
+      }
     },
     config = function()
       require("config.theme")
-    end,
-  }
-  use {
-    "goolord/alpha-nvim",
-    config = function ()
-      require("config.dashboard")
-    end
-  }
-  use {
-    "nvim-lualine/lualine.nvim",
-    requires = {
-      { "kyazdani42/nvim-web-devicons" },
-      { "yamatsum/nvim-nonicons" }
-    },
-    event = "VimEnter",
-    config = function()
-      require("config.lualine")
-    end
-  }
-  use {
-    "akinsho/bufferline.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    event = "BufReadPre",
-    config = function()
-      require("config.bufferline")
-    end,
-  }
-  use {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("config.blankline")
-    end,
-  }
-  use {
-    "dstein64/nvim-scrollview",
-    event = "BufReadPre",
-    config = function()
-      require("config.scrollbar")
-    end
-  }
-  use {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("config.notify")
-    end
-  }
-  use {
-    "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup{}
     end,
   }
   -- core editing extensions
@@ -111,9 +111,6 @@ return require("packer").startup(function()
   -- LSP extensions
   use {
     "williamboman/nvim-lsp-installer",
-    config = function()
-      require("config.lsp-installer")
-    end,
     requires = {
       { "neovim/nvim-lspconfig" },
       { "ray-x/lsp_signature.nvim" },
@@ -121,52 +118,53 @@ return require("packer").startup(function()
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "L3MON4D3/LuaSnip" },
       { "ygm2/rooter.nvim" },
       { "b0o/schemastore.nvim" },
-      { "hrsh7th/cmp-cmdline" }
-    }
-  }
-  use {
-    "onsails/lspkind-nvim",
-    config = function ()
-      require("lspkind").init({
-         mode = "symbol"
-      })
-    end
-  }
-  use {
-    "Saecki/crates.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("crates").setup()
-    end,
-  }
-  use {
-    "vuki656/package-info.nvim",
-    requires = { "MunifTanjim/nui.nvim" },
-    config = function()
-      require("package-info").setup()
-    end
-  }
-  use {
-    "mfussenegger/nvim-jdtls",
-    config = function()
-      vim.cmd [[
+      { "hrsh7th/cmp-cmdline" },
+      {
+        "onsails/lspkind-nvim",
+        config = function()
+          require("lspkind").init({
+            mode = "symbol"
+          })
+        end
+      },
+      {
+        "Saecki/crates.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+          require("crates").setup()
+        end,
+      },
+      {
+        "vuki656/package-info.nvim",
+        requires = { "MunifTanjim/nui.nvim" },
+        config = function()
+          require("package-info").setup()
+        end
+      },
+      {
+        "mfussenegger/nvim-jdtls",
+        config = function()
+          vim.cmd [[
         augroup jdtls_lsp
           autocmd!
           autocmd FileType java lua require("config.jdtls").setup()
         augroup end
       ]]
-    end
-  }
-  use {
-    "simrat39/rust-tools.nvim",
-    requires = { "nvim-lua/plenary.nvim" }
-  }
-  use {
-    "jose-elias-alvarez/nvim-lsp-ts-utils"
+        end
+      },
+      {
+        "simrat39/rust-tools.nvim",
+        requires = { "nvim-lua/plenary.nvim" }
+      },
+      {
+        "jose-elias-alvarez/nvim-lsp-ts-utils"
+      }
+    },
+    config = function()
+      require("config.lsp-installer")
+    end,
   }
   -- Telescope
   use {

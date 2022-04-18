@@ -76,7 +76,7 @@ o.encoding = 'UTF-8'
 o.fileencoding = 'UTF-8'
 
 --  showing special non-printable chars
-o.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
+o.listchars = { tab = ">>>", trail = "·", space = "⋅", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
 
 -- Incremental live completion
 o.inccommand = "nosplit"
