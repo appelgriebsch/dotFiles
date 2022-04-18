@@ -78,7 +78,7 @@ return require("packer").startup(function()
     end
   }
   use {
-    "appelgriebsch/surround.nvim",
+    "ur4ltz/surround.nvim",
     config = function()
       require("surround").setup({
         mappings_style = "surround"
@@ -93,13 +93,14 @@ return require("packer").startup(function()
     end
   }
   use {
-    "steelsojka/pears.nvim",
+    "windwp/nvim-autopairs",
     config = function()
-      require("pears").setup()
+      require("nvim-autopairs").setup()
     end
   }
   -- Treesitter extensions
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
   use {
     "p00f/nvim-ts-rainbow",
     event = "BufRead",
@@ -116,19 +117,15 @@ return require("packer").startup(function()
       { "ray-x/lsp_signature.nvim" },
       { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lsp-document-symbol" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "ygm2/rooter.nvim" },
       { "b0o/schemastore.nvim" },
       { "hrsh7th/cmp-cmdline" },
-      {
-        "onsails/lspkind-nvim",
-        config = function()
-          require("lspkind").init({
-            mode = "symbol"
-          })
-        end
-      },
+      { "L3MON4D3/LuaSnip" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "onsails/lspkind.nvim" },
       {
         "Saecki/crates.nvim",
         requires = { "nvim-lua/plenary.nvim" },
@@ -177,6 +174,7 @@ return require("packer").startup(function()
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
+      { "benfowler/telescope-luasnip.nvim" },
       { "gfeiyou/command-center.nvim" },
       { "stevearc/dressing.nvim" },
     },

@@ -9,14 +9,13 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  -- TODO snippet = {
-  --   expand = function(args)
-  --     require('luasnip').lsp_expand(args.body)
-  --   end,
-  -- },
+  completion = { completeopt = "menu,menuone,noinsert" },
   formatting = {
-    format = lspkind.cmp_format(),
+    format = lspkind.cmp_format({
+      mode = 'symbol'
+    })
   },
+  experimental = { ghost_text = true },
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -33,6 +32,8 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif require("luasnip").expand_or_jumpable() then
+        require("luasnip").expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -42,10 +43,17 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
+      elseif require("luasnip").jumpable(-1) then
+        require("luasnip").jump(-1)
       else
         fallback()
       end
     end, { "i", "s" }),
+  },
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+    end,
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -60,6 +68,8 @@ cmp.setup({
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
   sources = {
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
     { name = 'buffer' }
   }
 })
@@ -72,6 +82,9 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
 -- Automatically update diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -158,10 +171,15 @@ local on_attach = function(client, bufnr)
 end
 
 -- config that activates keymaps and enables snippet support
+require("luasnip").config.set_config({ history = true, updateevents = "TextChanged,TextChangedI" })
+require("luasnip.loaders.from_vscode").load()
+
 function M.make_config()
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   capabilities.textDocument.completion.completionItem.snippetSupport = true
-
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+  }
   return {
     flags = {
       allow_incremental_sync = true,
