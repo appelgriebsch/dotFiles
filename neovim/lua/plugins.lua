@@ -129,6 +129,7 @@ return require("packer").startup(function()
       {
         "Saecki/crates.nvim",
         requires = { "nvim-lua/plenary.nvim" },
+        tag = 'v0.2.1',
         config = function()
           require("crates").setup()
         end,
