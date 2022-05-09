@@ -1,0 +1,4 @@
+export PATH=$HOME/.local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+
+. "$HOME/.cargo/env"
+eval "$(fnm env)"
