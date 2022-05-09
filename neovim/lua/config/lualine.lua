@@ -4,6 +4,7 @@ end
 
 local config = {
   options = {
+    globalstatus = true,
     theme = "onedarkpro",
   },
   sections = {

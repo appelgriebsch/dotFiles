@@ -54,7 +54,7 @@ return require("packer").startup(function()
       {
         "j-hui/fidget.nvim",
         config = function()
-          require("fidget").setup {}
+          require("fidget").setup({})
         end,
       }
     },
@@ -68,13 +68,13 @@ return require("packer").startup(function()
   use {
     "kazhala/close-buffers.nvim",
     config = function()
-      require("close_buffers").setup()
+      require("close_buffers").setup({})
     end
   }
   use {
     "lewis6991/spellsitter.nvim",
     config = function()
-      require("spellsitter").setup()
+      require("spellsitter").setup({})
     end
   }
   use {
@@ -87,15 +87,14 @@ return require("packer").startup(function()
   }
   use {
     "numToStr/Comment.nvim",
-    tag = 'v0.6',
     config = function()
-      require("Comment").setup()
+      require("Comment").setup({})
     end
   }
   use {
     "windwp/nvim-autopairs",
     config = function()
-      require("nvim-autopairs").setup()
+      require("nvim-autopairs").setup({})
     end
   }
   -- Treesitter extensions
@@ -128,14 +127,15 @@ return require("packer").startup(function()
       { "onsails/lspkind.nvim" },
       {
         "Saecki/crates.nvim",
+        event = { 'BufRead Cargo.toml' },
         requires = { "nvim-lua/plenary.nvim" },
-        tag = 'v0.2.1',
         config = function()
           require("crates").setup()
         end,
       },
       {
         "vuki656/package-info.nvim",
+        event = { 'BufRead package.json' },
         requires = { "MunifTanjim/nui.nvim" },
         config = function()
           require("package-info").setup()
@@ -196,14 +196,11 @@ return require("packer").startup(function()
   }
   -- Terminal
   use {
-    "numtostr/FTerm.nvim",
+    "akinsho/toggleterm.nvim",
+    tag = 'v1.*',
     config = function()
-      require("config.fterm")
+      require("config.term")
     end
-  }
-  use {
-    "pianocomposer321/yabs.nvim",
-    requires = { "nvim-lua/plenary.nvim" }
   }
   -- GIT integrations
   use {
