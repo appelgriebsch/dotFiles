@@ -122,8 +122,6 @@ return require("packer").startup(function()
       { "ygm2/rooter.nvim" },
       { "b0o/schemastore.nvim" },
       { "hrsh7th/cmp-cmdline" },
-      { "L3MON4D3/LuaSnip" },
-      { "saadparwaiz1/cmp_luasnip" },
       { "onsails/lspkind.nvim" },
       {
         "Saecki/crates.nvim",
@@ -142,23 +140,23 @@ return require("packer").startup(function()
         end
       },
       {
+        "jose-elias-alvarez/typescript.nvim"
+      },
+      {
         "mfussenegger/nvim-jdtls",
         config = function()
           vim.cmd [[
-        augroup jdtls_lsp
-          autocmd!
-          autocmd FileType java lua require("config.jdtls").setup()
-        augroup end
-      ]]
+            augroup jdtls_lsp
+              autocmd!
+              autocmd FileType java lua require("config.jdtls").setup()
+            augroup end
+          ]]
         end
       },
       {
         "simrat39/rust-tools.nvim",
         requires = { "nvim-lua/plenary.nvim" }
       },
-      {
-        "jose-elias-alvarez/nvim-lsp-ts-utils"
-      }
     },
     config = function()
       require("config.lsp-installer")
@@ -175,7 +173,6 @@ return require("packer").startup(function()
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
-      { "benfowler/telescope-luasnip.nvim" },
       { "gfeiyou/command-center.nvim" },
       { "stevearc/dressing.nvim" },
     },

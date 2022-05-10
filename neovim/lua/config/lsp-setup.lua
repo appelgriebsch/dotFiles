@@ -15,7 +15,7 @@ cmp.setup({
       mode = 'symbol'
     })
   },
-  experimental = { ghost_text = true },
+  experimental = { ghost_text = true, native_menu = false, },
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -32,8 +32,6 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif require("luasnip").expand_or_jumpable() then
-        require("luasnip").expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -43,22 +41,13 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif require("luasnip").jumpable(-1) then
-        require("luasnip").jump(-1)
       else
         fallback()
       end
     end, { "i", "s" }),
   },
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-    end,
-  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }, {
     { name = 'buffer' },
     { name = 'path' },
     { name = 'crates' }
@@ -68,8 +57,7 @@ cmp.setup({
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
   sources = {
-    { name = 'nvim_lsp_document_symbol' }
-  }, {
+    { name = 'nvim_lsp_document_symbol' },
     { name = 'buffer' }
   }
 })
@@ -77,8 +65,7 @@ cmp.setup.cmdline('/', {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
+    { name = 'path' },
     { name = 'cmdline' }
   })
 })
@@ -169,10 +156,6 @@ local on_attach = function(client, bufnr)
   end
 
 end
-
--- config that activates keymaps and enables snippet support
-require("luasnip").config.set_config({ history = true, updateevents = "TextChanged,TextChangedI" })
-require("luasnip.loaders.from_vscode").load()
 
 function M.make_config()
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
