@@ -77,6 +77,9 @@ function M.setup()
   jdtls_config.settings = {
     java = {
       signatureHelp = { enabled = true };
+      inlayHints = {
+        parameterNames = { enabled = "all" }
+      };
       contentProvider = { preferred = 'fernflower' };
       completion = {
         favoriteStaticMembers = {
