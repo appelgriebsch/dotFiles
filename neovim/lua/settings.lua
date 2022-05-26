@@ -82,7 +82,7 @@ o.listchars = { tab = ">>>", trail = "·", space = "⋅", precedes = "←", exte
 o.inccommand = "nosplit"
 
 -- Set completeopt to have a better completion experience
-o.completeopt = { 'menu', 'menuone', 'noselect' }
+o.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert' }
 g.completion_enable_auto_signature = 0
 g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
 
@@ -95,7 +95,7 @@ o.hlsearch = false
 o.incsearch = true
 
 -- searching for project root directory
-g.rooter_pattern = {'.git', 'node_modules', 'src', 'Makefile', 'cargo.toml', 'package.json', 'pom.xml'}
+g.rooter_pattern = { '.git', 'node_modules', 'src', 'Makefile', 'cargo.toml', 'package.json', 'pom.xml' }
 g.outermost_root = true
 
 -- configure code actions menu
