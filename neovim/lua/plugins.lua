@@ -51,12 +51,6 @@ return require("packer").startup(function()
           require("config.notify")
         end
       },
-      {
-        "j-hui/fidget.nvim",
-        config = function()
-          require("fidget").setup({})
-        end,
-      }
     },
     config = function()
       require("config.theme")
