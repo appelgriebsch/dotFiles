@@ -76,7 +76,7 @@ o.encoding = 'UTF-8'
 o.fileencoding = 'UTF-8'
 
 --  showing special non-printable chars
-o.listchars = { tab = ">>>", trail = "·", space = "⋅", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
+o.listchars = { tab = ">>>", trail = "·", space = "⋅", precedes = "←", extends = "→", eol = "↲", nbsp = "␣" }
 
 -- Incremental live completion
 o.inccommand = "nosplit"
@@ -106,10 +106,10 @@ g.code_action_menu_show_diff = false
 o.termguicolors = true
 
 -- Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", {noremap=true, expr = true, silent = true})
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap= true, expr = true, silent = true})
-vim.api.nvim_set_keymap('n', '0', "v:count == 0 ? 'g0' : '0'", {noremap= true, expr = true, silent = true})
-vim.api.nvim_set_keymap('n', '$', "v:count == 0 ? 'g$' : '$'", {noremap= true, expr = true, silent = true})
+vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', '0', "v:count == 0 ? 'g0' : '0'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', '$', "v:count == 0 ? 'g$' : '$'", { noremap = true, expr = true, silent = true })
 
 -- Highlight on yank
 vim.api.nvim_exec([[
@@ -120,14 +120,13 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- Y yank until the end of line
-vim.api.nvim_set_keymap('n', 'Y', 'y$', {noremap = true})
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- buffer navigation
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>q', ':BDelete! this<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true})
-
+vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':BDelete! this<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true })
