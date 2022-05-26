@@ -194,12 +194,6 @@ return require("packer").startup(function()
       require("config.term")
     end
   }
-  use {
-    "yutkat/taskrun.nvim",
-    config = function()
-      require("taskrun").setup()
-    end
-  }
   -- GIT integrations
   use {
     "lewis6991/gitsigns.nvim",
