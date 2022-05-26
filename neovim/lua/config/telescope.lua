@@ -269,6 +269,8 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("gh")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("project")
+require('telescope').load_extension("termfinder")
+require("telescope").load_extension("yaml_schema")
 require("dressing").setup({})
 
 -- Buffers, Files, ...

@@ -78,14 +78,6 @@ return require("packer").startup(function()
     end
   }
   use {
-    "ur4ltz/surround.nvim",
-    config = function()
-      require("surround").setup({
-        mappings_style = "surround"
-      })
-    end
-  }
-  use {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup({})
@@ -99,7 +91,8 @@ return require("packer").startup(function()
   }
   -- Treesitter extensions
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { "nvim-treesitter/nvim-treesitter-textobjects" }
+  use { "nvim-treesitter/nvim-tree-docs" }
   use {
     "p00f/nvim-ts-rainbow",
     event = "BufRead",
@@ -123,8 +116,11 @@ return require("packer").startup(function()
       { "ygm2/rooter.nvim" },
       { "b0o/schemastore.nvim" },
       { "onsails/lspkind.nvim" },
-      { "L3MON4D3/LuaSnip" },
-      { "saadparwaiz1/cmp_luasnip" },
+      { "dcampos/nvim-snippy" },
+      { "dcampos/cmp-snippy" },
+      { "jose-elias-alvarez/typescript.nvim" },
+      { "nanotee/sqls.nvim" },
+      { "someone-stole-my-name/yaml-companion.nvim" },
       {
         "Saecki/crates.nvim",
         event = { 'BufRead Cargo.toml' },
@@ -140,9 +136,6 @@ return require("packer").startup(function()
         config = function()
           require("package-info").setup()
         end
-      },
-      {
-        "jose-elias-alvarez/typescript.nvim"
       },
       {
         "mfussenegger/nvim-jdtls",
@@ -175,6 +168,7 @@ return require("packer").startup(function()
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
+      { "tknightz/telescope-termfinder.nvim" },
       { "gfeiyou/command-center.nvim" },
       { "stevearc/dressing.nvim" },
     },
@@ -196,9 +190,14 @@ return require("packer").startup(function()
   -- Terminal
   use {
     "akinsho/toggleterm.nvim",
-    tag = 'v1.*',
     config = function()
       require("config.term")
+    end
+  }
+  use {
+    "yutkat/taskrun.nvim",
+    config = function()
+      require("taskrun").setup()
     end
   }
   -- GIT integrations
@@ -212,6 +211,10 @@ return require("packer").startup(function()
     config = function()
       require("config.gitsigns")
     end,
+  }
+  use {
+    "sindrets/diffview.nvim",
+    requires = { "nvim-lua/plenary.nvim" }
   }
   -- Dash integration on macOS only
   if jit.os == 'OSX' then

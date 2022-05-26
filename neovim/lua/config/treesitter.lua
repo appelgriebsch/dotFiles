@@ -94,5 +94,8 @@ require('nvim-treesitter.configs').setup({
         ["gD"] = "@function.outer",
       },
     },
+    tree_docs = {
+      enable = true
+    }
   },
 })
