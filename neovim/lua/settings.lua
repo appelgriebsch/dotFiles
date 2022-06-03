@@ -82,7 +82,7 @@ o.listchars = { tab = ">>>", trail = "·", space = "⋅", precedes = "←", exte
 o.inccommand = "nosplit"
 
 -- Set completeopt to have a better completion experience
-o.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert' }
+o.completeopt = { 'menu', 'menuone', 'noinsert' }
 g.completion_enable_auto_signature = 0
 g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
 
