@@ -1,56 +1,13 @@
-local lspkind = require('lspkind')
-local cmp = require('cmp')
+local lspkind = require("lspkind")
+local cmp = require("cmp")
 local snippy = require("snippy")
+local utils = require("../utils")
 
 local M = {}
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
--- Utility functions shared between progress reports for LSP and DAP
-local client_notifs = {}
-
-local function get_notif_data(client_id, token)
-  if not client_notifs[client_id] then
-    client_notifs[client_id] = {}
-  end
-
-  if not client_notifs[client_id][token] then
-    client_notifs[client_id][token] = {}
-  end
-
-  return client_notifs[client_id][token]
-end
-
-local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
-
-local function update_spinner(client_id, token)
-  local notif_data = get_notif_data(client_id, token)
-
-  if notif_data.spinner then
-    local new_spinner = (notif_data.spinner + 1) % #spinner_frames
-    notif_data.spinner = new_spinner
-
-    notif_data.notification = vim.notify(nil, nil, {
-      hide_from_history = true,
-      icon = spinner_frames[new_spinner],
-      replace = notif_data.notification,
-    })
-
-    vim.defer_fn(function()
-      update_spinner(client_id, token)
-    end, 100)
-  end
-end
-
-local function format_title(title, client_name)
-  return client_name .. (#title > 0 and ": " .. title or "")
-end
-
-local function format_message(message, percentage)
-  return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
 cmp.setup({
@@ -132,7 +89,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   signs = true,
   underline = true,
   update_in_insert = false,
-  virtual_text = { spacing = 4, prefix = "●" },
+  virtual_text = false,
   severity_sort = true,
 })
 
@@ -144,32 +101,29 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
     return
   end
 
-  local notif_data = get_notif_data(client_id, result.token)
+  local notif_data = utils.get_notif_data(client_id, result.token)
 
   if val.kind == "begin" then
-    local message = format_message(val.message, val.percentage)
-
+    local message = utils.format_message(val.message, val.percentage)
     notif_data.notification = vim.notify(message, "info", {
-      title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
-      icon = spinner_frames[1],
+      title = utils.format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
+      icon = utils.spinner_frames[1],
       timeout = false,
       hide_from_history = false,
     })
-
     notif_data.spinner = 1
-    update_spinner(client_id, result.token)
+    utils.update_spinner(client_id, result.token)
   elseif val.kind == "report" and notif_data then
-    notif_data.notification = vim.notify(format_message(val.message, val.percentage), "info", {
+    notif_data.notification = vim.notify(utils.format_message(val.message, val.percentage), "info", {
       replace = notif_data.notification,
       hide_from_history = false,
     })
   elseif val.kind == "end" and notif_data then
-    notif_data.notification = vim.notify(val.message and format_message(val.message) or "Complete", "info", {
+    notif_data.notification = vim.notify(val.message and utils.format_message(val.message) or "Complete", "info", {
       icon = "",
       replace = notif_data.notification,
       timeout = 3000,
     })
-
     notif_data.spinner = nil
   end
 end
@@ -211,12 +165,10 @@ end
 -- keymaps
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
   -- set omnifunc to lsp version
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+  -- configure lsp signature helper (virtual text hints)
   local cfg = {
     bind = true,
     handler_opts = {
@@ -225,12 +177,10 @@ local on_attach = function(client, bufnr)
     floating_window = false,
     hint_prefix = " "
   }
-
   require('lsp_signature').on_attach(cfg, bufnr)
 
-  -- Mappings.
+  -- default lsp mappings.
   local opts = { noremap = true, silent = true }
-
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<C-space>', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('i', '<C-space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
