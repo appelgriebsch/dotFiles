@@ -3,6 +3,7 @@ require("bufferline").setup({
     always_show_bufferline = true,
     show_close_icon = false,
     show_buffer_close_icons = false,
+    color_icons = false,
     separator_style = "thin",
     diagnostics = "nvim_lsp",
     diagnostics_indicator = function(_, _, diagnostics_dict)
