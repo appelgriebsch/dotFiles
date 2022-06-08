@@ -283,6 +283,7 @@ require("telescope").setup({
       -- the default case_mode is "smart_case"
     },
     file_browser = {
+      hijack_netrw = true,
       theme = "ivy"
     },
     dash = {
@@ -310,7 +311,15 @@ require("telescope").load_extension("notify")
 require("telescope").load_extension("project")
 require('telescope').load_extension("termfinder")
 require("telescope").load_extension("yaml_schema")
-require("dressing").setup({})
+require("dressing").setup({
+  input = {
+    override = function(conf)
+      -- The default is 50. Try bumping it up until it's on top
+      -- See :help nvim_open_win for details on zindex
+      conf.zindex = 100
+    end
+  }
+})
 
 -- Buffers, Files, ...
 vim.api.nvim_set_keymap('n', '<space><space>', ':Telescope command_center<CR>', { noremap = true, silent = true })
