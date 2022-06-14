@@ -115,7 +115,6 @@ return require("packer").startup({
         { "dcampos/nvim-snippy" },
         { "dcampos/cmp-snippy" },
         { "jose-elias-alvarez/typescript.nvim" },
-        { "nanotee/sqls.nvim" },
         { "someone-stole-my-name/yaml-companion.nvim" },
         {
           "Saecki/crates.nvim",

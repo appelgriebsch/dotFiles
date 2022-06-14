@@ -106,13 +106,6 @@ require("typescript").setup({
   },
 })
 
--- SQL ls setup
-lspconfig.sqls.setup({
-    on_attach = function(client, bufnr)
-        require('sqls').on_attach(client, bufnr)
-    end
-})
-
 -- Yaml companion
 local yaml_cfg = require("yaml-companion").setup({
   -- Add any options here, or leave empty to use the default settings
