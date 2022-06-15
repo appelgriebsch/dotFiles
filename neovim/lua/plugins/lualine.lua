@@ -1,8 +1,15 @@
+local status_ok, lualine = pcall(require, "lualine")
+if not status_ok then
+  return
+end
+
 local function clock()
   return " " .. os.date("%H:%M")
 end
 
-local config = {
+require("nvim-web-devicons").setup({ default = true })
+
+lualine.setup({
   options = {
     globalstatus = true,
     theme = "onedarkpro",
@@ -16,7 +23,4 @@ local config = {
     lualine_z = { clock },
   },
   extensions = { "quickfix" },
-}
-
-require("nvim-web-devicons").setup({ default = true })
-require('lualine').setup(config)
+})

@@ -1,4 +1,9 @@
-require("rest-nvim").setup({
+local status_ok, rest = pcall(require, "rest-nvim")
+if not status_ok then
+  return
+end
+
+rest.setup({
   -- Open request results in a horizontal split
   result_split_horizontal = false,
   -- Keep the http file buffer above|left when split horizontal|vertical
@@ -22,3 +27,9 @@ require("rest-nvim").setup({
   custom_dynamic_variables = {},
   yank_dry_run = true,
 })
+
+local status_ok, command_center = pcall(require, "command_center")
+if status_ok then
+  -- TODO: add REST features to Command Center
+  return
+end

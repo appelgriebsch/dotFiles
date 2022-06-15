@@ -1,4 +1,9 @@
-require("gitsigns").setup({
+local status_ok, gitsigns = pcall(require, "gitsigns")
+if not status_ok then
+  return
+end
+
+gitsigns.setup({
   signs = {
     add = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     change = {
@@ -43,3 +48,9 @@ require("gitsigns").setup({
     ["x ih"] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
   },
 })
+
+local status_ok, command_center = pcall(require, "command_center")
+if status_ok then
+  -- TODO: add git features to Command Center
+  return
+end

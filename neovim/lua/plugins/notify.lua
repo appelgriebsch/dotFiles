@@ -1,4 +1,9 @@
-require("notify").setup({
+local status_ok, notify = pcall(require, "notify")
+if not status_ok then
+  return
+end
+
+notify.setup({
   -- Animation style (see below for details)
   stages = "fade_in_slide_out",
 
@@ -20,4 +25,4 @@ require("notify").setup({
   },
 })
 
-vim.notify = require("notify")
+vim.notify = notify

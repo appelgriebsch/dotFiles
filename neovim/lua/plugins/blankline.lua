@@ -1,16 +1,20 @@
+local status_ok, blankline = pcall(require, "indent_blankline")
+if not status_ok then
+  return
+end
+
 vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
 vim.g.indent_blankline_filetype_exclude = {
   "help",
   "startify",
   "dashboard",
+  "alpha",
   "packer",
   "NvimTree",
 }
--- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-vim.wo.colorcolumn = "99999"
 
-require("indent_blankline").setup {
-    space_char_blankline = " ",
+blankline.setup {
+    space_char_blankline = "·",
     show_current_context = true,
     show_current_context_start = true,
 }

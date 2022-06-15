@@ -39,7 +39,7 @@ local local_install = {
     "yaml"
 };
 
-if jit.os == 'OSX' then
+if vim.fn.has "mac" == 1 then
   table.insert(local_install, "swift")
 end
 
@@ -99,3 +99,12 @@ require('nvim-treesitter.configs').setup({
     }
   },
 })
+
+-- folding via treesitter
+vim.api.nvim_exec([[
+  set foldmethod=expr
+  set foldlevel=99
+  set foldexpr=nvim_treesitter#foldexpr()
+]], false)
+
+

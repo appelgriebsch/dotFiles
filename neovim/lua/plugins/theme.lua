@@ -1,7 +1,11 @@
 -- Editor theme
 vim.opt.background = "dark"
 
-local onedarkpro = require("onedarkpro")
+local status_ok, onedarkpro = pcall(require, "onedarkpro")
+if not status_ok then
+  return
+end
+
 onedarkpro.setup({
   theme = "onedark_vivid",
   styles = {
@@ -12,5 +16,4 @@ onedarkpro.setup({
     variables = "NONE", -- Style that is applied to variables
   },
 })
-
 onedarkpro.load()
