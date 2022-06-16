@@ -1,16 +1,11 @@
+local function global_keymap(desc) return { silent = true, desc = desc } end
+
 local status_telescope, telescope = pcall(require, "telescope")
 if not status_telescope then
   return
 end
 
-local status_cc, command_center = pcall(require, "command_center")
-if not status_cc then
-  return
-end
-
 local actions = require("telescope.actions")
-local noremap = { noremap = true }
-local silent_noremap = { noremap = true, silent = true }
 
 telescope.setup({
   defaults = {
@@ -59,7 +54,7 @@ telescope.setup({
     project = {
       base_dirs = {
         "~/Projects",
-      }
+      },
     },
     fzf = {
       fuzzy = true, -- false will only do exact matching
@@ -75,20 +70,11 @@ telescope.setup({
     dash = {
       search_engine = "ddg",
     },
-    command_center = {
-      components = {
-        command_center.component.DESCRIPTION,
-        command_center.component.KEYBINDINGS,
-        -- command_center.component.COMMAND,
-      },
-      auto_replace_desc_with_cmd = false,
-    }
   }
 })
 
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-telescope.load_extension("command_center")
 telescope.load_extension("dap")
 telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
@@ -97,96 +83,6 @@ telescope.load_extension("notify")
 telescope.load_extension("project")
 telescope.load_extension("termfinder")
 telescope.load_extension("yaml_schema")
-
--- Buffers, Files, ...
-vim.api.nvim_set_keymap("n", "<space><space>", ":Telescope command_center<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>f", ":Telescope command_center category=file<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>b", ":Telescope command_center category=buffer<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>l", ":Telescope command_center category=lsp<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>w", ":Telescope command_center category=workspace<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>d", ":Telescope command_center category=dap<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>h", ":Telescope command_center category=help<CR>", { noremap = true, silent = true })
-
-command_center.add({
-  {
-    category = "file",
-    description = "Files: Find",
-    cmd = "<CMD>Telescope find_files<CR>",
-    keybindings = { "n", "<space>ff", noremap },
-  },
-  {
-    category = "file",
-    description = "Files: Open project",
-    cmd = "<CMD>Telescope project display_type=full<CR>",
-    keybindings = { "n", "<space>fp", silent_noremap },
-  },
-  {
-    category = "file",
-    description = "Files: Open browser",
-    cmd = "<CMD>Telescope file_browser<CR>",
-    keybindings = { "n", "<space>fb", silent_noremap },
-  },
-  {
-    category = "file",
-    description = "Files: Grep",
-    cmd = "<CMD>Telescope live_grep<CR>",
-    keybindings = { "n", "<space>fs", silent_noremap },
-  },
-  {
-    category = "file",
-    description = "Files: Recent",
-    cmd = "<CMD>Telescope oldfiles<CR>",
-    keybindings = { "n", "<space>fh", silent_noremap },
-  },
-  {
-    category = "file",
-    description = "Files: Git",
-    cmd = "<CMD>Telescope git_files<CR>",
-    keybindings = { "n", "<space>fg", noremap },
-  },
-  {
-    category = "buffer",
-    description = "Buffers: Find",
-    cmd = "<CMD>Telescope buffers<CR>",
-    keybindings = { "n", "<space>bf", silent_noremap },
-  },
-  {
-    category = "buffer",
-    description = "Buffers: Bookmarks",
-    cmd = "<CMD>Telescope marks<CR>",
-    keybindings = { "n", "<space>bb", silent_noremap },
-  },
-  {
-    category = "buffer",
-    description = "Buffers: Diagnostics",
-    cmd = "<CMD>Telescope diagnostics bufno=0<CR>",
-    keybindings = { "n", "<space>bd", silent_noremap },
-  },
-  {
-    category = "buffer",
-    description = "Buffers: Symbols",
-    cmd = "<CMD>Telescope lsp_document_symbols<CR>",
-    keybindings = { "n", "<space>bs", silent_noremap },
-  },
-  {
-    category = "buffer",
-    description = "Buffers: Close current",
-    cmd = "<CMD>Bdelete!<CR>",
-    keybindings = { "n", "<space>bc", silent_noremap },
-  },
-  {
-    category = "workspace",
-    description = "Workspace: Diagnostics",
-    cmd = "<CMD>Telescope diagnostics<CR>",
-    keybindings = { "n", "<space>wd", silent_noremap },
-  },
-  {
-    category = "workspace",
-    description = "Workspace: Symbols",
-    cmd = "<CMD>Telescope lsp_workspace_symbols<CR>",
-    keybindings = { "n", "<space>ws", silent_noremap },
-  },
-})
 
 local status_ok, dressing = pcall(require, "dressing")
 if status_ok then
@@ -200,3 +96,38 @@ if status_ok then
     }
   })
 end
+
+-- Files
+vim.keymap.set("n", "<leader>ff", "<CMD>Telescope find_files<CR>", global_keymap("Find File"))
+vim.keymap.set("n", "<leader>fb", "<CMD>Telescope file_browser<CR>", global_keymap("Open File Browser"))
+vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", global_keymap("Search in Files"))
+vim.keymap.set("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", global_keymap("Recent Files"))
+vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", global_keymap("Git Files"))
+
+-- Buffers
+vim.keymap.set("n", "<leader>bf", "<CMD>Telescope buffers<CR>", global_keymap("Find Buffer"))
+vim.keymap.set("n", "<leader>bb", "<CMD>Telescope marks<CR>", global_keymap("Show Bookmarks"))
+vim.keymap.set("n", "<leader>bd", "<CMD>Telescope diagnostics bufno=0<CR>", global_keymap("Show Diagnostics"))
+vim.keymap.set("n", "<leader>bs", "<CMD>Telescope lsp_document_symbols<CR>", global_keymap("Show Symbols"))
+vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", global_keymap("Force close"))
+vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
+vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
+
+-- Workspaces
+vim.keymap.set("n", "<leader>wp", ":Telescope project display_type=full<CR>", global_keymap("Switch Project"))
+vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", global_keymap("Show Diagnostics"))
+vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_workspace_symbols<CR>", global_keymap("Show Symbols"))
+
+local status_menu, menu = pcall(require, "key-menu")
+if not status_menu then
+  return
+end
+
+menu.set("n", "<leader>f", { desc = "File" })
+menu.set("n", "<leader>b", { desc = "Buffer" })
+menu.set("n", "<leader>w", { desc = "Workspace" })
+
+menu.set("n", "<leader>l", { desc = "LSP" })
+menu.set("n", "<leader>ld", { desc = "Diagnostics" })
+menu.set("n", "<leader>lg", { desc = "Goto" })
+menu.set("n", "<leader>lh", { desc = "Help" })

@@ -27,6 +27,7 @@ local options = {
   swapfile = false,                        -- creates a swapfile
   tabstop = 2,                             -- Change number of spaces that a <Tab> counts for during editing ops
   termguicolors = true,                    -- set term gui colors (most terminals support this)
+  timeoutlen = 300,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- enable persistent undo
   undolevels = 1000,
   updatetime = 400,                        -- faster completion (4000ms default)
@@ -52,7 +53,3 @@ vim.opt.fillchars:append { vert = " "} -- hide borders of split vertical windows
 
 vim.g.completion_enable_auto_signature = 0
 vim.g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
-
--- searching for project root directory
-vim.g.rooter_pattern = { '.git', 'node_modules', 'src', 'Makefile', 'cargo.toml', 'package.json', 'pom.xml' }
-vim.g.outermost_root = true

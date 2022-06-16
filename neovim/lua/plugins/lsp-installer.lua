@@ -70,7 +70,7 @@ if status_rust then
     },
     tools = {
       autoSetHints = true,
-      hover_with_actions = false,
+      hover_with_actions = true,
       inlay_hints = {
         show_parameter_hints = true,
       },
@@ -153,46 +153,4 @@ if status_lsplines then
       autocmd InsertLeave * silent! lua vim.diagnostic.config({ virtual_lines = true })
     augroup end
   ]], false)
-end
-
-local status_cc, command_center = pcall(require, "command_center")
-if status_cc then
-  command_center.add({
-    {
-      category = "lsp",
-      description = "LSP: Code Actions",
-      cmd = "<CMD>lua vim.lsp.buf.code_action()<CR>",
-      keybindings = { "n", "<leader>ca", silent_noremap },
-    },
-    {
-      category = "lsp",
-      description = "LSP: Goto definition",
-      cmd = "<CMD>Telescope lsp_definitions<CR>",
-      keybindings = { "n", "<leader>gd", silent_noremap },
-    },
-    {
-      category = "lsp",
-      description = "LSP: Goto declaration",
-      cmd = "<CMD>Telescope lsp_declarations<CR>",
-      keybindings = { "n", "<leader>gD", silent_noremap },
-    },
-    {
-      category = "lsp",
-      description = "LSP: Goto references",
-      cmd = "<CMD>Telescope lsp_references<CR>",
-      keybindings = { "n", "<leader>gr", silent_noremap },
-    },
-    {
-      category = "lsp",
-      description = "LSP: Goto implementations",
-      cmd = "<CMD>Telescope lsp_implementations<CR>",
-      keybindings = { "n", "<leader>gi", silent_noremap },
-    },
-    {
-      category = "lsp",
-      description = "LSP: Goto type definition",
-      cmd = "<CMD>Telescope lsp_typedefs<CR>",
-      keybindings = { "n", "<leader>gt", silent_noremap },
-    },
-  })
 end

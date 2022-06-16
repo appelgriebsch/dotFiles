@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
   use { "yamatsum/nvim-nonicons" }
+  use { "linty-org/key-menu.nvim" }
   ----------------------
   -- UI extensions --
   ----------------------
@@ -164,9 +165,6 @@ return packer.startup(function(use)
     use {
       "mrjones2014/dash.nvim",
       run = "make install",
-      config = function()
-        require("plugins.dash")
-      end
     }
   end
   ----------------------------
@@ -198,7 +196,6 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-cmdline" },
-      { "ygm2/rooter.nvim" },
       { "b0o/schemastore.nvim" },
       { "onsails/lspkind.nvim" },
       { "Maan2003/lsp_lines.nvim" },
@@ -233,7 +230,6 @@ return packer.startup(function(use)
   --------------------------
   use {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
     requires = {
       { "nvim-telescope/telescope-github.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
@@ -241,7 +237,6 @@ return packer.startup(function(use)
       { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
       { "tknightz/telescope-termfinder.nvim" },
-      { "gfeiyou/command-center.nvim" },
     },
     config = function()
       require("plugins.telescope")

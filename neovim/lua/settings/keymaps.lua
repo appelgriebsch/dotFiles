@@ -1,33 +1,30 @@
-local opts = { noremap = true, silent = true }
-local opts_exp = { noremap = true, expr = true, silent = true }
+local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
+local function global_keymap(desc) return { silent = true, desc = desc } end
 
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
-
--- Remap , as leader key
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+--Remap space as leader key
+vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Y yank until the end of line
-keymap('n', 'Y', 'y$', opts)
-keymap("v", "p", '"_dP', opts)
-
--- buffer navigation
-keymap('n', '<Tab>', ':bnext<CR>', opts)
-keymap('n', '<S-Tab>', ':bprevious<CR>', opts)
-keymap('n', '<leader>q', ':Bdelete!<CR>', opts)
+vim.keymap.set("n", "Y", "y$", global_keymap("Yank full line"))
+vim.keymap.set("v", "p", "\"_dP", global_keymap("Paste from clipboard"))
 
 -- Better window navigation
-keymap('n', '<C-h>', '<C-w>h', opts)
-keymap('n', '<C-j>', '<C-w>j', opts)
-keymap('n', '<C-k>', '<C-w>k', opts)
-keymap('n', '<C-l>', '<C-w>l', opts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", global_keymap("Switch to lefthand window"))
+vim.keymap.set("n", "<C-j>", "<C-w>j", global_keymap("Switch to window below"))
+vim.keymap.set("n", "<C-k>", "<C-w>k", global_keymap("Switch to window above"))
+vim.keymap.set("n", "<C-l>", "<C-w>l", global_keymap("Switch to righthand window"))
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", opts_exp)
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", opts_exp)
-keymap('n', '0', "v:count == 0 ? 'g0' : '0'", opts_exp)
-keymap('n', '$', "v:count == 0 ? 'g$' : '$'", opts_exp)
+vim.keymap.set("n", "k", "v:count == 0 ? \"gk\" : \"k\"", { noremap = true, expr = true, silent = true, desc = "HIDDEN" })
+vim.keymap.set("n", "j", "v:count == 0 ? \"gj\" : \"j\"", { noremap = true, expr = true, silent = true, desc = "HIDDEN" })
+vim.keymap.set("n", "0", "v:count == 0 ? \"g0\" : \"0\"", { noremap = true, expr = true, silent = true, desc = "HIDDEN" })
+vim.keymap.set("n", "$", "v:count == 0 ? \"g$\" : \"$\"", { noremap = true, expr = true, silent = true, desc = "HIDDEN" })
+
+-- Buffers, Files, ...
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", global_keymap("Switch to next buffer"))
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", global_keymap("Switch to previous buffer"))
 
 -- Highlight on yank
 vim.api.nvim_exec([[
@@ -36,3 +33,13 @@ vim.api.nvim_exec([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 ]], false)
+
+local status_menu, menu = pcall(require, "key-menu")
+if not status_menu then
+  return
+end
+
+-- If you use <Space> as your mapping prefix, then this will make the key-menu
+-- popup appear in Normal mode, after you press <Space>, after timeoutlen.
+menu.set("n", "<Space>")
+menu.set("n", "g")

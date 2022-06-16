@@ -1,3 +1,5 @@
+local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
+
 local status_cmp, cmp = pcall(require, "cmp")
 if not status_cmp then
   return
@@ -103,6 +105,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   severity_sort = true,
 })
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = "rounded",
+})
+
 -- table from lsp severity to vim severity.
 local severity = {
   "error",
@@ -140,10 +150,10 @@ end
 
 -- keymaps
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   -- set omnifunc to lsp version
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
   -- configure lsp signature helper (virtual text hints)
   local cfg = {
     bind = true,
@@ -156,20 +166,32 @@ local on_attach = function(client, bufnr)
   require("lsp_signature").on_attach(cfg, bufnr)
 
   -- default lsp mappings.
-  local opts = { noremap = true, silent = true }
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", local_keymap("HIDDEN"))
+  vim.keymap.set("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", local_keymap("HIDDEN"))
+
+  vim.keymap.set("n", "<leader>ldj", "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", local_keymap("Goto previous diagnostic"))
+  vim.keymap.set("n", "<leader>ldk", "<CMD>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", local_keymap("Goto next diagnostic"))
+  vim.keymap.set("n", "<leader>ldp", "<CMD>lua vim.diagnostic.open_float()<CR>", local_keymap("Show current diagnostic"))
+  vim.keymap.set("n", "<leader>lr", "<CMD>lua vim.lsp.buf.rename()<CR>", local_keymap("Rename symbol"))
+  vim.keymap.set("n", "<leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", local_keymap("Show Code Actions"))
+
+  -- Telescope
+  vim.keymap.set("n", "<leader>lgd", "<CMD>Telescope lsp_definitions<CR>", local_keymap("Find definitions"))
+  vim.keymap.set("n", "<leader>lgD", "<CMD>Telescope lsp_declarations<CR>", local_keymap("Find declarations"))
+  vim.keymap.set("n", "<leader>lgr", "<CMD>Telescope lsp_references<CR>", local_keymap("Find references"))
+  vim.keymap.set("n", "<leader>lgi", "<CMD>Telescope lsp_implementations<CR>", local_keymap("Find implementations"))
+  vim.keymap.set("n", "<leader>lgt", "<CMD>Telescope lsp_typedefs<CR>", local_keymap("Find type definitions"))
+
+  -- Help
+  vim.keymap.set("n", "<leader>lhs", "<CMD>Dash<CR>", local_keymap("Show help index"))
+  vim.keymap.set("n", "<leader>lhh", "<CMD>DashWord<CR>", local_keymap("Search for word"))
 
   -- Set some keybinds conditional on server capabilities
   vim.cmd [[ command! Format execute "lua vim.lsp.buf.formatting()" ]]
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", local_keymap("Format buffer"))
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", local_keymap("Format range"))
   end
 
   -- Set autocommands conditional on server_capabilities

@@ -1,9 +1,9 @@
+local function global_keymap(desc) return { silent = true, desc = desc } end
+
 local status_dap, dap = pcall(require, "dap")
 if not status_dap then
   return
 end
-
-local silent_noremap = { noremap = true, silent = true }
 
 dap.defaults.fallback.terminal_win_cmd = "enew"
 dap.adapters.node2 = {
@@ -42,110 +42,31 @@ vim.api.nvim_exec([[
   au FileType dap-repl lua require('dap.ext.autocompl').attach()
 ]], false)
 
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
-  command_center.add({
-    {
-      category = "dap",
-      description = "DAP: Pause",
-      cmd = "<CMD>lua require'dap'.pause()<CR>",
-      keybindings = { "n", "<space>dp", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Step into",
-      cmd = "<CMD>lua require'dap'.step_into()<CR>",
-      keybindings = { "n", "<space>dsi", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Step back",
-      cmd = "<CMD>lua require'dap'.step_back()<CR>",
-      keybindings = { "n", "<space>dsb", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Step over",
-      cmd = "<CMD>lua require'dap'.step_over()<CR>",
-      keybindings = { "n", "<space>dso", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Step out",
-      cmd = "<CMD>lua require'dap'.step_out()<CR>",
-      keybindings = { "n", "<space>dsu", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Commands",
-      cmd = "<CMD>lua require'telescope'.extensions.dap.commands{}<CR>",
-      keybindings = { "n", "<space>dc", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Run configurations",
-      cmd = "<CMD>lua require'telescope'.extensions.dap.configurations{}<CR>",
-      keybindings = { "n", "<space>dr", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Variables",
-      cmd = "<CMD>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').scopes)<CR>",
-      keybindings = { "n", "<space>dv", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Frames",
-      cmd = "<CMD>lua require'telescope'.extensions.dap.frames{}<CR>",
-      keybindings = { "n", "<space>df", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Expression",
-      cmd = "<CMD>lua require('dap.ui.widgets').hover(require('dap.ui.widgets').expression)<CR>",
-      keybindings = { "n", "<space>de", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Run to cursor",
-      cmd = "<CMD>lua require'dap'.run_to_cursor()<CR>",
-      keybindings = { "n", "<space>dgc", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Continue",
-      cmd = "<CMD>lua require'dap'.run_to_cursor()<CR>",
-      keybindings = { "n", "<space>dgr", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Clear breakpoints",
-      cmd = "<CMD>lua require('dap.breakpoints').clear()<CR>",
-      keybindings = { "n", "<space>dbc", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Breakpoints",
-      cmd = "<CMD>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>",
-      keybindings = { "n", "<space>db", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Toggle breakpoint",
-      cmd = "<CMD>lua require'dap'.toggle_breakpoint()<CR>",
-      keybindings = { "n", "<space>dtb", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Toggle conditional breakpoint",
-      cmd = "<CMD>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-      keybindings = { "n", "<space>dtc", silent_noremap },
-    },
-    {
-      category = "dap",
-      description = "DAP: Toggle logpoint",
-      cmd = "<CMD>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-      keybindings = { "n", "<space>dtl", silent_noremap },
-    },
-  })
+vim.keymap.set("n", "<leader>dr", "<CMD>lua require(\"telescope\").extensions.dap.configurations{}<CR>", global_keymap("Run"))
+vim.keymap.set("n", "<leader>dp", "<CMD>lua require(\"dap\").pause()<CR>", global_keymap("Pause"))
+vim.keymap.set("n", "<leader>dc", "<CMD>lua require(\"dap\").continue()<CR>", global_keymap("Continue"))
+vim.keymap.set("n", "<leader>dv", "<CMD>lua require(\"dap.ui.widgets\").centered_float(require(\"dap.ui.widgets\").scopes)<CR>", global_keymap("Variables"))
+vim.keymap.set("n", "<leader>dt", "<CMD>lua require(\"dap.ui.widgets\").centered_float(require(\"dap.ui.widgets\").threads)<CR>", global_keymap("Threads"))
+vim.keymap.set("n", "<leader>df", "<CMD>lua require(\"dap.ui.widgets\").centered_float(require(\"dap.ui.widgets\").frames)<CR>", global_keymap("Frames"))
+vim.keymap.set("n", "<leader>de", "<CMD>lua require(\"dap.ui.widgets\").hover()<CR>", global_keymap("Expression"))
+
+vim.keymap.set("n", "<leader>dbd", "<CMD>lua require(\"dap.breakpoints\").clear()<CR>", global_keymap("Delete breakpoints"))
+vim.keymap.set("n", "<leader>dbs", "<CMD>lua require(\"telescope\").extensions.dap.list_breakpoints{}<CR>", global_keymap("Show breakpoints"))
+vim.keymap.set("n", "<leader>dbt", "<CMD>lua require(\"dap\").toggle_breakpoint()<CR>", global_keymap("Toggle breakpoint"))
+vim.keymap.set("n", "<leader>dbc", "<CMD>lua require(\"dap\").set_breakpoint(vim.fn.input(\"Breakpoint condition: \"))<CR>", global_keymap("Toggle conditional breakpoint"))
+vim.keymap.set("n", "<leader>dbl", "<CMD>lua require(\"dap\").set_breakpoint(nil, nil, vim.fn.input(\"Log point message: \"))<CR>", global_keymap("Toggle logpoint"))
+
+vim.keymap.set("n", "<leader>dsi", "<CMD>lua require(\"dap\").step_into()<CR>", global_keymap("Step into"))
+vim.keymap.set("n", "<leader>dsb", "<CMD>lua require(\"dap\").step_back()<CR>", global_keymap("Step back"))
+vim.keymap.set("n", "<leader>dso", "<CMD>lua require(\"dap\").step_over()<CR>", global_keymap("Step over"))
+vim.keymap.set("n", "<leader>dsx", "<CMD>lua require(\"dap\").step_out()<CR>", global_keymap("Step out"))
+vim.keymap.set("n", "<leader>dsr", "<CMD>lua require(\"dap\").run_to_cursor()<CR>", global_keymap("Go to cursor"))
+
+local status_menu, menu = pcall(require, "key-menu")
+if not status_menu then
+  return
 end
+
+menu.set("n", "<leader>d", { desc = "Debugger" })
+menu.set("n", "<leader>db", { desc = "Breakpoints" })
+menu.set("n", "<leader>ds", { desc = "Steps" })

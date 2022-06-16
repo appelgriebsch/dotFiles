@@ -3,6 +3,8 @@ if not status_jdtls then
   return
 end
 
+local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
+
 -- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
@@ -25,6 +27,13 @@ local lsp_setup = require("plugins.lsp").make_config()
 
 local function jdtls_attach(client, bufnr)
   lsp_setup.on_attach(client, bufnr)
+
+  vim.keymap.set("n", "<leader>jts", "<CMD>lua require('jdtls').test_class()<CR>", local_keymap("Run Test suite"))
+  vim.keymap.set("n", "<leader>jtm", "<CMD>lua require('jdtls').test_nearest_method()<CR>", local_keymap("Run Test method"))
+  vim.keymap.set("n", "<leader>jc", "<CMD>lua require('jdtls').update_project_config()<CR>", local_keymap("Update Project configs"))
+  vim.keymap.set("n", "<leader>jr", "<CMD>lua require('jdtls.dap').setup_dap_main_class_configs({ verbose = true })<CR>", local_keymap("Update Run configs"))
+  vim.keymap.set("n", "<leader>jo", "<CMD>lua require'jdtls'.organize_imports()<CR>", local_keymap("Organize imports"))
+
   jdtls.setup_dap({ hotcodereplace = "auto" })
   jdtls.setup.add_commands()
   jdtls.dap.setup_dap_main_class_configs()
@@ -130,28 +139,10 @@ jdtls_config.init_options = {
 }
 jdtls.start_or_attach(jdtls_config)
 
-local status_cc, command_center = pcall(require, "command_center")
-if status_cc then
-  command_center.add({
-    {
-      description = "Java: Execute test suite",
-      cmd = "<CMD>lua require('jdtls').test_class()<CR>",
-    },
-    {
-      description = "Java: Execute test method",
-      cmd = "<CMD>lua require('jdtls').test_nearest_method()<CR>",
-    },
-    {
-      description = "Java: Update project configurations",
-      cmd = "<CMD>lua require('jdtls').update_project_config()<CR>",
-    },
-    {
-      description = "Java: Organize imports",
-      cmd = "<CMD>lua require'jdtls'.organize_imports()<CR>",
-    },
-    {
-      description = "Java: Refresh run configurations",
-      cmd = "<CMD>lua require('jdtls.dap').setup_dap_main_class_configs({ verbose = true })<CR>",
-    },
-  })
+local status_menu, menu = pcall(require, "key-menu")
+if not status_menu then
+  return
 end
+
+menu.set("n", "<leader>j", { desc = "Java" })
+menu.set("n", "<leader>jt", { desc = "Test" })
