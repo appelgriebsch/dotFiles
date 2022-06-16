@@ -1,5 +1,12 @@
-local status_ok, jdtls = pcall(require, "jdtls")
-if not status_ok then
+local status_jdtls, jdtls = pcall(require, "jdtls")
+if not status_jdtls then
+  return
+end
+
+-- Find root of project
+local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+local root_dir = require("jdtls.setup").find_root(root_markers)
+if root_dir == "" then
   return
 end
 
@@ -12,13 +19,6 @@ elseif vim.fn.has "unix" == 1 then
   CONFIG = "linux"
 else
   print "Unsupported system"
-end
-
--- Find root of project
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-local root_dir = require("jdtls.setup").find_root(root_markers)
-if root_dir == "" then
-  return
 end
 
 local lsp_setup = require("plugins.lsp").make_config()
@@ -130,8 +130,8 @@ jdtls_config.init_options = {
 }
 jdtls.start_or_attach(jdtls_config)
 
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
+local status_cc, command_center = pcall(require, "command_center")
+if status_cc then
   command_center.add({
     {
       description = "Java: Execute test suite",

@@ -99,6 +99,12 @@ return packer.startup(function(use)
           require("plugins.notify")
         end
       },
+      {
+        "j-hui/fidget.nvim",
+        config = function()
+          require("fidget").setup()
+        end
+      }
     },
     config = function()
       require("plugins.theme")
@@ -202,16 +208,17 @@ return packer.startup(function(use)
       { "simrat39/rust-tools.nvim" },
       { "jose-elias-alvarez/typescript.nvim" },
       { "someone-stole-my-name/yaml-companion.nvim" },
+      { "nanotee/sqls.nvim" },
       {
         "Saecki/crates.nvim",
-        event = { 'BufRead Cargo.toml' },
+        event = { "BufRead Cargo.toml" },
         config = function()
           require("crates").setup()
         end,
       },
       {
         "vuki656/package-info.nvim",
-        event = { 'BufRead package.json' },
+        event = { "BufRead package.json" },
         config = function()
           require("package-info").setup()
         end

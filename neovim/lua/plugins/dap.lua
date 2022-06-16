@@ -1,70 +1,35 @@
-local status_ok, dap = pcall(require, "dap")
-if not status_ok then
+local status_dap, dap = pcall(require, "dap")
+if not status_dap then
   return
 end
 
-local noremap = { noremap = true }
 local silent_noremap = { noremap = true, silent = true }
 
-dap.defaults.fallback.terminal_win_cmd = "tabnew"
+dap.defaults.fallback.terminal_win_cmd = "enew"
 dap.adapters.node2 = {
-  type = 'executable',
-  command = 'node',
-  args = { vim.env.HOME .. '/.local/share/nvim/dap_adapters/node-debug2/out/src/nodeDebug.js' },
+  type = "executable",
+  command = "node",
+  args = { vim.env.HOME .. "/.local/share/nvim/dap_adapters/node-debug2/out/src/nodeDebug.js" },
 }
 dap.configurations.javascript = {
   {
-    name = 'Launch',
-    type = 'node2',
-    request = 'launch',
-    program = '${file}',
+    name = "Launch",
+    type = "node2",
+    request = "launch",
+    program = "${file}",
     cwd = vim.fn.getcwd(),
     sourceMaps = true,
-    protocol = 'inspector',
-    console = 'integratedTerminal',
+    protocol = "inspector",
+    console = "integratedTerminal",
   },
   {
     -- For this to work you need to make sure the node process is started with the `--inspect` flag.
-    name = 'Attach to process',
-    type = 'node2',
-    request = 'attach',
-    processId = require 'dap.utils'.pick_process,
+    name = "Attach to process",
+    type = "node2",
+    request = "attach",
+    processId = require("dap.utils").pick_process,
   },
 }
-
--- DAP integration with vim-notify
-local utils = require("utils")
-dap.listeners.before['event_progressStart']['progress-notifications'] = function(session, body)
-  local notif_data = utils.get_notif_data("dap", body.progressId)
-  local message = utils.format_message(body.message, body.percentage)
-  notif_data.notification = vim.notify(message, "info", {
-    title = utils.format_title(body.title, session.config.type),
-    icon = utils.spinner_frames[1],
-    timeout = false,
-    hide_from_history = false,
-  })
-
-  notif_data.notification.spinner = 1
-  utils.update_spinner("dap", body.progressId)
-end
-
-dap.listeners.before['event_progressUpdate']['progress-notifications'] = function(session, body)
-  local notif_data = utils.get_notif_data("dap", body.progressId)
-  notif_data.notification = vim.notify(utils.format_message(body.message, body.percentage), "info", {
-    replace = notif_data.notification,
-    hide_from_history = false,
-  })
-end
-
-dap.listeners.before['event_progressEnd']['progress-notifications'] = function(session, body)
-  local notif_data = utils.get_notif_data("dap", body.progressId)
-  notif_data.notification = vim.notify(body.message and utils.format_message(body.message) or "Complete", "info", {
-    icon = "",
-    replace = notif_data.notification,
-    timeout = 3000
-  })
-  notif_data.spinner = nil
-end
 
 require("nvim-dap-virtual-text").setup()
 

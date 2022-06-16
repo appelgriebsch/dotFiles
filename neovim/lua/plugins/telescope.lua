@@ -1,10 +1,10 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
+local status_telescope, telescope = pcall(require, "telescope")
+if not status_telescope then
   return
 end
 
-local status_ok, command_center = pcall(require, "command_center")
-if not status_ok then
+local status_cc, command_center = pcall(require, "command_center")
+if not status_cc then
   return
 end
 
@@ -16,7 +16,6 @@ telescope.setup({
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "smart" },
     layout_strategy = "vertical",
     layout_config = {
       vertical = {

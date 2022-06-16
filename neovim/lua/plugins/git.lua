@@ -1,5 +1,5 @@
-local status_ok, gitsigns = pcall(require, "gitsigns")
-if not status_ok then
+local status_git, gitsigns = pcall(require, "gitsigns")
+if not status_git then
   return
 end
 
@@ -49,8 +49,8 @@ gitsigns.setup({
   },
 })
 
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
+local status_cc, command_center = pcall(require, "command_center")
+if status_cc then
   -- TODO: add git features to Command Center
   return
 end

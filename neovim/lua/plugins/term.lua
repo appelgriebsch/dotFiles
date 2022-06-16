@@ -1,5 +1,5 @@
-local status_ok, toggleterm = pcall(require, "toggleterm")
-if not status_ok then
+local status_term, toggleterm = pcall(require, "toggleterm")
+if not status_term then
   return
 end
 
@@ -50,8 +50,24 @@ function _GITUI_TOGGLE()
   gitui:toggle()
 end
 
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
-  --command_center.add({
-  return
+local btop = Terminal:new({ cmd = "btop", hidden = true })
+
+function _BTOP_TOGGLE()
+  btop:toggle()
+end
+
+local status_cc, command_center = pcall(require, "command_center")
+if status_cc then
+  command_center.add({
+    {
+      category = "tools",
+      description = "Tools: GITUIT",
+      cmd = "<CMD>lua _GITUI_TOGGLE()<CR>",
+    },
+    {
+      category = "tools",
+      description = "Tools: BTOP",
+      cmd = "<CMD>lua _BTOP_TOGGLE()<CR>",
+    },
+  })
 end

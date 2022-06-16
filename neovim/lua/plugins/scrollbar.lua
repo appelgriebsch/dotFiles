@@ -1,5 +1,5 @@
-local status_ok, scrollview = pcall(require, "scrollview")
-if not status_ok then
+local status_scrollbar, scrollview = pcall(require, "scrollview")
+if not status_scrollbar then
   return
 end
 

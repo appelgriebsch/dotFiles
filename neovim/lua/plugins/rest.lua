@@ -1,5 +1,5 @@
-local status_ok, rest = pcall(require, "rest-nvim")
-if not status_ok then
+local status_rest, rest = pcall(require, "rest-nvim")
+if not status_rest then
   return
 end
 
@@ -28,8 +28,8 @@ rest.setup({
   yank_dry_run = true,
 })
 
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
+local status_cc, command_center = pcall(require, "command_center")
+if status_cc then
   -- TODO: add REST features to Command Center
   return
 end

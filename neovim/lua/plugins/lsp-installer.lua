@@ -1,16 +1,15 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
+local status_lspinstaller, lsp_installer = pcall(require, "nvim-lsp-installer")
+if not status_lspinstaller then
   return
 end
 
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
+local status_lspconfig, lspconfig = pcall(require, "lspconfig")
+if not status_lspconfig then
   return
 end
 
 local lsp_setup = require("plugins.lsp").make_config()
 
-local noremap = { noremap = true }
 local silent_noremap = { noremap = true, silent = true }
 
 -- Provide settings first!
@@ -59,8 +58,8 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- Specific rust-analyzer setup.
-local status_ok, rust_tools = pcall(require, "rust-tools")
-if status_ok then
+local status_rust, rust_tools = pcall(require, "rust-tools")
+if status_rust then
   -- rust tools configuration for debugging support
   local extension_path = vim.env.HOME .. '/.local/share/nvim/dap_adapters/codelldb/'
   local codelldb_path = extension_path .. 'adapter/codelldb'
@@ -100,8 +99,8 @@ if status_ok then
 end
 
 -- specific jsonls setup
-local status_ok, schemastore = pcall(require, "schemastore")
-if status_ok then
+local status_jsonls, schemastore = pcall(require, "schemastore")
+if status_jsonls then
   lspconfig.jsonls.setup({
     on_attach = lsp_setup.on_attach,
     capabilities = lsp_setup.capabilities,
@@ -114,8 +113,8 @@ if status_ok then
 end
 
 -- Specific typescript setup.
-local status_ok, typescript = pcall(require, "typescript")
-if status_ok then
+local status_tsserver, typescript = pcall(require, "typescript")
+if status_tsserver then
   typescript.setup({
     debug = false, -- enable debug logging for commands
     server = { -- pass options to lspconfig's setup method
@@ -126,8 +125,8 @@ if status_ok then
 end
 
 -- Yaml companion
-local status_ok, yaml_companion = pcall(require, "yaml-companion")
-if status_ok then
+local status_yamlls, yaml_companion = pcall(require, "yaml-companion")
+if status_yamlls then
   local yaml_cfg = yaml_companion.setup({
     -- Add any options here, or leave empty to use the default settings
     -- lspconfig = {
@@ -137,8 +136,15 @@ if status_ok then
   lspconfig.yamlls.setup(yaml_cfg)
 end
 
-local status_ok, lsp_lines = pcall(require, "lsp_lines")
-if status_ok then
+-- sqls setup
+lspconfig.sqls.setup{
+  on_attach = function(client, bufnr)
+      require("sqls").on_attach(client, bufnr)
+  end
+}
+
+local status_lsplines, lsp_lines = pcall(require, "lsp_lines")
+if status_lsplines then
   lsp_lines.register_lsp_virtual_lines()
   vim.api.nvim_exec([[
     augroup LSPLines
@@ -149,8 +155,8 @@ if status_ok then
   ]], false)
 end
 
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
+local status_cc, command_center = pcall(require, "command_center")
+if status_cc then
   command_center.add({
     {
       category = "lsp",

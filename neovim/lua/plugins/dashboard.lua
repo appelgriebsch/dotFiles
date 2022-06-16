@@ -1,5 +1,5 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
+local status_dashboard, alpha = pcall(require, "alpha")
+if not status_dashboard then
   return
 end
 

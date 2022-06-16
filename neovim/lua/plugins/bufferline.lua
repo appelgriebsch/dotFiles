@@ -1,5 +1,5 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
+local status_bufferline, bufferline = pcall(require, "bufferline")
+if not status_bufferline then
   return
 end
 

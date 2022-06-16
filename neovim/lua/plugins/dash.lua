@@ -1,5 +1,5 @@
-local status_ok, command_center = pcall(require, "command_center")
-if status_ok then
+local status_cc, command_center = pcall(require, "command_center")
+if status_cc then
   command_center.add({
     {
       category = "help",
