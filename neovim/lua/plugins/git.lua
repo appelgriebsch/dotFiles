@@ -68,5 +68,3 @@ end
 menu.set("n", "<leader>g", { desc = "Git" })
 menu.set("n", "<leader>gh", { desc = "Hunk" })
 menu.set("n", "<leader>gt", { desc = "Toggle" })
-
-

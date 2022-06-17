@@ -1,3 +1,5 @@
+local function global_keymap(desc) return { silent = true, desc = desc } end
+
 local status_term, toggleterm = pcall(require, "toggleterm")
 if not status_term then
   return
@@ -71,3 +73,13 @@ if status_cc then
     },
   })
 end
+
+vim.keymap.set("n", "<leader>tg", "<CMD>lua _GITUI_TOGGLE()<CR>", global_keymap("Gitui"))
+vim.keymap.set("n", "<leader>tb", "<CMD>lua _BTOP_TOGGLE()<CR>", global_keymap("Btop"))
+
+local status_menu, menu = pcall(require, "key-menu")
+if not status_menu then
+  return
+end
+
+menu.set("n", "<leader>t", { desc = "Terminal" })

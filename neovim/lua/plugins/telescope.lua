@@ -114,7 +114,7 @@ vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
 
 -- Workspaces
-vim.keymap.set("n", "<leader>wp", ":Telescope project display_type=full<CR>", global_keymap("Switch Project"))
+vim.keymap.set("n", "<leader>wp", "<CMD>Telescope project display_type=full<CR>", global_keymap("Switch Project"))
 vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", global_keymap("Show Diagnostics"))
 vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_workspace_symbols<CR>", global_keymap("Show Symbols"))
 

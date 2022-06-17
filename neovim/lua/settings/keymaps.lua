@@ -1,4 +1,3 @@
-local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
 local function global_keymap(desc) return { silent = true, desc = desc } end
 
 --Remap space as leader key

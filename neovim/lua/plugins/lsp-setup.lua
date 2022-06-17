@@ -8,9 +8,9 @@ if not status_lspconfig then
   return
 end
 
-local lsp_setup = require("plugins.lsp").make_config()
+require("plugins.cmp").setup()
 
-local silent_noremap = { noremap = true, silent = true }
+local lsp_setup = require("plugins.lsp").make_config()
 
 -- Provide settings first!
 lsp_installer.setup({
@@ -70,7 +70,7 @@ if status_rust then
     },
     tools = {
       autoSetHints = true,
-      hover_with_actions = true,
+      hover_with_actions = false,
       inlay_hints = {
         show_parameter_hints = true,
       },

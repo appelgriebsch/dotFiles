@@ -27,9 +27,3 @@ rest.setup({
   custom_dynamic_variables = {},
   yank_dry_run = true,
 })
-
-local status_cc, command_center = pcall(require, "command_center")
-if status_cc then
-  -- TODO: add REST features to Command Center
-  return
-end

@@ -132,10 +132,14 @@ return packer.startup(function(use)
     end
   }
   use {
-    "windwp/nvim-autopairs",
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      { "f-person/git-blame.nvim" },
+    },
+    event = "BufReadPre",
     config = function()
-      require("nvim-autopairs").setup()
-    end
+      require("plugins.git")
+    end,
   }
   use {
     "akinsho/toggleterm.nvim",
@@ -144,21 +148,13 @@ return packer.startup(function(use)
     end
   }
   use {
-    "lewis6991/gitsigns.nvim",
-    requires = {
-      { "f-person/git-blame.nvim" },
-      { "sindrets/diffview.nvim" }
-    },
-    event = "BufReadPre",
-    config = function()
-      require("plugins.git")
-    end,
-  }
-  use {
     "NTBBloodbath/rest.nvim",
     config = function()
       require("plugins.rest")
     end
+  }
+  use {
+    "sindrets/diffview.nvim"
   }
   -- Dash integration on macOS only
   if vim.fn.has "mac" == 1 then
@@ -196,11 +192,11 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-cmdline" },
-      { "b0o/schemastore.nvim" },
-      { "onsails/lspkind.nvim" },
-      { "Maan2003/lsp_lines.nvim" },
       { "dcampos/nvim-snippy" },
       { "dcampos/cmp-snippy" },
+      { "onsails/lspkind.nvim" },
+      { "Maan2003/lsp_lines.nvim" },
+      { "b0o/schemastore.nvim" },
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
       { "jose-elias-alvarez/typescript.nvim" },
@@ -220,9 +216,15 @@ return packer.startup(function(use)
           require("package-info").setup()
         end
       },
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require("nvim-autopairs").setup()
+        end
+      }
     },
     config = function()
-      require("plugins.lsp-installer")
+      require("plugins.lsp-setup")
     end,
   }
   --------------------------
