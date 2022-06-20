@@ -13,6 +13,7 @@ local options = {
   ignorecase = true,                       -- ignore case in search patterns
   inccommand = "nosplit",                  -- Incremental live completion
   incsearch = true,
+  laststatus = 3,                          -- enable global status bar
   number = true,
   relativenumber = true,                   -- Enable relative line numbers
   ruler = false,                           -- Disable line/column number in status line

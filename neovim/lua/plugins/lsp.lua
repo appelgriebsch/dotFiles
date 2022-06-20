@@ -87,6 +87,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>bjr", "<CMD>Telescope lsp_references<CR>", local_keymap("Jump to references"))
   vim.keymap.set("n", "<leader>bji", "<CMD>Telescope lsp_implementations<CR>", local_keymap("Jump to implementations"))
   vim.keymap.set("n", "<leader>bjt", "<CMD>Telescope lsp_typedefs<CR>", local_keymap("Jump to type definitions"))
+  vim.keymap.set("n", "<leader>bds", "<CMD>Telescope diagnostics bufno=0<CR>", local_keymap("Show Diagnostics"))
+  vim.keymap.set("n", "<leader>bss", "<CMD>Telescope lsp_document_symbols<CR>", local_keymap("Show Symbols"))
+  vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", local_keymap("Show Diagnostics"))
+  vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_workspace_symbols<CR>", local_keymap("Show Symbols"))
 
   -- Help
   vim.keymap.set("n", "<leader>bhs", "<CMD>Dash<CR>", local_keymap("Search index"))
@@ -110,6 +114,15 @@ local on_attach = function(client, bufnr)
     augroup END
     ]], false)
   end
+
+  local status_menu, menu = pcall(require, "key-menu")
+  if not status_menu then
+    return
+  end
+  menu.set("n", "<leader>bd", { desc = "Diagnostics" })
+  menu.set("n", "<leader>bj", { desc = "Jump" })
+  menu.set("n", "<leader>bh", { desc = "Help" })
+  menu.set("n", "<leader>bs", { desc = "Source" })
 end
 
 function M.make_config()

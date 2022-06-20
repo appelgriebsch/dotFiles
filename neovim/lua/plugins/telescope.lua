@@ -104,39 +104,30 @@ if vstask then
   vstask.setup({})
 end
 
--- Files
-vim.keymap.set("n", "<leader>ff", "<CMD>Telescope find_files<CR>", global_keymap("Find File"))
-vim.keymap.set("n", "<leader>fb", "<CMD>Telescope file_browser<CR>", global_keymap("Open File Browser"))
-vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", global_keymap("Search in Files"))
-vim.keymap.set("n", "<leader>fh", "<CMD>Telescope oldfiles<CR>", global_keymap("Recent Files"))
-vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", global_keymap("Git Files"))
-
 -- Buffers
 vim.keymap.set("n", "<leader>bf", "<CMD>Telescope buffers<CR>", global_keymap("Find Buffer"))
 vim.keymap.set("n", "<leader>bb", "<CMD>Telescope marks<CR>", global_keymap("Show Bookmarks"))
-vim.keymap.set("n", "<leader>bds", "<CMD>Telescope diagnostics bufno=0<CR>", global_keymap("Show Diagnostics"))
-vim.keymap.set("n", "<leader>bss", "<CMD>Telescope lsp_document_symbols<CR>", global_keymap("Show Symbols"))
 vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", global_keymap("Force close"))
 vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
 
--- Workspaces
+-- Workspaces / Files
 vim.keymap.set("n", "<leader>wp", "<CMD>Telescope project display_type=full<CR>", global_keymap("Switch Project"))
-vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", global_keymap("Show Diagnostics"))
-vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_workspace_symbols<CR>", global_keymap("Show Symbols"))
 vim.keymap.set("n", "<leader>wts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", global_keymap("Show Tasks"))
 vim.keymap.set("n", "<leader>wti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", global_keymap("Show Inputs"))
+
+vim.keymap.set("n", "<leader>wff", "<CMD>Telescope find_files<CR>", global_keymap("Find File"))
+vim.keymap.set("n", "<leader>wfb", "<CMD>Telescope file_browser<CR>", global_keymap("Open File Browser"))
+vim.keymap.set("n", "<leader>wfr", "<CMD>Telescope oldfiles<CR>", global_keymap("Recent Files"))
+vim.keymap.set("n", "<leader>wfg", "<CMD>Telescope git_files<CR>", global_keymap("Git Files"))
+vim.keymap.set("n", "<leader>wfs", "<CMD>Telescope live_grep<CR>", global_keymap("Search in Files"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return
 end
 
-menu.set("n", "<leader>f", { desc = "File" })
 menu.set("n", "<leader>b", { desc = "Buffer" })
-menu.set("n", "<leader>bd", { desc = "Diagnostics" })
-menu.set("n", "<leader>bj", { desc = "Jump" })
-menu.set("n", "<leader>bh", { desc = "Help" })
-menu.set("n", "<leader>bs", { desc = "Source" })
 menu.set("n", "<leader>w", { desc = "Workspace" })
+menu.set("n", "<leader>wf", { desc = "Files" })
 menu.set("n", "<leader>wt", { desc = "Tasks" })
