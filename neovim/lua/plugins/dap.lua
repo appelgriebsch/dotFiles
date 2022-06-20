@@ -42,7 +42,7 @@ vim.api.nvim_exec([[
   au FileType dap-repl lua require('dap.ext.autocompl').attach()
 ]], false)
 
-vim.keymap.set("n", "<leader>dr", "<CMD>lua require(\"telescope\").extensions.dap.configurations{}<CR>", global_keymap("Run"))
+vim.keymap.set("n", "<leader>dr", "<CMD>Telescope dap configurations<CR>", global_keymap("Run"))
 vim.keymap.set("n", "<leader>dp", "<CMD>lua require(\"dap\").pause()<CR>", global_keymap("Pause"))
 vim.keymap.set("n", "<leader>dc", "<CMD>lua require(\"dap\").continue()<CR>", global_keymap("Continue"))
 vim.keymap.set("n", "<leader>dv", "<CMD>lua require(\"dap.ui.widgets\").centered_float(require(\"dap.ui.widgets\").scopes)<CR>", global_keymap("Variables"))
@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>df", "<CMD>lua require(\"dap.ui.widgets\").centered
 vim.keymap.set("n", "<leader>de", "<CMD>lua require(\"dap.ui.widgets\").hover()<CR>", global_keymap("Expression"))
 
 vim.keymap.set("n", "<leader>dbd", "<CMD>lua require(\"dap.breakpoints\").clear()<CR>", global_keymap("Delete breakpoints"))
-vim.keymap.set("n", "<leader>dbs", "<CMD>lua require(\"telescope\").extensions.dap.list_breakpoints{}<CR>", global_keymap("Show breakpoints"))
+vim.keymap.set("n", "<leader>dbs", "<CMD>Telescope dap list_breakpoints<CR>", global_keymap("Show breakpoints"))
 vim.keymap.set("n", "<leader>dbt", "<CMD>lua require(\"dap\").toggle_breakpoint()<CR>", global_keymap("Toggle breakpoint"))
 vim.keymap.set("n", "<leader>dbc", "<CMD>lua require(\"dap\").set_breakpoint(vim.fn.input(\"Breakpoint condition: \"))<CR>", global_keymap("Toggle conditional breakpoint"))
 vim.keymap.set("n", "<leader>dbl", "<CMD>lua require(\"dap\").set_breakpoint(nil, nil, vim.fn.input(\"Log point message: \"))<CR>", global_keymap("Toggle logpoint"))

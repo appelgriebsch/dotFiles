@@ -75,29 +75,29 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", local_keymap("HIDDEN"))
   vim.keymap.set("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", local_keymap("HIDDEN"))
 
-  vim.keymap.set("n", "<leader>ldj", "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", local_keymap("Goto previous diagnostic"))
-  vim.keymap.set("n", "<leader>ldk", "<CMD>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", local_keymap("Goto next diagnostic"))
-  vim.keymap.set("n", "<leader>ldp", "<CMD>lua vim.diagnostic.open_float()<CR>", local_keymap("Show current diagnostic"))
-  vim.keymap.set("n", "<leader>lr", "<CMD>lua vim.lsp.buf.rename()<CR>", local_keymap("Rename symbol"))
-  vim.keymap.set("n", "<leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", local_keymap("Show Code Actions"))
+  vim.keymap.set("n", "<leader>bdj", "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", local_keymap("Goto previous diagnostic"))
+  vim.keymap.set("n", "<leader>bdk", "<CMD>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", local_keymap("Goto next diagnostic"))
+  vim.keymap.set("n", "<leader>bdp", "<CMD>lua vim.diagnostic.open_float()<CR>", local_keymap("Show current diagnostic"))
+  vim.keymap.set("n", "<leader>bsr", "<CMD>lua vim.lsp.buf.rename()<CR>", local_keymap("Rename symbol"))
+  vim.keymap.set("n", "<leader>bsa", "<CMD>lua vim.lsp.buf.code_action()<CR>", local_keymap("Show Actions"))
 
   -- Telescope
-  vim.keymap.set("n", "<leader>lgd", "<CMD>Telescope lsp_definitions<CR>", local_keymap("Find definitions"))
-  vim.keymap.set("n", "<leader>lgD", "<CMD>Telescope lsp_declarations<CR>", local_keymap("Find declarations"))
-  vim.keymap.set("n", "<leader>lgr", "<CMD>Telescope lsp_references<CR>", local_keymap("Find references"))
-  vim.keymap.set("n", "<leader>lgi", "<CMD>Telescope lsp_implementations<CR>", local_keymap("Find implementations"))
-  vim.keymap.set("n", "<leader>lgt", "<CMD>Telescope lsp_typedefs<CR>", local_keymap("Find type definitions"))
+  vim.keymap.set("n", "<leader>bjd", "<CMD>Telescope lsp_definitions<CR>", local_keymap("Jump to definitions"))
+  vim.keymap.set("n", "<leader>bjD", "<CMD>Telescope lsp_declarations<CR>", local_keymap("Jump to declarations"))
+  vim.keymap.set("n", "<leader>bjr", "<CMD>Telescope lsp_references<CR>", local_keymap("Jump to references"))
+  vim.keymap.set("n", "<leader>bji", "<CMD>Telescope lsp_implementations<CR>", local_keymap("Jump to implementations"))
+  vim.keymap.set("n", "<leader>bjt", "<CMD>Telescope lsp_typedefs<CR>", local_keymap("Jump to type definitions"))
 
   -- Help
-  vim.keymap.set("n", "<leader>lhs", "<CMD>Dash<CR>", local_keymap("Show help index"))
-  vim.keymap.set("n", "<leader>lhh", "<CMD>DashWord<CR>", local_keymap("Search for word"))
+  vim.keymap.set("n", "<leader>bhs", "<CMD>Dash<CR>", local_keymap("Search index"))
+  vim.keymap.set("n", "<leader>bhl", "<CMD>DashWord<CR>", local_keymap("Lookup word"))
 
   -- Set some keybinds conditional on server capabilities
   vim.cmd [[ command! Format execute "lua vim.lsp.buf.formatting()" ]]
   if client.resolved_capabilities.document_formatting then
-    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", local_keymap("Format buffer"))
+    vim.keymap.set("n", "<leader>bsf", "<CMD>lua vim.lsp.buf.formatting()<CR>", local_keymap("Format buffer"))
   elseif client.resolved_capabilities.document_range_formatting then
-    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", local_keymap("Format range"))
+    vim.keymap.set("n", "<leader>bsf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", local_keymap("Format range"))
   end
 
   -- Set autocommands conditional on server_capabilities

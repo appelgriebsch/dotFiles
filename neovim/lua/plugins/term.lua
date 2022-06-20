@@ -58,22 +58,6 @@ function _BTOP_TOGGLE()
   btop:toggle()
 end
 
-local status_cc, command_center = pcall(require, "command_center")
-if status_cc then
-  command_center.add({
-    {
-      category = "tools",
-      description = "Tools: GITUIT",
-      cmd = "<CMD>lua _GITUI_TOGGLE()<CR>",
-    },
-    {
-      category = "tools",
-      description = "Tools: BTOP",
-      cmd = "<CMD>lua _BTOP_TOGGLE()<CR>",
-    },
-  })
-end
-
 vim.keymap.set("n", "<leader>tg", "<CMD>lua _GITUI_TOGGLE()<CR>", global_keymap("Gitui"))
 vim.keymap.set("n", "<leader>tb", "<CMD>lua _BTOP_TOGGLE()<CR>", global_keymap("Btop"))
 
@@ -82,4 +66,4 @@ if not status_menu then
   return
 end
 
-menu.set("n", "<leader>t", { desc = "Terminal" })
+menu.set("n", "<leader>t", { desc = "Tools" })

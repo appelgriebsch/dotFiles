@@ -20,6 +20,8 @@ telescope.setup({
       height = 0.9,
       width = 0.9
     },
+    --path_display = { shorten = { len = 1, exclude = {1, -1} } },
+    path_display = { truncate = 3 },
     mappings = {
       i = {
         ["<CR>"] = actions.select_default,
@@ -84,8 +86,8 @@ telescope.load_extension("project")
 telescope.load_extension("termfinder")
 telescope.load_extension("yaml_schema")
 
-local status_ok, dressing = pcall(require, "dressing")
-if status_ok then
+local status_dressing, dressing = pcall(require, "dressing")
+if status_dressing then
   dressing.setup({
     input = {
       override = function(conf)
@@ -95,6 +97,11 @@ if status_ok then
       end
     }
   })
+end
+
+local status_vstask, vstask = pcall(require, "vstask")
+if vstask then
+  vstask.setup({})
 end
 
 -- Files
@@ -107,8 +114,8 @@ vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", global_keymap(
 -- Buffers
 vim.keymap.set("n", "<leader>bf", "<CMD>Telescope buffers<CR>", global_keymap("Find Buffer"))
 vim.keymap.set("n", "<leader>bb", "<CMD>Telescope marks<CR>", global_keymap("Show Bookmarks"))
-vim.keymap.set("n", "<leader>bd", "<CMD>Telescope diagnostics bufno=0<CR>", global_keymap("Show Diagnostics"))
-vim.keymap.set("n", "<leader>bs", "<CMD>Telescope lsp_document_symbols<CR>", global_keymap("Show Symbols"))
+vim.keymap.set("n", "<leader>bds", "<CMD>Telescope diagnostics bufno=0<CR>", global_keymap("Show Diagnostics"))
+vim.keymap.set("n", "<leader>bss", "<CMD>Telescope lsp_document_symbols<CR>", global_keymap("Show Symbols"))
 vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", global_keymap("Force close"))
 vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
@@ -117,6 +124,8 @@ vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
 vim.keymap.set("n", "<leader>wp", "<CMD>Telescope project display_type=full<CR>", global_keymap("Switch Project"))
 vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", global_keymap("Show Diagnostics"))
 vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_workspace_symbols<CR>", global_keymap("Show Symbols"))
+vim.keymap.set("n", "<leader>wts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", global_keymap("Show Tasks"))
+vim.keymap.set("n", "<leader>wti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", global_keymap("Show Inputs"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
@@ -125,9 +134,9 @@ end
 
 menu.set("n", "<leader>f", { desc = "File" })
 menu.set("n", "<leader>b", { desc = "Buffer" })
+menu.set("n", "<leader>bd", { desc = "Diagnostics" })
+menu.set("n", "<leader>bj", { desc = "Jump" })
+menu.set("n", "<leader>bh", { desc = "Help" })
+menu.set("n", "<leader>bs", { desc = "Source" })
 menu.set("n", "<leader>w", { desc = "Workspace" })
-
-menu.set("n", "<leader>l", { desc = "LSP" })
-menu.set("n", "<leader>ld", { desc = "Diagnostics" })
-menu.set("n", "<leader>lg", { desc = "Goto" })
-menu.set("n", "<leader>lh", { desc = "Help" })
+menu.set("n", "<leader>wt", { desc = "Tasks" })
