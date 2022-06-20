@@ -58,6 +58,7 @@ function _BTOP_TOGGLE()
   btop:toggle()
 end
 
+vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", global_keymap("Terminal"))
 vim.keymap.set("n", "<leader>tg", "<CMD>lua _GITUI_TOGGLE()<CR>", global_keymap("Gitui"))
 vim.keymap.set("n", "<leader>tb", "<CMD>lua _BTOP_TOGGLE()<CR>", global_keymap("Btop"))
 
