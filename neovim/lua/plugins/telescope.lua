@@ -100,8 +100,15 @@ if status_dressing then
 end
 
 local status_vstask, vstask = pcall(require, "vstask")
-if vstask then
-  vstask.setup({})
+if status_vstask then
+  vstask.setup({
+    terminal = "toggleterm",
+    term_opts = {
+      current = {
+        direction = "float",
+      },
+    }
+  })
 end
 
 -- Buffers

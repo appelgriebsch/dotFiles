@@ -48,6 +48,7 @@ return packer.startup(function(use)
   -- Dependencies --
   ----------------------
   use { "nathom/filetype.nvim" }
+  use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
   use { "MunifTanjim/nui.nvim" }
   use { "stevearc/dressing.nvim" }
