@@ -119,15 +119,15 @@ vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
 
 -- Workspaces / Files
-vim.keymap.set("n", "<leader>wp", "<CMD>Telescope project display_type=full<CR>", global_keymap("Switch Project"))
-vim.keymap.set("n", "<leader>wts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", global_keymap("Show Tasks"))
-vim.keymap.set("n", "<leader>wti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", global_keymap("Show Inputs"))
+vim.keymap.set("n", "<leader>ps", "<CMD>Telescope project display_type=full<CR>", global_keymap("Switch Project"))
+vim.keymap.set("n", "<leader>pts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", global_keymap("Show Tasks"))
+vim.keymap.set("n", "<leader>pti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", global_keymap("Show Inputs"))
 
-vim.keymap.set("n", "<leader>wff", "<CMD>Telescope find_files<CR>", global_keymap("Find File"))
-vim.keymap.set("n", "<leader>wfb", "<CMD>Telescope file_browser<CR>", global_keymap("Open File Browser"))
-vim.keymap.set("n", "<leader>wfr", "<CMD>Telescope oldfiles<CR>", global_keymap("Recent Files"))
-vim.keymap.set("n", "<leader>wfg", "<CMD>Telescope git_files<CR>", global_keymap("Git Files"))
-vim.keymap.set("n", "<leader>wfs", "<CMD>Telescope live_grep<CR>", global_keymap("Search in Files"))
+vim.keymap.set("n", "<leader>pff", "<CMD>Telescope find_files<CR>", global_keymap("Find File"))
+vim.keymap.set("n", "<leader>pfb", "<CMD>Telescope file_browser<CR>", global_keymap("Open File Browser"))
+vim.keymap.set("n", "<leader>pfr", "<CMD>Telescope oldfiles<CR>", global_keymap("Recent Files"))
+vim.keymap.set("n", "<leader>pfg", "<CMD>Telescope git_files<CR>", global_keymap("Git Files"))
+vim.keymap.set("n", "<leader>pfs", "<CMD>Telescope live_grep<CR>", global_keymap("Search in Files"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
@@ -135,6 +135,6 @@ if not status_menu then
 end
 
 menu.set("n", "<leader>b", { desc = "Buffer" })
-menu.set("n", "<leader>w", { desc = "Workspace" })
-menu.set("n", "<leader>wf", { desc = "Files" })
-menu.set("n", "<leader>wt", { desc = "Tasks" })
+menu.set("n", "<leader>p", { desc = "Project" })
+menu.set("n", "<leader>pf", { desc = "Files" })
+menu.set("n", "<leader>pt", { desc = "Tasks" })

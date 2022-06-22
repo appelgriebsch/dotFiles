@@ -89,8 +89,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>bjt", "<CMD>Telescope lsp_typedefs<CR>", local_keymap("Jump to type definitions"))
   vim.keymap.set("n", "<leader>bds", "<CMD>Telescope diagnostics bufno=0<CR>", local_keymap("Show Diagnostics"))
   vim.keymap.set("n", "<leader>bss", "<CMD>Telescope lsp_document_symbols<CR>", local_keymap("Show Symbols"))
-  vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", local_keymap("Show Diagnostics"))
-  vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_workspace_symbols<CR>", local_keymap("Show Symbols"))
+  vim.keymap.set("n", "<leader>pd", "<CMD>Telescope diagnostics<CR>", local_keymap("Show Diagnostics"))
+  vim.keymap.set("n", "<leader>ps", "<CMD>Telescope lsp_workspace_symbols<CR>", local_keymap("Show Symbols"))
 
   -- Help
   vim.keymap.set("n", "<leader>bhs", "<CMD>Dash<CR>", local_keymap("Search index"))

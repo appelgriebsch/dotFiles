@@ -8,6 +8,7 @@ local options = {
   encoding = 'UTF-8',                      -- default to utf-8
   expandtab = true,                        -- Insert spaces when TAB is pressed.
   fileencoding = 'UTF-8',                  -- default to utf-8
+  guifont = 'FiraMono Nerd Font:h13',      -- gui font
   hidden = true,                           -- Hides buffers instead of closing them
   hlsearch = true,                         -- highlight all matches on previous search pattern
   ignorecase = true,                       -- ignore case in search patterns
