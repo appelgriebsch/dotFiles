@@ -41,6 +41,13 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+vim.cmd([[
+  if has("gui_running") || exists("g:neovide")
+    set mouse=a
+    let g:neovide_cursor_vfx_mode = "pixiedust"
+  end
+]])
+
 --  showing special non-printable chars
 vim.opt.listchars:append { tab = ">>>" }
 vim.opt.listchars:append { trail = "·" }
