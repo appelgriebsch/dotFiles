@@ -44,7 +44,7 @@ end
 vim.cmd([[
   if has("gui_running") || exists("g:neovide")
     set mouse=a
-    let g:neovide_cursor_vfx_mode = "pixiedust"
+    let g:neovide_cursor_animation_length=0
   end
 ]])
 
