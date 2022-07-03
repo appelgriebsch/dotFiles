@@ -117,7 +117,13 @@ return packer.startup(function(use)
   -----------------------------
   use { "editorconfig/editorconfig-vim" }
   use { "tversteeg/registers.nvim" }
-  use { "famiu/bufdelete.nvim" }
+  use { "kazhala/close-buffers.nvim" }
+  use {
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup()
+    end
+  }
   use {
     "lewis6991/spellsitter.nvim",
     event = "BufReadPre",

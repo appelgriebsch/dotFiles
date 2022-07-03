@@ -114,7 +114,8 @@ end
 -- Buffers
 vim.keymap.set("n", "<leader>bf", "<CMD>Telescope buffers<CR>", global_keymap("Find Buffer"))
 vim.keymap.set("n", "<leader>bb", "<CMD>Telescope marks<CR>", global_keymap("Show Bookmarks"))
-vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", global_keymap("Force close"))
+vim.keymap.set("n", "<leader>bo", "<CMD>BDelete other<CR>", global_keymap("Close others"))
+vim.keymap.set("n", "<leader>bq", "<CMD>BDelete! this<CR>", global_keymap("Force close"))
 vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
 
