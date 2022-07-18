@@ -15,5 +15,10 @@ onedarkpro.setup({
     functions = "NONE", -- Style that is applied to functions
     variables = "NONE", -- Style that is applied to variables
   },
+  options = {
+    bold = false, -- Use the themes opinionated bold styles?
+    terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
+    cursorline = false, -- Use cursorline highlighting?
+  }
 })
 onedarkpro.load()

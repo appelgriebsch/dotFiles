@@ -120,7 +120,7 @@ vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
 
 -- Workspaces / Files
-vim.keymap.set("n", "<leader>ps", "<CMD>Telescope project display_type=full<CR>", global_keymap("Switch Project"))
+vim.keymap.set("n", "<leader>pj", "<CMD>Telescope project display_type=full<CR>", global_keymap("Jump to Project"))
 vim.keymap.set("n", "<leader>pts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", global_keymap("Show Tasks"))
 vim.keymap.set("n", "<leader>pti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", global_keymap("Show Inputs"))
 
