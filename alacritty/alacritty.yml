@@ -48,8 +48,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 10
-    y: 20
+    x: 5
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: true
@@ -63,7 +63,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: transparent
+  decorations: full
 
   # Background opacity
   #
@@ -750,14 +750,6 @@ working_directory: None
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - { key: Comma,   mods: Command, command: { program: "sh", args: ["-c","open ~/.config/alacritty/alacritty.yml"] } }
-  - { key: N,       mods: Command, action: SpawnNewInstance       }
-  - { key: Space,   mods: Alt,     chars: " "                     }
-  - { key: Back,    mods: Super,   chars: "\x15" } # delete word/line
-  - { key: Left,    mods: Alt,     chars: "\x1bb"                       } # one word left
-  - { key: Right,   mods: Alt,     chars: "\x1bf"                       } # one word right
-  - { key: Left,    mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
-  - { key: Right,   mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -848,6 +840,13 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
+  - { key: Comma,   mods: Command, command: { program: "sh", args: ["-c","open ~/.config/alacritty/alacritty.yml"] } }
+  - { key: Space,   mods: Alt,     chars: " "                     }
+  - { key: Back,    mods: Super,   chars: "\x15" } # delete word/line
+  - { key: Left,    mods: Alt,     chars: "\x1bb"                       } # one word left
+  - { key: Right,   mods: Alt,     chars: "\x1bf"                       } # one word right
+  - { key: Left,    mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,   mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
   - { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
   - { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
   - { key: Key0,           mods: Command,                    action: ResetFontSize         }
