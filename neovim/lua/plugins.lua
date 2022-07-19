@@ -125,6 +125,18 @@ return packer.startup(function(use)
     end
   }
   use {
+    "beauwilliams/focus.nvim",
+    config = function()
+      require("focus").setup()
+    end
+  }
+  use {
+    "mcauley-penney/tidy.nvim",
+    config = function()
+        require("tidy").setup()
+    end
+  }
+  use {
     "lewis6991/spellsitter.nvim",
     event = "BufReadPre",
     config = function()
