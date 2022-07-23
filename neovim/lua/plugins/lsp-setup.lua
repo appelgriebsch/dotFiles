@@ -70,9 +70,9 @@ if status_rust then
     },
     tools = {
       autoSetHints = false,
-      hover_with_actions = false,
+      hover_with_actions = true,
       inlay_hints = {
-        show_parameter_hints = false,
+        show_parameter_hints = true,
       },
     },
     server = {

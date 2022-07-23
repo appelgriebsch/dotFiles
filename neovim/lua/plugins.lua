@@ -229,6 +229,7 @@ return packer.startup(function(use)
       { "nanotee/sqls.nvim" },
       {
         "lvimuser/lsp-inlayhints.nvim",
+        branch = "readme",
         config = function ()
           require("lsp-inlayhints").setup()
         end

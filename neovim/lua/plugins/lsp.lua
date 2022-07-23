@@ -69,7 +69,9 @@ local on_attach = function(client, bufnr)
     floating_window = false,
     hint_prefix = " "
   }
+
   require("lsp_signature").on_attach(cfg, bufnr)
+  require("lsp-inlayhints").on_attach(bufnr, client)
 
   -- default lsp mappings.
   vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", local_keymap("HIDDEN"))
