@@ -145,7 +145,6 @@ lspconfig.sqls.setup{
 
 local status_lsplines, lsp_lines = pcall(require, "lsp_lines")
 if status_lsplines then
-  lsp_lines.register_lsp_virtual_lines()
   vim.api.nvim_exec([[
     augroup LSPLines
       autocmd!

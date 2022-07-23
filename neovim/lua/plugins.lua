@@ -233,13 +233,6 @@ return packer.startup(function(use)
         end,
       },
       {
-        "lvimuser/lsp-inlayhints.nvim",
-        branch = "readme",
-        config = function ()
-          require("lsp-inlayhints").setup()
-        end
-      },
-      {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
         config = function()
