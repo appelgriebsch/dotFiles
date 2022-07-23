@@ -69,10 +69,10 @@ if status_rust then
       adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
     },
     tools = {
-      autoSetHints = true,
+      autoSetHints = false,
       hover_with_actions = false,
       inlay_hints = {
-        show_parameter_hints = true,
+        show_parameter_hints = false,
       },
     },
     server = {

@@ -133,7 +133,13 @@ return packer.startup(function(use)
   use {
     "mcauley-penney/tidy.nvim",
     config = function()
-        require("tidy").setup()
+      require("tidy").setup()
+    end
+  }
+  use {
+    "Djancyp/cheat-sheet",
+    config = function ()
+      require("plugins.cheatsheet")
     end
   }
   use {
@@ -221,6 +227,12 @@ return packer.startup(function(use)
       { "jose-elias-alvarez/typescript.nvim" },
       { "someone-stole-my-name/yaml-companion.nvim" },
       { "nanotee/sqls.nvim" },
+      {
+        "lvimuser/lsp-inlayhints.nvim",
+        config = function ()
+          require("lsp-inlayhints").setup()
+        end
+      },
       {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
