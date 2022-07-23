@@ -220,13 +220,18 @@ return packer.startup(function(use)
       { "dcampos/nvim-snippy" },
       { "dcampos/cmp-snippy" },
       { "onsails/lspkind.nvim" },
-      { "Maan2003/lsp_lines.nvim" },
       { "b0o/schemastore.nvim" },
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
       { "jose-elias-alvarez/typescript.nvim" },
       { "someone-stole-my-name/yaml-companion.nvim" },
       { "nanotee/sqls.nvim" },
+      {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+          require("lsp_lines").setup()
+        end,
+      },
       {
         "lvimuser/lsp-inlayhints.nvim",
         branch = "readme",
