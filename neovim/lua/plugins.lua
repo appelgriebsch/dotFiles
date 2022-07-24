@@ -207,8 +207,9 @@ return packer.startup(function(use)
   -- LSP extensions  --
   ---------------------
   use {
-    "williamboman/nvim-lsp-installer",
+    "williamboman/mason.nvim",
     requires = {
+      { "williamboman/mason-lspconfig.nvim" },
       { "neovim/nvim-lspconfig" },
       { "ray-x/lsp_signature.nvim" },
       { "hrsh7th/nvim-cmp" },

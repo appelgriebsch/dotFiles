@@ -53,8 +53,8 @@ jdtls_config.cmd = {
   "-Dlog.protocol=true",
   "-Dlog.level=ALL",
   "-Xms2g",
-  "-jar", vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-  "-configuration", home .. "/.local/share/nvim/lsp_servers/jdtls/config_" .. CONFIG,
+  "-jar", vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+  "-configuration", home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. CONFIG,
   "-data", workspace_folder,
   "--add-modules=ALL-SYSTEM",
   "--add-opens", "java.base/java.util=ALL-UNNAMED",
@@ -117,8 +117,8 @@ jdtls_config.settings = {
 }
 
 local jar_patterns = {
-  "/.local/share/nvim/dap_adapters/jdtls/debug/server/com.microsoft.java.debug.plugin-*.jar",
-  "/.local/share/nvim/dap_adapters/jdtls/test/server/*.jar"
+  "/.local/share/nvim/mason/packages/jdtls/debug/server/com.microsoft.java.debug.plugin-*.jar",
+  "/.local/share/nvim/mason/packages/jdtls/test/server/*.jar"
 }
 
 local bundles = {}
