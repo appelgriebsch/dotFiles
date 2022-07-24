@@ -126,12 +126,14 @@ return packer.startup(function(use)
   }
   use {
     "beauwilliams/focus.nvim",
+    event = "BufReadPre",
     config = function()
       require("focus").setup()
     end
   }
   use {
     "mcauley-penney/tidy.nvim",
+    event = "BufReadPre",
     config = function()
       require("tidy").setup()
     end
@@ -140,13 +142,6 @@ return packer.startup(function(use)
     "Djancyp/cheat-sheet",
     config = function ()
       require("plugins.cheatsheet")
-    end
-  }
-  use {
-    "lewis6991/spellsitter.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("spellsitter").setup()
     end
   }
   use {
@@ -197,7 +192,13 @@ return packer.startup(function(use)
     requires = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "nvim-treesitter/nvim-tree-docs" },
-      { "p00f/nvim-ts-rainbow" }
+      { "p00f/nvim-ts-rainbow" },
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require("nvim-autopairs").setup()
+        end
+      }
     },
     config = function()
       require("plugins.treesitter")
@@ -224,11 +225,10 @@ return packer.startup(function(use)
       { "b0o/schemastore.nvim" },
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
-      { "jose-elias-alvarez/typescript.nvim" },
-      { "someone-stole-my-name/yaml-companion.nvim" },
       { "nanotee/sqls.nvim" },
       {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        event = "BufReadPre",
         config = function()
           require("lsp_lines").setup()
         end,
@@ -247,12 +247,6 @@ return packer.startup(function(use)
           require("package-info").setup()
         end
       },
-      {
-        "windwp/nvim-autopairs",
-        config = function()
-          require("nvim-autopairs").setup()
-        end
-      }
     },
     config = function()
       require("plugins.lsp-setup")

@@ -39,6 +39,10 @@ local function jdtls_attach(client, bufnr)
   jdtls.dap.setup_dap_main_class_configs()
 end
 
+local mason_registry = require("mason-registry")
+local jdtls_pkg = mason_registry.get_package("jdtls")
+local jdtls_path = jdtls_pkg:get_install_path()
+
 local jdtls_config = {
   flags = lsp_setup.flags,
   capabilities = lsp_setup.capabilities,
@@ -53,8 +57,8 @@ jdtls_config.cmd = {
   "-Dlog.protocol=true",
   "-Dlog.level=ALL",
   "-Xms2g",
-  "-jar", vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-  "-configuration", home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. CONFIG,
+  "-jar", vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+  "-configuration", jdtls_path .. "/config_" .. CONFIG,
   "-data", workspace_folder,
   "--add-modules=ALL-SYSTEM",
   "--add-opens", "java.base/java.util=ALL-UNNAMED",
@@ -117,13 +121,13 @@ jdtls_config.settings = {
 }
 
 local jar_patterns = {
-  "/.local/share/nvim/mason/packages/jdtls/debug/server/com.microsoft.java.debug.plugin-*.jar",
-  "/.local/share/nvim/mason/packages/jdtls/test/server/*.jar"
+  jdtls_path .. "/debug/extension/server/com.microsoft.java.debug.plugin-*.jar",
+  jdtls_path .. "/test/extension/server/*.jar"
 }
 
 local bundles = {}
 for _, jar_pattern in ipairs(jar_patterns) do
-  for _, bundle in ipairs(vim.split(vim.fn.glob(home .. jar_pattern), '\n')) do
+  for _, bundle in ipairs(vim.split(vim.fn.glob(jar_pattern), '\n')) do
     if not vim.endswith(bundle, "com.microsoft.java.test.runner.jar") then
       table.insert(bundles, bundle)
     end

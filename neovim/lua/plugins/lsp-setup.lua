@@ -44,6 +44,8 @@ mason_lspconfig.setup({
   automatic_installation = false,
 })
 
+local mason_registry = require("mason-registry")
+
 mason_lspconfig.setup_handlers({
   -- The first entry (without a key) will be the default handler
   -- and will be called for each installed server that doesn't have
@@ -83,10 +85,10 @@ mason_lspconfig.setup_handlers({
   end,
   ["rust_analyzer"] = function()
     -- rust tools configuration for debugging support
-    local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/extension/'
+    local codelldb = mason_registry.get_package("codelldb")
+    local extension_path = codelldb:get_install_path() .. '/extension/'
     local codelldb_path = extension_path .. 'adapter/codelldb'
-    local liblldb_path = vim.fn.has "mac" == 1 and extension_path .. 'lldb/lib/liblldb.dylib' or
-        extension_path .. 'lldb/lib/liblldb.so'
+    local liblldb_path = vim.fn.has "mac" == 1 and extension_path .. 'lldb/lib/liblldb.dylib' or extension_path .. 'lldb/lib/liblldb.so'
     require("rust-tools").setup({
       dap = {
         adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
@@ -137,12 +139,9 @@ mason_lspconfig.setup_handlers({
     lspconfig.sqls.setup {
       on_attach = function(client, bufnr)
         require("sqls").on_attach(client, bufnr)
+        lsp_setup.on_attach(client, bufnr)
       end,
       capabilities = lsp_setup.capabilities,
     }
-  end,
-  ["yamlls"] = function()
-    local yaml_cfg = require("yaml-companion").setup()
-    lspconfig.yamlls.setup(yaml_cfg)
   end
 })
