@@ -7,6 +7,7 @@ source ~/.local/share/zsh-snap/znap.zsh  # Start Znap
 
 # zsh theming
 GEOMETRY_SEPARATOR=" "
+
 # `znap prompt` makes your prompt visible in just 15-40ms!
 znap prompt geometry-zsh/geometry
 
