@@ -21,7 +21,7 @@ znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-export BAT_THEME=ansi
+export BAT_THEME=onedark
 
 # add some aliases
 alias cat="bat"
@@ -31,3 +31,4 @@ alias du="du -h"
 alias df="df -h"
 alias free="free -h"
 alias nv="nvim"
+alias gitui="gitui -t onedarkpro.ron"

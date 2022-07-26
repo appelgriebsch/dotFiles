@@ -17,7 +17,7 @@ onedarkpro.setup({
   },
   options = {
     bold = false, -- Use the themes opinionated bold styles?
-    terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
+    terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
     cursorline = false, -- Use cursorline highlighting?
   }
 })
