@@ -6,6 +6,12 @@ if not status_theme then
   return
 end
 
+local adapt_terminal_colors = false
+
+if vim.g.neovide then
+  adapt_terminal_colors = true
+end
+
 onedarkpro.setup({
   theme = "onedark_vivid",
   styles = {
@@ -17,7 +23,7 @@ onedarkpro.setup({
   },
   options = {
     bold = false, -- Use the themes opinionated bold styles?
-    terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
+    terminal_colors = adapt_terminal_colors, -- Use the theme's colors for Neovim's :terminal?
     cursorline = false, -- Use cursorline highlighting?
   }
 })
