@@ -43,7 +43,7 @@ return packer.startup(function(use)
   ---------------------
   -- Package Manager --
   ---------------------
-  use "wbthomason/packer.nvim"                       -- Packer manage itself
+  use "wbthomason/packer.nvim" -- Packer manage itself
   ----------------------
   -- Dependencies --
   ----------------------
@@ -119,6 +119,12 @@ return packer.startup(function(use)
   use { "tversteeg/registers.nvim" }
   use { "kazhala/close-buffers.nvim" }
   use {
+    "notjedi/nvim-rooter.lua",
+    config = function()
+      require("nvim-rooter").setup()
+    end
+  }
+  use {
     "kylechui/nvim-surround",
     config = function()
       require("nvim-surround").setup()
@@ -140,7 +146,7 @@ return packer.startup(function(use)
   }
   use {
     "Djancyp/cheat-sheet",
-    config = function ()
+    config = function()
       require("plugins.cheatsheet")
     end
   }

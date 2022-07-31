@@ -22,8 +22,8 @@ vim.keymap.set("n", "0", "v:count == 0 ? \"g0\" : \"0\"", { noremap = true, expr
 vim.keymap.set("n", "$", "v:count == 0 ? \"g$\" : \"$\"", { noremap = true, expr = true, silent = true, desc = "HIDDEN" })
 
 -- Buffers, Files, ...
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", global_keymap("Switch to next buffer"))
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", global_keymap("Switch to previous buffer"))
+vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", global_keymap("Switch to next buffer"))
+vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", global_keymap("Switch to previous buffer"))
 
 -- Highlight on yank
 vim.api.nvim_exec([[

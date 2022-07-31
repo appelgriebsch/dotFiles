@@ -21,14 +21,6 @@ bufferline.setup({
     color_icons = false,
     sort_by = "directory",
     diagnostics = "nvim_lsp",
-    diagnostics_indicator = function(_, _, diagnostics_dict)
-      local s = " "
-      for e, n in pairs(diagnostics_dict) do
-        local sym = e == "error" and "  " or (e == "warning" and "  " or "  ")
-        s = s .. sym .. n
-      end
-      return s
-    end,
     highlights = {
       buffer_selected = {
         gui = "none"
@@ -37,5 +29,37 @@ bufferline.setup({
         gui = "none"
       },
     },
+    custom_filter = function(buf_number)
+      if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
+        return true
+      end
+    end,
+    custom_areas = {
+      right = function()
+        local result = {}
+        local seve = vim.diagnostic.severity
+        local error = #vim.diagnostic.get(0, {severity = seve.ERROR})
+        local warning = #vim.diagnostic.get(0, {severity = seve.WARN})
+        local info = #vim.diagnostic.get(0, {severity = seve.INFO})
+        local hint = #vim.diagnostic.get(0, {severity = seve.HINT})
+
+        if error ~= 0 then
+          table.insert(result, { text = "  " .. error, guifg = "#E06C75" })
+        end
+
+        if warning ~= 0 then
+          table.insert(result, { text = "  " .. warning, guifg = "#E5C07B" })
+        end
+
+        if hint ~= 0 then
+          table.insert(result, { text = "  " .. hint, guifg = "#61AFEF" })
+        end
+
+        if info ~= 0 then
+          table.insert(result, { text = "  " .. info, guifg = "#61AFEF" })
+        end
+        return result
+      end,
+    }
   },
 })
