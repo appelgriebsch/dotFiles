@@ -63,10 +63,15 @@ mason_lspconfig.setup_handlers({
   -- Next, you can provide targeted overrides for specific servers.
   ["sumneko_lua"] = function()
     lspconfig.sumneko_lua.setup({
-      on_attach = lsp_setup.on_attach,
+      on_attach = function(client, bufnr)
+        lsp_setup.on_attach(client, bufnr)
+      end,
       capabilities = lsp_setup.capabilities,
       settings = {
         Lua = {
+          hint = {
+            enable = true,
+          },
           diagnostics = {
             -- Get the language server to recognize the 'vim', 'use' global
             globals = { 'vim', 'use', 'require' },
@@ -97,11 +102,14 @@ mason_lspconfig.setup_handlers({
         autoSetHints = false,
         hover_with_actions = true,
         inlay_hints = {
+          auto = false,
           show_parameter_hints = true,
         },
       },
       server = {
-        on_attach = lsp_setup.on_attach,
+        on_attach = function(client, bufnr)
+          lsp_setup.on_attach(client, bufnr)
+        end,
         capabilities = lsp_setup.capabilities,
         settings = {
           ["rust-analyzer"] = {
@@ -143,5 +151,37 @@ mason_lspconfig.setup_handlers({
       end,
       capabilities = lsp_setup.capabilities,
     }
+  end,
+  ["tsserver"] = function ()
+    lspconfig.tsserver.setup({
+      on_attach = function(client, bufnr)
+        lsp_setup.on_attach(client, bufnr)
+      end,
+      capabilities = lsp_setup.capabilities,
+      settings = {
+        javascript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
+        typescript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
+      },
+    })
   end
 })
