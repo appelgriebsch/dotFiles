@@ -1,3 +1,5 @@
+require("git-conflict").setup()
+
 local status_git, gitsigns = pcall(require, "gitsigns")
 if not status_git then
   return

@@ -167,6 +167,7 @@ return packer.startup(function(use)
     "lewis6991/gitsigns.nvim",
     requires = {
       { "f-person/git-blame.nvim" },
+      { "akinsho/git-conflict.nvim" }
     },
     event = "BufReadPre",
     config = function()
@@ -175,6 +176,7 @@ return packer.startup(function(use)
   }
   use {
     "akinsho/toggleterm.nvim",
+    tag = "v2.*",
     config = function()
       require("plugins.term")
     end
