@@ -123,24 +123,27 @@ return packer.startup(function(use)
   -----------------------------
   use { "editorconfig/editorconfig-vim" }
   use { "tversteeg/registers.nvim" }
-  use { "kazhala/close-buffers.nvim" }
   use {
     "notjedi/nvim-rooter.lua",
+    event = "BufReadPre",
     config = function()
       require("nvim-rooter").setup()
     end
   }
   use {
     "kylechui/nvim-surround",
+    event = "BufReadPre",
     config = function()
       require("nvim-surround").setup()
     end
   }
   use {
     "beauwilliams/focus.nvim",
-    event = "BufReadPre",
     config = function()
-      require("focus").setup()
+      require("focus").setup({
+        number = false,
+        relativenumber = false
+      })
     end
   }
   use {
@@ -148,6 +151,15 @@ return packer.startup(function(use)
     event = "BufReadPre",
     config = function()
       require("tidy").setup()
+    end
+  }
+  use {
+    "ojroques/nvim-bufdel",
+    config = function()
+      require("bufdel").setup {
+        next = "cycle", -- or "alternate"
+        quit = true,
+      }
     end
   }
   use {
@@ -186,9 +198,6 @@ return packer.startup(function(use)
     config = function()
       require("plugins.rest")
     end
-  }
-  use {
-    "sindrets/diffview.nvim"
   }
   -- Dash integration on macOS only
   if vim.fn.has "mac" == 1 then
@@ -271,6 +280,7 @@ return packer.startup(function(use)
   --------------------------
   use {
     "nvim-telescope/telescope.nvim",
+    branch = '0.1.x',
     requires = {
       { "nvim-telescope/telescope-github.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },

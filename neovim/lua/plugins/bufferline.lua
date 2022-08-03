@@ -6,7 +6,7 @@ end
 bufferline.setup({
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+    close_command = "BufDel! %d", -- can be a string | function, see "Mouse actions"
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
@@ -34,32 +34,5 @@ bufferline.setup({
         return true
       end
     end,
-    custom_areas = {
-      right = function()
-        local result = {}
-        local seve = vim.diagnostic.severity
-        local error = #vim.diagnostic.get(0, {severity = seve.ERROR})
-        local warning = #vim.diagnostic.get(0, {severity = seve.WARN})
-        local info = #vim.diagnostic.get(0, {severity = seve.INFO})
-        local hint = #vim.diagnostic.get(0, {severity = seve.HINT})
-
-        if error ~= 0 then
-          table.insert(result, { text = "  " .. error, guifg = "#E06C75" })
-        end
-
-        if warning ~= 0 then
-          table.insert(result, { text = "  " .. warning, guifg = "#E5C07B" })
-        end
-
-        if hint ~= 0 then
-          table.insert(result, { text = "  " .. hint, guifg = "#61AFEF" })
-        end
-
-        if info ~= 0 then
-          table.insert(result, { text = "  " .. info, guifg = "#61AFEF" })
-        end
-        return result
-      end,
-    }
   },
 })
