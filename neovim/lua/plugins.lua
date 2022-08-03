@@ -53,7 +53,6 @@ return packer.startup(function(use)
   use { "MunifTanjim/nui.nvim" }
   use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
-  use { "yamatsum/nvim-nonicons" }
   use { "linty-org/key-menu.nvim" }
   ----------------------
   -- UI extensions --
@@ -76,21 +75,18 @@ return packer.startup(function(use)
       {
         "akinsho/bufferline.nvim",
         tag = "v2.*",
-        event = "BufReadPre",
         config = function()
           require("plugins.bufferline")
         end,
       },
       {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
         config = function()
           require("plugins.blankline")
         end,
       },
       {
         "dstein64/nvim-scrollview",
-        event = "BufReadPre",
         config = function()
           require("plugins.scrollbar")
         end
@@ -139,6 +135,7 @@ return packer.startup(function(use)
   }
   use {
     "beauwilliams/focus.nvim",
+    event = "BufReadPre",
     config = function()
       require("focus").setup({
         number = false,
@@ -155,17 +152,12 @@ return packer.startup(function(use)
   }
   use {
     "ojroques/nvim-bufdel",
+    event = "BufReadPre",
     config = function()
       require("bufdel").setup {
         next = "cycle", -- or "alternate"
         quit = true,
       }
-    end
-  }
-  use {
-    "Djancyp/cheat-sheet",
-    config = function()
-      require("plugins.cheatsheet")
     end
   }
   use {
@@ -197,6 +189,12 @@ return packer.startup(function(use)
     "NTBBloodbath/rest.nvim",
     config = function()
       require("plugins.rest")
+    end
+  }
+  use {
+    "Djancyp/cheat-sheet",
+    config = function()
+      require("plugins.cheatsheet")
     end
   }
   -- Dash integration on macOS only
