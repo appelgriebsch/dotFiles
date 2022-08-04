@@ -240,6 +240,7 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-cmdline" },
+      { "andersevenrud/cmp-tmux" },
       { "dcampos/nvim-snippy" },
       { "dcampos/cmp-snippy" },
       { "onsails/lspkind.nvim" },

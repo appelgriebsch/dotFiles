@@ -69,7 +69,8 @@ function M.setup()
     }, {
       { name = "buffer" },
       { name = "path" },
-      { name = "crates" }
+      { name = "crates" },
+      { name = "tmux" }
     })
   })
 
