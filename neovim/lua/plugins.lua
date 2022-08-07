@@ -179,6 +179,16 @@ return packer.startup(function(use)
     end,
   }
   use {
+    "sindrets/diffview.nvim",
+    requires = "nvim-lua/plenary.nvim"
+  }
+  use {
+    "andythigpen/nvim-coverage",
+    config = function()
+      require("coverage").setup()
+    end
+  }
+  use {
     "akinsho/toggleterm.nvim",
     tag = "v2.*",
     config = function()
