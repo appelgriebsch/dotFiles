@@ -13,7 +13,6 @@ if root_dir == "" then
 end
 
 -- Determine OS
-local home = os.getenv "HOME"
 local workspace_folder = "/tmp/nvim/jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 if vim.fn.has "mac" == 1 then
   CONFIG = "mac"
