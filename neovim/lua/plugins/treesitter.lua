@@ -8,10 +8,12 @@ local local_install = {
     "css",
     "dockerfile",
     "dot",
+    "gitignore",
     "go",
     "gomod",
     "graphql",
     "hcl",
+    "help",
     "hjson",
     "html",
     "http",
@@ -22,16 +24,22 @@ local local_install = {
     "json5",
     "jsonc",
     "julia",
+    "kotlin",
+    "latex",
     "llvm",
     "lua",
     "make",
     "markdown",
+    "markdown_inline",
+    "norg",
     "pascal",
+    "proto",
     "python",
     "regex",
     "rust",
     "scss",
     "sparql",
+    "sql",
     "toml",
     "tsx",
     "typescript",
@@ -106,5 +114,3 @@ vim.api.nvim_exec([[
   set foldlevel=99
   set foldexpr=nvim_treesitter#foldexpr()
 ]], false)
-
-
