@@ -1,10 +1,9 @@
-local function global_keymap(desc) return { silent = true, desc = desc } end
-
 local status_telescope, telescope = pcall(require, "telescope")
 if not status_telescope then
   return
 end
 
+local keymap = require("utils.keymaps")
 local actions = require("telescope.actions")
 
 telescope.setup({
@@ -111,29 +110,42 @@ if status_vstask then
 end
 
 -- Buffers
-vim.keymap.set("n", "<leader>bf", "<CMD>Telescope buffers<CR>", global_keymap("Find Buffer"))
-vim.keymap.set("n", "<leader>bb", "<CMD>Telescope marks<CR>", global_keymap("Show Bookmarks"))
-vim.keymap.set("n", "<leader>bq", "<CMD>BufDel!<CR>", global_keymap("Force close"))
-vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", global_keymap("Force write"))
-vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", global_keymap("Force reload"))
+vim.keymap.set("n", "<leader>bc", "<CMD>noh<CR>", keymap.map_global("clear highlights"))
+vim.keymap.set("n", "<leader>bh", "<CMD>BufferLineMovePrev<CR>", keymap.map_global("move to left"))
+vim.keymap.set("n", "<leader>bl", "<CMD>BufferLineMoveNext<CR>", keymap.map_global("move to right"))
+vim.keymap.set("n", "<leader>bn", "<CMD>ene <BAR> startinsert<CR>", keymap.map_global("create new"))
+vim.keymap.set("n", "<leader>bq", "<CMD>BufDel!<CR>", keymap.map_global("close"))
+vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", keymap.map_global("reload"))
+vim.keymap.set("n", "<leader>bs", "<CMD>vs<CR>", keymap.map_global("split vertical"))
+vim.keymap.set("n", "<leader>bv", "<CMD>sp<CR>", keymap.map_global("split horizontal"))
+vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", keymap.map_global("write"))
 
 -- Workspaces / Files
-vim.keymap.set("n", "<leader>pj", "<CMD>Telescope project display_type=full<CR>", global_keymap("Jump to Project"))
-vim.keymap.set("n", "<leader>pts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", global_keymap("Show Tasks"))
-vim.keymap.set("n", "<leader>pti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", global_keymap("Show Inputs"))
+vim.keymap.set("n", "<leader>fb", "<CMD>Telescope buffers<CR>", keymap.map_global("buffer"))
+vim.keymap.set("n", "<leader>ff", "<CMD>Telescope find_files<CR>", keymap.map_global("file"))
+vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", keymap.map_global("git file"))
+vim.keymap.set("n", "<leader>fm", "<CMD>Telescope marks<CR>", keymap.map_global("bookmarks"))
+vim.keymap.set("n", "<leader>fr", "<CMD>Telescope oldfiles<CR>", keymap.map_global("recent files"))
+vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", keymap.map_global("search word"))
 
-vim.keymap.set("n", "<leader>pff", "<CMD>Telescope find_files<CR>", global_keymap("Find File"))
-vim.keymap.set("n", "<leader>pfb", "<CMD>Telescope file_browser<CR>", global_keymap("Open File Browser"))
-vim.keymap.set("n", "<leader>pfr", "<CMD>Telescope oldfiles<CR>", global_keymap("Recent Files"))
-vim.keymap.set("n", "<leader>pfg", "<CMD>Telescope git_files<CR>", global_keymap("Git Files"))
-vim.keymap.set("n", "<leader>pfs", "<CMD>Telescope live_grep<CR>", global_keymap("Search in Files"))
+vim.keymap.set("n", "<leader>gs", "<CMD>Telescope git_status<CR>", keymap.map_global("status"))
+vim.keymap.set("n", "<leader>gc", "<CMD>Telescope git_commits<CR>", keymap.map_global("commit history"))
+vim.keymap.set("n", "<leader>gC", "<CMD>Telescope git_bcommits<CR>", keymap.map_global("buffer commit history"))
+vim.keymap.set("n", "<leader>gb", "<CMD>Telescope git_branches<CR>", keymap.map_global("branches history"))
+
+vim.keymap.set("n", "<leader>wf", "<CMD>Telescope file_browser<CR>", keymap.map_global("file browser"))
+vim.keymap.set("n", "<leader>ws", "<CMD>Telescope project display_type=full<CR>", keymap.map_global("switch to project"))
+vim.keymap.set("n", "<leader>wts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("show tasks"))
+vim.keymap.set("n", "<leader>wti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("show inputs"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return
 end
 
-menu.set("n", "<leader>b", { desc = "Buffer" })
-menu.set("n", "<leader>p", { desc = "Project" })
-menu.set("n", "<leader>pf", { desc = "Files" })
-menu.set("n", "<leader>pt", { desc = "Tasks" })
+menu.set("n", "<leader>b", { desc = "buffer" })
+menu.set("n", "<leader>f", { desc = "find" })
+menu.set("n", "<leader>g", { desc = "git" })
+menu.set("n", "<leader>t", { desc = "tools" })
+menu.set("n", "<leader>w", { desc = "workspace" })
+menu.set("n", "<leader>wt", { desc = "tasks" })

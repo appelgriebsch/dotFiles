@@ -1,11 +1,11 @@
 -- Rust specific vim keybindings
+local keymap = require("utils.keymaps")
+
+-- TODO: rust specific key maps
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return
 end
 
-local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
-
-vim.keymap.set("n", "<leader>ra", "<CMD>RustHoverActions<CR>", local_keymap("Actions"))
-menu.set("n", "<leader>r", { desc = "Rust" })
+menu.set("n", "<leader>tr", { desc = "rust" })

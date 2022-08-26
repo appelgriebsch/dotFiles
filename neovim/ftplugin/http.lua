@@ -1,14 +1,13 @@
 -- http / rest specific vim keybindings
+local keymap = require("utils.keymaps")
+
+vim.keymap.set("n", "<leader>the", "<Plug>RestNvim<CR>", keymap.map_local("execute request"))
+vim.keymap.set("n", "<leader>thp", "<Plug>RestNvimPreview<CR>", keymap.map_local("preview cUrl command"))
+vim.keymap.set("n", "<leader>thl", "<Plug>RestNvimLast<CR>", keymap.map_local("rerun last request"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return
 end
 
-local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
-
-vim.keymap.set("n", "<leader>he", "<Plug>RestNvim<CR>", local_keymap("Execute request"))
-vim.keymap.set("n", "<leader>hp", "<Plug>RestNvimPreview<CR>", local_keymap("Preview cUrl command"))
-vim.keymap.set("n", "<leader>hl", "<Plug>RestNvimLast<CR>", local_keymap("Rerun last request"))
-
-menu.set("n", "<leader>h", { desc = "Http" })
+menu.set("n", "<leader>th", { desc = "http" })

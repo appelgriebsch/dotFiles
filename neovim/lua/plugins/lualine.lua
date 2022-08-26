@@ -7,6 +7,8 @@ local function clock()
   return " " .. os.date("%H:%M")
 end
 
+local lsp_utils = require("utils.lsp")
+
 require("nvim-web-devicons").setup({ default = true })
 
 lualine.setup({
@@ -16,9 +18,25 @@ lualine.setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch" },
-    lualine_c = { { "diagnostics", sources = { "nvim_diagnostic" } }, "filename" },
-    lualine_x = { "filetype" },
+    lualine_b = {
+      { "branch" },
+      {
+        "diff",
+        symbols = { added = " ", modified = "柳", removed = " " }, -- changes diff symbols
+      },
+    },
+    lualine_c = {
+      { "diagnostics" },
+      { "filename", padding = { left = 1, right = 1 } },
+    },
+    lualine_x = {
+      {
+        lsp_utils.lsp_name,
+        icon = "",
+        color = { gui = "none" },
+      },
+      { "filetype", color = { gui = "none" }, padding = { left = 1, right = 1 }, separator = " " },
+    },
     lualine_y = { "progress" },
     lualine_z = { clock },
   },

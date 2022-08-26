@@ -1,9 +1,9 @@
-local function global_keymap(desc) return { silent = true, desc = desc } end
-
 local status_term, toggleterm = pcall(require, "toggleterm")
 if not status_term then
   return
 end
+
+local keymap = require("utils.keymaps")
 
 toggleterm.setup({
   open_mapping = [[<c-\>]],
@@ -54,13 +54,17 @@ function _BTOP_TOGGLE()
   btop:toggle()
 end
 
-vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", global_keymap("Terminal"))
-vim.keymap.set("n", "<leader>tg", "<CMD>lua _GITUI_TOGGLE()<CR>", global_keymap("Gitui"))
-vim.keymap.set("n", "<leader>tb", "<CMD>lua _BTOP_TOGGLE()<CR>", global_keymap("Btop"))
+vim.keymap.set("n", "<leader>ttf", "<CMD>ToggleTerm direction=float<CR>", keymap.map_global("floating"))
+vim.keymap.set("n", "<leader>tth", "<CMD>ToggleTerm direction=horizontal<CR>", keymap.map_global("horizontal"))
+vim.keymap.set("n", "<leader>tts", "<CMD>Telescope termfinder<CR>", keymap.map_global("search"))
+vim.keymap.set("n", "<leader>ttv", "<CMD>ToggleTerm direction=vertical<CR>", keymap.map_global("vertical"))
+
+vim.keymap.set("n", "<leader>tg", "<CMD>lua _GITUI_TOGGLE()<CR>", keymap.map_global("gitui"))
+vim.keymap.set("n", "<leader>tb", "<CMD>lua _BTOP_TOGGLE()<CR>", keymap.map_global("btop"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return
 end
 
-menu.set("n", "<leader>t", { desc = "Tools" })
+menu.set("n", "<leader>tt", { desc = "terminal" })

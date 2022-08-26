@@ -93,7 +93,8 @@ mason_lspconfig.setup_handlers({
     local codelldb = mason_registry.get_package("codelldb")
     local extension_path = codelldb:get_install_path() .. '/extension/'
     local codelldb_path = extension_path .. 'adapter/codelldb'
-    local liblldb_path = vim.fn.has "mac" == 1 and extension_path .. 'lldb/lib/liblldb.dylib' or extension_path .. 'lldb/lib/liblldb.so'
+    local liblldb_path = vim.fn.has "mac" == 1 and extension_path .. 'lldb/lib/liblldb.dylib' or
+        extension_path .. 'lldb/lib/liblldb.so'
     require("rust-tools").setup({
       dap = {
         adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
@@ -154,7 +155,7 @@ mason_lspconfig.setup_handlers({
       capabilities = lsp_setup.capabilities,
     }
   end,
-  ["tsserver"] = function ()
+  ["tsserver"] = function()
     lspconfig.tsserver.setup({
       on_attach = function(client, bufnr)
         lsp_setup.on_attach(client, bufnr)

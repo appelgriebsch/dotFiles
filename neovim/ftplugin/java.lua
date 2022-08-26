@@ -3,7 +3,7 @@ if not status_jdtls then
   return
 end
 
-local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
+local keymap = require("utils.keymaps")
 
 -- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
@@ -27,11 +27,11 @@ local lsp_setup = require("plugins.lsp").make_config()
 local function jdtls_attach(client, bufnr)
   lsp_setup.on_attach(client, bufnr)
 
-  vim.keymap.set("n", "<leader>jts", "<CMD>lua require('jdtls').test_class()<CR>", local_keymap("Run Test suite"))
-  vim.keymap.set("n", "<leader>jtm", "<CMD>lua require('jdtls').test_nearest_method()<CR>", local_keymap("Run Test method"))
-  vim.keymap.set("n", "<leader>jc", "<CMD>lua require('jdtls').update_project_config()<CR>", local_keymap("Update Project configs"))
-  vim.keymap.set("n", "<leader>jr", "<CMD>lua require('jdtls.dap').setup_dap_main_class_configs({ verbose = true })<CR>", local_keymap("Update Run configs"))
-  vim.keymap.set("n", "<leader>jo", "<CMD>lua require'jdtls'.organize_imports()<CR>", local_keymap("Organize imports"))
+  vim.keymap.set("n", "<leader>tjm", "<CMD>lua require('jdtls').test_nearest_method()<CR>", keymap.map_local("test method"))
+  vim.keymap.set("n", "<leader>tjo", "<CMD>lua require'jdtls'.organize_imports()<CR>", keymap.map_local("organize imports"))
+  vim.keymap.set("n", "<leader>tjr", "<CMD>lua require('jdtls.dap').setup_dap_main_class_configs({ verbose = true })<CR>" , keymap.map_local("update run configs"))
+  vim.keymap.set("n", "<leader>tjs", "<CMD>lua require('jdtls').test_class()<CR>", keymap.map_local("test suite"))
+  vim.keymap.set("n", "<leader>tju", "<CMD>lua require('jdtls').update_project_config()<CR>", keymap.map_local("update project configs"))
 
   jdtls.setup_dap({ hotcodereplace = "auto" })
   jdtls.setup.add_commands()
@@ -147,5 +147,4 @@ if not status_menu then
   return
 end
 
-menu.set("n", "<leader>j", { desc = "Java" })
-menu.set("n", "<leader>jt", { desc = "Test" })
+menu.set("n", "<leader>tj", { desc = "java" })

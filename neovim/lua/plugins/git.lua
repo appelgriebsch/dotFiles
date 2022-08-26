@@ -1,5 +1,3 @@
-require("git-conflict").setup()
-
 local status_git, gitsigns = pcall(require, "gitsigns")
 if not status_git then
   return
@@ -43,26 +41,29 @@ gitsigns.setup({
     end
 
     -- Navigation
-    map({"n", "v"}, "<leader>bgj", "<CMD>Gitsigns next_hunk<CR>", { silent = true, desc = "Goto next hunk" })
-    map({"n", "v"}, "<leader>bgk", "<CMD>Gitsigns prev_hunk<CR>", { silent = true, desc = "Goto previous hunk" })
+    map({ "n", "v" }, "<leader>gj", "<CMD>Gitsigns next_hunk<CR>", { silent = true, desc = "next hunk" })
+    map({ "n", "v" }, "<leader>gk", "<CMD>Gitsigns prev_hunk<CR>", { silent = true, desc = "previous hunk" })
     -- Actions
-    map({"n", "v"}, "<leader>bgs", "<CMD>Gitsigns stage_hunk<CR>", { silent = true, desc = "Stage current hunk" })
-    map({"n", "v"}, "<leader>bgr", "<CMD>Gitsigns reset_hunk<CR>", { silent = true, desc = "Reset current hunk" })
-    map("n", "<leader>bgu", gs.undo_stage_hunk, { silent = true, desc = "Undo stage hunk" })
-    map("n", "<leader>bgp", gs.preview_hunk, { silent = true, desc = "Preview hunk" })
-    map("n", "<leader>bgS", gs.stage_buffer, { silent = true, desc = "Stage current buffer" })
-    map("n", "<leader>bgR", gs.reset_buffer, { silent = true, desc = "Reset current buffer" })
-    map("n", "<leader>bgb", function() gs.blame_line { full = true } end, { silent = true, desc = "Show Blame" })
-    map("n", "<leader>bgd", gs.diffthis, { silent = true, desc = "Show Line Diff" })
-    map("n", "<leader>bgD", function() gs.diffthis("~") end, { silent = true, desc = "Show Buffer Diff" })
+    map({ "n", "v" }, "<leader>gs", "<CMD>Gitsigns stage_hunk<CR>", { silent = true, desc = "stage hunk" })
+    map({ "n", "v" }, "<leader>gr", "<CMD>Gitsigns reset_hunk<CR>", { silent = true, desc = "reset hunk" })
+    map("n", "<leader>gu", gs.undo_stage_hunk, { silent = true, desc = "undo stage hunk" })
+    map("n", "<leader>gp", gs.preview_hunk, { silent = true, desc = "preview hunk" })
+    map("n", "<leader>gS", gs.stage_buffer, { silent = true, desc = "stage buffer" })
+    map("n", "<leader>gR", gs.reset_buffer, { silent = true, desc = "reset buffer" })
+    map("n", "<leader>gb", function() gs.blame_line { full = true } end, { silent = true, desc = "show blame" })
+    map("n", "<leader>gd", gs.diffthis, { silent = true, desc = "show line diff" })
+    map("n", "<leader>gD", function() gs.diffthis("~") end, { silent = true, desc = "show buffer diff" })
     -- Text object
-    map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
   end
 })
+
+local status_gconflict, gconflict = pcall(require, "git-conflict")
+if status_gconflict then
+  gconflict.setup()
+end
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return
 end
-
-menu.set("n", "<leader>bg", { desc = "Git" })

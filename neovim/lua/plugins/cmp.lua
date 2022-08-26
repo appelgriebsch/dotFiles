@@ -16,7 +16,7 @@ function M.setup()
 
   cmp.setup({
     completion = { completeopt = "menu,menuone,noinsert" },
-    experimental = { ghost_text = true },
+    experimental = { ghost_text = true, native_menu = false },
     formatting = {
       format = lspkind.cmp_format({
         mode = "symbol"
@@ -65,8 +65,7 @@ function M.setup()
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      { name = "snippy" }
-    }, {
+      { name = "snippy" },
       { name = "buffer" },
       { name = "path" },
       { name = "crates" },
@@ -78,8 +77,8 @@ function M.setup()
   cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      { name = "buffer" },
-      { name = "nvim_lsp_document_symbol" }
+      { name = "nvim_lsp_document_symbol" },
+      { name = "buffer" }
     }
   })
 
@@ -87,9 +86,8 @@ function M.setup()
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" }
+      { name = "cmdline" },
+      { name = "path" }
     })
   })
 

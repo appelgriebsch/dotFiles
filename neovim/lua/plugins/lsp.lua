@@ -1,6 +1,5 @@
-local function local_keymap(desc) return { silent = true, buffer = true, desc = desc } end
-
 local M = {}
+local keymap = require("utils.keymaps")
 
 -- Automatically update diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -57,6 +56,7 @@ end
 -- keymaps
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
   -- set omnifunc to lsp version
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -73,36 +73,47 @@ local on_attach = function(client, bufnr)
   require("lsp_signature").on_attach(cfg, bufnr)
 
   -- default lsp mappings.
-  vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", local_keymap("HIDDEN"))
-  vim.keymap.set("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", local_keymap("HIDDEN"))
+  if client.name == "rust_analyzer" then
+    vim.keymap.set("n", "K", "<CMD>RustHoverActions<CR>", keymap.map_local("HIDDEN"))
+  else
+    vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", keymap.map_local("HIDDEN"))
+  end
+  vim.keymap.set("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", keymap.map_local("HIDDEN"))
 
-  vim.keymap.set("n", "<leader>bdj", "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", local_keymap("Goto previous diagnostic"))
-  vim.keymap.set("n", "<leader>bdk", "<CMD>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", local_keymap("Goto next diagnostic"))
-  vim.keymap.set("n", "<leader>bdp", "<CMD>lua vim.diagnostic.open_float()<CR>", local_keymap("Show current diagnostic"))
-  vim.keymap.set("n", "<leader>bsr", "<CMD>lua vim.lsp.buf.rename()<CR>", local_keymap("Rename symbol"))
-  vim.keymap.set("n", "<leader>bsa", "<CMD>lua vim.lsp.buf.code_action()<CR>", local_keymap("Show Actions"))
-
-  -- Telescope
-  vim.keymap.set("n", "<leader>bjd", "<CMD>Telescope lsp_definitions<CR>", local_keymap("Jump to definitions"))
-  vim.keymap.set("n", "<leader>bjD", "<CMD>Telescope lsp_declarations<CR>", local_keymap("Jump to declarations"))
-  vim.keymap.set("n", "<leader>bjr", "<CMD>Telescope lsp_references<CR>", local_keymap("Jump to references"))
-  vim.keymap.set("n", "<leader>bji", "<CMD>Telescope lsp_implementations<CR>", local_keymap("Jump to implementations"))
-  vim.keymap.set("n", "<leader>bjt", "<CMD>Telescope lsp_typedefs<CR>", local_keymap("Jump to type definitions"))
-  vim.keymap.set("n", "<leader>bds", "<CMD>Telescope diagnostics bufno=0<CR>", local_keymap("Show Diagnostics"))
-  vim.keymap.set("n", "<leader>bss", "<CMD>Telescope lsp_document_symbols<CR>", local_keymap("Show Symbols"))
-  vim.keymap.set("n", "<leader>pd", "<CMD>Telescope diagnostics<CR>", local_keymap("Show Diagnostics"))
-  vim.keymap.set("n", "<leader>ps", "<CMD>Telescope lsp_workspace_symbols<CR>", local_keymap("Show Symbols"))
-
-  -- Help
-  vim.keymap.set("n", "<leader>bhs", "<CMD>Dash<CR>", local_keymap("Search index"))
-  vim.keymap.set("n", "<leader>bhl", "<CMD>DashWord<CR>", local_keymap("Lookup word"))
+  vim.keymap.set("n", "<leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", keymap.map_local("code actions"))
+  vim.keymap.set("n", "<leader>lgj", "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>",
+    keymap.map_local("previous diagnostic"))
+  vim.keymap.set("n", "<leader>lgk", "<CMD>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>",
+    keymap.map_local("next diagnostic"))
+  vim.keymap.set("n", "<leader>lr", "<CMD>lua vim.lsp.buf.rename()<CR>", keymap.map_local("rename symbol"))
 
   -- Set some keybinds conditional on server capabilities
   vim.cmd [[ command! Format execute "lua vim.lsp.buf.formatting()" ]]
   if client.resolved_capabilities.document_formatting then
-    vim.keymap.set("n", "<leader>bsf", "<CMD>lua vim.lsp.buf.formatting()<CR>", local_keymap("Format buffer"))
+    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", keymap.map_local("format buffer"))
   elseif client.resolved_capabilities.document_range_formatting then
-    vim.keymap.set("n", "<leader>bsf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", local_keymap("Format range"))
+    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", keymap.map_local("format range"))
+  end
+
+  -- Telescope
+  local status_telescope, telescope = pcall(require, "telescope")
+  if status_telescope then
+    vim.keymap.set("n", "<leader>lgd", "<CMD>Telescope lsp_definitions<CR>", keymap.map_local("definitions"))
+    vim.keymap.set("n", "<leader>lgD", "<CMD>Telescope lsp_declarations<CR>", keymap.map_local("declarations"))
+    vim.keymap.set("n", "<leader>lgr", "<CMD>Telescope lsp_references<CR>", keymap.map_local("references"))
+    vim.keymap.set("n", "<leader>lgi", "<CMD>Telescope lsp_implementations<CR>", keymap.map_local("implementations"))
+    vim.keymap.set("n", "<leader>lgt", "<CMD>Telescope lsp_typedefs<CR>", keymap.map_local("type definitions"))
+    vim.keymap.set("n", "<leader>ld", "<CMD>Telescope diagnostics bufnr=0<CR>", keymap.map_local("diagnostics"))
+    vim.keymap.set("n", "<leader>ls", "<CMD>Telescope lsp_document_symbols<CR>", keymap.map_local("symbols"))
+    vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", keymap.map_local("diagnostics"))
+    vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>", keymap.map_local("symbols"))
+  end
+
+  -- Help
+  local status_dash, dash = pcall(require, "dash")
+  if status_dash then
+    vim.keymap.set("n", "<leader>ths", "<CMD>Dash<CR>", keymap.map_local("search index"))
+    vim.keymap.set("n", "<leader>thl", "<CMD>DashWord<CR>", keymap.map_local("lookup word"))
   end
 
   -- Set autocommands conditional on server_capabilities
@@ -120,10 +131,9 @@ local on_attach = function(client, bufnr)
   if not status_menu then
     return
   end
-  menu.set("n", "<leader>bd", { desc = "Diagnostics" })
-  menu.set("n", "<leader>bj", { desc = "Jump" })
-  menu.set("n", "<leader>bh", { desc = "Help" })
-  menu.set("n", "<leader>bs", { desc = "Source" })
+  menu.set("n", "<leader>l", { desc = "lsp" })
+  menu.set("n", "<leader>lg", { desc = "goto" })
+  menu.set("n", "<leader>th", { desc = "help" })
 end
 
 function M.make_config()
