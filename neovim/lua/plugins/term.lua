@@ -25,12 +25,9 @@ toggleterm.setup({
       border = "FloatBorder",
       background = "NormalFloat",
     },
-    border = "single", -- or "double"
-    start_in_insert = true,
-    insert_mappings = true,
-    persist_size = true,
-    close_on_exit = true,
-  }
+    border = "curved",
+    winblend = 3,
+  },
 })
 
 function _G.set_terminal_keymaps()
@@ -46,14 +43,13 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
-local gitui = Terminal:new({ cmd = "gitui", hidden = true })
 
+local gitui = Terminal:new({ cmd = "gitui", hidden = true })
 function _GITUI_TOGGLE()
   gitui:toggle()
 end
 
 local btop = Terminal:new({ cmd = "btop", hidden = true })
-
 function _BTOP_TOGGLE()
   btop:toggle()
 end

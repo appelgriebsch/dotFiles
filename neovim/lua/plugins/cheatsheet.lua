@@ -1,4 +1,9 @@
-require("cheat-sheet").setup({
+local status_cheat, cheatsheet = pcall(require, "cheat-sheet")
+if not status_cheat then
+  return
+end
+
+cheatsheet.setup({
   auto_fill = {
     filetype = true,
     current_word = true,
@@ -21,5 +26,4 @@ if not status_menu then
 end
 
 local function local_keymap(desc) return { silent = true, desc = desc } end
-
 vim.keymap.set("n", "<leader>tc", "<CMD>CheatSH<CR>", local_keymap("Show Cheat Sheet"))

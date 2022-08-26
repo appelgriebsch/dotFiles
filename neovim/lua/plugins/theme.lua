@@ -10,6 +10,7 @@ local adapt_terminal_colors = false
 
 if vim.g.neovide then
   adapt_terminal_colors = true
+  vim.g.neovide_cursor_animation_length=0
 end
 
 onedarkpro.setup({
@@ -27,4 +28,5 @@ onedarkpro.setup({
     cursorline = false, -- Use cursorline highlighting?
   }
 })
+
 onedarkpro.load()

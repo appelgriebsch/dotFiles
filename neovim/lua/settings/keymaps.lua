@@ -25,14 +25,6 @@ vim.keymap.set("n", "$", "v:count == 0 ? \"g$\" : \"$\"", { noremap = true, expr
 vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", global_keymap("Switch to next buffer"))
 vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", global_keymap("Switch to previous buffer"))
 
--- Highlight on yank
-vim.api.nvim_exec([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]], false)
-
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
   return

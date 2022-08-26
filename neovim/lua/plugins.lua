@@ -43,31 +43,33 @@ return packer.startup(function(use)
   ---------------------
   -- Package Manager --
   ---------------------
-  use "wbthomason/packer.nvim" -- Packer manage itself
+  use { "wbthomason/packer.nvim" }
+  use { "lewis6991/impatient.nvim" }
   ----------------------
   -- Dependencies --
   ----------------------
   use { "nathom/filetype.nvim" }
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
-  use { "MunifTanjim/nui.nvim" }
   use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
+  use { "antoinemadec/FixCursorHold.nvim" }
   use { "linty-org/key-menu.nvim" }
   ----------------------
   -- UI extensions --
   ----------------------
   use {
-    "olimorris/onedarkpro.nvim",
+    "goolord/alpha-nvim",
     requires = {
       {
-        "goolord/alpha-nvim",
+        "olimorris/onedarkpro.nvim",
         config = function()
-          require("plugins.dashboard")
+          require("plugins.theme")
         end
       },
       {
         "nvim-lualine/lualine.nvim",
+        event = { "BufRead", "BufNewFile" },
         config = function()
           require("plugins.lualine")
         end
@@ -75,18 +77,21 @@ return packer.startup(function(use)
       {
         "akinsho/bufferline.nvim",
         tag = "v2.*",
+        event = { "BufRead", "BufNewFile" },
         config = function()
           require("plugins.bufferline")
         end,
       },
       {
         "lukas-reineke/indent-blankline.nvim",
+        event = { "BufRead", "BufNewFile" },
         config = function()
           require("plugins.blankline")
         end,
       },
       {
         "dstein64/nvim-scrollview",
+        event = { "BufRead", "BufNewFile" },
         config = function()
           require("plugins.scrollbar")
         end
@@ -105,15 +110,9 @@ return packer.startup(function(use)
       }
     },
     config = function()
-      require("plugins.theme")
+      require("plugins.dashboard")
     end,
   }
-  use({
-    "aserowy/tmux.nvim",
-    config = function()
-      require("plugins.tmux")
-    end
-  })
   -----------------------------
   -- core editor extensions  --
   -----------------------------
@@ -121,7 +120,7 @@ return packer.startup(function(use)
   use { "tversteeg/registers.nvim" }
   use {
     "notjedi/nvim-rooter.lua",
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("nvim-rooter").setup()
     end
@@ -129,31 +128,28 @@ return packer.startup(function(use)
   use {
     "kylechui/nvim-surround",
     tag = "*",
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("nvim-surround").setup()
     end
   }
   use {
     "beauwilliams/focus.nvim",
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
-      require("focus").setup({
-        number = false,
-        relativenumber = false
-      })
+      require("focus").setup()
     end
   }
   use {
     "mcauley-penney/tidy.nvim",
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("tidy").setup()
     end
   }
   use {
     "ojroques/nvim-bufdel",
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("bufdel").setup {
         next = "cycle", -- or "alternate"
@@ -163,7 +159,7 @@ return packer.startup(function(use)
   }
   use {
     "numToStr/Comment.nvim",
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("Comment").setup()
     end
@@ -174,20 +170,21 @@ return packer.startup(function(use)
       { "f-person/git-blame.nvim" },
       { "akinsho/git-conflict.nvim" }
     },
-    event = "BufReadPre",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("plugins.git")
     end,
   }
   use {
-    "sindrets/diffview.nvim",
-    requires = "nvim-lua/plenary.nvim"
-  }
-  use {
     "andythigpen/nvim-coverage",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("coverage").setup()
     end
+  }
+  use {
+    "sindrets/diffview.nvim",
+    requires = "nvim-lua/plenary.nvim"
   }
   use {
     "akinsho/toggleterm.nvim",
@@ -259,9 +256,10 @@ return packer.startup(function(use)
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
       { "nanotee/sqls.nvim" },
+      { "mfussenegger/nvim-lint" },
       {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        event = "BufReadPre",
+        event = { "BufRead", "BufNewFile" },
         config = function()
           require("lsp_lines").setup()
         end,

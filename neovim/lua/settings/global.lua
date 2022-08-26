@@ -1,3 +1,6 @@
+local opt = vim.opt
+local g = vim.g
+
 local options = {
   autoread = true,                         -- Automatically re-read file if a change was detected outside of vim
   backup = false,                          -- creates a backup file
@@ -15,6 +18,7 @@ local options = {
   inccommand = "nosplit",                  -- Incremental live completion
   incsearch = true,
   laststatus = 3,                          -- enable global status bar
+  mouse = 'a',
   number = true,
   relativenumber = true,                   -- Enable relative line numbers
   ruler = false,                           -- Disable line/column number in status line
@@ -38,27 +42,43 @@ local options = {
 }
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+  opt[k] = v
 end
 
-vim.cmd([[
-  if has("gui_running") || exists("g:neovide")
-    set mouse=a
-    let g:neovide_cursor_animation_length=0
-  end
-]])
-
 --  showing special non-printable chars
-vim.opt.listchars:append { tab = ">>>" }
-vim.opt.listchars:append { trail = "·" }
-vim.opt.listchars:append { space = "⋅" }
-vim.opt.listchars:append { precedes = "←" }
-vim.opt.listchars:append { extends = "→" }
-vim.opt.listchars:append { eol = "↲" }
-vim.opt.listchars:append { nbsp = "␣" }
+opt.listchars:append { tab = ">>>" }
+opt.listchars:append { trail = "·" }
+opt.listchars:append { space = "⋅" }
+opt.listchars:append { precedes = "←" }
+opt.listchars:append { extends = "→" }
+opt.listchars:append { eol = "↲" }
+opt.listchars:append { nbsp = "␣" }
+opt.fillchars:append { eob = " " } -- hide tildes at the end of buffers
+opt.fillchars:append { vert = " "} -- hide borders of split vertical windows (nvim tree)
+g.completion_enable_auto_signature = 0
+g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
 
-vim.opt.fillchars:append { eob = " " } -- hide tildes at the end of buffers
-vim.opt.fillchars:append { vert = " "} -- hide borders of split vertical windows (nvim tree)
+-- disable some builtin vim plugins
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "spellfile_plugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
 
-vim.g.completion_enable_auto_signature = 0
-vim.g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
+for _, plugin in pairs(disabled_built_ins) do
+  g["loaded_" .. plugin] = 1
+end

@@ -19,7 +19,6 @@ bufferline.setup({
     enforce_regular_tabs = true,
     always_show_bufferline = true,
     color_icons = false,
-    sort_by = "directory",
     diagnostics = "nvim_lsp",
     highlights = {
       buffer_selected = {
