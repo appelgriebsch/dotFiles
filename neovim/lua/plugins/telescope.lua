@@ -114,7 +114,7 @@ vim.keymap.set("n", "<leader>bc", "<CMD>noh<CR>", keymap.map_global("clear highl
 vim.keymap.set("n", "<leader>bh", "<CMD>BufferLineMovePrev<CR>", keymap.map_global("move to left"))
 vim.keymap.set("n", "<leader>bl", "<CMD>BufferLineMoveNext<CR>", keymap.map_global("move to right"))
 vim.keymap.set("n", "<leader>bn", "<CMD>ene <BAR> startinsert<CR>", keymap.map_global("create new"))
-vim.keymap.set("n", "<leader>bq", "<CMD>BufDel!<CR>", keymap.map_global("close"))
+vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", keymap.map_global("close"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", keymap.map_global("reload"))
 vim.keymap.set("n", "<leader>bs", "<CMD>vs<CR>", keymap.map_global("split vertical"))
 vim.keymap.set("n", "<leader>bv", "<CMD>sp<CR>", keymap.map_global("split horizontal"))

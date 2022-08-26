@@ -6,7 +6,7 @@ end
 bufferline.setup({
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "BufDel! %d", -- can be a string | function, see "Mouse actions"
+    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,

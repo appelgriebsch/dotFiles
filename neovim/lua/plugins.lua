@@ -148,14 +148,8 @@ return packer.startup(function(use)
     end
   }
   use {
-    "ojroques/nvim-bufdel",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("bufdel").setup {
-        next = "cycle", -- or "alternate"
-        quit = true,
-      }
-    end
+    "famiu/bufdelete.nvim",
+    event = { "BufRead", "BufNewFile" }
   }
   use {
     "numToStr/Comment.nvim",
