@@ -122,9 +122,11 @@ vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", keymap.map_global("write"))
 
 -- Workspaces / Files
 vim.keymap.set("n", "<leader>fb", "<CMD>Telescope buffers<CR>", keymap.map_global("buffer"))
+vim.keymap.set("n", "<leader>fe", "<CMD>Telescope file_browser<CR>", keymap.map_global("file explorer"))
 vim.keymap.set("n", "<leader>ff", "<CMD>Telescope find_files<CR>", keymap.map_global("file"))
 vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", keymap.map_global("git file"))
 vim.keymap.set("n", "<leader>fm", "<CMD>Telescope marks<CR>", keymap.map_global("bookmarks"))
+vim.keymap.set("n", "<leader>fp", "<CMD>Telescope project display_type=full<CR>", keymap.map_global("project"))
 vim.keymap.set("n", "<leader>fr", "<CMD>Telescope oldfiles<CR>", keymap.map_global("recent files"))
 vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", keymap.map_global("search word"))
 
@@ -133,10 +135,8 @@ vim.keymap.set("n", "<leader>gc", "<CMD>Telescope git_commits<CR>", keymap.map_g
 vim.keymap.set("n", "<leader>gC", "<CMD>Telescope git_bcommits<CR>", keymap.map_global("buffer commit history"))
 vim.keymap.set("n", "<leader>gb", "<CMD>Telescope git_branches<CR>", keymap.map_global("branches history"))
 
-vim.keymap.set("n", "<leader>wf", "<CMD>Telescope file_browser<CR>", keymap.map_global("file browser"))
-vim.keymap.set("n", "<leader>ws", "<CMD>Telescope project display_type=full<CR>", keymap.map_global("switch to project"))
-vim.keymap.set("n", "<leader>wts", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("show tasks"))
-vim.keymap.set("n", "<leader>wti", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("show inputs"))
+vim.keymap.set("n", "<leader>tvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("tasks"))
+vim.keymap.set("n", "<leader>tvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("inputs"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
@@ -147,5 +147,4 @@ menu.set("n", "<leader>b", { desc = "buffer" })
 menu.set("n", "<leader>f", { desc = "find" })
 menu.set("n", "<leader>g", { desc = "git" })
 menu.set("n", "<leader>t", { desc = "tools" })
-menu.set("n", "<leader>w", { desc = "workspace" })
-menu.set("n", "<leader>wt", { desc = "tasks" })
+menu.set("n", "<leader>tv", { desc = "vstasks" })

@@ -103,10 +103,11 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>lgr", "<CMD>Telescope lsp_references<CR>", keymap.map_local("references"))
     vim.keymap.set("n", "<leader>lgi", "<CMD>Telescope lsp_implementations<CR>", keymap.map_local("implementations"))
     vim.keymap.set("n", "<leader>lgt", "<CMD>Telescope lsp_typedefs<CR>", keymap.map_local("type definitions"))
-    vim.keymap.set("n", "<leader>ld", "<CMD>Telescope diagnostics bufnr=0<CR>", keymap.map_local("diagnostics"))
-    vim.keymap.set("n", "<leader>ls", "<CMD>Telescope lsp_document_symbols<CR>", keymap.map_local("symbols"))
-    vim.keymap.set("n", "<leader>wd", "<CMD>Telescope diagnostics<CR>", keymap.map_local("diagnostics"))
-    vim.keymap.set("n", "<leader>ws", "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>", keymap.map_local("symbols"))
+    vim.keymap.set("n", "<leader>ld", "<CMD>Telescope diagnostics bufnr=0<CR>", keymap.map_local("local diagnostics"))
+    vim.keymap.set("n", "<leader>ls", "<CMD>Telescope lsp_document_symbols<CR>", keymap.map_local("local symbols"))
+    vim.keymap.set("n", "<leader>lD", "<CMD>Telescope diagnostics<CR>", keymap.map_local("workspace diagnostics"))
+    vim.keymap.set("n", "<leader>lS", "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>",
+      keymap.map_local("workspace symbols"))
   end
 
   -- Help
@@ -133,7 +134,9 @@ local on_attach = function(client, bufnr)
   end
   menu.set("n", "<leader>l", { desc = "lsp" })
   menu.set("n", "<leader>lg", { desc = "goto" })
-  menu.set("n", "<leader>th", { desc = "help" })
+  if status_dash then
+    menu.set("n", "<leader>th", { desc = "help" })
+  end
 end
 
 function M.make_config()
