@@ -1,17 +1,14 @@
-require("tmux").setup({
-  -- overwrite default configuration
-  -- here, e.g. to enable default bindings
-  copy_sync = {
-    -- enables copy sync and overwrites all register actions to
-    -- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
-    enable = true,
+local status_nvimux, nvimux = pcall(require, "nvimux")
+if not status_nvimux then
+  return
+end
+
+nvimux.setup({
+  config = {
+    prefix = "<C-a>",
   },
-  navigation = {
-    -- enables default keybindings (C-hjkl) for normal mode
-    enable_default_keybindings = true,
-  },
-  resize = {
-    -- enables default keybindings (A-hjkl) for normal mode
-    enable_default_keybindings = true,
+  bindings = {
+    { { "n", "v", "i", "t" }, "s", nvimux.commands.horizontal_split },
+    { { "n", "v", "i", "t" }, "v", nvimux.commands.vertical_split },
   }
 })

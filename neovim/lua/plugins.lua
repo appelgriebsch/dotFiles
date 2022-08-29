@@ -199,6 +199,12 @@ return packer.startup(function(use)
       require("plugins.cheatsheet")
     end
   }
+  use {
+    "hkupty/nvimux",
+    config = function()
+      require("plugins.tmux")
+    end
+  }
   -- Dash integration on macOS only
   if vim.fn.has "mac" == 1 then
     use {
