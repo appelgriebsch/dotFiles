@@ -62,7 +62,7 @@ return packer.startup(function(use)
     "goolord/alpha-nvim",
     requires = {
       {
-        "olimorris/onedarkpro.nvim",
+        "projekt0n/github-nvim-theme",
         config = function()
           require("plugins.theme")
         end
@@ -197,12 +197,6 @@ return packer.startup(function(use)
     "Djancyp/cheat-sheet",
     config = function()
       require("plugins.cheatsheet")
-    end
-  }
-  use {
-    "hkupty/nvimux",
-    config = function()
-      require("plugins.tmux")
     end
   }
   -- Dash integration on macOS only

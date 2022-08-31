@@ -15,7 +15,6 @@ dashboard.section.header.val = {
   "  ╚═╝  ╚═══╝ ╚══════╝  ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ",
   "                                                          ",
 }
-dashboard.section.header.opts.hl = "StartifyHeader"
 
 -- Buttons
 dashboard.section.buttons.val = {
