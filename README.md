@@ -3,14 +3,30 @@ my tiny little dotFiles
 
 ## Neovim Showcase
 
-### Startpage
+### Start Page (Alpha)
 
-<img width="1507" alt="Screenshot 2022-06-20 at 17 12 26" src="https://user-images.githubusercontent.com/6803419/174632858-d0d7049f-b730-43da-8511-b17873036ba8.png">
+![Screenshot 2022-08-31 at 14 15 26](https://user-images.githubusercontent.com/6803419/187676034-5d4022ed-3462-4e49-886c-d33467636b23.png)
+
+### Main Screen
+
+![Screenshot 2022-08-31 at 14 16 23](https://user-images.githubusercontent.com/6803419/187676266-93b5de0d-c950-4f62-a779-7dfa9a6c9bcd.png)
 
 ### Telescope
 
-<img width="1503" alt="Screenshot 2022-06-20 at 17 12 59" src="https://user-images.githubusercontent.com/6803419/174633119-ac47b909-45c6-4b9b-a574-65b62c0aff64.png">
+![Screenshot 2022-08-31 at 14 18 10](https://user-images.githubusercontent.com/6803419/187676553-6b4cbea3-ba38-4e81-90ff-564d0549a0bd.png)
+
+![Screenshot 2022-08-31 at 14 19](https://user-images.githubusercontent.com/6803419/187677804-935159a5-36f6-4022-a647-6a28fa3d5f4a.png)
 
 ### Key Menu
 
-<img width="1505" alt="Screenshot 2022-06-20 at 17 14 45" src="https://user-images.githubusercontent.com/6803419/174633202-0a0297dc-aaec-4b73-b731-539cff1fcc9f.png">
+![Screenshot 2022-08-31 at 14 22 38](https://user-images.githubusercontent.com/6803419/187677323-c1a840a5-d31f-4830-8acb-62e648ed1a99.png)
+
+![Screenshot 2022-08-31 at 14 23 14](https://user-images.githubusercontent.com/6803419/187677420-dd77ccda-ab73-4d3a-b6b4-e193c0a35d79.png)
+
+### Terminal
+
+![Screenshot 2022-08-31 at 14 25 12](https://user-images.githubusercontent.com/6803419/187677771-bae19ef4-ebd5-4b24-9966-93edb4e78575.png)
+
+## tmux and zsh
+
+![Screenshot 2022-08-31 at 14 43 28](https://user-images.githubusercontent.com/6803419/187681039-5a670e6e-4fd7-42e7-817d-081fb9d9a20d.png)
