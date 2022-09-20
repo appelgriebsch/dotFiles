@@ -69,7 +69,6 @@ return packer.startup(function(use)
       },
       {
         "nvim-lualine/lualine.nvim",
-        event = { "BufRead", "BufNewFile" },
         config = function()
           require("plugins.lualine")
         end
@@ -77,7 +76,6 @@ return packer.startup(function(use)
       {
         "akinsho/bufferline.nvim",
         tag = "v2.*",
-        event = { "BufRead", "BufNewFile" },
         config = function()
           require("plugins.bufferline")
         end,

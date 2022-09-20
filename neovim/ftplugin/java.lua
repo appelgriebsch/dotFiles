@@ -135,6 +135,7 @@ end
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities;
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true;
+extendedClientCapabilities.progressReportProvider = false;
 
 jdtls_config.init_options = {
   extendedClientCapabilities = extendedClientCapabilities;

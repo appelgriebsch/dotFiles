@@ -1,7 +1,6 @@
 local api = vim.api
 local autocmd = vim.api.nvim_create_autocmd
 local cmd = vim.cmd
-local opt = vim.opt
 
 -- Use 'q' to quit from common plugins
 autocmd({ "FileType" }, {
@@ -11,23 +10,6 @@ autocmd({ "FileType" }, {
       nnoremap <silent> <buffer> q :close<CR>
       set nobuflisted
     ]])
-  end,
-})
-
--- Remove statusline and tabline when in Alpha
-autocmd("FileType", {
-  pattern = "alpha",
-  callback = function()
-    opt.laststatus = 0
-    opt.showtabline = 0
-  end,
-})
-
-autocmd("BufUnload", {
-  buffer = 0,
-  callback = function()
-    opt.laststatus = 3
-    opt.showtabline = 2
   end,
 })
 

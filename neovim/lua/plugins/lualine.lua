@@ -15,6 +15,7 @@ lualine.setup({
   options = {
     globalstatus = true,
     theme = "github_dimmed",
+    disabled_filetypes = { "alpha" }
   },
   sections = {
     lualine_a = { "mode" },
