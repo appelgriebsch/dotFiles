@@ -105,6 +105,12 @@ return packer.startup(function(use)
         config = function()
           require("fidget").setup()
         end
+      },
+      {
+        "tiagovla/scope.nvim",
+        config = function()
+          require("scope").setup()
+        end
       }
     },
     config = function()

@@ -26,4 +26,4 @@ if not status_menu then
 end
 
 local keymap = require("utils.keymaps")
-vim.keymap.set("n", "<leader>tc", "<CMD>CheatSH<CR>", keymap.map_global("cheatsheet"))
+vim.keymap.set("n", "<leader>uc", "<CMD>CheatSH<CR>", keymap.map_global("cheatsheet"))

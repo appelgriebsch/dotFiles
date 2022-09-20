@@ -113,8 +113,8 @@ local on_attach = function(client, bufnr)
   -- Help
   local status_dash, dash = pcall(require, "dash")
   if status_dash then
-    vim.keymap.set("n", "<leader>ths", "<CMD>Dash<CR>", keymap.map_local("search index"))
-    vim.keymap.set("n", "<leader>thl", "<CMD>DashWord<CR>", keymap.map_local("lookup word"))
+    vim.keymap.set("n", "<leader>uds", "<CMD>Dash<CR>", keymap.map_local("search index"))
+    vim.keymap.set("n", "<leader>udl", "<CMD>DashWord<CR>", keymap.map_local("lookup word"))
   end
 
   -- Set autocommands conditional on server_capabilities
@@ -135,7 +135,7 @@ local on_attach = function(client, bufnr)
   menu.set("n", "<leader>l", { desc = "lsp" })
   menu.set("n", "<leader>lg", { desc = "goto" })
   if status_dash then
-    menu.set("n", "<leader>th", { desc = "help" })
+    menu.set("n", "<leader>ud", { desc = "dash" })
   end
 end
 

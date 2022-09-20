@@ -111,8 +111,7 @@ end
 
 -- Buffers
 vim.keymap.set("n", "<leader>bc", "<CMD>noh<CR>", keymap.map_global("clear highlights"))
-vim.keymap.set("n", "<leader>bh", "<CMD>BufferLineMovePrev<CR>", keymap.map_global("move to left"))
-vim.keymap.set("n", "<leader>bl", "<CMD>BufferLineMoveNext<CR>", keymap.map_global("move to right"))
+vim.keymap.set("n", "<leader>bf", "<CMD>Telescope current_buffer_fuzzy_find<CR>", keymap.map_global("find"))
 vim.keymap.set("n", "<leader>bn", "<CMD>ene <BAR> startinsert<CR>", keymap.map_global("create new"))
 vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", keymap.map_global("close"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", keymap.map_global("reload"))
@@ -130,13 +129,21 @@ vim.keymap.set("n", "<leader>fp", "<CMD>Telescope project display_type=full<CR>"
 vim.keymap.set("n", "<leader>fr", "<CMD>Telescope oldfiles<CR>", keymap.map_global("recent files"))
 vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", keymap.map_global("search word"))
 
+-- Git
 vim.keymap.set("n", "<leader>gs", "<CMD>Telescope git_status<CR>", keymap.map_global("status"))
 vim.keymap.set("n", "<leader>gc", "<CMD>Telescope git_commits<CR>", keymap.map_global("commit history"))
 vim.keymap.set("n", "<leader>gC", "<CMD>Telescope git_bcommits<CR>", keymap.map_global("buffer commit history"))
 vim.keymap.set("n", "<leader>gb", "<CMD>Telescope git_branches<CR>", keymap.map_global("branches history"))
 
-vim.keymap.set("n", "<leader>tvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("tasks"))
-vim.keymap.set("n", "<leader>tvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("inputs"))
+-- Tabs
+vim.keymap.set("n", "<leader>tn", "<CMD>tabnew<CR>", keymap.map_global("create new"))
+vim.keymap.set("n", "<leader>th", "<CMD>tabprevious<CR>", keymap.map_global("previous"))
+vim.keymap.set("n", "<leader>tl", "<CMD>tabnext<CR>", keymap.map_global("next"))
+vim.keymap.set("n", "<leader>tq", "<CMD>tabclose<CR>", keymap.map_global("close"))
+
+-- Utils
+vim.keymap.set("n", "<leader>uvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("tasks"))
+vim.keymap.set("n", "<leader>uvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("inputs"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
@@ -146,5 +153,6 @@ end
 menu.set("n", "<leader>b", { desc = "buffer" })
 menu.set("n", "<leader>f", { desc = "find" })
 menu.set("n", "<leader>g", { desc = "git" })
-menu.set("n", "<leader>t", { desc = "tools" })
-menu.set("n", "<leader>tv", { desc = "vstasks" })
+menu.set("n", "<leader>t", { desc = "tabs" })
+menu.set("n", "<leader>u", { desc = "utils" })
+menu.set("n", "<leader>uv", { desc = "vstasks" })

@@ -8,4 +8,4 @@ if not status_menu then
   return
 end
 
-menu.set("n", "<leader>tr", { desc = "rust" })
+menu.set("n", "<leader>r", { desc = "rust" })
