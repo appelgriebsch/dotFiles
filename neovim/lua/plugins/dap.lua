@@ -6,30 +6,35 @@ end
 local keymap = require("utils.keymaps")
 
 dap.defaults.fallback.terminal_win_cmd = "enew"
-dap.adapters.node2 = {
-  type = "executable",
-  command = "node",
-  args = { vim.env.HOME .. "/.local/share/nvim/dap_adapters/node-debug2/out/src/nodeDebug.js" },
-}
-dap.configurations.javascript = {
-  {
-    name = "Launch",
-    type = "node2",
-    request = "launch",
-    program = "${file}",
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = "inspector",
-    console = "integratedTerminal",
-  },
-  {
-    -- For this to work you need to make sure the node process is started with the `--inspect` flag.
-    name = "Attach to process",
-    type = "node2",
-    request = "attach",
-    processId = require("dap.utils").pick_process,
-  },
-}
+
+local status_dap_js, dap_js = pcall(require, "dap-vscode-js")
+if status_dap_js then
+  local mason_registry = require("mason-registry")
+  local js_debug_pkg = mason_registry.get_package("js-debug-adapter")
+  local js_debug_path = js_debug_pkg:get_install_path()
+  dap_js.setup({
+    debugger_path = js_debug_path,
+    adapters = { "pwa-node", "node-terminal" }, -- which adapters to register in nvim-dap
+  })
+  for _, language in ipairs({ "typescript", "javascript" }) do
+    dap.configurations[language] = {
+      {
+        type = "pwa-node",
+        request = "launch",
+        name = "Launch file (" .. language .. ")",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+      },
+      {
+        type = "pwa-node",
+        request = "attach",
+        name = "Attach (" .. language .. ")",
+        processId = require("dap.utils").pick_process,
+        cwd = "${workspaceFolder}",
+      }
+    }
+  end
+end
 
 require("nvim-dap-virtual-text").setup()
 
@@ -39,7 +44,7 @@ vim.fn.sign_define("DapLogPoint", { text = "", texthl = "", linehl = "", numh
 vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "", numhl = "" })
 
 vim.api.nvim_exec([[
-  au FileType dap-repl lua require('dap.ext.autocompl').attach()
+  au FileType dap-repl lua require("dap.ext.autocompl").attach()
 ]], false)
 
 vim.keymap.set("n", "<leader>dr", "<CMD>Telescope dap configurations<CR>", keymap.map_global("run"))

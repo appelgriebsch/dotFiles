@@ -307,7 +307,8 @@ return packer.startup(function(use)
     "mfussenegger/nvim-dap",
     requires = {
       { "nvim-telescope/telescope-dap.nvim" },
-      { "theHamsta/nvim-dap-virtual-text" }
+      { "theHamsta/nvim-dap-virtual-text" },
+      { "mxsdev/nvim-dap-vscode-js" }
     },
     config = function()
       require("plugins.dap")
