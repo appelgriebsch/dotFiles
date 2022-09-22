@@ -73,12 +73,15 @@ local on_attach = function(client, bufnr)
   require("lsp_signature").on_attach(cfg, bufnr)
 
   -- default lsp mappings.
-  if client.name == "rust_analyzer" then
-    vim.keymap.set("n", "K", "<CMD>RustHoverActions<CR>", keymap.map_local("HIDDEN"))
+  if vim.bo.filetype == "rust" then
+    vim.keymap.set("n", "K", "<CMD>lua require(\"rust-tools.hover_actions\").hover_actions()<CR>", keymap.map_local("HIDDEN"))
+  elseif vim.fn.expand("%:t", false, false) == "Cargo.toml" then
+    vim.keymap.set("n", "K", "<CMD>lua require(\"crates\").show_popup()<CR>", keymap.map_local("HIDDEN"))
   else
     vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", keymap.map_local("HIDDEN"))
   end
-  vim.keymap.set("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", keymap.map_local("HIDDEN"))
+
+  vim.keymap.set("n", "<C-Space>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", keymap.map_local("HIDDEN"))
 
   vim.keymap.set("n", "<leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", keymap.map_local("code actions"))
   vim.keymap.set("n", "<leader>lgj", "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>",

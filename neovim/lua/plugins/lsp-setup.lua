@@ -102,7 +102,7 @@ mason_lspconfig.setup_handlers({
       tools = {
         autoSetHints = false,
         hover_actions = {
-          auto_focus = true,
+          auto_focus = false,
         },
         inlay_hints = {
           auto = false,
