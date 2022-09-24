@@ -68,8 +68,7 @@ function M.setup()
       { name = "snippy" },
       { name = "buffer" },
       { name = "path" },
-      { name = "crates" },
-      { name = "tmux" }
+      { name = "crates" }
     })
   })
 

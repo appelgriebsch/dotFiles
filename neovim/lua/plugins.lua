@@ -51,7 +51,6 @@ return packer.startup(function(use)
   use { "nathom/filetype.nvim" }
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
-  use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
   use { "antoinemadec/FixCursorHold.nvim" }
   use { "linty-org/key-menu.nvim" }
@@ -138,13 +137,6 @@ return packer.startup(function(use)
     end
   }
   use {
-    "beauwilliams/focus.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("focus").setup()
-    end
-  }
-  use {
     "mcauley-penney/tidy.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
@@ -182,7 +174,7 @@ return packer.startup(function(use)
   }
   use {
     "sindrets/diffview.nvim",
-    requires = "nvim-lua/plenary.nvim"
+    requires = { "nvim-lua/plenary.nvim" }
   }
   use {
     "akinsho/toggleterm.nvim",
@@ -237,6 +229,7 @@ return packer.startup(function(use)
   use {
     "williamboman/mason.nvim",
     requires = {
+      { "stevearc/dressing.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "neovim/nvim-lspconfig" },
       { "ray-x/lsp_signature.nvim" },
@@ -246,14 +239,12 @@ return packer.startup(function(use)
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-cmdline" },
-      { "andersevenrud/cmp-tmux" },
       { "dcampos/nvim-snippy" },
       { "dcampos/cmp-snippy" },
       { "onsails/lspkind.nvim" },
       { "b0o/schemastore.nvim" },
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
-      { "nanotee/sqls.nvim" },
       { "mfussenegger/nvim-lint" },
       {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
