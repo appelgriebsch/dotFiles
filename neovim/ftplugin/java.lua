@@ -119,9 +119,15 @@ jdtls_config.settings = {
   },
 }
 
+local java_test_pkg = mason_registry.get_package("java-test")
+local java_test_path = java_test_pkg:get_install_path()
+
+local java_dbg_pkg = mason_registry.get_package("java-debug-adapter")
+local java_dbg_path = java_dbg_pkg:get_install_path()
+
 local jar_patterns = {
-  jdtls_path .. "/debug/extension/server/com.microsoft.java.debug.plugin-*.jar",
-  jdtls_path .. "/test/extension/server/*.jar"
+  java_dbg_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
+  java_test_path .. "/extension/server/*.jar"
 }
 
 local bundles = {}
