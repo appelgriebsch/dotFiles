@@ -74,7 +74,7 @@ return packer.startup(function(use)
       },
       {
         "akinsho/bufferline.nvim",
-        tag = "v2.*",
+        tag = "*",
         config = function()
           require("plugins.bufferline")
         end,
@@ -145,6 +145,7 @@ return packer.startup(function(use)
   }
   use {
     "famiu/bufdelete.nvim",
+    commit = "46255e4a76c4fb450a94885527f5e58a7d96983c",
     event = { "BufRead", "BufNewFile" }
   }
   use {
@@ -178,7 +179,7 @@ return packer.startup(function(use)
   }
   use {
     "akinsho/toggleterm.nvim",
-    tag = "v2.*",
+    tag = "*",
     config = function()
       require("plugins.term")
     end
