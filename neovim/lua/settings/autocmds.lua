@@ -59,20 +59,20 @@ autocmd("BufDelete", {
 })
 
 -- need bufdelete.nvim & alpha-dashboard
-local alpha_on_empty = vim.api.nvim_create_augroup("alpha_on_empty", { clear = true })
-vim.api.nvim_create_autocmd("User", {
+local alpha_on_empty = api.nvim_create_augroup("alpha_on_empty", { clear = true })
+api.nvim_create_autocmd("User", {
   -- for neovim 0.8 pattern = "BDeletePost*",
   pattern = "BDeletePost",
   group = alpha_on_empty,
   callback = function(event)
-    local fallback_name = vim.api.nvim_buf_get_name(event.buf)
-    local fallback_ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
+    local fallback_name = api.nvim_buf_get_name(event.buf)
+    local fallback_ft = api.nvim_buf_get_option(event.buf, "filetype")
     local fallback_on_empty = fallback_name == "" and fallback_ft == ""
 
     if fallback_on_empty then
       -- if using neo-tree: require("neo-tree").close_all()
-      vim.cmd("Alpha")
-      vim.cmd(event.buf .. "bwipeout")
+      cmd("Alpha")
+      cmd(event.buf .. "bwipeout")
     end
   end,
 })

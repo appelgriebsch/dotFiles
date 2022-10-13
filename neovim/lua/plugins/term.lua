@@ -59,8 +59,13 @@ vim.keymap.set("n", "<leader>uth", "<CMD>ToggleTerm direction=horizontal<CR>", k
 vim.keymap.set("n", "<leader>uts", "<CMD>Telescope termfinder<CR>", keymap.map_global("search"))
 vim.keymap.set("n", "<leader>utv", "<CMD>ToggleTerm direction=vertical<CR>", keymap.map_global("vertical"))
 
-vim.keymap.set("n", "<leader>ug", "<CMD>lua _GITUI_TOGGLE()<CR>", keymap.map_global("gitui"))
-vim.keymap.set("n", "<leader>ub", "<CMD>lua _BTOP_TOGGLE()<CR>", keymap.map_global("btop"))
+if vim.fn.executable("gitui") == 1 then
+  vim.keymap.set("n", "<leader>ug", "<CMD>lua _GITUI_TOGGLE()<CR>", keymap.map_global("gitui"))
+end
+
+if vim.fn.executable("btop") == 1 then
+  vim.keymap.set("n", "<leader>ub", "<CMD>lua _BTOP_TOGGLE()<CR>", keymap.map_global("btop"))
+end
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
