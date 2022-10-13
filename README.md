@@ -26,7 +26,3 @@ my tiny little dotFiles
 ### Terminal
 
 ![Screenshot 2022-08-31 at 14 25 12](https://user-images.githubusercontent.com/6803419/187677771-bae19ef4-ebd5-4b24-9966-93edb4e78575.png)
-
-## tmux and zsh
-
-![Screenshot 2022-08-31 at 14 43 28](https://user-images.githubusercontent.com/6803419/187681039-5a670e6e-4fd7-42e7-817d-081fb9d9a20d.png)
