@@ -234,10 +234,7 @@ return packer.startup(function(use)
       { "williamboman/mason-lspconfig.nvim" },
       { "neovim/nvim-lspconfig" },
       { "ray-x/lsp_signature.nvim" },
-      {
-        "hrsh7th/nvim-cmp",
-        commit = "99ef854322d0de9269044ee197b6c9ca14911d96", -- TODO: remove after upgrading to Neovim 0.8+
-      },
+      { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-document-symbol" },
       { "hrsh7th/cmp-buffer" },
