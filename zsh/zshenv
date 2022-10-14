@@ -1,4 +1,2 @@
-export PATH=$HOME/.local/bin:/opt/local/bin:/opt/local/sbin:$PATH
-
-. "$HOME/.cargo/env"
-eval "$(fnm env)"
+export PATH=$HOME/.bun/bin:$HOME/.local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+[[ -f ~/.cargo/env ]] && source "$HOME/.cargo/env"

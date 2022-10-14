@@ -1,7 +1,7 @@
 -- Editor theme
 vim.opt.background = "dark"
 
-local status_theme, theme = pcall(require, "github-theme")
+local status_theme, theme = pcall(require, "onedarkpro")
 if not status_theme then
   return
 end
@@ -12,10 +12,6 @@ if vim.g.neovide then
   vim.g.neovide_floating_opacity = 90
 end
 
-theme.setup({
-  theme_style = "dimmed",
-  keyword_style = "NONE",
-  function_style = "NONE",
-  variable_style = "NONE",
-  dark_float = true,
-})
+vim.cmd("colorscheme onedarkpro")
+
+theme.setup()
