@@ -2,7 +2,7 @@
 [[ -f ~/.local/share/zsh-snap/znap.zsh ]] ||
     git clone --depth 1 -- \
             https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh-snap
-            
+
 source ~/.local/share/zsh-snap/znap.zsh  # Start Znap
 
 # zsh theming
@@ -19,6 +19,15 @@ znap source zsh-users/zsh-syntax-highlighting
 # `znap eval` caches and runs any kind of command output for you.
 [[ -d /Applications/iTerm.app/ ]] &&
     znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# bun completions
+[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/Users/gerlaca1/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
