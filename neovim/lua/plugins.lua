@@ -145,7 +145,6 @@ return packer.startup(function(use)
   }
   use {
     "famiu/bufdelete.nvim",
-    commit = "46255e4a76c4fb450a94885527f5e58a7d96983c", -- TODO: remove after upgrading to Neovim 0.8+
     event = { "BufRead", "BufNewFile" }
   }
   use {

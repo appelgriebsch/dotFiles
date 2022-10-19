@@ -61,8 +61,7 @@ autocmd("BufDelete", {
 -- need bufdelete.nvim & alpha-dashboard
 local alpha_on_empty = api.nvim_create_augroup("alpha_on_empty", { clear = true })
 api.nvim_create_autocmd("User", {
-  -- for neovim 0.8 pattern = "BDeletePost*",
-  pattern = "BDeletePost",
+  pattern = "BDeletePost*",
   group = alpha_on_empty,
   callback = function(event)
     local fallback_name = api.nvim_buf_get_name(event.buf)
