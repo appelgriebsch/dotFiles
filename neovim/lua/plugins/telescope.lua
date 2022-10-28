@@ -115,6 +115,7 @@ vim.keymap.set("n", "<leader>bf", "<CMD>Telescope current_buffer_fuzzy_find<CR>"
 vim.keymap.set("n", "<leader>bn", "<CMD>ene <BAR> startinsert<CR>", keymap.map_global("create new"))
 vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", keymap.map_global("close"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", keymap.map_global("reload"))
+vim.keymap.set("n", "<leader>bR", "<CMD>lua require(\"resize-mode\").start()<CR>", keymap.map_global("resize"))
 vim.keymap.set("n", "<leader>bs", "<CMD>vs<CR>", keymap.map_global("split vertical"))
 vim.keymap.set("n", "<leader>bv", "<CMD>sp<CR>", keymap.map_global("split horizontal"))
 vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", keymap.map_global("write"))
@@ -142,8 +143,10 @@ vim.keymap.set("n", "<leader>tl", "<CMD>tabnext<CR>", keymap.map_global("next"))
 vim.keymap.set("n", "<leader>tq", "<CMD>tabclose<CR>", keymap.map_global("close"))
 
 -- Utils
-vim.keymap.set("n", "<leader>uvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("tasks"))
+vim.keymap.set("n", "<leader>uvh", "<CMD>lua require(\"telescope\").extensions.vstask.history()<CR>", keymap.map_global("history"))
 vim.keymap.set("n", "<leader>uvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("inputs"))
+vim.keymap.set("n", "<leader>uvr", "<CMD>lua require(\"telescope\").extensions.vstask.launch()<CR>", keymap.map_global("run"))
+vim.keymap.set("n", "<leader>uvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("tasks"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then

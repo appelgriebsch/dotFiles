@@ -184,6 +184,18 @@ return packer.startup(function(use)
     end
   }
   use {
+    "samjwill/nvim-unception",
+    config = function ()
+      vim.g.unception_open_buffer_in_new_tab = true
+    end
+  }
+  use {
+    "dimfred/resize-mode.nvim",
+    config = function ()
+      require("plugins.resize_mode")
+    end
+  }
+  use {
     "NTBBloodbath/rest.nvim",
     config = function()
       require("plugins.rest")

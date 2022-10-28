@@ -92,10 +92,8 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   vim.cmd [[ command! Format execute "lua vim.lsp.buf.formatting()" ]]
-  if client.server_capabilities.document_formatting then
-    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", keymap.map_local("format buffer"))
-  elseif client.server_capabilities.document_range_formatting then
-    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", keymap.map_local("format range"))
+  if client.server_capabilities.documentFormattingProvider then
+    vim.keymap.set("n", "<leader>lf", "<CMD>lua vim.lsp.buf.format()<CR>", keymap.map_local("format buffer"))
   end
 
   -- Telescope

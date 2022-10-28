@@ -55,6 +55,7 @@ opt.listchars:append { eol = "↲" }
 opt.listchars:append { nbsp = "␣" }
 opt.fillchars:append { eob = " " } -- hide tildes at the end of buffers
 opt.fillchars:append { vert = " "} -- hide borders of split vertical windows (nvim tree)
+
 g.completion_enable_auto_signature = 0
 g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
 
