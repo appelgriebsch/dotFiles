@@ -258,6 +258,7 @@ return packer.startup(function(use)
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
       { "mfussenegger/nvim-lint" },
+      { "nanotee/sqls.nvim" },
       {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         event = { "BufRead", "BufNewFile" },
