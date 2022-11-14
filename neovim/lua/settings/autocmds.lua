@@ -13,6 +13,15 @@ autocmd({ "FileType" }, {
   end,
 })
 
+autocmd({ "FileType" }, {
+  pattern = "tf",
+  callback = function()
+    cmd([[
+      set filetype=terraform
+    ]])
+  end,
+})
+
 -- Fixes Autocomment
 autocmd("BufEnter", {
   pattern = "*",
