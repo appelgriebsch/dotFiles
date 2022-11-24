@@ -1,0 +1,8 @@
+# geometry theme
+geometry-zsh/geometry
+
+# some nice zsh plugins
+marlonrichert/zsh-autocomplete
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions

@@ -1,24 +1,33 @@
-# Download Znap, if it's not there yet.
-[[ -f ~/.local/share/zsh-snap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-            https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh-snap
+# You can change the names/locations of these if you prefer.
+antidote_dir=${ZDOTDIR:-~}/.local/share/antidote
+plugins_txt=${ZDOTDIR:-~}/Projects/dotFiles/zsh/zsh_plugins
+static_file=${ZDOTDIR:-~}/.zsh_plugins.zsh
 
-source ~/.local/share/zsh-snap/znap.zsh  # Start Znap
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+
+# Clone antidote if necessary and generate a static plugin file.
+if [[ ! $static_file -nt $plugins_txt ]]; then
+  [[ -e $antidote_dir ]] ||
+    git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
+  (
+    source $antidote_dir/antidote.zsh
+    [[ -e $plugins_txt ]] || touch $plugins_txt
+    antidote bundle <$plugins_txt >$static_file
+  )
+fi
+
+# Uncomment this if you want antidote commands like `antidote update` available
+# in your interactive shell session:
+autoload -Uz $antidote_dir/functions/antidote
 
 # zsh theming
 GEOMETRY_SEPARATOR=" "
 
-# `znap prompt` makes your prompt visible in just 15-40ms!
-znap prompt geometry-zsh/geometry
+# source the static plugins file
+source $static_file
 
-# `znap source` automatically downloads and starts your plugins.
-znap source marlonrichert/zsh-autocomplete
-znap source zsh-users/zsh-autosuggestions
-znap source zsh-users/zsh-syntax-highlighting
-
-# `znap eval` caches and runs any kind of command output for you.
-[[ -d /Applications/iTerm.app/ ]] &&
-    znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
+# cleanup
+unset antidote_dir plugins_txt static_file
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -31,7 +40,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-export BAT_THEME=onedark
+export BAT_THEME="TwoDark"
 
 # add some aliases
 alias cat="bat"
@@ -42,3 +51,5 @@ alias df="df -h"
 alias free="free -h"
 alias nv="nvim"
 alias gitui="gitui"
+
+autoload -Uz compinit && compinit

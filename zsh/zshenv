@@ -1,2 +1,4 @@
 export PATH=$HOME/.bun/bin:$HOME/.local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export EDITOR=nvim
+
 [[ -f ~/.cargo/env ]] && source "$HOME/.cargo/env"
