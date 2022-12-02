@@ -14,6 +14,14 @@ autocmd({ "FileType" }, {
 })
 
 autocmd({ "FileType" }, {
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
+
+autocmd({ "FileType" }, {
   pattern = "tf",
   callback = function()
     cmd([[
@@ -28,12 +36,27 @@ autocmd("BufEnter", {
   command = "set fo-=c fo-=r fo-=o",
 })
 
+cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
+
+autocmd({ "VimResized" }, {
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+
 -- Highlight Yanked Text
 api.nvim_create_augroup("Highlight", { clear = true })
 autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=1500, on_visual = true})",
   group = "Highlight",
   desc = "Highlight yanked text",
+})
+
+autocmd({ "BufWritePost" }, {
+  pattern = { "*.java" },
+  callback = function()
+    vim.lsp.codelens.refresh()
+  end,
 })
 
 autocmd({ "BufAdd", "BufEnter" }, {

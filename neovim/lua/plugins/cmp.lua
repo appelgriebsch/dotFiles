@@ -3,10 +3,14 @@ if not status_cmp then
   return
 end
 
-local M = {}
+local snip_status_ok, snippy = pcall(require, "snippy")
+if not snip_status_ok then
+  return
+end
 
 local lspkind = require("lspkind")
-local snippy = require("snippy")
+
+local M = {}
 
 function M.setup()
   local has_words_before = function()
@@ -14,13 +18,26 @@ function M.setup()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
+  local check_backspace = function()
+    local col = vim.fn.col(".") - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+  end
+
   cmp.setup({
     completion = { completeopt = "menu,menuone,noinsert" },
-    experimental = { ghost_text = true, native_menu = false },
+    experimental = { ghost_text = true },
     formatting = {
       format = lspkind.cmp_format({
         mode = "symbol"
       })
+    },
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     mapping = {
       ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -65,6 +82,7 @@ function M.setup()
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
+      { name = "nvim_lua" },
       { name = "snippy" },
       { name = "buffer" },
       { name = "path" },
@@ -89,9 +107,6 @@ function M.setup()
       { name = "path" }
     })
   })
-
-  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 end
 
 return M

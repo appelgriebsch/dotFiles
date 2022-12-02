@@ -48,11 +48,8 @@ return packer.startup(function(use)
   ----------------------
   -- Dependencies --
   ----------------------
-  use { "nathom/filetype.nvim" }
-  use { "nvim-lua/popup.nvim" }
-  use { "nvim-lua/plenary.nvim" }
+  use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
-  use { "antoinemadec/FixCursorHold.nvim" }
   use { "linty-org/key-menu.nvim" }
   ----------------------
   -- UI extensions --
@@ -120,7 +117,6 @@ return packer.startup(function(use)
   -- core editor extensions  --
   -----------------------------
   use { "editorconfig/editorconfig-vim" }
-  use { "tversteeg/registers.nvim" }
   use {
     "notjedi/nvim-rooter.lua",
     event = { "BufRead", "BufNewFile" },
@@ -151,7 +147,7 @@ return packer.startup(function(use)
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
-      require("Comment").setup()
+      require("plugins.comment")
     end
   }
   use {
@@ -190,30 +186,11 @@ return packer.startup(function(use)
     end
   }
   use {
-    "dimfred/resize-mode.nvim",
-    config = function ()
-      require("plugins.resize_mode")
-    end
-  }
-  use {
     "NTBBloodbath/rest.nvim",
     config = function()
       require("plugins.rest")
     end
   }
-  use {
-    "Djancyp/cheat-sheet",
-    config = function()
-      require("plugins.cheatsheet")
-    end
-  }
-  -- Dash integration on macOS only
-  if vim.fn.has "mac" == 1 then
-    use {
-      "mrjones2014/dash.nvim",
-      run = "make install",
-    }
-  end
   ----------------------------
   -- Treesitter extensions  --
   ----------------------------
@@ -227,7 +204,7 @@ return packer.startup(function(use)
       {
         "windwp/nvim-autopairs",
         config = function()
-          require("nvim-autopairs").setup()
+          require("plugins.autopairs")
         end
       }
     },
@@ -241,7 +218,6 @@ return packer.startup(function(use)
   use {
     "williamboman/mason.nvim",
     requires = {
-      { "stevearc/dressing.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "neovim/nvim-lspconfig" },
       { "ray-x/lsp_signature.nvim" },
@@ -259,13 +235,6 @@ return packer.startup(function(use)
       { "simrat39/rust-tools.nvim" },
       { "mfussenegger/nvim-lint" },
       { "nanotee/sqls.nvim" },
-      {
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        event = { "BufRead", "BufNewFile" },
-        config = function()
-          require("lsp_lines").setup()
-        end,
-      },
       {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
@@ -292,6 +261,7 @@ return packer.startup(function(use)
     "nvim-telescope/telescope.nvim",
     branch = '0.1.x',
     requires = {
+      { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-github.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       { "nvim-telescope/telescope-file-browser.nvim" },

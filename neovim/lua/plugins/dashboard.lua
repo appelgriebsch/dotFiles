@@ -31,6 +31,8 @@ dashboard.section.buttons.val = {
 local fortune = require("alpha.fortune")
 dashboard.section.footer.val = fortune()
 
+dashboard.opts.opts.noautocmd = true
+
 -- Send config to alpha
 alpha.setup(dashboard.opts)
 

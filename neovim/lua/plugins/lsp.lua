@@ -6,7 +6,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   signs = true,
   underline = true,
   update_in_insert = false,
-  virtual_text = false,
+  virtual_text = true,
   severity_sort = true,
 })
 
@@ -30,7 +30,7 @@ vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id
   vim.notify(method.message, severity[params.type])
 end
 
-local diagnostic_signs = { " ", " ", " ", " " }
+local diagnostic_signs = { " ", " ", " ", " " }
 local diagnostic_severity_fullnames = { "Error", "Warning", "Information", "Hint" }
 local diagnostic_severity_shortnames = { "Error", "Warn", "Info", "Hint" }
 
@@ -109,13 +109,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>lD", "<CMD>Telescope diagnostics<CR>", keymap.map_local("workspace diagnostics"))
     vim.keymap.set("n", "<leader>lS", "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>",
       keymap.map_local("workspace symbols"))
-  end
-
-  -- Help
-  local status_dash, dash = pcall(require, "dash")
-  if status_dash then
-    vim.keymap.set("n", "<leader>uds", "<CMD>Dash<CR>", keymap.map_local("search index"))
-    vim.keymap.set("n", "<leader>udl", "<CMD>DashWord<CR>", keymap.map_local("lookup word"))
   end
 
   -- Set autocommands conditional on server_capabilities
