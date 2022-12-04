@@ -30,7 +30,7 @@ vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id
   vim.notify(method.message, severity[params.type])
 end
 
-local diagnostic_signs = { " ", " ", " ", " " }
+local diagnostic_signs = { " ", " ", " ", " " }
 local diagnostic_severity_fullnames = { "Error", "Warning", "Information", "Hint" }
 local diagnostic_severity_shortnames = { "Error", "Warn", "Info", "Hint" }
 
@@ -67,7 +67,7 @@ local on_attach = function(client, bufnr)
       border = "none"
     },
     floating_window = false,
-    hint_prefix = " "
+    hint_prefix = " "
   }
 
   require("lsp_signature").on_attach(cfg, bufnr)

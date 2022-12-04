@@ -15,13 +15,13 @@ notify.setup({
   background_colour = "Normal",
 
   -- Icons for the different levels
-  -- diagnostic_signs = {" ", " ", " ", " "}
+  -- diagnostic_signs = {" ", " ", " ", " "}
   icons = {
-    ERROR = "",
-    WARN = "",
-    INFO = "",
+    ERROR = "",
+    WARN = "",
+    INFO = "",
     DEBUG = "",
-    TRACE = "",
+    TRACE = "",
   },
 })
 

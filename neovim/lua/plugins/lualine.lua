@@ -27,7 +27,10 @@ lualine.setup({
       },
     },
     lualine_c = {
-      { "diagnostics" },
+      {
+        "diagnostics",
+        symbols = { error = " ", warn = " ", info = " ", hint = " " }
+      },
       { "filename", padding = { left = 1, right = 1 } },
     },
     lualine_x = {

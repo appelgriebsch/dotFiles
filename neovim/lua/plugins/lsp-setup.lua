@@ -15,17 +15,6 @@ end
 
 require("plugins.cmp").setup()
 
-local status_lsplines, lsp_lines = pcall(require, "lsp_lines")
-if status_lsplines then
-  vim.api.nvim_exec([[
-    augroup LSPLines
-      autocmd!
-      autocmd InsertEnter * silent! lua vim.diagnostic.config({ virtual_lines = false })
-      autocmd InsertLeave * silent! lua vim.diagnostic.config({ virtual_lines = true })
-    augroup end
-  ]], false)
-end
-
 local lsp_setup = require("plugins.lsp").make_config()
 
 mason.setup({
