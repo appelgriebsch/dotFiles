@@ -107,6 +107,12 @@ return packer.startup(function(use)
         config = function()
           require("scope").setup()
         end
+      },
+      {
+        "lewis6991/hover.nvim",
+        config = function()
+          require("plugins.hover")
+        end
       }
     },
     config = function()
@@ -235,6 +241,8 @@ return packer.startup(function(use)
       { "simrat39/rust-tools.nvim" },
       { "mfussenegger/nvim-lint" },
       { "nanotee/sqls.nvim" },
+      { "David-Kunz/cmp-npm" },
+      { "someone-stole-my-name/yaml-companion.nvim" },
       {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },

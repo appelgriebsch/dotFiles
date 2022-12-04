@@ -78,7 +78,7 @@ local on_attach = function(client, bufnr)
   elseif vim.fn.expand("%:t", false, false) == "Cargo.toml" then
     vim.keymap.set("n", "K", "<CMD>lua require(\"crates\").show_popup()<CR>", keymap.map_local("HIDDEN"))
   else
-    vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", keymap.map_local("HIDDEN"))
+    vim.keymap.set("n", "K", "<CMD>lua require(\"hover\").hover<CR>", keymap.map_local("HIDDEN"))
   end
 
   vim.keymap.set("n", "<C-Space>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", keymap.map_local("HIDDEN"))

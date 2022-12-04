@@ -86,7 +86,8 @@ function M.setup()
       { name = "snippy" },
       { name = "buffer" },
       { name = "path" },
-      { name = "crates" }
+      { name = "crates" },
+      { name = "npm" },
     })
   })
 

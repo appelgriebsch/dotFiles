@@ -83,6 +83,7 @@ telescope.load_extension("gh")
 telescope.load_extension("notify")
 telescope.load_extension("project")
 telescope.load_extension("termfinder")
+telescope.load_extension("yaml_schema")
 
 local status_dressing, dressing = pcall(require, "dressing")
 if status_dressing then
