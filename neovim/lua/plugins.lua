@@ -58,7 +58,7 @@ return packer.startup(function(use)
     "goolord/alpha-nvim",
     requires = {
       {
-        "rmehri01/onenord.nvim",
+        "navarasu/onedark.nvim",
         config = function()
           require("plugins.theme")
         end

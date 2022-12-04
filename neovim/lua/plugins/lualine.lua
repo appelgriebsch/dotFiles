@@ -14,7 +14,7 @@ require("nvim-web-devicons").setup({ default = true })
 lualine.setup({
   options = {
     globalstatus = true,
-    theme = "onenord",
+    theme = "onedark",
     disabled_filetypes = { "alpha" }
   },
   sections = {
