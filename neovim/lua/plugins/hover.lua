@@ -25,4 +25,4 @@ hover.setup {
 }
 
 -- Setup keymaps
-vim.keymap.set("n", "K", "<CMD>lua require(\"hover\").hover<CR>", keymap.map_global("HIDDEN"))
+vim.keymap.set("n", "K", "<CMD>lua require(\"hover\").hover()<CR>", keymap.map_global("HIDDEN"))
