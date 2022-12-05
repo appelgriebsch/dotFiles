@@ -267,16 +267,16 @@ return packer.startup(function(use)
   --------------------------
   use {
     "nvim-telescope/telescope.nvim",
-    branch = '0.1.x',
+    branch = "0.1.x",
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-github.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       { "nvim-telescope/telescope-file-browser.nvim" },
-      { "nvim-telescope/telescope-project.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
       { "tknightz/telescope-termfinder.nvim" },
-      { "EthanJWright/vs-tasks.nvim" }
+      { "EthanJWright/vs-tasks.nvim" },
+      { "gnikdroy/projections.nvim" }
     },
     config = function()
       require("plugins.telescope")

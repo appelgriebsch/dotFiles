@@ -6,6 +6,21 @@ end
 local keymap = require("utils.keymaps")
 local actions = require("telescope.actions")
 
+local status_projections, projections = pcall(require, "projections")
+if not status_projections then
+  return
+end
+
+projections.setup({
+  workspaces = { -- Default workspaces to search for
+    -- { "~/Documents/dev", { ".git" } },     Documents/dev is a workspace. patterns = { ".git" }
+    -- { "~/repos", {} },                     An empty pattern list indicates that all subfolders are considered projects
+    -- "~/dev",                               dev is a workspace. default patterns is used (specified below)
+    "~/Projects",
+  },
+  patterns = { ".git", ".svn", ".hg" }, -- Default patterns to use if none were specified. These are NOT regexps.
+})
+
 telescope.setup({
   defaults = {
     prompt_prefix = " ",
@@ -81,7 +96,7 @@ telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
 telescope.load_extension("gh")
 telescope.load_extension("notify")
-telescope.load_extension("project")
+telescope.load_extension("projections")
 telescope.load_extension("termfinder")
 telescope.load_extension("yaml_schema")
 
@@ -116,7 +131,6 @@ vim.keymap.set("n", "<leader>bf", "<CMD>Telescope current_buffer_fuzzy_find<CR>"
 vim.keymap.set("n", "<leader>bn", "<CMD>ene <BAR> startinsert<CR>", keymap.map_global("create new"))
 vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", keymap.map_global("close"))
 vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", keymap.map_global("reload"))
-vim.keymap.set("n", "<leader>bR", "<CMD>lua require(\"resize-mode\").start()<CR>", keymap.map_global("resize"))
 vim.keymap.set("n", "<leader>bs", "<CMD>vs<CR>", keymap.map_global("split vertical"))
 vim.keymap.set("n", "<leader>bv", "<CMD>sp<CR>", keymap.map_global("split horizontal"))
 vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", keymap.map_global("write"))
@@ -127,7 +141,7 @@ vim.keymap.set("n", "<leader>fe", "<CMD>Telescope file_browser<CR>", keymap.map_
 vim.keymap.set("n", "<leader>ff", "<CMD>Telescope find_files<CR>", keymap.map_global("file"))
 vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", keymap.map_global("git file"))
 vim.keymap.set("n", "<leader>fm", "<CMD>Telescope marks<CR>", keymap.map_global("bookmarks"))
-vim.keymap.set("n", "<leader>fp", "<CMD>Telescope project display_type=full<CR>", keymap.map_global("project"))
+vim.keymap.set("n", "<leader>fp", "<CMD>Telescope projections<CR>", keymap.map_global("project"))
 vim.keymap.set("n", "<leader>fr", "<CMD>Telescope oldfiles<CR>", keymap.map_global("recent files"))
 vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", keymap.map_global("search word"))
 
@@ -144,10 +158,14 @@ vim.keymap.set("n", "<leader>tl", "<CMD>tabnext<CR>", keymap.map_global("next"))
 vim.keymap.set("n", "<leader>tq", "<CMD>tabclose<CR>", keymap.map_global("close"))
 
 -- Utils
-vim.keymap.set("n", "<leader>uvh", "<CMD>lua require(\"telescope\").extensions.vstask.history()<CR>", keymap.map_global("history"))
-vim.keymap.set("n", "<leader>uvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>", keymap.map_global("inputs"))
-vim.keymap.set("n", "<leader>uvr", "<CMD>lua require(\"telescope\").extensions.vstask.launch()<CR>", keymap.map_global("run"))
-vim.keymap.set("n", "<leader>uvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>", keymap.map_global("tasks"))
+vim.keymap.set("n", "<leader>uvh", "<CMD>lua require(\"telescope\").extensions.vstask.history()<CR>",
+  keymap.map_global("history"))
+vim.keymap.set("n", "<leader>uvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>",
+  keymap.map_global("inputs"))
+vim.keymap.set("n", "<leader>uvr", "<CMD>lua require(\"telescope\").extensions.vstask.launch()<CR>",
+  keymap.map_global("run"))
+vim.keymap.set("n", "<leader>uvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>",
+  keymap.map_global("tasks"))
 
 local status_menu, menu = pcall(require, "key-menu")
 if not status_menu then
