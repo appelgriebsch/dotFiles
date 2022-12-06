@@ -18,14 +18,14 @@ dashboard.section.header.val = {
 
 -- Buttons
 dashboard.section.buttons.val = {
-  dashboard.button("p", "  > Open project", ":Telescope projections<CR>"),
-  dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("f", "  > Find file", ":cd $HOME/Projects | Telescope find_files<CR>"),
-  dashboard.button("l", "  > LSP Servers", ":Mason"),
-  dashboard.button("r", "  > Recent files", ":Telescope oldfiles<CR>"),
+  dashboard.button("p", "  > Open project", "<CMD>Telescope projections<CR>"),
+  dashboard.button("e", "  > New file", "<CMD>ene <BAR> startinsert<CR>"),
+  dashboard.button("f", "  > Find file", "<CMD>cd $HOME/Projects | Telescope find_files<CR>"),
+  dashboard.button("l", "  > LSP Servers", "<CMD>Mason<CR>"),
+  dashboard.button("r", "  > Recent files", "<CMD>Telescope oldfiles<CR>"),
   dashboard.button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | Telescope file_browser<CR>"),
-  dashboard.button("u", "  > Update plugins", ":PackerSync<CR>"),
-  dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
+  dashboard.button("u", "  > Update plugins", "<CMD>PackerSync<CR>"),
+  dashboard.button("q", "  > Quit NVIM", "<CMD>qa<CR>"),
 }
 
 -- Set footer

@@ -150,10 +150,7 @@ return packer.startup(function(use)
       require("tidy").setup()
     end
   }
-  use {
-    "famiu/bufdelete.nvim",
-    event = { "BufRead", "BufNewFile" }
-  }
+  use { "famiu/bufdelete.nvim" }
   use {
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
