@@ -3,8 +3,6 @@ if not status_hover then
   return
 end
 
-local keymap = require("utils.keymaps")
-
 hover.setup {
   init = function()
     -- Require providers
@@ -25,4 +23,9 @@ hover.setup {
 }
 
 -- Setup keymaps
-vim.keymap.set("n", "K", "<CMD>lua require(\"hover\").hover()<CR>", keymap.map_global("HIDDEN"))
+local status_menu, menu = pcall(require, "which-key")
+if status_menu then
+  menu.register({
+    K = { "<CMD>lua require(\"hover\").hover()<CR>", "HIDDEN" }
+  })
+end

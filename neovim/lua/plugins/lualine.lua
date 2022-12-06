@@ -7,7 +7,7 @@ local function clock()
   return " " .. os.date("%H:%M")
 end
 
-local lsp_utils = require("utils.lsp")
+local lsp_config = require("plugins.lsp")
 
 require("nvim-web-devicons").setup({ default = true })
 
@@ -35,7 +35,7 @@ lualine.setup({
     },
     lualine_x = {
       {
-        lsp_utils.lsp_name,
+        lsp_config.lsp_name,
         icon = "",
         color = { gui = "none" },
       },

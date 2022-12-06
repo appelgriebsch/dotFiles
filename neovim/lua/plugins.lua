@@ -50,7 +50,6 @@ return packer.startup(function(use)
   ----------------------
   use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
-  use { "linty-org/key-menu.nvim" }
   ----------------------
   -- UI extensions --
   ----------------------
@@ -112,6 +111,12 @@ return packer.startup(function(use)
         "lewis6991/hover.nvim",
         config = function()
           require("plugins.hover")
+        end
+      },
+      {
+        "folke/which-key.nvim",
+        config = function()
+          require("plugins.whichkey")
         end
       }
     },
@@ -187,7 +192,7 @@ return packer.startup(function(use)
   }
   use {
     "samjwill/nvim-unception",
-    config = function ()
+    config = function()
       vim.g.unception_open_buffer_in_new_tab = true
     end
   }
@@ -218,16 +223,12 @@ return packer.startup(function(use)
       require("plugins.treesitter")
     end
   }
-  ---------------------
-  -- LSP extensions  --
-  ---------------------
+  ----------------------------
+  -- Completion extensions  --
+  ----------------------------
   use {
-    "williamboman/mason.nvim",
+    "hrsh7th/nvim-cmp",
     requires = {
-      { "williamboman/mason-lspconfig.nvim" },
-      { "neovim/nvim-lspconfig" },
-      { "ray-x/lsp_signature.nvim" },
-      { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-document-symbol" },
       { "hrsh7th/cmp-buffer" },
@@ -236,10 +237,24 @@ return packer.startup(function(use)
       { "dcampos/nvim-snippy" },
       { "dcampos/cmp-snippy" },
       { "onsails/lspkind.nvim" },
+    },
+    config = function()
+      require("plugins.cmp")
+    end,
+  }
+  ---------------------
+  -- LSP extensions  --
+  ---------------------
+  use {
+    "williamboman/mason.nvim",
+    requires = {
+      { "mfussenegger/nvim-lint" },
+      { "williamboman/mason-lspconfig.nvim" },
+      { "neovim/nvim-lspconfig" },
+      { "ray-x/lsp_signature.nvim" },
       { "b0o/schemastore.nvim" },
       { "mfussenegger/nvim-jdtls" },
       { "simrat39/rust-tools.nvim" },
-      { "mfussenegger/nvim-lint" },
       { "nanotee/sqls.nvim" },
       { "David-Kunz/cmp-npm" },
       { "someone-stole-my-name/yaml-companion.nvim" },
@@ -259,7 +274,7 @@ return packer.startup(function(use)
       },
     },
     config = function()
-      require("plugins.lsp-setup")
+      require("plugins.mason")
     end,
   }
   --------------------------

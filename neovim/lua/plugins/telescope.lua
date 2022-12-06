@@ -3,7 +3,6 @@ if not status_telescope then
   return
 end
 
-local keymap = require("utils.keymaps")
 local actions = require("telescope.actions")
 
 local status_projections, projections = pcall(require, "projections")
@@ -46,6 +45,7 @@ telescope.setup({
         ["<C-h>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
+        ["<C-]>"] = "which_key",
         ["<S-k>"] = actions.preview_scrolling_up,
         ["<S-j>"] = actions.preview_scrolling_down,
       },
@@ -55,6 +55,7 @@ telescope.setup({
         ["<C-h>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
+        ["<C-]>"] = "which_key",
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["j"] = actions.move_selection_next,
@@ -82,9 +83,6 @@ telescope.setup({
     file_browser = {
       hijack_netrw = true,
       theme = "ivy"
-    },
-    dash = {
-      search_engine = "ddg",
     },
   }
 })
@@ -125,56 +123,60 @@ if status_vstask then
   })
 end
 
--- Buffers
-vim.keymap.set("n", "<leader>bc", "<CMD>noh<CR>", keymap.map_global("clear highlights"))
-vim.keymap.set("n", "<leader>bf", "<CMD>Telescope current_buffer_fuzzy_find<CR>", keymap.map_global("find"))
-vim.keymap.set("n", "<leader>bn", "<CMD>ene <BAR> startinsert<CR>", keymap.map_global("create new"))
-vim.keymap.set("n", "<leader>bq", "<CMD>Bdelete!<CR>", keymap.map_global("close"))
-vim.keymap.set("n", "<leader>br", "<CMD>e!<CR>", keymap.map_global("reload"))
-vim.keymap.set("n", "<leader>bs", "<CMD>vs<CR>", keymap.map_global("split vertical"))
-vim.keymap.set("n", "<leader>bv", "<CMD>sp<CR>", keymap.map_global("split horizontal"))
-vim.keymap.set("n", "<leader>bw", "<CMD>w!<CR>", keymap.map_global("write"))
-
--- Workspaces / Files
-vim.keymap.set("n", "<leader>fb", "<CMD>Telescope buffers<CR>", keymap.map_global("buffer"))
-vim.keymap.set("n", "<leader>fe", "<CMD>Telescope file_browser<CR>", keymap.map_global("file explorer"))
-vim.keymap.set("n", "<leader>ff", "<CMD>Telescope find_files<CR>", keymap.map_global("file"))
-vim.keymap.set("n", "<leader>fg", "<CMD>Telescope git_files<CR>", keymap.map_global("git file"))
-vim.keymap.set("n", "<leader>fm", "<CMD>Telescope marks<CR>", keymap.map_global("bookmarks"))
-vim.keymap.set("n", "<leader>fp", "<CMD>Telescope projections<CR>", keymap.map_global("project"))
-vim.keymap.set("n", "<leader>fr", "<CMD>Telescope oldfiles<CR>", keymap.map_global("recent files"))
-vim.keymap.set("n", "<leader>fs", "<CMD>Telescope live_grep<CR>", keymap.map_global("search word"))
-
--- Git
-vim.keymap.set("n", "<leader>gs", "<CMD>Telescope git_status<CR>", keymap.map_global("status"))
-vim.keymap.set("n", "<leader>gc", "<CMD>Telescope git_commits<CR>", keymap.map_global("commit history"))
-vim.keymap.set("n", "<leader>gC", "<CMD>Telescope git_bcommits<CR>", keymap.map_global("buffer commit history"))
-vim.keymap.set("n", "<leader>gb", "<CMD>Telescope git_branches<CR>", keymap.map_global("branches history"))
-
--- Tabs
-vim.keymap.set("n", "<leader>tn", "<CMD>tabnew<CR>", keymap.map_global("create new"))
-vim.keymap.set("n", "<leader>th", "<CMD>tabprevious<CR>", keymap.map_global("previous"))
-vim.keymap.set("n", "<leader>tl", "<CMD>tabnext<CR>", keymap.map_global("next"))
-vim.keymap.set("n", "<leader>tq", "<CMD>tabclose<CR>", keymap.map_global("close"))
-
--- Utils
-vim.keymap.set("n", "<leader>uvh", "<CMD>lua require(\"telescope\").extensions.vstask.history()<CR>",
-  keymap.map_global("history"))
-vim.keymap.set("n", "<leader>uvi", "<CMD>lua require(\"telescope\").extensions.vstask.inputs()<CR>",
-  keymap.map_global("inputs"))
-vim.keymap.set("n", "<leader>uvr", "<CMD>lua require(\"telescope\").extensions.vstask.launch()<CR>",
-  keymap.map_global("run"))
-vim.keymap.set("n", "<leader>uvt", "<CMD>lua require(\"telescope\").extensions.vstask.tasks()<CR>",
-  keymap.map_global("tasks"))
-
-local status_menu, menu = pcall(require, "key-menu")
+local status_menu, menu = pcall(require, "which-key")
 if not status_menu then
   return
 end
 
-menu.set("n", "<leader>b", { desc = "buffer" })
-menu.set("n", "<leader>f", { desc = "find" })
-menu.set("n", "<leader>g", { desc = "git" })
-menu.set("n", "<leader>t", { desc = "tabs" })
-menu.set("n", "<leader>u", { desc = "utils" })
-menu.set("n", "<leader>uv", { desc = "vstasks" })
+menu.register({
+  -- Buffers
+  ["<leader>b"] = {
+    name = "+buffers",
+    c = { "<CMD>noh<CR>", "clear highlights" },
+    f = { "<CMD>Telescope current_buffer_fuzzy_find<CR>", "find" },
+    n = { "<CMD>ene <BAR> startinsert<CR>", "create new" },
+    q = { "<CMD>Bdelete!<CR>", "close" },
+    r = { "<CMD>e!<CR>", "reload" },
+    s = { "<CMD>sp<CR>", "split horizontal"},
+    v = { "<CMD>vs<CR>", "split vertical" },
+    w = { "<CMD>w!<CR>", "write" }
+  },
+  -- Workspaces / Files
+  ["<leader>f"] = {
+    name = "+files",
+    b = { "<CMD>Telescope buffers<CR>", "buffers" },
+    e = { "<CMD>Telescope file_browser<CR>", "file explorer" },
+    f = { "<CMD>Telescope find_files<CR>", "files" },
+    g = { "<CMD>Telescope live_grep<CR>", "grep"},
+    m = { "<CMD>Telescope marks<CR>", "marks" },
+    p = { "<CMD>Telescope projections<CR>", "projects" },
+    r = { "<CMD>Telescope oldfiles<CR>", "recent files"},
+  },
+  -- Git
+  ["<leader>g"] = {
+    name = "+git",
+    b = {"<CMD>Telescope git_branches<CR>", "branches" },
+    c = { "<CMD>Telescope git_commits<CR>", "commits"},
+    C = { "<CMD>Telescope git_bcommits<CR>", "buffer commits" },
+    f = { "<CMD>Telescope git_files<CR>", "files" },
+  },
+  -- Tabs
+  ["<leader>t"] = {
+    name = "+tabs",
+    n = { "<CMD>tabnew<CR>", "create new" },
+    h = { "<CMD>tabprevious<CR>", "previous" },
+    l = { "<CMD>tabnext<CR>", "next" },
+    q = { "<CMD>tabclose<CR>", "close" }
+  },
+  -- utils
+  ["<leader>u"] = {
+    name = "+utils",
+    v = {
+      name = "vstasks",
+      h = { "<CMD>lua require(\"telescope\").extensions.vstask.history(require(\"telescope.themes\").get_dropdown({}))<CR>", "history" },
+      i = { "<CMD>lua require(\"telescope\").extensions.vstask.inputs(require(\"telescope.themes\").get_dropdown({}))<CR>", "inputs" },
+      r = { "<CMD>lua require(\"telescope\").extensions.vstask.launch(require(\"telescope.themes\").get_dropdown({}))<CR>", "run" },
+      s = { "<CMD>lua require(\"telescope\").extensions.vstask.tasks(require(\"telescope.themes\").get_dropdown({}))<CR>", "show" }
+    }
+  }
+})

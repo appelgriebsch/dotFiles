@@ -30,6 +30,59 @@ autocmd({ "FileType" }, {
   end,
 })
 
+autocmd({ "FileType" }, {
+  pattern = "java",
+  callback = function()
+    require("plugins.lsp.langs.jdtls").setup()
+  end,
+})
+
+autocmd({ "FileType" }, {
+  pattern = "http",
+  callback = function()
+    -- http / rest specific vim keybindings
+    local status_menu, menu = pcall(require, "which-key")
+    if not status_menu then
+      return
+    end
+
+    menu.register({
+      ["<leader>h"] = {
+        name = "+http",
+        e = { "<Plug>RestNvim<CR>", "execute request " },
+        p = { "<Plug>RestNvimPreview<CR>", "preview cUrl" },
+        r = { "<Plug>RestNvimLast<CR>", "repeat last request" }
+      }
+    })
+  end,
+})
+
+autocmd({ "FileType" }, {
+  pattern = "rust",
+  callback = function()
+    local status_menu, menu = pcall(require, "which-key")
+    if status_menu then
+      menu.register({
+        K = { "<CMD>lua require(\"rust-tools.hover_actions\").hover_actions()<CR>", "HIDDEN" }
+      })
+    end
+  end,
+})
+
+autocmd({ "FileType" }, {
+  pattern = "toml",
+  callback = function()
+    if vim.fn.expand("%:t", false, false) == "Cargo.toml" then
+      local status_menu, menu = pcall(require, "which-key")
+      if status_menu then
+        menu.register({
+          K = { "<CMD>lua require(\"crates\").show_popup()<CR>", "HIDDEN" }
+        })
+      end
+    end
+  end,
+})
+
 -- Fixes Autocomment
 autocmd("BufEnter", {
   pattern = "*",

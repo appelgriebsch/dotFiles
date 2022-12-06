@@ -84,8 +84,3 @@ local status_gconflict, gconflict = pcall(require, "git-conflict")
 if status_gconflict then
   gconflict.setup()
 end
-
-local status_menu, menu = pcall(require, "key-menu")
-if not status_menu then
-  return
-end

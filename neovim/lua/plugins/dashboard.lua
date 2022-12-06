@@ -21,6 +21,7 @@ dashboard.section.buttons.val = {
   dashboard.button("p", "  > Open project", ":Telescope projections<CR>"),
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("f", "  > Find file", ":cd $HOME/Projects | Telescope find_files<CR>"),
+  dashboard.button("l", "  > LSP Servers", ":Mason"),
   dashboard.button("r", "  > Recent files", ":Telescope oldfiles<CR>"),
   dashboard.button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | Telescope file_browser<CR>"),
   dashboard.button("u", "  > Update plugins", ":PackerSync<CR>"),
