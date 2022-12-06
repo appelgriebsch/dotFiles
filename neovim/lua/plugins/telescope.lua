@@ -16,6 +16,8 @@ projections.setup({
     -- { "~/repos", {} },                     An empty pattern list indicates that all subfolders are considered projects
     -- "~/dev",                               dev is a workspace. default patterns is used (specified below)
     "~/Projects",
+    "~/Projects/nodejs/",
+    "~/Projects/rust/",
   },
   patterns = { ".git", ".svn", ".hg" }, -- Default patterns to use if none were specified. These are NOT regexps.
 })
@@ -34,7 +36,7 @@ telescope.setup({
       width = 0.9
     },
     --path_display = { shorten = { len = 1, exclude = {1, -1} } },
-    path_display = { truncate = 3 },
+    path_display = { shorten = { len = 1, exclude = {1, -1} } },
     mappings = {
       i = {
         ["<CR>"] = actions.select_default,
@@ -143,7 +145,7 @@ menu.register({
   },
   -- Workspaces / Files
   ["<leader>f"] = {
-    name = "+files",
+    name = "+find",
     b = { "<CMD>Telescope buffers<CR>", "buffers" },
     e = { "<CMD>Telescope file_browser<CR>", "file explorer" },
     f = { "<CMD>Telescope find_files<CR>", "files" },
