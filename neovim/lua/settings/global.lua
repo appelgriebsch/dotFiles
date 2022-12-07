@@ -86,7 +86,9 @@ end
 
 function ivy_opts(opts)
   local result = require("telescope.themes").get_ivy({
-    previewer = false,
+    preview = {
+      hide_on_startup = true
+    },
     layout_config = { height = 0.4 }
   })
   if opts == nil then

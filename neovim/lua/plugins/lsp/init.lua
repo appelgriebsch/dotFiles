@@ -48,8 +48,8 @@ local on_attach = function(client, bufnr)
           t = { "<CMD>lua require(\"telescope.builtin\").lsp_typedefs(ivy_opts())<CR>", "type definitions" }
         },
         r = { "<CMD>lua vim.lsp.buf.rename()<CR>", "rename symbol" },
-        s = { "<CMD>lua require(\"telescope.builtin\").lsp_document_symbols(require(\"telescope.themes\").get_dropdown())<CR>", "symbols" },
-        S = { "<CMD>lua require(\"telescope.builtin\").lsp_dynamic_workspace_symbols(require(\"telescope.themes\").get_dropdown())<CR>", "workspace symbols" }
+        s = { "<CMD>lua require(\"telescope.builtin\").lsp_document_symbols(ivy_opts({ preview = { hide_on_startup = false }}))<CR>", "symbols" },
+        S = { "<CMD>lua require(\"telescope.builtin\").lsp_dynamic_workspace_symbols(ivy_opts({ preview = { hide_on_startup = false }}))<CR>", "workspace symbols" }
       },
       ["<C-Space"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "show signature" }
     }, {

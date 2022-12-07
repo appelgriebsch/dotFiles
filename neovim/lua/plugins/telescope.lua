@@ -4,6 +4,7 @@ if not status_telescope then
 end
 
 local actions = require("telescope.actions")
+local layout_actions = require("telescope.actions.layout")
 
 local status_projections, projections = pcall(require, "projections")
 if not status_projections then
@@ -49,6 +50,7 @@ telescope.setup({
         ["<C-t>"] = actions.select_tab,
         ["<C-s>"] = actions.complete_tag,
         ["<C-]>"] = "which_key",
+        ["<C-p>"] = layout_actions.toggle_preview,
         ["<S-k>"] = actions.preview_scrolling_up,
         ["<S-j>"] = actions.preview_scrolling_down,
       },
@@ -65,6 +67,7 @@ telescope.setup({
         ["k"] = actions.move_selection_previous,
         ["gg"] = actions.move_to_top,
         ["G"] = actions.move_to_bottom,
+        ["<C-p>"] = layout_actions.toggle_preview,
         ["<S-k>"] = actions.preview_scrolling_up,
         ["<S-j>"] = actions.preview_scrolling_down,
       }
