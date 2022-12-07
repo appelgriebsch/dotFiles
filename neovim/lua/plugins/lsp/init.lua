@@ -35,21 +35,21 @@ local on_attach = function(client, bufnr)
           j = { "<CMD>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", "previous" },
           k = { "<CMD>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", "next" },
           p = { "<CMD>lua vim.diagnostic.open_float({ border = \"rounded\" })<CR>", "preview" },
-          s = { "<CMD>Telescope diagnostics bufnr=0 theme=ivy<CR>", "show" }
+          s = { "<CMD>lua require(\"telescope.builtin\").diagnostics(ivy_opts({ bufnr=0 }))<CR>", "show" }
         },
-        D = { "<CMD>Telescope diagnostics theme=ivy<CR>", "workspace diagnostics" },
+        D = { "<CMD>lua require(\"telescope.builtin\").diagnostics(ivy_opts())<CR>", "workspace diagnostics" },
         f = { "<CMD>lua vim.lsp.buf.format()<CR>", "format" },
         g = {
           name = "+goto",
-          d = { "<CMD>Telescope lsp_definitions theme=ivy<CR>", "definitions" },
-          D = { "<CMD>Telescope lsp_declarations theme=ivy<CR>", "declarations" },
-          r = { "<CMD>Telescope lsp_references theme=ivy<CR>", "references" },
-          i = { "<CMD>Telescope lsp_implementations theme=ivy<CR>", "implementations" },
-          t = { "<CMD>Telescope lsp_typedefs theme=ivy<CR>", "type definitions" }
+          d = { "<CMD>lua require(\"telescope.builtin\").lsp_definitions(ivy_opts())<CR>", "definitions" },
+          D = { "<CMD>lua require(\"telescope.builtin\").lsp_declarations(ivy_opts())<CR>", "declarations" },
+          r = { "<CMD>lua require(\"telescope.builtin\").lsp_references(ivy_opts())<CR>", "references" },
+          i = { "<CMD>lua require(\"telescope.builtin\").lsp_implementations(ivy_opts())<CR>", "implementations" },
+          t = { "<CMD>lua require(\"telescope.builtin\").lsp_typedefs(ivy_opts())<CR>", "type definitions" }
         },
         r = { "<CMD>lua vim.lsp.buf.rename()<CR>", "rename symbol" },
-        s = { "<CMD>Telescope lsp_document_symbols theme=ivy<CR>", "symbols" },
-        S = { "<CMD>Telescope lsp_dynamic_workspace_symbols theme=ivy<CR>", "workspace symbols" }
+        s = { "<CMD>lua require(\"telescope.builtin\").lsp_document_symbols(require(\"telescope.themes\").get_dropdown())<CR>", "symbols" },
+        S = { "<CMD>lua require(\"telescope.builtin\").lsp_dynamic_workspace_symbols(require(\"telescope.themes\").get_dropdown())<CR>", "workspace symbols" }
       },
       ["<C-Space"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "show signature" }
     }, {

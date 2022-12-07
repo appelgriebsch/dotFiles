@@ -83,3 +83,17 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   g["loaded_" .. plugin] = 1
 end
+
+function ivy_opts(opts)
+  local result = require("telescope.themes").get_ivy({
+    previewer = false,
+    layout_config = { height = 0.4 }
+  })
+  if opts == nil then
+    opts = {}
+  end
+  for k, v in pairs(opts) do
+    result[k] = v
+  end
+  return result
+end

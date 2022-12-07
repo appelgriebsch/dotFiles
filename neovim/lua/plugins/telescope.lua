@@ -47,6 +47,7 @@ telescope.setup({
         ["<C-h>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
+        ["<C-s>"] = actions.complete_tag,
         ["<C-]>"] = "which_key",
         ["<S-k>"] = actions.preview_scrolling_up,
         ["<S-j>"] = actions.preview_scrolling_down,
@@ -70,11 +71,6 @@ telescope.setup({
     }
   },
   extensions = {
-    project = {
-      base_dirs = {
-        "~/Projects",
-      },
-    },
     fzf = {
       fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
@@ -84,7 +80,6 @@ telescope.setup({
     },
     file_browser = {
       hijack_netrw = true,
-      theme = "ivy"
     },
   }
 })
@@ -147,12 +142,12 @@ menu.register({
   ["<leader>f"] = {
     name = "+find",
     b = { "<CMD>Telescope buffers<CR>", "buffers" },
-    e = { "<CMD>Telescope file_browser<CR>", "file explorer" },
+    e = { "<CMD>lua require(\"telescope\").extensions.file_browser.file_browser(ivy_opts({ grouped = true }))<CR>", "file explorer" },
     f = { "<CMD>Telescope find_files<CR>", "files" },
-    g = { "<CMD>Telescope live_grep<CR>", "grep"},
     m = { "<CMD>Telescope marks<CR>", "marks" },
     p = { "<CMD>Telescope projections<CR>", "projects" },
     r = { "<CMD>Telescope oldfiles<CR>", "recent files"},
+    s = { "<CMD>Telescope live_grep<CR>", "search word"},
   },
   -- Git
   ["<leader>g"] = {
@@ -175,10 +170,10 @@ menu.register({
     name = "+utils",
     v = {
       name = "vstasks",
-      h = { "<CMD>lua require(\"telescope\").extensions.vstask.history(require(\"telescope.themes\").get_dropdown({}))<CR>", "history" },
-      i = { "<CMD>lua require(\"telescope\").extensions.vstask.inputs(require(\"telescope.themes\").get_dropdown({}))<CR>", "inputs" },
-      r = { "<CMD>lua require(\"telescope\").extensions.vstask.launch(require(\"telescope.themes\").get_dropdown({}))<CR>", "run" },
-      s = { "<CMD>lua require(\"telescope\").extensions.vstask.tasks(require(\"telescope.themes\").get_dropdown({}))<CR>", "show" }
+      h = { "<CMD>lua require(\"telescope\").extensions.vstask.history(require(\"telescope.themes\").get_dropdown())<CR>", "history" },
+      i = { "<CMD>lua require(\"telescope\").extensions.vstask.inputs(require(\"telescope.themes\").get_dropdown())<CR>", "inputs" },
+      r = { "<CMD>lua require(\"telescope\").extensions.vstask.launch(require(\"telescope.themes\").get_dropdown())<CR>", "run" },
+      s = { "<CMD>lua require(\"telescope\").extensions.vstask.tasks(require(\"telescope.themes\").get_dropdown())<CR>", "show" }
     }
   }
 })
