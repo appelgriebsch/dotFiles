@@ -59,6 +59,12 @@ opt.fillchars:append { vert = " "} -- hide borders of split vertical windows (nv
 g.completion_enable_auto_signature = 0
 g.completion_matching_strategy_list = { 'fuzzy', 'substring', 'exact' }
 
+-- disable some extension providers
+g.loaded_python3_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+
 -- disable some builtin vim plugins
 local disabled_built_ins = {
   "2html_plugin",
