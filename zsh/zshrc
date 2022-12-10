@@ -35,7 +35,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 
 # Bun
-export BUN_INSTALL="/Users/gerlaca1/.bun"
+export BUN_INSTALL="${HOME}/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # You may need to manually set your language environment
