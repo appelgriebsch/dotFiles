@@ -51,8 +51,6 @@ telescope.setup({
         ["<C-s>"] = actions.complete_tag,
         ["<C-]>"] = "which_key",
         ["<C-p>"] = layout_actions.toggle_preview,
-        ["<S-k>"] = actions.preview_scrolling_up,
-        ["<S-j>"] = actions.preview_scrolling_down,
       },
       n = {
         ["<esc>"] = actions.close,
@@ -82,6 +80,7 @@ telescope.setup({
       -- the default case_mode is "smart_case"
     },
     file_browser = {
+      theme = "ivy",
       hijack_netrw = true,
     },
   }

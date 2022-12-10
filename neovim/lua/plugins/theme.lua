@@ -1,7 +1,7 @@
 -- Editor theme
 vim.opt.background = "dark"
 
-local status_theme, theme = pcall(require, "onedark")
+local status_theme, theme = pcall(require, "onedarkpro")
 if not status_theme then
   return
 end
