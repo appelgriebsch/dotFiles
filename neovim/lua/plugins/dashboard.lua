@@ -18,7 +18,7 @@ dashboard.section.header.val = {
 
 -- Buttons
 dashboard.section.buttons.val = {
-  dashboard.button("p", "  > Open project", "<CMD>Telescope projections<CR>"),
+  dashboard.button("p", "  > Open project", "<CMD>Telescope project display_type=full<CR>"),
   dashboard.button("e", "  > New file", "<CMD>ene <BAR> startinsert<CR>"),
   dashboard.button("f", "  > Find file", "<CMD>cd $HOME/Projects | Telescope find_files<CR>"),
   dashboard.button("l", "  > LSP Servers", "<CMD>Mason<CR>"),

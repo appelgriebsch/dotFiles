@@ -6,23 +6,6 @@ end
 local actions = require("telescope.actions")
 local layout_actions = require("telescope.actions.layout")
 
-local status_projections, projections = pcall(require, "projections")
-if not status_projections then
-  return
-end
-
-projections.setup({
-  workspaces = { -- Default workspaces to search for
-    -- { "~/Documents/dev", { ".git" } },     Documents/dev is a workspace. patterns = { ".git" }
-    -- { "~/repos", {} },                     An empty pattern list indicates that all subfolders are considered projects
-    -- "~/dev",                               dev is a workspace. default patterns is used (specified below)
-    "~/Projects",
-    "~/Projects/nodejs/",
-    "~/Projects/rust/",
-  },
-  patterns = { ".git", ".svn", ".hg" }, -- Default patterns to use if none were specified. These are NOT regexps.
-})
-
 telescope.setup({
   defaults = {
     prompt_prefix = " ",
@@ -83,6 +66,11 @@ telescope.setup({
       theme = "ivy",
       hijack_netrw = true,
     },
+    project = {
+      base_dirs = {
+        '~/Projects'
+      }
+    }
   }
 })
 
@@ -93,7 +81,7 @@ telescope.load_extension("file_browser")
 telescope.load_extension("fzf")
 telescope.load_extension("gh")
 telescope.load_extension("notify")
-telescope.load_extension("projections")
+telescope.load_extension("project")
 telescope.load_extension("termfinder")
 telescope.load_extension("yaml_schema")
 
@@ -147,7 +135,7 @@ menu.register({
     e = { "<CMD>lua require(\"telescope\").extensions.file_browser.file_browser(ivy_opts({ grouped = true }))<CR>", "file explorer" },
     f = { "<CMD>Telescope find_files<CR>", "files" },
     m = { "<CMD>Telescope marks<CR>", "marks" },
-    p = { "<CMD>Telescope projections<CR>", "projects" },
+    p = { "<CMD>Telescope project display_type=full<CR>", "projects" },
     r = { "<CMD>Telescope oldfiles<CR>", "recent files"},
     s = { "<CMD>Telescope live_grep<CR>", "search word"},
   },

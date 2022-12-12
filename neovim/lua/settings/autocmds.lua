@@ -143,6 +143,21 @@ autocmd("BufDelete", {
   end,
 })
 
+autocmd("User", {
+  pattern = "AlphaReady",
+  desc = "disable tabline for alpha",
+  callback = function()
+    vim.opt.showtabline = 0
+  end,
+})
+autocmd("BufUnload", {
+  buffer = 0,
+  desc = "enable tabline after alpha",
+  callback = function()
+    vim.opt.showtabline = 2
+  end,
+})
+
 -- need bufdelete.nvim & alpha-dashboard
 local alpha_on_empty = api.nvim_create_augroup("alpha_on_empty", { clear = true })
 api.nvim_create_autocmd("User", {

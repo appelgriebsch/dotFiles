@@ -129,13 +129,6 @@ return packer.startup(function(use)
   -----------------------------
   use { "editorconfig/editorconfig-vim" }
   use {
-    "notjedi/nvim-rooter.lua",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("nvim-rooter").setup()
-    end
-  }
-  use {
     "kylechui/nvim-surround",
     tag = "*",
     event = { "BufRead", "BufNewFile" },
@@ -286,9 +279,9 @@ return packer.startup(function(use)
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
+      { "nvim-telescope/telescope-project.nvim" },
       { "tknightz/telescope-termfinder.nvim" },
       { "EthanJWright/vs-tasks.nvim" },
-      { "gnikdroy/projections.nvim" }
     },
     config = function()
       require("plugins.telescope")
