@@ -7,7 +7,9 @@ local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   -- set omnifunc to lsp version
+  buf_set_option("formatexpr", "v:lua.vim.lsp.formatexpr()")
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  buf_set_option("tagfunc", "v:lua.vim.lsp.tagfunc")
 
   local status_lspsignature, lspsignature = pcall(require, "lsp_signature")
   if status_lspsignature then
