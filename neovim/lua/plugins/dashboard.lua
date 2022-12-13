@@ -32,10 +32,25 @@ dashboard.section.buttons.val = {
 local fortune = require("alpha.fortune")
 dashboard.section.footer.val = fortune()
 
-dashboard.opts.opts.noautocmd = true
+dashboard.config.opts.setup = function()
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "AlphaReady",
+    desc = "disable tabline for alpha",
+    callback = function()
+      vim.opt.showtabline = 0
+    end,
+  })
+  vim.api.nvim_create_autocmd("BufUnload", {
+    buffer = 0,
+    desc = "enable tabline after alpha",
+    callback = function()
+      vim.opt.showtabline = 2
+    end,
+  })
+end
 
 -- Send config to alpha
-alpha.setup(dashboard.opts)
+alpha.setup(dashboard.config)
 
 -- Disable folding on alpha buffer
 vim.cmd([[
