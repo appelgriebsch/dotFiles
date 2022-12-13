@@ -8,8 +8,7 @@ local function clock()
 end
 
 local lsp_config = require("plugins.lsp")
-
-require("nvim-web-devicons").setup({ default = true })
+local navic = require("nvim-navic")
 
 lualine.setup({
   options = {
@@ -32,6 +31,7 @@ lualine.setup({
         symbols = { error = " ", warn = " ", info = " ", hint = " " }
       },
       { "filename", padding = { left = 1, right = 1 } },
+      { navic.get_location, cond = navic.is_available }
     },
     lualine_x = {
       {

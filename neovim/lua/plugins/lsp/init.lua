@@ -23,6 +23,11 @@ local on_attach = function(client, bufnr)
     lspsignature.on_attach(cfg, bufnr)
   end
 
+  local status_navic, navic = pcall(require, "nvim-navic")
+  if status_navic and client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
+
   -- default lsp mappings.
   local status_menu, menu = pcall(require, "which-key")
   if status_menu then
@@ -48,8 +53,10 @@ local on_attach = function(client, bufnr)
           t = { "<CMD>lua require(\"telescope.builtin\").lsp_typedefs(ivy_opts())<CR>", "type definitions" }
         },
         r = { "<CMD>lua vim.lsp.buf.rename()<CR>", "rename symbol" },
-        s = { "<CMD>lua require(\"telescope.builtin\").lsp_document_symbols(ivy_opts({ preview = { hide_on_startup = false }}))<CR>", "symbols" },
-        S = { "<CMD>lua require(\"telescope.builtin\").lsp_dynamic_workspace_symbols(ivy_opts({ preview = { hide_on_startup = false }}))<CR>", "workspace symbols" }
+        s = { "<CMD>lua require(\"telescope.builtin\").lsp_document_symbols(ivy_opts({ preview = { hide_on_startup = false }}))<CR>",
+          "symbols" },
+        S = { "<CMD>lua require(\"telescope.builtin\").lsp_dynamic_workspace_symbols(ivy_opts({ preview = { hide_on_startup = false }}))<CR>",
+          "workspace symbols" }
       },
       ["<C-Space"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "show signature" }
     }, {

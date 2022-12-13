@@ -192,6 +192,12 @@ return packer.startup(function(use)
       require("plugins.rest")
     end
   }
+  use {
+    "dimfred/resize-mode.nvim",
+    config = function ()
+      require("plugins.resize-mode")
+    end
+  }
   ----------------------------
   -- Treesitter extensions  --
   ----------------------------
@@ -248,6 +254,7 @@ return packer.startup(function(use)
       { "nanotee/sqls.nvim" },
       { "David-Kunz/cmp-npm" },
       { "someone-stole-my-name/yaml-companion.nvim" },
+      { "SmiteshP/nvim-navic" },
       {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },

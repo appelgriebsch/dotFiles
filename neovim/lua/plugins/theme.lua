@@ -1,3 +1,5 @@
+require("nvim-web-devicons").setup({ default = true })
+
 -- Editor theme
 vim.opt.background = "dark"
 

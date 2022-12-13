@@ -134,9 +134,10 @@ menu.register({
     b = { "<CMD>Telescope buffers<CR>", "buffers" },
     e = { "<CMD>lua require(\"telescope\").extensions.file_browser.file_browser(ivy_opts({ grouped = true }))<CR>", "file explorer" },
     f = { "<CMD>Telescope find_files<CR>", "files" },
+    h = { "<CMD>Telescope oldfiles<CR>", "recent files"},
     m = { "<CMD>Telescope marks<CR>", "marks" },
     p = { "<CMD>Telescope project display_type=full<CR>", "projects" },
-    r = { "<CMD>Telescope oldfiles<CR>", "recent files"},
+    r = { "<CMD>lua require(\"telescope.builtin\").resume()<CR>", "resume search" },
     s = { "<CMD>Telescope live_grep<CR>", "search word"},
   },
   -- Git
@@ -158,6 +159,7 @@ menu.register({
   -- utils
   ["<leader>u"] = {
     name = "+utils",
+    r = { "<CMD>lua require(\"resize-mode\").start()<CR>", "resize mode" },
     v = {
       name = "vstasks",
       h = { "<CMD>lua require(\"telescope\").extensions.vstask.history(require(\"telescope.themes\").get_dropdown())<CR>", "history" },
