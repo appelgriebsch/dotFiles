@@ -50,18 +50,18 @@ return packer.startup(function(use)
   ----------------------
   use { "stevearc/dressing.nvim" }
   use { "kyazdani42/nvim-web-devicons" }
+  use {
+    "olimorris/onedarkpro.nvim",
+    config = function()
+      require("plugins.theme")
+    end
+  }
   ----------------------
   -- UI extensions --
   ----------------------
   use {
     "goolord/alpha-nvim",
     requires = {
-      {
-        "olimorris/onedarkpro.nvim",
-        config = function()
-          require("plugins.theme")
-        end
-      },
       {
         "nvim-lualine/lualine.nvim",
         config = function()
@@ -194,7 +194,7 @@ return packer.startup(function(use)
   }
   use {
     "dimfred/resize-mode.nvim",
-    config = function ()
+    config = function()
       require("plugins.resize-mode")
     end
   }
