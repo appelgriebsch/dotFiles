@@ -70,7 +70,15 @@ telescope.setup({
       base_dirs = {
         '~/Projects'
       }
-    }
+    },
+    undo = {
+      use_delta = true,
+      side_by_side = true,
+      layout_strategy = "vertical",
+      layout_config = {
+        preview_height = 0.4,
+      },
+    },
   }
 })
 
@@ -84,6 +92,7 @@ telescope.load_extension("notify")
 telescope.load_extension("project")
 telescope.load_extension("termfinder")
 telescope.load_extension("yaml_schema")
+telescope.load_extension("undo")
 
 local status_dressing, dressing = pcall(require, "dressing")
 if status_dressing then
@@ -124,7 +133,8 @@ menu.register({
     n = { "<CMD>ene <BAR> startinsert<CR>", "create new" },
     q = { "<CMD>Bdelete!<CR>", "close" },
     r = { "<CMD>e!<CR>", "reload" },
-    s = { "<CMD>sp<CR>", "split horizontal"},
+    s = { "<CMD>sp<CR>", "split horizontal" },
+    u = { "<CMD>Telescope undo<CR>", "undo tree" },
     v = { "<CMD>vs<CR>", "split vertical" },
     w = { "<CMD>w!<CR>", "write" }
   },

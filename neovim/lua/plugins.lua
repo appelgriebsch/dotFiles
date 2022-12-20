@@ -288,6 +288,7 @@ return packer.startup(function(use)
       { "nvim-telescope/telescope-symbols.nvim" },
       { "nvim-telescope/telescope-project.nvim" },
       { "tknightz/telescope-termfinder.nvim" },
+      { "debugloop/telescope-undo.nvim" },
       { "EthanJWright/vs-tasks.nvim" },
     },
     config = function()
