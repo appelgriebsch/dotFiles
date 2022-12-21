@@ -29,15 +29,6 @@ source $static_file
 # cleanup
 unset antidote_dir plugins_txt static_file
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# bun completions
-[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="${HOME}/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export BAT_THEME="TwoDark"
@@ -51,5 +42,7 @@ alias df="df -h"
 alias free="free -h"
 alias nv="nvim"
 alias gitui="gitui"
+
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 autoload -Uz compinit && compinit

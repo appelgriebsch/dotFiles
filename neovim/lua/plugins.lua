@@ -255,6 +255,7 @@ return packer.startup(function(use)
       { "David-Kunz/cmp-npm" },
       { "someone-stole-my-name/yaml-companion.nvim" },
       { "SmiteshP/nvim-navic" },
+      { "oberblastmeister/rooter.nvim" },
       {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
