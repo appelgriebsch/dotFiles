@@ -7,9 +7,6 @@ if status_ok then
     echo = true, -- echo every time rooter is triggered
     patterns = { -- the patterns to find
       ".git", -- same as patterns passed to nvim_lsp.util.root_pattern(patterns...)
-      "Cargo.toml",
-      "package.json",
-      "pom.xml",
     },
     cd_command = "tcd", -- the cd command to use, possible values are "lcd", "cd", and "tcd"
     -- what to do when the rooter pattern is not found
