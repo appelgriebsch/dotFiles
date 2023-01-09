@@ -6,15 +6,7 @@ if not status_jdtls then
   return
 end
 
--- Find root of project
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-local root_dir = require("jdtls.setup").find_root(root_markers)
-if root_dir == "" then
-  return
-end
-
 -- Determine OS
-local workspace_folder = "/tmp/nvim/jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 if vim.fn.has "mac" == 1 then
   CONFIG = "mac"
 elseif vim.fn.has "unix" == 1 then
@@ -88,6 +80,14 @@ function M.setup()
     capabilities = lsp_config.capabilities,
     on_attach = jdtls_attach
   }
+
+  -- Find root of project
+  local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+  local root_dir = require("jdtls.setup").find_root(root_markers)
+  if root_dir == "" then
+    return
+  end
+  local workspace_folder = "/tmp/nvim/jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
   jdtls_config.cmd = {
     "java",
