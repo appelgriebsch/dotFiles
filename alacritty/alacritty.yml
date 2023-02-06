@@ -11,7 +11,7 @@
 #import:
 #  - /path/to/alacritty.yml
 import:
-- ~/.config/alacritty/GitHub-Dark.yml
+- ~/.config/alacritty/OneNord.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
