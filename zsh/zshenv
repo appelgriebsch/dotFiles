@@ -1,11 +1,4 @@
 export PATH=$HOME/.m2/bin:$HOME/.local/bin:$PATH
 export EDITOR=nvim
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun completions
-[ -s "~/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
 [[ -f ~/.cargo/env ]] && source "$HOME/.cargo/env"

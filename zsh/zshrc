@@ -20,6 +20,10 @@ fi
 # in your interactive shell session:
 autoload -Uz $antidote_dir/functions/antidote
 
+if type brew &>/dev/null; then
+ FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 # zsh theming
 GEOMETRY_SEPARATOR=" "
 
