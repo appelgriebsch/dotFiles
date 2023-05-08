@@ -35,21 +35,4 @@ source $static_file
 # cleanup
 unset antidote_dir plugins_txt static_file
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export BAT_THEME="ansi"
-export NV_THEME="One Light"
-
-# add some aliases
-alias cat="bat"
-alias ls="exa -alh"
-alias tree="exa -alh -T"
-alias du="du -h"
-alias df="df -h"
-alias free="free -h"
-alias nv="nvim"
-alias gitui="gitui"
-
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d "$HOME/.cache/zsh"
