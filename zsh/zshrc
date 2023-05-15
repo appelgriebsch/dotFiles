@@ -26,8 +26,7 @@ fi
 
 # zsh theming
 GEOMETRY_SEPARATOR=" "
-GEOMETRY_PROMPT=(geometry_status geometry_path)
-GEOMETRY_RPROMPT+=(geometry_hostname)
+GEOMETRY_TITLE=(geometry_hostname geometry_path)
 
 # source the static plugins file
 source $static_file
