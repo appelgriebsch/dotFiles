@@ -1,0 +1,29 @@
+{
+    "name": "One Light",
+    "comment": "One Light",
+    "foreground-color": "#383A42",
+    "background-color": "#FAFAFA",
+    "use-theme-colors": false,
+    "use-badge-color": false,
+    "use-bold-color": false,
+    "use-cursor-color": false,
+    "use-highlight-color": false,
+    "palette": [
+        "#000000",
+        "#E45649",
+        "#50A14F",
+        "#986801",
+        "#4078F2",
+        "#A626A4",
+        "#0184BC",
+        "#696C77",
+        "#A0A1A7",
+        "#CA1243",
+        "#50A14F",
+        "#C18401",
+        "#4078F2",
+        "#A626A4",
+        "#0184BC",
+        "#A0A1A7"
+    ]
+}
