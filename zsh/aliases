@@ -1,0 +1,26 @@
+if type flatpak &>/dev/null; then
+alias meld="flatpak run org.gnome.meld"
+# additional flatpak aliases
+fi
+
+if type toolbox &>/dev/null; then
+alias btop="toolbox run btop"
+alias cargo="toolbox run cargo $@"
+alias cmake="toolbox run cmake $@"
+alias just="toolbox run just $@"
+alias make="toolbox run make $@"
+alias neofetch="toolbox run macchina"
+alias nv="toolbox run $HOME/.local/share/bob/nvim-bin/nvim"
+alias pgcli="toolbox run pgcli $@"
+alias wthrr="toolbox run wthrr"
+# additional toolbox aliases
+fi
+
+# add some aliases
+alias cat="bat"
+alias df="df -h"
+alias docker="podman"
+alias du="du -h"
+alias free="free -h"
+alias ls="exa -alh"
+alias tree="exa -alh -T"
