@@ -3,15 +3,3 @@ export BAT_THEME="ansi"
 export PATH=$HOME/.local/bin:$PATH
 export GOPATH=$HOME/Projects/go
 export EDITOR=nvim
-
-# add some aliases
-alias cat="bat"
-alias ls="exa -alh"
-alias tree="exa -alh -T"
-alias du="du -h"
-alias df="df -h"
-alias free="free -h"
-alias nv="nvim"
-alias gitui="gitui"
-
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"

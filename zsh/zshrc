@@ -35,3 +35,5 @@ source $static_file
 unset antidote_dir plugins_txt static_file
 
 autoload -Uz compinit && compinit -d "$HOME/.cache/zsh"
+
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
