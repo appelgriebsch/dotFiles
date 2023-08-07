@@ -3,3 +3,5 @@ export BAT_THEME="ansi"
 export PATH=$HOME/.local/bin:$PATH
 export GOPATH=$HOME/Projects/go
 export EDITOR=nvim
+
+eval $(fnm env)
