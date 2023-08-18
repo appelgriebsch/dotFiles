@@ -9,8 +9,10 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
-  - ~/.config/alacritty/One-Light.yml
-#  - ~/.config/alacritty/One-Dark.yml
+ - ~/.config/alacritty/GitHub-Dark-Dimmed.yml
+# - ~/.config/alacritty/GitHub-Light.yml
+# - ~/.config/alacritty/One-Light.yml
+# - ~/.config/alacritty/One-Dark.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
