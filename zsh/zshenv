@@ -3,5 +3,7 @@ export BAT_THEME="ansi"
 export PATH=$HOME/.local/bin:$PATH
 export GOPATH=$HOME/Projects/go
 export EDITOR=nvim
+export GITHUB_TOKEN=$(gh auth token)
 
 eval $(fnm env)
+source "$HOME/.cargo/env"
