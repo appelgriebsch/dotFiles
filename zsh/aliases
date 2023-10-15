@@ -11,7 +11,6 @@ alias wthrr="toolbox run wthrr"
 alias cmake="toolbox run cmake"
 alias just="toolbox run just"
 alias nvim="toolbox run nvim"
-alias code="toolbox run code"
 # additional toolbox aliases
 fi
 
