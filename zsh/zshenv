@@ -1,9 +1,15 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
-export PATH=$HOME/.local/bin:$PATH
-export GOPATH=$HOME/Projects/go
 export EDITOR=nvim
-export GITHUB_TOKEN=$(gh auth token)
+export PATH=$HOME/.local/bin:$PATH
 
-eval $(fnm env)
-source "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+
+if type gh &>/dev/null; then
+  export GITHUB_TOKEN=$(gh auth token)
+fi
+
+if type fnm &>/dev/null; then
+  eval $(fnm env)
+fi
