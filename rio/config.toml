@@ -12,21 +12,28 @@ env-vars = []
 option-as-alt = "false"
 ignore-selection-foreground-color = false
 
+[adaptive-theme]
+light = "OneLight"
+dark = "OneDark"
+
 [navigation]
 mode = "CollapsedTab"
 use-current-path = true
 
 [window]
-width = 600
-height = 400
+width = 960
+height = 480
 mode = "Windowed"
+foreground-opacity = 1.0
+background-opacity = 0.75
+blur = true
 
 [shell]
 program = ""
 args = ["--login"]
 
 [fonts]
-size = 14.0
+size = 16.0
 extras = []
 
 [fonts.regular]
