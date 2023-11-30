@@ -1,7 +1,7 @@
 [colors]
-background = '#161719'
+background = '#23252c'
 foreground = '#c5c8c6'
-tabs = '#c5c8c6'
+tabs = '#23252c'
 tabs-active = '#85befd'
 selection-background = '#444444'
 selection-foreground = '#c5c8c6'

@@ -17,16 +17,13 @@ light = "OneLight"
 dark = "OneDark"
 
 [navigation]
-mode = "CollapsedTab"
+mode = "BottomTab"
 use-current-path = true
 
 [window]
 width = 960
 height = 480
 mode = "Windowed"
-foreground-opacity = 1.0
-background-opacity = 0.75
-blur = true
 
 [shell]
 program = ""
