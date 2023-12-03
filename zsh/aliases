@@ -12,6 +12,7 @@ alias cmake="toolbox run cmake"
 alias just="toolbox run just"
 alias nvim="toolbox run nvim"
 alias gh="toolbox run gh"
+alias swift="toolbox run swift"
 # additional toolbox aliases
 fi
 
