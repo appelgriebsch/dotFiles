@@ -1,10 +1,15 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
 export EDITOR=nvim
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+
+if type javac &>/dev/null; then
+  export PATH="$HOME/.m2/bin:$PATH"
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
+fi
 
 if type gh &>/dev/null; then
   export GITHUB_TOKEN=$(gh auth token)
