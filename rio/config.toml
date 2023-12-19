@@ -34,22 +34,22 @@ size = 16.0
 extras = []
 
 [fonts.regular]
-family = "FiraCode Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 weight = 400
 style = "normal"
 
 [fonts.bold]
-family = "FiraCode Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 weight = 800
 style = "normal"
 
 [fonts.bold-italic]
-family = "FiraCode Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 weight = 800
 style = "italic"
 
 [fonts.italic]
-family = "FiraCode Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 weight = 400
 style = "italic"
 
