@@ -5,13 +5,14 @@ fi
 
 if type toolbox &>/dev/null; then
 alias btop="toolbox run btop"
-alias neofetch="toolbox run macchina"
-alias pgcli="toolbox run pgcli"
-alias wthrr="toolbox run wthrr"
+alias cargo="toolbox run cargo"
 alias cmake="toolbox run cmake"
 alias just="toolbox run just"
+alias neofetch="toolbox run macchina"
 alias nvim="toolbox run nvim"
+alias pgcli="toolbox run pgcli"
 alias swift="toolbox run swift"
+alias wthrr="toolbox run wthrr"
 # additional toolbox aliases
 fi
 
