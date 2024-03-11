@@ -1,11 +1,11 @@
 if type flatpak &>/dev/null; then
-alias meld="flatpak run org.gnome.meld"
+alias meld="flatpak run org.gnome.meld $@"
+alias flatpak-builder="flatpak run org.flatpak.Builder $@"
 # additional flatpak aliases
 fi
 
 if type toolbox &>/dev/null; then
 alias btop="toolbox run btop"
-alias cargo="toolbox run cargo"
 alias cmake="toolbox run cmake"
 alias just="toolbox run just"
 alias neofetch="toolbox run macchina"
