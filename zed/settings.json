@@ -22,6 +22,10 @@
     // Show git status colors in the editor tabs.
     "git_status": true
   },
+  "assistant": {
+    // Whether to show the assistant panel button in the status bar.
+    "button": false
+  },
   "telemetry": {
     // Send debug info like crash reports.
     "diagnostics": true,
