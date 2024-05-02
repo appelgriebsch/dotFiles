@@ -7,7 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "One Dark",
+  "theme": "One Light",
   "base_keymap": "SublimeText",
   "buffer_font_family": "MonaspiceKr Nerd Font",
   "ui_font_size": 14,
