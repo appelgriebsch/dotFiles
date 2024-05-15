@@ -13,24 +13,34 @@
   "ui_font_size": 14,
   "buffer_font_size": 13,
   "vim_mode": true,
+  "confirm_quit": true,
+  "restore_on_startup": "none",
   "relative_line_numbers": true,
   "inlay_hints": {
-    // Global switch to toggle hints on and off, switched off by default.
     "enabled": true
   },
+  "project_panel": {
+    "auto_fold_dirs": true
+  },
   "tabs": {
-    // Show git status colors in the editor tabs.
     "git_status": true
   },
   "assistant": {
-    // Whether to show the assistant panel button in the status bar.
+    "version": "1",
+    "enabled": false,
     "button": false
   },
+  "preview_tabs": {
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_code_navigation": true
+  },
   "telemetry": {
-    // Send debug info like crash reports.
     "diagnostics": true,
-    // Send anonymized usage data like what languages you're using Zed with.
     "metrics": false
+  },
+  "vim": {
+    "use_multiline_find": true,
+    "use_smartcase_find": true
   },
   "lsp": {
     // Specify the LSP name as a key here.
