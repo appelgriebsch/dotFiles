@@ -1,6 +1,8 @@
 if type flatpak &>/dev/null; then
 alias meld="flatpak run org.gnome.meld $@"
 alias flatpak-builder="flatpak run org.flatpak.Builder $@"
+alias nv="flatpak run io.neovim.nvim $@"
+alias nvim="flatpak run io.neovim.nvim $@"
 # additional flatpak aliases
 fi
 
@@ -9,10 +11,7 @@ alias btop="toolbox run btop"
 alias cmake="toolbox run cmake"
 alias just="toolbox run just"
 alias neofetch="toolbox run macchina"
-alias nvim="toolbox run nvim"
 alias pgcli="toolbox run pgcli"
-alias swift="toolbox run swift"
-alias wthrr="toolbox run wthrr"
 # additional toolbox aliases
 fi
 
@@ -21,8 +20,5 @@ alias cat="bat"
 alias df="df -h"
 alias du="du -h"
 alias free="free -h"
-alias gh="$HOME/.local/share/nvim/mason/bin/gh"
-alias gitui="$HOME/.local/share/nvim/mason/bin/gitui"
 alias ls="exa -alh"
-alias nv="nvim"
 alias tree="exa -alh -T"
