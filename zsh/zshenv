@@ -8,7 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 if type javac &>/dev/null; then
   export PATH="$HOME/.m2/bin:$PATH"
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-jdk-17.0.9+11.1/Contents/Home/
 fi
 
 if type gh &>/dev/null; then
