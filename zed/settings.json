@@ -8,7 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "theme": "One Light",
-  "base_keymap": "SublimeText",
+  "base_keymap": "Atom",
   "buffer_font_family": "MonaspiceKr Nerd Font",
   "ui_font_size": 14,
   "buffer_font_size": 13,
@@ -26,9 +26,11 @@
     "git_status": true
   },
   "assistant": {
-    "version": "1",
-    "enabled": false,
-    "button": false
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4"
+    },
+    "version": "2"
   },
   "preview_tabs": {
     "enable_preview_from_file_finder": true,
@@ -47,8 +49,8 @@
     "rust-analyzer": {
       //These initialization options are merged into Zed's defaults
       "initialization_options": {
-        "checkOnSave": {
-          "command": "clippy"
+        "check": {
+          "command": "clippy" // rust-analyzer.check.command (default: "check")
         }
       }
     }
