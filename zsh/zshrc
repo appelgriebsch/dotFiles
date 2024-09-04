@@ -36,4 +36,8 @@ unset antidote_dir plugins_txt static_file
 
 autoload -Uz compinit && compinit -d "$HOME/.cache/zsh"
 
+# Make Tab and ShiftTab go to the menu
+bindkey              '^I' menu-select
+bindkey "$terminfo[kcbt]" menu-select
+
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
