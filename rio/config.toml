@@ -1,16 +1,18 @@
-blinking-cursor = true
-performance = "High"
 disable-unfocused-render = false
+env-vars = []
+ignore-selection-foreground-color = false
+line-height = 1.0
+option-as-alt = "false"
+padding-x = 10.0
+performance = "High"
+scroll-multiplier = 3.0
+theme = "OneDark"
 use-fork = false
 use-kitty-keyboard-protocol = false
-line-height = 1.0
-theme = "OneDark"
-padding-x = 10.0
+
+[cursor]
 cursor = "▇"
-scroll-multiplier = 3.0
-env-vars = []
-option-as-alt = "false"
-ignore-selection-foreground-color = false
+blinking = true
 
 [adaptive-theme]
 light = "OneLight"
@@ -30,7 +32,7 @@ program = ""
 args = ["--login"]
 
 [fonts]
-size = 16.0
+size = 13.0
 extras = []
 
 [fonts.regular]
