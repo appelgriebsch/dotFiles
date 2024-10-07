@@ -38,22 +38,22 @@ extras = []
 [fonts.regular]
 family = "MonaspiceKr Nerd Font Mono"
 weight = 400
-style = "normal"
+style = "Normal"
 
 [fonts.bold]
 family = "MonaspiceKr Nerd Font Mono"
 weight = 800
-style = "normal"
+style = "Normal"
 
 [fonts.bold-italic]
 family = "MonaspiceKr Nerd Font Mono"
 weight = 800
-style = "italic"
+style = "Italic"
 
 [fonts.italic]
 family = "MonaspiceKr Nerd Font Mono"
 weight = 400
-style = "italic"
+style = "Italic"
 
 [developer]
 enable-fps-counter = false
