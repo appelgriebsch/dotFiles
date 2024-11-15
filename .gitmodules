@@ -1,6 +1,3 @@
 [submodule "neovim"]
 	path = neovim
 	url = https://github.com/appelgriebsch/Nv
-[submodule "gnome-terminal"]
-	path = gnome-terminal
-	url = https://github.com/denysdovhan/one-gnome-terminal

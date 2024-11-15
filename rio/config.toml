@@ -6,7 +6,7 @@ option-as-alt = "false"
 padding-x = 10.0
 performance = "High"
 scroll-multiplier = 3.0
-theme = "OneDark"
+theme = "OneLight"
 use-fork = false
 use-kitty-keyboard-protocol = false
 
