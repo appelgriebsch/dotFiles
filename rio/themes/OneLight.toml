@@ -2,7 +2,7 @@
 
 [colors]
 # Regular colors
-background               = '#fafafa'
+background               = '#f3f3f3'
 black                    = '#6a6a6a'
 blue                     = '#118dc3'
 cursor                   = '#9a77cf'
@@ -15,8 +15,12 @@ white                    = '#fafafa'
 yellow                   = '#eea825'
 
 # UI colors
-tabs                     = '#6a6a6a'
-tabs-active              = '#b69ddc'
+tabs                     = '#bebebe'
+tabs-foreground          = '#848484'
+tabs-active              = '#ffffff'
+tabs-active-highlight    = '#b69ddc'
+tabs-active-foreground   = '#6a6a6a'
+bar                      = '#e1e1e1'
 selection-foreground     = '#b69ddc'
 selection-background     = '#bebebe'
 

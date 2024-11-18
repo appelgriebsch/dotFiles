@@ -15,8 +15,12 @@ white                    = '#abb2bf'
 yellow                   = '#e5c07b'
 
 # UI colors
-tabs                     = '#abb2bf'
-tabs-active              = '#d7a1e7'
+tabs                     = '#5c6370'
+tabs-foreground          = '#8e97a9'
+tabs-active              = '#282c34'
+tabs-active-highlight    = '#d7a1e7'
+tabs-active-foreground   = '#abb2bf'
+bar                      = '#121417'
 selection-foreground     = '#d7a1e7'
 selection-background     = '#5c6370'
 
