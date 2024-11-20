@@ -1,8 +1,7 @@
 if type flatpak &>/dev/null; then
 alias meld="flatpak run org.gnome.meld $@"
 alias flatpak-builder="flatpak run org.flatpak.Builder $@"
-alias nv="flatpak run io.neovim.nvim $@"
-alias nvim="flatpak run io.neovim.nvim $@"
+alias nvim="flatpak run dev.neovide.neovide $@"
 # additional flatpak aliases
 fi
 
