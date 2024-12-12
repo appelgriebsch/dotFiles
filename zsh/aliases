@@ -1,7 +1,6 @@
 if type flatpak &>/dev/null; then
 alias meld="flatpak run org.gnome.meld $@"
 alias flatpak-builder="flatpak run org.flatpak.Builder $@"
-alias nvim="flatpak run dev.neovide.neovide $@"
 # additional flatpak aliases
 fi
 
@@ -10,6 +9,7 @@ alias btop="toolbox run btop"
 alias cmake="toolbox run cmake"
 alias just="toolbox run just"
 alias neofetch="toolbox run macchina"
+alias nvim="toolbox run nvim"
 alias pgcli="toolbox run pgcli"
 # additional toolbox aliases
 fi
