@@ -44,8 +44,8 @@
   },
   "assistant": {
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-5-sonnet"
+      "provider": "openai",
+      "model": "grok-2"
     },
     "version": "2"
   },
@@ -61,10 +61,23 @@
     "diagnostics": false,
     "metrics": false
   },
-  "auto_update": false,
+  "auto_update": true,
   "vim": {
     "use_multiline_find": true,
     "use_smartcase_find": true
+  },
+  "language_models": {
+    "openai": {
+      "api_url": "https://api.x.ai/v1",
+      "available_models": [
+        {
+          "name": "grok-2",
+          "display_name": "X.AI Grok 2",
+          "max_tokens": 131072
+        }
+      ],
+      "version": "1"
+    }
   },
   "lsp": {
     "cargo-appraiser": {
