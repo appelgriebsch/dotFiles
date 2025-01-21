@@ -8,19 +8,21 @@
 // from the command palette or from `Zed` application menu.
 {
   "auto_install_extensions": {
-    "html": true,
-    "toml": true,
-    "dockerfile": true,
     "docker-compose": true,
-    "sql": true,
-    "lua": true,
-    "graqhql": true,
-    "justfile": true,
-    "julia": true,
-    "proto": true,
-    "marksman": true,
+    "dockerfile": true,
+    "env": true,
+    "git-firefly": true,
+    "graphql": true,
+    "html": true,
     "http": true,
-    "mermaid": true
+    "julia": true,
+    "just": true,
+    "lua": true,
+    "marksman": true,
+    "mermaid": true,
+    "proto": true,
+    "sql": true,
+    "toml": true
   },
   "theme": {
     "mode": "system",
@@ -44,8 +46,8 @@
   },
   "assistant": {
     "default_model": {
-      "provider": "openai",
-      "model": "grok-2"
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
     },
     "version": "2"
   },
@@ -66,55 +68,7 @@
     "use_multiline_find": true,
     "use_smartcase_find": true
   },
-  "language_models": {
-    "openai": {
-      "api_url": "https://api.x.ai/v1",
-      "available_models": [
-        {
-          "name": "grok-2",
-          "display_name": "X.AI Grok 2",
-          "max_tokens": 131072
-        }
-      ],
-      "version": "1"
-    }
-  },
   "lsp": {
-    "cargo-appraiser": {
-      //These initialization options are merged into Zed's defaults
-      "initialization_options": {
-        "renderer": {
-          // the formatter may has 3 template strings:
-          // - installed: the installed version
-          // - latest_matched: the latest compatible version
-          // - latest: the latest version, the latest version may or may not be compatilbe with the version requirement
-          //
-          // a dependency is waiting for resolve for 2 possible reasons:
-          // 1. wait for `cargo` to run. `Cargo.toml` is not saved, so `cargo` haven't picked up the change.
-          // 2. wait for `cargo` to finish. `cargo` is running in process to resolve the dependency.
-          //
-          // the formatter has 7 fields:
-          // latest: the dependency has the latest version installed
-          // local: the dependency is a local path dependency
-          // not_installed: the dependency is not installed
-          // waiting: the dependency is waiting for resolve
-          // mixed_upgradeable: the installed version has an compatible upgrade, and the latest version is not compatible with the current version requirement
-          // compatible_latest: the installed version can update to latest version
-          // noncompatible_latest: the installed version can't upate to latest version
-          // yanked: the installed version is yanked
-          "decorationFormatter": {
-            "latest": " {{installed}}",
-            "local": "󱊪",
-            "not_installed": "󰌚",
-            "waiting": "󰦖",
-            "mixed_upgradeable": " 󱌠 {{installed}} -> {{latest_matched}}, {{latest}}",
-            "compatible_latest": " {{installed}} -> {{latest}}",
-            "noncompatible_latest": "󱌠 {{installed}}, {{latest}}",
-            "yanked": " yanked {{installed}}, {{latest_matched}}"
-          }
-        }
-      }
-    },
     // Specify the LSP name as a key here.
     "rust-analyzer": {
       //These initialization options are merged into Zed's defaults
