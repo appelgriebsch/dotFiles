@@ -31,7 +31,7 @@
   },
   "base_keymap": "SublimeText",
   "features": {
-    "inline_completion_provider": "copilot"
+    "edit_prediction_provider": "copilot"
   },
   "buffer_font_family": "MonaspiceKr Nerd Font",
   "buffer_font_size": 14,
@@ -47,7 +47,7 @@
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4o"
+      "model": "o1"
     },
     "version": "2"
   },
