@@ -3,12 +3,13 @@ env-vars = []
 ignore-selection-foreground-color = false
 line-height = 1.0
 option-as-alt = "false"
-padding-x = 10.0
 performance = "High"
 scroll-multiplier = 3.0
 theme = "OneLight"
 use-fork = false
 use-kitty-keyboard-protocol = false
+padding-x = 10.0
+padding-y = [10, 10]
 
 [cursor]
 cursor = "▇"
