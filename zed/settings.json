@@ -23,7 +23,9 @@
     "mermaid": true,
     "proto": true,
     "sql": true,
-    "toml": true
+    "toml": true,
+    "swift": true,
+    "symbols": true
   },
   "theme": {
     "mode": "system",
