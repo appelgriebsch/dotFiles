@@ -7,7 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "icon_theme": "Symbols",
+  "icon_theme": "Colored Zed Icons Theme Light",
   "auto_install_extensions": {
     "docker-compose": true,
     "dockerfile": true,
