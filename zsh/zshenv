@@ -1,6 +1,6 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
-export EDITOR=nvim
+export EDITOR=hx
 export PATH="$HOME/.local/bin:$PATH"
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
