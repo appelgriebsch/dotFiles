@@ -7,7 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "icon_theme": "Colored Zed Icons Theme Light",
+  "icon_theme": "Zed (Default)",
   "auto_install_extensions": {
     "docker-compose": true,
     "dockerfile": true,
@@ -19,13 +19,15 @@
     "julia": true,
     "just": true,
     "lua": true,
+    "make": true,
     "marksman": true,
     "mermaid": true,
+    "postgres-language-server": true,
     "proto": true,
+    "ruff": true,
     "sql": true,
     "toml": true,
-    "swift": true,
-    "symbols": true
+    "swift": true
   },
   "theme": {
     "mode": "system",

@@ -1,6 +1,6 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
-export EDITOR=hx
+export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
@@ -8,7 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 if type javac &>/dev/null; then
   export PATH="$HOME/.m2/bin:$PATH"
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-jdk-17.0.9+11.1/Contents/Home/
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-17.jdk/Contents/Home/
 fi
 
 if type gh &>/dev/null; then
@@ -17,4 +17,8 @@ fi
 
 if type fnm &>/dev/null; then
   eval $(fnm env)
+fi
+
+if type brew &>/dev/null; then
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 fi
