@@ -22,3 +22,8 @@ fi
 if type brew &>/dev/null; then
   export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 fi
+
+if type bob &>/dev/null; then
+  export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+fi
+
