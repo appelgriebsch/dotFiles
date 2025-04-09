@@ -31,8 +31,8 @@
   },
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
+    "light": "Ayu Light",
+    "dark": "Ayu Mirage"
   },
   "base_keymap": "SublimeText",
   "features": {
