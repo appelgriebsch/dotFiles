@@ -5,7 +5,7 @@ line-height = 1.0
 option-as-alt = "false"
 performance = "High"
 scroll-multiplier = 3.0
-theme = "OneLight"
+theme = "AyuLight"
 use-fork = false
 use-kitty-keyboard-protocol = false
 padding-x = 10.0
@@ -16,8 +16,8 @@ cursor = "▇"
 blinking = true
 
 [adaptive-theme]
-light = "OneLight"
-dark = "OneDark"
+light = "AyuLight"
+dark = "AyuMirage"
 
 [navigation]
 mode = "BottomTab"
@@ -33,28 +33,9 @@ program = ""
 args = ["--login"]
 
 [fonts]
+family = "FiraCode Nerd Font Mono"
 size = 13.0
 extras = []
-
-[fonts.regular]
-family = "MonaspiceKr Nerd Font Mono"
-weight = 400
-style = "Normal"
-
-[fonts.bold]
-family = "MonaspiceKr Nerd Font Mono"
-weight = 800
-style = "Normal"
-
-[fonts.bold-italic]
-family = "MonaspiceKr Nerd Font Mono"
-weight = 800
-style = "Italic"
-
-[fonts.italic]
-family = "MonaspiceKr Nerd Font Mono"
-weight = 400
-style = "Italic"
 
 [developer]
 enable-fps-counter = false
