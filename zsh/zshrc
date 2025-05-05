@@ -24,6 +24,16 @@ if type brew &>/dev/null; then
  FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZVM_INIT_MODE=sourcing
+
+# The plugin will auto execute this zvm_after_init function
+function zvm_after_init() {
+  # zsh-history-substring-search configuration
+  bindkey '^j' history-substring-search-up    # up
+  bindkey '^k' history-substring-search-down  # down
+}
+
 # zsh theming
 GEOMETRY_SEPARATOR=" "
 GEOMETRY_TITLE=(geometry_hostname geometry_path)
@@ -36,8 +46,6 @@ unset antidote_dir plugins_txt static_file
 
 autoload -Uz compinit && compinit -d "$HOME/.cache/zsh"
 
-# Make Tab and ShiftTab go to the menu
-bindkey              '^I' menu-select
-bindkey "$terminfo[kcbt]" menu-select
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"

@@ -1,11 +1,12 @@
-# geometry theme
-olets/zsh-window-title
+# geometry theme and window title
 geometry-zsh/geometry
+olets/zsh-window-title
+
+# vi mode plugin
+jeffreytse/zsh-vi-mode
 
 # some nice zsh plugins
-zsh-users/zsh-completions
-zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions kind:fpath path:src
 zsh-users/zsh-autosuggestions
-
-marlonrichert/zsh-autocomplete
-jeffreytse/zsh-vi-mode
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
