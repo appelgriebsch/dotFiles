@@ -1,15 +1,8 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
   "icon_theme": "Zed (Default)",
   "auto_install_extensions": {
     "basher": true,
+    "crates-lsp": true,
     "docker-compose": true,
     "dockerfile": true,
     "env": true,
@@ -77,9 +70,7 @@
     "use_smartcase_find": true
   },
   "lsp": {
-    // Specify the LSP name as a key here.
     "rust-analyzer": {
-      //These initialization options are merged into Zed's defaults
       "initialization_options": {
         "inlayHints": {
           "maxLength": null,
@@ -92,14 +83,13 @@
           }
         },
         "check": {
-          "command": "clippy", // rust-analyzer.check.command (default: "check")
+          "command": "clippy",
           "workspace": true
         }
       }
     },
     "vtsls": {
       "settings": {
-        // For JavaScript:
         "javascript": {
           "inlayHints": {
             "parameterNames": {
@@ -124,7 +114,6 @@
             }
           }
         },
-        // For TypeScript:
         "typescript": {
           "inlayHints": {
             "parameterNames": {
