@@ -1,10 +1,14 @@
 {
+  "minimap": {
+    "show": "auto"
+  },
   "git_panel": {
     "dock": "right"
   },
   "icon_theme": "Zed (Default)",
   "auto_install_extensions": {
     "basher": true,
+    "codebook": true,
     "crates-lsp": true,
     "docker-compose": true,
     "dockerfile": true,
@@ -20,6 +24,7 @@
     "make": true,
     "marksman": true,
     "mermaid": true,
+    "package-swift-lsp": true,
     "postgres-language-server": true,
     "proto": true,
     "ruff": true,
