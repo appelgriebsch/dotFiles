@@ -1,11 +1,4 @@
 {
-  "minimap": {
-    "show": "auto"
-  },
-  "git_panel": {
-    "dock": "right"
-  },
-  "icon_theme": "Zed (Default)",
   "auto_install_extensions": {
     "basher": true,
     "codebook": true,
@@ -39,10 +32,8 @@
     "light": "Ayu Light",
     "dark": "Ayu Mirage"
   },
-  "base_keymap": "SublimeText",
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
+  "icon_theme": "Zed (Default)",
+  "base_keymap": "Atom",
   "buffer_font_family": "FiraCode Nerd Font Mono",
   "buffer_font_size": 14,
   "ui_font_size": 14,
@@ -54,16 +45,20 @@
   "inlay_hints": {
     "enabled": true
   },
-  "agent": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "o3-mini"
-    },
-    "version": "2"
+  "minimap": {
+    "show": "auto"
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
   },
   "tabs": {
     "git_status": true,
-    "file_icons": true
+    "file_icons": true,
+    "show_diagnostics": "errors"
   },
   "preview_tabs": {
     "enable_preview_from_file_finder": true,
@@ -77,6 +72,52 @@
   "vim": {
     "use_multiline_find": true,
     "use_smartcase_find": true
+  },
+  "terminal": {
+    "font_family": "FiraCode Nerd Font Mono",
+    "env": {
+      "EDITOR": "zed --wait"
+    }
+  },
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "JSON": ["json", "jsonc", "*.code-snippets"]
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/out",
+    "**/dist",
+    "**/target",
+    "**/.vscode",
+    "**/node_modules"
+  ],
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  },
+  "languages": {
+    "YAML": {
+      "formatter": "language_server"
+    },
+    "Python": {
+      "format_on_save": { "language_server": { "name": "ruff" } },
+      "formatter": { "language_server": { "name": "ruff" } },
+      "language_servers": ["pyright", "ruff"]
+    }
   },
   "lsp": {
     "rust-analyzer": {
@@ -145,6 +186,16 @@
             "enumMemberValues": {
               "enabled": true
             }
+          }
+        }
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "format": {
+            "enable": true,
+            "singleQuote": true
           }
         }
       }
