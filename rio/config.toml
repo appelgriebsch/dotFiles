@@ -1,0 +1,45 @@
+disable-unfocused-render = false
+env-vars = []
+ignore-selection-foreground-color = false
+line-height = 1.0
+option-as-alt = "false"
+performance = "High"
+scroll-multiplier = 3.0
+theme = "OneLight"
+use-fork = false
+use-kitty-keyboard-protocol = false
+padding-x = 10.0
+padding-y = [10, 10]
+
+[cursor]
+cursor = "▇"
+blinking = true
+
+[adaptive-theme]
+light = "OneLight"
+dark = "OneDark"
+
+[navigation]
+mode = "BottomTab"
+use-current-path = true
+
+[window]
+width = 960
+height = 480
+mode = "Windowed"
+
+[shell]
+program = ""
+args = ["--login"]
+
+[fonts]
+family = "FiraCode Nerd Font Mono"
+size = 13.0
+extras = []
+
+[developer]
+enable-fps-counter = false
+log-level = "OFF"
+
+[bindings]
+keys = []
