@@ -17,6 +17,7 @@
     "make": true,
     "marksman": true,
     "mermaid": true,
+    "oxc": true,
     "package-swift-lsp": true,
     "postgres-language-server": true,
     "proto": true,
@@ -106,7 +107,7 @@
       "provider": "copilot_chat",
       "model": "gpt-4.1"
     },
-    "default_profile": "minimal",
+    "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1"
@@ -114,7 +115,8 @@
   },
   "languages": {
     "YAML": {
-      "formatter": "language_server"
+      "formatter": "language_server",
+      "format_on_save": "off"
     },
     "Python": {
       "format_on_save": { "language_server": { "name": "ruff" } },
@@ -123,6 +125,110 @@
     }
   },
   "lsp": {
+    "jdtls": {
+      "initialization_options": {
+        "bundles": [],
+        "workspaceFolders": [],
+        "settings": {
+          "java": {
+            "home": "/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home",
+            "errors": {
+              "incompleteClasspath": {
+                "severity": "warning"
+              }
+            },
+            "configuration": {
+              "updateBuildConfiguration": "interactive",
+              "maven": {
+                "userSettings": null
+              }
+            },
+            "trace": {
+              "server": "verbose"
+            },
+            "import": {
+              "gradle": {
+                "enabled": true
+              },
+              "maven": {
+                "enabled": true
+              },
+              "exclusions": [
+                "**/node_modules/**",
+                "**/.metadata/**",
+                "**/archetype-resources/**",
+                "**/META-INF/maven/**",
+                "/**/test/**"
+              ]
+            },
+            "jdt": {
+              "ls": {
+                "lombokSupport": {
+                  "enabled": true
+                },
+                "protobufSupport": {
+                  "enabled": true
+                }
+              }
+            },
+            "referencesCodeLens": {
+              "enabled": false
+            },
+            "signatureHelp": {
+              "enabled": true
+            },
+            "implementationsCodeLens": {
+              "enabled": false
+            },
+            "format": {
+              "enabled": true
+            },
+            "saveActions": {
+              "organizeImports": false
+            },
+            "contentProvider": {
+              "preferred": null
+            },
+            "autobuild": {
+              "enabled": true
+            },
+            "codeGeneration": {
+              "generateComments": true,
+              "toString": {
+                "codeStyle": "STRING_FORMAT"
+              }
+            },
+            "completion": {
+              "enabled": true,
+              "favoriteStaticMembers": [
+                "org.junit.Assert.*",
+                "org.junit.Assume.*",
+                "org.junit.jupiter.api.Assertions.*",
+                "org.junit.jupiter.api.Assumptions.*",
+                "org.junit.jupiter.api.DynamicContainer.*",
+                "org.junit.jupiter.api.DynamicTest.*",
+                "org.mockito.Mockito.*",
+                "org.mockito.ArgumentMatchers.*",
+                "org.mockito.Answers.*"
+              ],
+              "filteredTypes": [
+                "java.awt.*",
+                "com.sun.*",
+                "sun.*",
+                "jdk.*",
+                "org.graalvm.*",
+                "io.micrometer.shaded.*"
+              ],
+              "guessMethodArguments": true,
+              "importOrder": ["#", "java", "javax", "org", "com"]
+            },
+            "progressReport": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    },
     "rust-analyzer": {
       "initialization_options": {
         "inlayHints": {
