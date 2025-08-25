@@ -1,5 +1,6 @@
 {
   "auto_install_extensions": {
+    "assembly": true,
     "basher": true,
     "codebook": true,
     "crates-lsp": true,
@@ -7,12 +8,13 @@
     "dockerfile": true,
     "env": true,
     "git-firefly": true,
+    "github-actions": true,
     "graphql": true,
     "html": true,
     "http": true,
     "julia": true,
     "just": true,
-    "just-lsp": true,
+    "just-ls": true,
     "lua": true,
     "make": true,
     "marksman": true,
@@ -34,7 +36,7 @@
     "dark": "Ayu Mirage"
   },
   "icon_theme": "Zed (Default)",
-  "base_keymap": "Atom",
+  "base_keymap": "SublimeText",
   "buffer_font_family": "FiraCode Nerd Font Mono",
   "buffer_font_size": 14,
   "ui_font_size": 14,
@@ -82,7 +84,8 @@
   },
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
-    "JSON": ["json", "jsonc", "*.code-snippets"]
+    "JSON": ["json", "jsonc", "*.code-snippets"],
+    "GitHub Actions": [".github/workflows/*.yml", ".github/workflows/*.yaml"]
   },
   "file_scan_exclusions": [
     "**/.git",
@@ -103,6 +106,8 @@
     "edit_prediction_provider": "copilot"
   },
   "agent": {
+    "play_sound_when_agent_done": true,
+    "use_modifier_to_send": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1"
@@ -125,110 +130,6 @@
     }
   },
   "lsp": {
-    "jdtls": {
-      "initialization_options": {
-        "bundles": [],
-        "workspaceFolders": [],
-        "settings": {
-          "java": {
-            "home": "/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home",
-            "errors": {
-              "incompleteClasspath": {
-                "severity": "warning"
-              }
-            },
-            "configuration": {
-              "updateBuildConfiguration": "interactive",
-              "maven": {
-                "userSettings": null
-              }
-            },
-            "trace": {
-              "server": "verbose"
-            },
-            "import": {
-              "gradle": {
-                "enabled": true
-              },
-              "maven": {
-                "enabled": true
-              },
-              "exclusions": [
-                "**/node_modules/**",
-                "**/.metadata/**",
-                "**/archetype-resources/**",
-                "**/META-INF/maven/**",
-                "/**/test/**"
-              ]
-            },
-            "jdt": {
-              "ls": {
-                "lombokSupport": {
-                  "enabled": true
-                },
-                "protobufSupport": {
-                  "enabled": true
-                }
-              }
-            },
-            "referencesCodeLens": {
-              "enabled": false
-            },
-            "signatureHelp": {
-              "enabled": true
-            },
-            "implementationsCodeLens": {
-              "enabled": false
-            },
-            "format": {
-              "enabled": true
-            },
-            "saveActions": {
-              "organizeImports": false
-            },
-            "contentProvider": {
-              "preferred": null
-            },
-            "autobuild": {
-              "enabled": true
-            },
-            "codeGeneration": {
-              "generateComments": true,
-              "toString": {
-                "codeStyle": "STRING_FORMAT"
-              }
-            },
-            "completion": {
-              "enabled": true,
-              "favoriteStaticMembers": [
-                "org.junit.Assert.*",
-                "org.junit.Assume.*",
-                "org.junit.jupiter.api.Assertions.*",
-                "org.junit.jupiter.api.Assumptions.*",
-                "org.junit.jupiter.api.DynamicContainer.*",
-                "org.junit.jupiter.api.DynamicTest.*",
-                "org.mockito.Mockito.*",
-                "org.mockito.ArgumentMatchers.*",
-                "org.mockito.Answers.*"
-              ],
-              "filteredTypes": [
-                "java.awt.*",
-                "com.sun.*",
-                "sun.*",
-                "jdk.*",
-                "org.graalvm.*",
-                "io.micrometer.shaded.*"
-              ],
-              "guessMethodArguments": true,
-              "importOrder": ["#", "java", "javax", "org", "com"]
-            },
-            "progressReport": {
-              "enabled": false
-            }
-          }
-        }
-      }
-    },
     "rust-analyzer": {
       "initialization_options": {
         "inlayHints": {

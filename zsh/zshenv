@@ -22,3 +22,7 @@ fi
 if type fnm &>/dev/null; then
   eval $(fnm env)
 fi
+
+if type bob &>/dev/null; then
+  source "$HOME/.local/share/bob/env/env.sh"
+fi
