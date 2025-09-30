@@ -63,6 +63,9 @@
     "file_icons": true,
     "show_diagnostics": "errors"
   },
+  "collaboration_panel": {
+    "button": false
+  },
   "preview_tabs": {
     "enable_preview_from_file_finder": true,
     "enable_preview_from_code_navigation": true
@@ -110,12 +113,12 @@
     "use_modifier_to_send": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "grok-code-fast-1"
     },
     "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "grok-code-fast-1"
     }
   },
   "languages": {
