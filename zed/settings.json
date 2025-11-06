@@ -127,8 +127,8 @@
       "format_on_save": "off"
     },
     "Python": {
-      "format_on_save": { "language_server": { "name": "ruff" } },
       "formatter": { "language_server": { "name": "ruff" } },
+      "format_on_save": "off",
       "language_servers": ["pyright", "ruff"]
     }
   },
