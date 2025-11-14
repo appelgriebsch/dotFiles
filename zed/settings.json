@@ -18,7 +18,9 @@
     "lua": true,
     "make": true,
     "marksman": true,
+    "mdx": true,
     "mermaid": true,
+    "opencode": true,
     "oxc": true,
     "package-swift-lsp": true,
     "postgres-language-server": true,
@@ -44,7 +46,7 @@
   "confirm_quit": true,
   "restore_on_startup": "none",
   "auto_signature_help": true,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "inlay_hints": {
     "enabled": true
   },
@@ -133,6 +135,12 @@
     }
   },
   "lsp": {
+    "jdtls": {
+      "settings": {
+        "java_home": "/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/",
+        "lombok_support": true
+      }
+    },
     "rust-analyzer": {
       "initialization_options": {
         "inlayHints": {
