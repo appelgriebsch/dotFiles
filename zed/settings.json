@@ -29,12 +29,12 @@
     "sqruff": true,
     "swift": true,
     "toml": true,
-    "wit": true
+    "wit": true,
   },
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
-    "dark": "Ayu Mirage"
+    "dark": "Ayu Mirage",
   },
   "icon_theme": "Zed (Default)",
   "base_keymap": "SublimeText",
@@ -48,49 +48,49 @@
   "auto_signature_help": true,
   "relative_line_numbers": "enabled",
   "inlay_hints": {
-    "enabled": true
+    "enabled": true,
   },
   "minimap": {
-    "show": "auto"
+    "show": "auto",
   },
   "git_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "indent_guides": {
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   "tabs": {
     "git_status": true,
     "file_icons": true,
-    "show_diagnostics": "errors"
+    "show_diagnostics": "errors",
   },
   "collaboration_panel": {
-    "button": false
+    "button": false,
   },
   "preview_tabs": {
     "enable_preview_from_file_finder": true,
-    "enable_preview_from_code_navigation": true
+    "enable_keep_preview_on_code_navigation": true,
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "auto_update": true,
   "vim": {
     "use_system_clipboard": "on_yank",
-    "use_smartcase_find": true
+    "use_smartcase_find": true,
   },
   "terminal": {
     "font_family": "FiraCode Nerd Font Mono",
     "env": {
-      "EDITOR": "zed --wait"
-    }
+      "EDITOR": "zed --wait",
+    },
   },
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
     "JSON": ["json", "jsonc", "*.code-snippets"],
-    "GitHub Actions": [".github/workflows/*.yml", ".github/workflows/*.yaml"]
+    "GitHub Actions": [".github/workflows/*.yml", ".github/workflows/*.yaml"],
   },
   "file_scan_exclusions": [
     "**/.git",
@@ -105,41 +105,41 @@
     "**/dist",
     "**/target",
     "**/.vscode",
-    "**/node_modules"
+    "**/node_modules",
   ],
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "agent": {
     "play_sound_when_agent_done": true,
     "use_modifier_to_send": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "grok-code-fast-1"
+      "model": "grok-code-fast-1",
     },
     "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "grok-code-fast-1"
-    }
+      "model": "claude-haiku-4.5",
+    },
   },
   "languages": {
     "YAML": {
       "formatter": "language_server",
-      "format_on_save": "off"
+      "format_on_save": "off",
     },
     "Python": {
       "formatter": { "language_server": { "name": "ruff" } },
       "format_on_save": "off",
-      "language_servers": ["pyright", "ruff"]
-    }
+      "language_servers": ["pyright", "ruff"],
+    },
   },
   "lsp": {
     "jdtls": {
       "settings": {
         "java_home": "/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/",
-        "lombok_support": true
-      }
+        "lombok_support": true,
+      },
     },
     "rust-analyzer": {
       "initialization_options": {
@@ -147,17 +147,17 @@
           "maxLength": null,
           "lifetimeElisionHints": {
             "enable": "skip_trivial",
-            "useParameterNames": true
+            "useParameterNames": true,
           },
           "closureReturnTypeHints": {
-            "enable": "always"
-          }
+            "enable": "always",
+          },
         },
         "check": {
           "command": "clippy",
-          "workspace": true
-        }
-      }
+          "workspace": true,
+        },
+      },
     },
     "vtsls": {
       "settings": {
@@ -165,61 +165,61 @@
           "inlayHints": {
             "parameterNames": {
               "enabled": "all",
-              "suppressWhenArgumentMatchesName": false
+              "suppressWhenArgumentMatchesName": false,
             },
             "parameterTypes": {
-              "enabled": true
+              "enabled": true,
             },
             "variableTypes": {
               "enabled": true,
-              "suppressWhenTypeMatchesName": true
+              "suppressWhenTypeMatchesName": true,
             },
             "propertyDeclarationTypes": {
-              "enabled": true
+              "enabled": true,
             },
             "functionLikeReturnTypes": {
-              "enabled": true
+              "enabled": true,
             },
             "enumMemberValues": {
-              "enabled": true
-            }
-          }
+              "enabled": true,
+            },
+          },
         },
         "typescript": {
           "inlayHints": {
             "parameterNames": {
               "enabled": "all",
-              "suppressWhenArgumentMatchesName": false
+              "suppressWhenArgumentMatchesName": false,
             },
             "parameterTypes": {
-              "enabled": true
+              "enabled": true,
             },
             "variableTypes": {
               "enabled": true,
-              "suppressWhenTypeMatchesName": true
+              "suppressWhenTypeMatchesName": true,
             },
             "propertyDeclarationTypes": {
-              "enabled": true
+              "enabled": true,
             },
             "functionLikeReturnTypes": {
-              "enabled": true
+              "enabled": true,
             },
             "enumMemberValues": {
-              "enabled": true
-            }
-          }
-        }
-      }
+              "enabled": true,
+            },
+          },
+        },
+      },
     },
     "yaml-language-server": {
       "settings": {
         "yaml": {
           "format": {
             "enable": true,
-            "singleQuote": true
-          }
-        }
-      }
-    }
-  }
+            "singleQuote": true,
+          },
+        },
+      },
+    },
+  },
 }
