@@ -2,6 +2,7 @@
   "auto_install_extensions": {
     "assembly": true,
     "basher": true,
+    "blueprint": true,
     "codebook": true,
     "crates-lsp": true,
     "docker-compose": true,
@@ -20,6 +21,7 @@
     "marksman": true,
     "mdx": true,
     "mermaid": true,
+    "opencode": true,
     "oxc": true,
     "package-swift-lsp": true,
     "postgres-language-server": true,
@@ -27,9 +29,11 @@
     "ruff": true,
     "sql": true,
     "sqruff": true,
+    "stylelint": true,
     "swift": true,
     "toml": true,
-    "wit": true,
+    "wat": true,
+    "xml": true,
   },
   "theme": {
     "mode": "system",
@@ -115,7 +119,7 @@
     "use_modifier_to_send": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "grok-code-fast-1",
+      "model": "claude-haiku-4.5",
     },
     "default_profile": "ask",
     "default_model": {
