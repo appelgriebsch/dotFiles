@@ -3,7 +3,7 @@
   "share": "disabled",
   "theme": "system",
   "model": "github-copilot/claude-haiku-4.5",
-  "small_model": "github-copilot/grok-code-fast-1",
+  "small_model": "github-copilot/claude-haiku-4.5",
   "enabled_providers": [
     "github-copilot"
   ]
