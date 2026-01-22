@@ -4,7 +4,7 @@
     "basher": true,
     "blueprint": true,
     "codebook": true,
-    "crates-lsp": true,
+    "deps": true,
     "docker-compose": true,
     "dockerfile": true,
     "env": true,
@@ -57,7 +57,7 @@
     "show": "auto",
   },
   "which_key": {
-    "enabled": true
+    "enabled": true,
   },
   "git_panel": {
     "dock": "right",
@@ -148,6 +148,19 @@
     },
   },
   "lsp": {
+    "deps-lsp": {
+      "initialization_options": {
+        "inlay_hints": {
+          "enabled": true,
+          "up_to_date_text": " ",
+          "needs_update_text": " {}",
+        },
+        "diagnostics": {
+          "outdated_severity": "hint",
+          "unknown_severity": "warning",
+        },
+      },
+    },
     "jdtls": {
       "settings": {
         "java_home": "/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/",
