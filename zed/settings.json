@@ -1,4 +1,9 @@
 {
+  "agent_servers": {
+    "github-copilot": {
+      "type": "registry"
+    }
+  },
   "auto_install_extensions": {
     "assembly": true,
     "basher": true,
@@ -10,6 +15,7 @@
     "env": true,
     "git-firefly": true,
     "github-actions": true,
+    "github-copilot": true,
     "graphql": true,
     "html": true,
     "http": true,
