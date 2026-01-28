@@ -84,6 +84,7 @@
   },
   "auto_update": true,
   "vim": {
+    "toggle_relative_line_numbers": true,
     "use_system_clipboard": "on_yank",
     "use_smartcase_find": true,
   },
