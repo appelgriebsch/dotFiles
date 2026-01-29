@@ -43,6 +43,6 @@
 # resize-overlay-duration = 4s 200ms
 font-family = "FiraCode Nerd Font Mono"
 cursor-style = block
-macos-icon = retro
 macos-titlebar-style = tabs
-theme = light:ayu_light,dark:ayu_mirage
+window-show-tab-bar = never
+theme = light:Ayu Light,dark:Ayu Mirage
