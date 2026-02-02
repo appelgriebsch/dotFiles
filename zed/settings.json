@@ -1,6 +1,7 @@
 {
   "agent_servers": {
     "github-copilot": {
+      "default_mode": "Ask",
       "type": "registry"
     }
   },
