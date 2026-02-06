@@ -1,9 +1,15 @@
 {
+  "edit_predictions": {
+    "provider": "copilot"
+  },
   "agent_servers": {
     "github-copilot": {
+      "favorite_models": [
+        "claude-haiku-4.5"
+      ],
       "default_mode": "Ask",
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "auto_install_extensions": {
     "assembly": true,
@@ -126,9 +132,6 @@
     "**/.vscode",
     "**/node_modules",
   ],
-  "features": {
-    "edit_prediction_provider": "copilot",
-  },
   "agent": {
     "play_sound_when_agent_done": true,
     "use_modifier_to_send": true,
