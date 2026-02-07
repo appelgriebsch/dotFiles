@@ -1,12 +1,13 @@
 {
   "edit_predictions": {
-    "provider": "copilot"
+    "provider": "copilot",
   },
   "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
     "github-copilot": {
-      "favorite_models": [
-        "claude-haiku-4.5"
-      ],
+      "favorite_models": ["claude-haiku-4.5"],
       "default_mode": "Ask",
       "type": "registry",
     },
@@ -34,6 +35,7 @@
     "marksman": true,
     "mdx": true,
     "mermaid": true,
+    "opencode": true,
     "oxc": true,
     "package-swift-lsp": true,
     "postgres-language-server": true,
