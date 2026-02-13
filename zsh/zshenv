@@ -1,6 +1,6 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
-export EDITOR=vim
+export EDITOR="subl --wait"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$HOME/.local/bin:$PATH"
 
