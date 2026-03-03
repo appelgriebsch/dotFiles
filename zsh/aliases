@@ -10,6 +10,7 @@ alias cmake="toolbox run cmake"
 alias just="toolbox run just"
 alias neofetch="toolbox run macchina"
 alias nvim="toolbox run nvim"
+alias opencode="toolbox run ~/.bun/bin/opencode"
 alias pgcli="toolbox run pgcli"
 # additional toolbox aliases
 fi

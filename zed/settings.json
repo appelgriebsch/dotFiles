@@ -6,11 +6,6 @@
     "opencode": {
       "type": "registry",
     },
-    "github-copilot": {
-      "favorite_models": ["claude-haiku-4.5"],
-      "default_mode": "Ask",
-      "type": "registry",
-    },
   },
   "auto_install_extensions": {
     "assembly": true,
@@ -23,7 +18,6 @@
     "env": true,
     "git-firefly": true,
     "github-actions": true,
-    "github-copilot": true,
     "graphql": true,
     "html": true,
     "julia": true,
