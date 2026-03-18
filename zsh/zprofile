@@ -5,4 +5,3 @@
 
 export PATH="$HOME/.local/bin:$HOME/.m2/bin:$PATH"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-17.jdk/Contents/Home/"
-export DOCKER_HOST="unix://$HOME/.socktainer/container.sock"
