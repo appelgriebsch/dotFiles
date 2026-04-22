@@ -1,4 +1,9 @@
 {
+  "project_panel": {
+    "git_status_indicator": true,
+    "diagnostic_badges": true,
+    "bold_folder_labels": true
+  },
   "edit_predictions": {
     "provider": "copilot"
   },
@@ -62,6 +67,9 @@
     "enabled": true
   },
   "git_panel": {
+    "show_count_badge": true,
+    "file_icons": true,
+    "tree_view": true,
     "dock": "right"
   },
   "indent_guides": {
@@ -77,6 +85,7 @@
     "button": false
   },
   "preview_tabs": {
+    "enable_preview_multibuffer_from_code_navigation": true,
     "enable_preview_from_file_finder": true,
     "enable_keep_preview_on_code_navigation": true
   },
@@ -96,6 +105,7 @@
     "show_onboarding_banner": false
   },
   "terminal": {
+    "show_count_badge": true,
     "font_family": "FiraCode Nerd Font Mono",
     "env": {
       "EDITOR": "zed --wait"
