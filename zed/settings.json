@@ -91,9 +91,9 @@
     "use_smartcase_find": true
   },
   "title_bar": {
+    "show_branch_status_icon": true,
     "show_user_picture": false,
-    "show_onboarding_banner": false,
-    "show_branch_icon": true
+    "show_onboarding_banner": false
   },
   "terminal": {
     "font_family": "FiraCode Nerd Font Mono",
@@ -132,7 +132,7 @@
     "**/node_modules"
   ],
   "agent": {
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": "always",
     "use_modifier_to_send": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
