@@ -8,7 +8,6 @@
     "provider": "copilot"
   },
   "auto_install_extensions": {
-    "assembly": true,
     "basher": true,
     "codebook": true,
     "dependi": true,
@@ -19,11 +18,7 @@
     "github-actions": true,
     "graphql": true,
     "html": true,
-    "julia": true,
     "just": true,
-    "just-ls": true,
-    "kulala-http": true,
-    "lua": true,
     "make": true,
     "marksman": true,
     "mdx": true,
