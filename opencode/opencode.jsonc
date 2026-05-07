@@ -7,5 +7,44 @@
   "enabled_providers": [
     "github-copilot",
     "xai"
-  ]
+  ],
+  "mcp": {
+    "crates-io": {
+      "type": "local",
+      "command": [
+        "cratesio-mcp",
+        "--transport",
+        "stdio"
+      ],
+      "enabled": true
+    },
+    "bun-mcp": {
+      "type": "local",
+      "command": [
+        "bunx",
+        "-y",
+        "mcp-bun@latest"
+      ],
+      "enabled": true,
+      "environment": {
+        "DISABLE_NOTIFICATIONS": "true"
+      }
+    },
+  },
+  "permission": {
+    "bun-mcp*": "deny",      // only active in specific agent
+    "crates-io*": "deny"     // only active in specific agent
+  },
+  "agent": {
+    "bun-expert": {
+      "permission": {
+        "bun-mcp*": "allow"
+      }
+    },
+    "rust-expert": {
+      "permission": {
+        "crates-io*": "allow"
+      }
+    }
+  }
 }
