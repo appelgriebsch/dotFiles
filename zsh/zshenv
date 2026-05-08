@@ -1,6 +1,6 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
-export EDITOR="subl --wait"
+export EDITOR="nvim"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$HOME/.local/bin:$PATH"
 
@@ -14,7 +14,7 @@ fi
 
 if type javac &>/dev/null; then
   export PATH="$HOME/.m2/bin:$PATH"
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-17.jdk/Contents/Home/
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/
 fi
 
 if type gh &>/dev/null; then

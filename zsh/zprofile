@@ -4,4 +4,4 @@
 [[ -f ~/Projects/platform/tools-k8s/login/k8s-login ]] && source "$HOME/Projects/platform/tools-k8s/login/k8s-login"
 
 export PATH="$HOME/.local/bin:$HOME/.m2/bin:$PATH"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-17.jdk/Contents/Home/"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/"
