@@ -89,6 +89,15 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-05-07T13:32:14.631Z",
       "updatedAt": "2026-05-07T13:32:14.631Z"
+    },
+    "pretty-mermaid": {
+      "source": "imxv/pretty-mermaid-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/imxv/pretty-mermaid-skills.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "e33f086d3b5bcec9f28632e4bd9c348b02bb2278",
+      "installedAt": "2026-05-11T07:50:15.344Z",
+      "updatedAt": "2026-05-11T07:50:15.344Z"
     }
   },
   "dismissed": {
