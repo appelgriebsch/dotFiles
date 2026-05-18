@@ -1,8 +1,8 @@
 # You may need to manually set your language environment
 export BAT_THEME="ansi"
-export EDITOR="nvim"
+export EDITOR="subl --wait"
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$HOME/.local/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
