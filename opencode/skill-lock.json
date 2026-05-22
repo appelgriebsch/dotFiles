@@ -85,10 +85,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
-      "skillFolderHash": "3ad8fa787b3b9b622d1f5a3d0afc27812ac782fa",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "688c17ec27fe9309d84987716aca37b5ce7f3a88",
       "installedAt": "2026-05-07T13:32:14.631Z",
-      "updatedAt": "2026-05-07T13:32:14.631Z"
+      "updatedAt": "2026-05-22T06:55:05.666Z"
     },
     "pretty-mermaid": {
       "source": "imxv/pretty-mermaid-skills",
@@ -104,10 +103,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/handoff/SKILL.md",
-      "skillFolderHash": "85c644da8f99d073b434261f1e3fc058e2116236",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "7bbb60d64c911617cee7f71b2ba9e24364faa14e",
       "installedAt": "2026-05-12T14:00:27.574Z",
-      "updatedAt": "2026-05-12T14:00:27.574Z"
+      "updatedAt": "2026-05-22T06:55:06.596Z"
     },
     "prototype": {
       "source": "mattpocock/skills",
@@ -118,6 +116,16 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-05-12T14:00:42.637Z",
       "updatedAt": "2026-05-12T14:00:42.637Z"
+    },
+    "diagnose": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/diagnose/SKILL.md",
+      "skillFolderHash": "43d464d0e9d1049b9d525975c0f7367ab7e01a5f",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-05-22T06:57:07.482Z",
+      "updatedAt": "2026-05-22T06:57:07.482Z"
     }
   },
   "dismissed": {
