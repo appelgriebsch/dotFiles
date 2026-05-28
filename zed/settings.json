@@ -1,9 +1,4 @@
 {
-  "agent_servers": {
-    "opencode": {
-      "type": "registry"
-    }
-  },
   "project_panel": {
     "git_status_indicator": true,
     "diagnostic_badges": true,
@@ -28,7 +23,6 @@
     "marksman": true,
     "mdx": true,
     "mermaid": true,
-    "opencode": true,
     "oxc": true,
     "package-swift-lsp": true,
     "postgres-language-server": true,
