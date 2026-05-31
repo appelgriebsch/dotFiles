@@ -45,10 +45,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/to-prd/SKILL.md",
-      "skillFolderHash": "d6eff3e99a325d2d9c2acbe31b4d76fa5340a154",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "fb4503f54bc618da08df2fd74109fbe57e4d8150",
       "installedAt": "2026-05-07T13:30:07.103Z",
-      "updatedAt": "2026-05-07T13:30:07.103Z"
+      "updatedAt": "2026-05-31T10:35:24.916Z"
     },
     "zoom-out": {
       "source": "mattpocock/skills",
