@@ -8,6 +8,8 @@
     "github-copilot",
     "xai"
   ],
+  "lsp": true,
+  "formatter": true,
   "mcp": {
     "crates-io": {
       "type": "local",
@@ -32,8 +34,8 @@
     },
   },
   "permission": {
-    "bun-mcp*": "deny",      // only active in specific agent
-    "crates-io*": "deny"     // only active in specific agent
+    "bun-mcp*": "deny", // only active in specific agent
+    "crates-io*": "deny" // only active in specific agent
   },
   "agent": {
     "bun-expert": {
