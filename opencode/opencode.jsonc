@@ -32,6 +32,16 @@
         "DISABLE_NOTIFICATIONS": "true"
       }
     },
+    "github": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "github-mcp-server",
+        "stdio"
+      ],
+      "environment": {
+      }
+    },
   },
   "permission": {
     "bun-mcp*": "deny", // only active in specific agent
