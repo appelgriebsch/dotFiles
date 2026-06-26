@@ -2,7 +2,7 @@
   "$schema": "https://opencode.ai/config.json",
   "share": "disabled",
   "default_agent": "plan",
-  "model": "github-copilot/claude-sonnet-4.6",
+  "model": "github-copilot/claude-sonnet-5",
   "small_model": "github-copilot/claude-haiku-4.5",
   "enabled_providers": [
     "github-copilot",
@@ -32,6 +32,11 @@
         "DISABLE_NOTIFICATIONS": "true"
       }
     },
+    "datadog": {
+      "type": "remote",
+      "enabled": true,
+      "url": "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
+    },
     "github": {
       "type": "local",
       "enabled": true,
@@ -40,22 +45,36 @@
         "stdio"
       ],
       "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<token>"
       }
     },
   },
   "permission": {
+    "atlassian*": "ask",
     "bun-mcp*": "deny", // only active in specific agent
-    "crates-io*": "deny" // only active in specific agent
+    "crates-io*": "deny", // only active in specific agent
+    "datadog*": "deny", // only active in specific agent
+    "github*": "ask"
   },
   "agent": {
-    "bun-expert": {
+    "plan": {
+      "permission": {
+        "datadog*": "allow"
+      }
+    },
+    "bun-code-reviewer": {
       "permission": {
         "bun-mcp*": "allow"
       }
     },
-    "rust-expert": {
+    "rust-code-reviewer": {
       "permission": {
         "crates-io*": "allow"
+      }
+    },
+    "datadog-analyzer": {
+      "permission": {
+        "datadog*": "allow"
       }
     }
   }
