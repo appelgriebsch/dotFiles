@@ -5,3 +5,6 @@ Session.vim
 .netrwhist
 *~
 .DS_Store
+
+# Skill-local credentials (never commit secrets)
+opencode/skills/*/env.*

@@ -1,0 +1,54 @@
+{
+  "caret_extra_bottom": 13,
+  "caret_extra_top": 13,
+  "caret_style": "blink",
+  "color_scheme": "auto",
+  "dark_color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
+  "dark_theme": "ayu-mirage.sublime-theme",
+  "draw_white_space": [
+    "leading",
+    "trailing"
+  ],
+  "enable_tab_scrolling": false,
+  "ensure_newline_at_eof_on_save": true,
+  "font_face": "FiraCode Nerd Font",
+  "font_options": [
+    "dlig",
+    "ss01",
+    "gray_antialias",
+    "subpixel_antialias"
+  ],
+  "font_size": 13,
+  "gravity_highlight_color_blue": true,
+  "gravity_tab_height_short": true,
+  "gravity_title_bar": true,
+  "hide_tab_scrolling_buttons": true,
+  "highlight_line": true,
+  "highlight_modified_tabs": true,
+  "hot_exit": false,
+  "ignored_packages": [
+    "Vintage"
+  ],
+  "indent_guide_options": [
+    "draw_normal",
+    "draw_active",
+    "solid"
+  ],
+  "index_files": false,
+  "light_color_scheme": "Packages/ayu/ayu-light.sublime-color-scheme",
+  "light_theme": "ayu-light.sublime-theme",
+  "line_padding_bottom": 3,
+  "line_padding_top": 3,
+  "margin": 20,
+  "overlay_scroll_bars": "enabled",
+  "relative_line_numbers": true,
+  "remember_open_files": false,
+  "show_sidebar_disclosure": false,
+  "tab_size": 2,
+  "theme": "auto",
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": "all",
+  "ui_scale": 1,
+  "vintageous_use_super_keys": false,
+  "vintageous_use_sys_clipboard": true
+}

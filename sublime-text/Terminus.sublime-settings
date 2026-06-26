@@ -1,0 +1,9 @@
+{
+  "256color": true,
+  "brighten_bold_text": false,
+  "unix_term": "xterm-256color",
+  "theme": "adaptive",
+  "view_settings": {
+    "font_face": "FiraMono Nerd Font"
+  }
+}

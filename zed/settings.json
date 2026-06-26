@@ -1,4 +1,5 @@
 {
+  "cli_default_open_behavior": "new_window",
   "outline_panel": {
     "dock": "right",
   },
@@ -102,8 +103,9 @@
     "use_smartcase_find": true,
   },
   "title_bar": {
+    "show_sign_in": false,
     "show_branch_status_icon": true,
-    "show_user_picture": false,
+    "show_user_picture": true,
     "show_onboarding_banner": false,
   },
   "terminal": {
@@ -137,15 +139,10 @@
     "favorite_models": [
       {
         "provider": "copilot_chat",
-        "model": "claude-haiku-4.5",
-        "enable_thinking": false
-      },
-      {
-        "provider": "copilot_chat",
-        "model": "claude-sonnet-4.6",
+        "model": "claude-sonnet-5",
         "enable_thinking": true,
-        "effort": "high"
-      }
+        "effort": "high",
+      },
     ],
     "sidebar_side": "left",
     "dock": "left",
@@ -153,14 +150,14 @@
     "use_modifier_to_send": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6",
+      "model": "claude-sonnet-5",
     },
     "default_profile": "write",
     "default_model": {
       "effort": "high",
       "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6",
+      "model": "claude-sonnet-5",
     },
   },
   "languages": {

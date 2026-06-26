@@ -2,8 +2,8 @@
   "$schema": "https://opencode.ai/config.json",
   "share": "disabled",
   "default_agent": "plan",
-  "model": "github-copilot/claude-sonnet-4.6",
-  "small_model": "github-copilot/claude-haiku-4.5",
+  "model": "xai/grok-4.3",
+  "small_model": "xai/grok-4.3",
   "enabled_providers": [
     "github-copilot",
     "xai"
@@ -40,22 +40,42 @@
         "stdio"
       ],
       "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<token>"
       }
     },
   },
+  "plugin": [
+    "@datadog/opencode-plugin"
+  ],
   "permission": {
     "bun-mcp*": "deny", // only active in specific agent
-    "crates-io*": "deny" // only active in specific agent
+    "crates-io*": "deny", // only active in specific agent
+    "datadog*": "deny", // only active in specific agent
+    "github*": "ask", // ask for permission to access any GitHub API
+    "github_get*": "allow", // allow only GET requests to GitHub API
+    "github_list*": "allow", // allow only list requests to GitHub API
+    "github_search*": "allow", // allow only search requests to Git
+    "github_*_read*": "allow" // allow only read requests to GitHub API
   },
   "agent": {
-    "bun-expert": {
+    "plan": {
+      "permission": {
+        "datadog*": "allow"
+      }
+    },
+    "bun-code-reviewer": {
       "permission": {
         "bun-mcp*": "allow"
       }
     },
-    "rust-expert": {
+    "rust-code-reviewer": {
       "permission": {
         "crates-io*": "allow"
+      }
+    },
+    "datadog-analyzer": {
+      "permission": {
+        "datadog*": "allow"
       }
     }
   }
