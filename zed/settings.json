@@ -1,5 +1,28 @@
 {
-  "cli_default_open_behavior": "new_window",
+  "context_servers": {
+    "datadog-mcp": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "site": "EU",
+        "toolsets": [
+          "all"
+        ]
+      }
+    },
+    "bun-docs-mcp": {
+      "enabled": true,
+      "remote": false,
+      "settings": {}
+    },
+    "mcp-server-github": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "github_personal_access_token": "<token>"
+      }
+    }
+  },
   "outline_panel": {
     "dock": "right",
   },
