@@ -5,6 +5,7 @@ Session.vim
 .netrwhist
 *~
 .DS_Store
+.sublime/
 
 # Skill-local credentials (never commit secrets)
-opencode/skills/*/env.*
+**/skills/*/env.*

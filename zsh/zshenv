@@ -11,11 +11,6 @@ if type brew &>/dev/null; then
   export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 fi
 
-if type javac &>/dev/null; then
-  export PATH="$HOME/.m2/bin:$PATH"
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/
-fi
-
 if type gh &>/dev/null; then
   export GITHUB_TOKEN=$(gh auth token)
 fi

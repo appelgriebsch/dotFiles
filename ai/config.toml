@@ -1,0 +1,69 @@
+# Grok Build configuration template (portable)
+#
+# Install: merge into ~/.grok/config.toml (do not blindly overwrite if you
+# already have marketplace / personal settings there). See ai/README.md.
+#
+# Secrets: use environment variables (${VAR}). Never commit real tokens.
+
+[models]
+default = "grok-4.5"
+web_search = "grok-4.5"
+default_reasoning_effort = "medium"
+
+[ui]
+theme = "auto"
+
+[features]
+lsp_tools = true
+# two_pass_compaction = true   # opt-in;
+
+# ---------------------------------------------------------------------------
+# Session compaction
+# ---------------------------------------------------------------------------
+[session]
+auto_compact_threshold_percent = 85
+
+# ---------------------------------------------------------------------------
+# MCP servers
+# Tools are namespaced as server__tool (e.g. github__list_issues).
+# ---------------------------------------------------------------------------
+
+[mcp_servers.crates-io]
+command = "cratesio-mcp"
+args = ["--transport", "stdio"]
+enabled = true
+
+[mcp_servers.bun-mcp]
+command = "bunx"
+args = ["-y", "mcp-bun@latest"]
+enabled = true
+env = { DISABLE_NOTIFICATIONS = "true" }
+
+# Enable when you need Datadog tools; set DATADOG_MCP_TOKEN in the environment.
+[mcp_servers.datadog]
+url = "https://mcp.datadoghq.eu/v1/mcp"
+enabled = false
+headers = { Authorization = "Bearer ${DATADOG_MCP_TOKEN}" }
+
+[mcp_servers.github]
+command = "github-mcp-server"
+args = ["stdio"]
+enabled = true
+env = { GITHUB_PERSONAL_ACCESS_TOKEN = "${GITHUB_PERSONAL_ACCESS_TOKEN}" }
+
+# ---------------------------------------------------------------------------
+# Permissions
+#
+# GitHub: ask by default; allow common read-oriented tool name prefixes.
+# Refine after listing tools (e.g. grok mcp doctor / /mcps).
+# ---------------------------------------------------------------------------
+[permission]
+ask = [
+  "MCPTool(github__*)",
+]
+allow = [
+  "MCPTool(github__get_*)",
+  "MCPTool(github__list_*)",
+  "MCPTool(github__search_*)",
+  "MCPTool(github__*_read_*)",
+]
