@@ -1,0 +1,10 @@
+{
+  "rust": {
+    "command": "rust-analyzer",
+    "args": []
+  },
+  "typescript": {
+    "command": "bunx",
+    "args": ["--bun", "typescript-language-server", "--stdio"]
+  }
+}

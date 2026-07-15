@@ -1,28 +1,17 @@
 {
-  "context_servers": {
-    "datadog-mcp": {
-      "enabled": true,
-      "remote": false,
-      "settings": {
-        "site": "EU",
-        "toolsets": [
-          "all"
-        ]
-      }
-    },
-    "bun-docs-mcp": {
-      "enabled": true,
-      "remote": false,
-      "settings": {}
-    },
-    "mcp-server-github": {
-      "enabled": true,
-      "remote": false,
-      "settings": {
-        "github_personal_access_token": "<token>"
-      }
+  "edit_predictions": {
+    "provider": "open_ai_compatible_api",
+    "open_ai_compatible_api": {
+      "model": "grok-4.3",
+      "api_url": "https://eu-west-1.api.x.ai/v1/chat/completions"
     }
   },
+  "agent_servers": {
+    "grok-build": {
+      "type": "registry"
+    }
+  },
+  "cli_default_open_behavior": "existing_window",
   "outline_panel": {
     "dock": "right",
   },
@@ -31,9 +20,6 @@
     "git_status_indicator": true,
     "diagnostic_badges": true,
     "bold_folder_labels": true,
-  },
-  "edit_predictions": {
-    "provider": "copilot",
   },
   "auto_install_extensions": {
     "basher": true,
@@ -46,6 +32,7 @@
     "git-firefly": true,
     "github-actions": true,
     "graphql": true,
+    "grok-build": true,
     "html": true,
     "julia": true,
     "just": true,
@@ -92,6 +79,7 @@
     "enabled": true,
   },
   "git_panel": {
+    "group_by": "staging",
     "show_count_badge": true,
     "file_icons": true,
     "tree_view": true,
@@ -159,29 +147,11 @@
     "**/node_modules",
   ],
   "agent": {
-    "favorite_models": [
-      {
-        "provider": "copilot_chat",
-        "model": "claude-sonnet-5",
-        "enable_thinking": true,
-        "effort": "high",
-      },
-    ],
     "sidebar_side": "left",
     "dock": "left",
     "play_sound_when_agent_done": "always",
     "use_modifier_to_send": true,
-    "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-5",
-    },
     "default_profile": "write",
-    "default_model": {
-      "effort": "high",
-      "enable_thinking": true,
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-5",
-    },
   },
   "languages": {
     "YAML": {
@@ -206,12 +176,6 @@
     },
   },
   "lsp": {
-    "jdtls": {
-      "settings": {
-        "java_home": "/Library/Java/JavaVirtualMachines/graalvm-21.jdk/Contents/Home/",
-        "lombok_support": true,
-      },
-    },
     "rust-analyzer": {
       "initialization_options": {
         "inlayHints": {

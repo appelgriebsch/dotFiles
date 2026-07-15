@@ -1,7 +1,0 @@
-// Settings in here override those in "LSP-yaml/LSP-yaml.sublime-settings"
-{
-    // Use single quotes instead of double quotes
-    "yaml.format.singleQuote": true,
-    // Enable/disable default YAML formatter
-    "yaml.format.enable": false,
-}

@@ -1,0 +1,47 @@
+[ui]
+max_thoughts_width = 120
+theme = "auto"
+fork_secondary_model = "grok-build"
+yolo = false
+compact_mode = false
+vim_mode = true
+permission_mode = "auto"
+lsp_tools = true
+
+[marketplace]
+default_skills_installs_purged = true
+official_marketplace_auto_installed = true
+
+[[marketplace.sources]]
+name = "xAI Official"
+git = "https://github.com/xai-org/plugin-marketplace.git"
+
+[models]
+default = "grok-4.5"
+default_reasoning_effort = "medium"
+
+[plugins]
+enabled = ["cloudflare"]
+
+[skills]
+ignore = ["~/.grok/skills/code-review"]
+paths = []
+disabled = []
+server_skill_dirs = []
+bundled_skill_dirs = []
+
+[mcp_servers.crates-io]
+command = "cratesio-mcp"
+args = [
+    "--transport",
+    "stdio",
+]
+enabled = true
+
+[mcp_servers.bun-mcp]
+command = "bunx"
+args = [
+    "-y",
+    "mcp-bun@latest",
+]
+enabled = true

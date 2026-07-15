@@ -1,20 +1,3 @@
-if type flatpak &>/dev/null; then
-alias meld="flatpak run org.gnome.meld $@"
-alias flatpak-builder="flatpak run org.flatpak.Builder $@"
-# additional flatpak aliases
-fi
-
-if type toolbox &>/dev/null; then
-alias btop="toolbox run btop"
-alias cmake="toolbox run cmake"
-alias just="toolbox run just"
-alias neofetch="toolbox run macchina"
-alias nvim="toolbox run nvim"
-alias opencode="toolbox run ~/.bun/bin/opencode"
-alias pgcli="toolbox run pgcli"
-# additional toolbox aliases
-fi
-
 # add some aliases
 alias cat="bat"
 alias df="df -h"
@@ -23,3 +6,5 @@ alias free="free -h"
 alias ls="eza -alh"
 alias nv="nvim"
 alias tree="eza -alh -T"
+alias ttp="translate --to=pt"
+alias tfp="translate --from=pt"
