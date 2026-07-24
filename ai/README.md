@@ -7,6 +7,7 @@ Configuration, agents, and skills for your agent of choice.
 | Path | Description |
 | --- | --- |
 | `lsp.json` | LSP server configuration — defines the language servers for Rust (`rust-analyzer`), and TypeScript/JavaScript (`typescript-language-server` via Bun). |
+| `config.toml` | Agent configuration file for `grok-build`. |
 | `agents/` | Custom subagent definitions. |
 | `skills/` | Agent skills (portable instructions invoked by name or automatically based on their description). |
 
@@ -14,20 +15,22 @@ Configuration, agents, and skills for your agent of choice.
 
 | Agent | Purpose |
 | --- | --- |
-| `bun-code-reviewer.md` | Reviews JavaScript/TypeScript code targeting the Bun runtime (type safety, Biome compliance, Bun built-in APIs for SQL, RabbitMQ, S3, security). |
-| `rust-code-reviewer.md` | Reviews Rust code, especially async services built on Tokio/Axum with PostgreSQL, RabbitMQ, or S3 integrations. |
-| `spring-cloud-reviewer.md` | Reviews Java/Spring Cloud microservices for correctness, Spring best practices, resilience, security, and Kubernetes readiness. |
-| `datadog-analyzer.md` | Reads and analyzes Datadog metrics, logs, traces, dashboards, monitors, and events to summarize system health or investigate incidents. |
-| `gis-code-reviewer.md` | Reviews GIS code (Python, JavaScript, or Rust) for correctness, performance, and best practices in geospatial data processing and visualization. |
-| `web-frontend-reviewer.md` | Reviews web frontend code (React, Next.js, Svelte, etc.) for UI/UX quality, responsiveness, accessibility, and best practices. |
+| `bun-expert.md` | Expert on JavaScript/TypeScript targeting the Bun runtime (type safety, Biome compliance, Bun built-in APIs for SQL, RabbitMQ, S3, security) — code review, implementation planning guidance, and troubleshooting. |
+| `rust-expert.md` | Expert on Rust, especially async services built on Tokio/Axum with PostgreSQL, RabbitMQ, or S3 integrations — code review, implementation planning guidance, and troubleshooting. |
+| `spring-cloud-expert.md` | Expert on Java/Spring Cloud microservices for correctness, Spring best practices, resilience, security, and Kubernetes readiness — code review, implementation planning guidance, and troubleshooting. |
+| `datadog-analyzer.md` | Reads and analyzes Datadog metrics, logs, traces, dashboards, monitors, and events to summarize system health, investigate incidents, or advise on observability strategy when planning a new feature. |
+| `gis-expert.md` | Expert on GIS code (Python, JavaScript, or Rust) for correctness, performance, and best practices in geospatial data processing and visualization — code review, implementation planning guidance, and troubleshooting. |
+| `web-frontend-expert.md` | Expert on web frontend code (React, Next.js, Svelte, etc.) for UI/UX quality, responsiveness, accessibility, and best practices — code review, implementation planning guidance, and troubleshooting. |
 
 ### Skills (`skills/`)
 
 | Skill | Purpose |
 | --- | --- |
+| `ask-the-expert` | Identify the languages/technologies or domain in scope and consult the relevant expert agent(s) (e.g. `bun-expert`, `rust-expert`) for code review, implementation planning, or troubleshooting guidance, then synthesize their findings. |
+| `aws-sso-login` | Authenticate to AWS using Single Sign-On (SSO). Use when AWS CLI operations require SSO authentication or when the SSO session has expired. |
 | `ax` | Use the `ax` CLI instead of curl/inline scripts (Python heredocs, `node -e`, regex over HTML) for one-off URL fetching, web scraping, or page exploration. |
-| `brainstorm` | Analyze an improvement ticket or idea and produce a detailed implementation plan, including potential challenges, required tests, and validation steps. |
-| `code-review` | Identify the languages and technologies involved and orchestrate language-specific reviewer subagents (e.g. `bun-code-reviewer`, `rust-code-reviewer`) to deliver deep, targeted feedback on code quality, security, performance, and architecture. |
+| `brainstorm` | Analyze an improvement ticket or idea and produce a detailed implementation plan, including potential challenges, required tests, and validation steps; consults `ask-the-expert` for technology-specific approaches when relevant. |
+| `code-review` | Delegate to the `ask-the-expert` skill to identify the languages and technologies involved and consult the relevant expert agent(s), then synthesize their findings into deep, targeted feedback on code quality, security, performance, and architecture. |
 | `create-pr` | Create or update pull requests for GitHub repositories (rebasing, squashing, force-pushing, etc.). |
 | `datadog-health-report` | Produce a consolidated, meeting-ready Datadog health report by orchestrating sub-agents across metrics, logs, traces, monitors, SLOs, and incidents — designed for use before daily standups or SoS meetings. |
 | `grill-me` / `grilling` | Relentlessly interview the user to stress-test a plan or design before building it. |
@@ -37,9 +40,11 @@ Configuration, agents, and skills for your agent of choice.
 | `prototype` | Build a throwaway prototype to sanity-check a state model, logic, or UI design question. |
 | `query-postgres` | Connect to Postgres databases via `psql` using per-environment credential files (e.g. `env.prod`), defaulting to a read-only session; requires explicit `--write` flag for INSERT/UPDATE/DELETE/DDL. |
 | `research` | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo, delegated to a background agent. |
+| `skill-creator` | Guide for creating or updating agent skills. |
 | `test-containers` | Bring up and tear down the containers a project needs for its integration tests, using whichever container runtime is available (Docker, Podman, or macOS `container` CLI). |
 | `tldraw-offline` | Operate the user's tldraw offline canvas app, including opening and editing `.tldraw`/`.tldr` files (inspect, edit, arrange, connect, lint, or script a canvas). |
-| `troubleshoot` | Analyze a problem or issue (via GitHub Issue or trace ID) and produce a detailed troubleshooting plan including potential causes, required tests, and validation steps. |
+| `troubleshoot` | Analyze a problem or issue (via GitHub Issue or trace ID) and produce a detailed troubleshooting plan including potential causes, required tests, and validation steps; consults `ask-the-expert` for technology-specific root-cause input when relevant. |
+| `writing-great-skills` | Reference guide for writing and editing skills well — vocabulary and principles for predictable, high-quality skill definitions (not invoked automatically). |
 
 ## Installation
 
@@ -63,6 +68,8 @@ Terminal coding agents typically look for skills and agents in different places,
 
    ```sh
    ln -s "$(pwd)/ai/agents" ~/.grok/agents
+   ln -s "$(pwd)/ai/config.toml" ~/.grok/config.toml
+   ln -s "$(pwd)/ai/lsp.json" ~/.grok/lsp.json
    ```
 
 The same pattern applies to many other AI coding agents: link the `skills/` folder (or its individual skill subfolders) into `~/.agents/skills/`, and link any agent/tool-specific files into that agent's own config folder (e.g. `~/.copilot`, `~/.claude`, `~/.codex`, etc.), adapting paths and file names to what the target tool expects.

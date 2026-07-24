@@ -1,7 +1,7 @@
 ---
 name: brainstorm
 description: 
-  This skill analyzes a given improvement ticket or idea and provides a detailed plan on how to implement it. It gathers relevant information from the ticket or request, including context, requirements, and constraints, and generates a step-by-step implementation plan. The skill also identifies potential challenges, required tests, and validation steps, and can assist in creating prototypes or breaking down the implementation into smaller tasks or milestones.
+  This skill analyzes a given improvement ticket or idea and provides a detailed plan on how to implement it. It gathers relevant information from the ticket or request, including context, requirements, and constraints, and generates a step-by-step implementation plan. The skill also identifies potential challenges, required tests, and validation steps, and can assist in creating prototypes or breaking down the implementation into smaller tasks or milestones. When the implementation touches a technology with a dedicated expert (e.g. Rust, Bun/TypeScript, Java/Spring Cloud, GIS, web front-end, or Datadog observability), it consults the `ask-the-expert` skill to validate the proposed approach, risks, and tradeoffs before finalizing the plan.
 argument-hint: "Please provide the GitHub Issue id or describe the improvement idea you would like to implement."
 disable-model-invocation: true
 ---
@@ -29,6 +29,8 @@ With the information gathered from the ticket or request, generate a detailed im
 - If the user asked for a prototype or proof of concept, provide a plan for creating and testing the prototype, including any necessary tools, frameworks, or libraries. You may also use the `prototype` skill to assist in creating the prototype.
 
 In case of any uncertainties or missing information, use the `grilling` skill to ask the user for clarification or additional details. If the user isn't sure about the requirements or constraints, you may also use the `research` skill to help gather and clarify the requirements.
+
+Consult the `ask-the-expert` skill in **Diagnose** mode to get expert input on likely root causes and fixes before finalizing the plan, if the issue touches a technology with a dedicated expert (e.g. Rust, Bun/TypeScript, Java/Spring Cloud, GIS, web front-end, or Datadog observability, among others that may be added over time).
 
 ### Step 3 - Work breakdown and Task Management
 

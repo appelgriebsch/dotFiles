@@ -1,7 +1,7 @@
 ---
 name: troubleshoot
 description:
-  This skill analyzes a given problem or issue and provides a detailed troubleshooting plan to resolve it. It gathers relevant information from the problem description, including context, symptoms, and constraints, and generates a step-by-step troubleshooting plan. The skill also identifies potential causes, required tests, and validation steps, and can assist in creating prototypes or breaking down the troubleshooting into smaller tasks or milestones. 
+  This skill analyzes a given problem or issue and provides a detailed troubleshooting plan to resolve it. It gathers relevant information from the problem description, including context, symptoms, and constraints, and generates a step-by-step troubleshooting plan. The skill also identifies potential causes, required tests, and validation steps, and can assist in creating prototypes or breaking down the troubleshooting into smaller tasks or milestones. When the issue touches a technology with a dedicated expert (e.g. Rust, Bun/TypeScript, Java/Spring Cloud, GIS, web front-end, or Datadog observability), it consults the `ask-the-expert` skill for root-cause input before finalizing the plan.
 argument-hint: "Please provide the GitHub Issue id or trace id of the problem or issue you would like to troubleshoot."  
 disable-model-invocation: true
 ---
@@ -33,6 +33,8 @@ With the information gathered from the ticket and trace analysis, generate a det
 - Identify required changes to the codebase, configuration, or infrastructure to resolve the issue. In case of changes to source code, also consider additional tests that may be needed to validate the fix (use the `write-tests` skill for support if available).
 
 In case of any uncertainties or missing information, use the `grilling` skill to ask the user for clarification or additional details. If the user isn't sure about the requirements or constraints, you may also use the `research` skill to help gather and clarify the requirements.
+
+Consult the `ask-the-expert` skill in **Diagnose** mode to get expert input on likely root causes and fixes before finalizing the plan, if the issue touches a technology with a dedicated expert (e.g. Rust, Bun/TypeScript, Java/Spring Cloud, GIS, web front-end, or Datadog observability, among others that may be added over time).
 
 ### Step 3 - Work breakdown and Task Management
 

@@ -6,18 +6,23 @@ description: >-
   dashboards, monitors, APM data, or events. This covers investigating
   production incidents, understanding system health, identifying error patterns,
   analyzing performance degradation, reviewing a specific dashboard, or any
-  ad-hoc Datadog investigation.
+  ad-hoc Datadog investigation. Also use it beyond incident investigation — for
+  root-cause/troubleshooting input driven by trace or log evidence 
+  and for observability/monitoring strategy guidance when planning 
+  a new feature or service (e.g. via `ask-the-expert` from `brainstorm`).
 
   Trigger phrases include:
     - 'check Datadog and tell me what's going on'
     - 'analyze our Datadog logs/errors'
     - 'summarize this Datadog dashboard'
     - 'give me a health summary of our environment'
+    - 'what should we monitor/alert on for this new service?'
 
     Examples:
       - User says 'our API response times have been terrible for the last hour, can you check Datadog?' → invoke this agent to investigate metrics, traces, and logs
       - User says 'we are getting flooded with errors in production, group them into patterns' → invoke this agent to retrieve logs and provide distribution statistics
       - User says 'give me a quick health summary of our production environment in Datadog' → invoke this agent to query multiple signal types and produce a consolidated report
+      - While brainstorming a new service, invoke this agent to recommend which metrics, logs, and monitors should be instrumented before implementation begins
 mode: subagent
 permission:
   edit: deny

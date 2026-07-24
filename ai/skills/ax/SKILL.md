@@ -2,9 +2,9 @@
 description: Use the ax CLI instead of curl + throwaway parsing scripts whenever you fetch a URL, explore an unknown web page, or extract structured data from HTML. Trigger whenever you are about to write an inline script (python3 heredoc, node -e, regex over HTML) or a bare curl for one-off web fetching, scraping, or page exploration.
 metadata:
     github-path: skills/ax
-    github-ref: refs/tags/v0.1.21
+    github-ref: refs/tags/v0.1.22
     github-repo: https://github.com/yusukebe/ax
-    github-tree-sha: 35a9e517254fc424e0cdb66119c5a9ae4c531328
+    github-tree-sha: be4e42e6b11bf79f26ddd5585b6c49f5a9219aa4
 name: ax
 ---
 # ax — the AI-era curl: fetch, discover, extract
@@ -45,6 +45,10 @@ Answer with the data, concisely — no methodology narration.
 
 - Default cap 50 results; stderr announces anything hidden. `--limit`,
   `--all`, `--budget <tokens>` control it. Rows default to token-cheap TSV; add `--json` if you need JSON.
+- For automated continuation, use `--json-envelope`. Read `data`; when
+  `meta.state` is `more`, rerun the same command with
+  `--offset <meta.next_offset>`. Continue only while it is `more`; stop on
+  `complete` or `past_end`; do not restart from zero or increase the budget.
 - Errors are one stderr line with a hint — fix the flag, not the approach.
 - If ax says "likely a JS-rendered SPA", stop probing selectors — switch to
   a browser tool; the content is not in the raw HTML.
