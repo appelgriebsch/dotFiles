@@ -30,7 +30,7 @@ Produce a plan that includes:
 - Recommended solutions or workarounds per root cause
 - Required code/config/infra changes and tests to validate the fix
 
-If information is missing, use the `grilling` skill. If requirements need external facts, use the `research` skill.
+If the context is dubious, unclear, or requirements need external facts (unfamiliar APIs, libraries, specs, prior incidents), invoke the `research` skill **before** grilling the user. Have it write/update `RESEARCH.md` at the repository root, citing sources for each claim; re-invoke it later in this run if new open questions surface that need external facts. Only once research is done should you use the `grilling` skill to clarify whatever questions remain open (missing decisions, preferences, or ambiguous scope that research cannot answer).
 
 #### Mandatory expert consult (do not skip)
 
@@ -40,10 +40,11 @@ When branching out:
 
 1. **Invoke the skill** (do not impersonate experts yourself, and do not Task-call individual expert agents from this skill except the optional early `datadog-analyzer` evidence pass in Step 1 — full multi-expert orchestration belongs to `ask-the-expert`).
 2. **Pass full context**: draft plan, issue text, trace findings from Step 1, stack traces/logs, affected services/paths, and open questions.
-3. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan the **whole workspace**, match **every** available expert domain, and dispatch to **all** matched experts (see that skill’s hard rules). Your job is to supply the diagnosis materials and question, not to decide which experts run.
-4. **Incorporate** the synthesized guidance (ranked hypotheses, evidence, next steps) into the plan. If the consult’s “Experts consulted” list is missing or looks incomplete relative to the repo, re-invoke `ask-the-expert` rather than proceeding on a partial consult.
+3. **Resolve and hand over the incident codebase revision.** Before/with the consult, mine the ticket and trace for version signals (fix versions, release names, image/git tags, `version` / `git.commit.sha` / deploy tags in Datadog, stack-trace build ids, etc.). Prefer a **git tag** (or commit mappable to one). Tell `ask-the-expert` this is **Diagnose** mode, screening corpus = **whole source at that revision**, and pass the tag/SHA plus the evidence. `ask-the-expert` must materialize that tagged tree for experts. If no signal exists, say so and allow fallback to the current workspace — do not assume HEAD matches production.
+4. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan that **versioned codebase** (or the documented workspace fallback), match **every** available expert domain, and dispatch to **all** matched experts (see that skill’s hard rules). Your job is to supply the diagnosis materials, version signal, and question — not to decide which experts run.
+5. **Incorporate** the synthesized guidance (ranked hypotheses, evidence, next steps) into the plan. If the consult’s “Experts consulted” list is missing or looks incomplete relative to the repo, re-invoke `ask-the-expert` rather than proceeding on a partial consult.
 
-**Done when:** the plan has summary, reproduce steps (if applicable), ranked causes, fixes, and validation tests; `ask-the-expert` was actually invoked in Diagnose mode; its Experts consulted / inventory outcome is reflected; feedback is incorporated.
+**Done when:** the plan has summary, reproduce steps (if applicable), ranked causes, fixes, and validation tests; ticket/trace version signals were checked; `ask-the-expert` was actually invoked in Diagnose mode against the **resolved git tag/revision** (or an explicit current-workspace fallback); its Experts consulted / inventory outcome is reflected; feedback is incorporated.
 
 ### Step 3 — Work breakdown and GitHub filing
 

@@ -4,9 +4,9 @@ description: Compact the current conversation into a handoff document for anothe
 disable-model-invocation: true
 metadata:
     github-path: skills/productivity/handoff
-    github-ref: refs/tags/v1.1.0
+    github-ref: refs/tags/v1.2.2
     github-repo: https://github.com/mattpocock/skills
-    github-tree-sha: 3f7df8e717e41dfd6eacd03d47319a2e01248ffb
+    github-tree-sha: 184d485ae68a2132893a94239b2b85d253e6152b
 name: handoff
 ---
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.

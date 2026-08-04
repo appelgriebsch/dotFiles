@@ -26,7 +26,7 @@ Produce a plan that includes:
 - Required tests and validation steps
 - If the user asked for a prototype or proof of concept: a plan for it (use the `prototype` skill when building one)
 
-If information is missing, use the `grilling` skill. If requirements need external facts, use the `research` skill.
+If the context is dubious, unclear, or requirements need external facts (unfamiliar APIs, libraries, specs, prior art), invoke the `research` skill **before** grilling the user. Have it write/update `RESEARCH.md` at the repository root, citing sources for each claim; re-invoke it later in this run if new open questions surface that need external facts. Only once research is done should you use the `grilling` skill to clarify whatever questions remain open (missing decisions, preferences, or ambiguous scope that research cannot answer).
 
 #### Mandatory expert consult (do not skip)
 
@@ -36,10 +36,11 @@ When branching out:
 
 1. **Invoke the skill** (do not impersonate experts yourself, and do not Task-call individual expert agents from this skill — that orchestration belongs to `ask-the-expert`).
 2. **Pass full context**: draft plan, ticket/PRD requirements and constraints, relevant paths, and any open questions.
-3. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan the **whole workspace**, match **every** available expert domain, and dispatch to **all** matched experts (see that skill’s hard rules). Your job is to supply the plan and question, not to decide which experts run.
-4. **Incorporate** the synthesized guidance (risks, recommended approach, tradeoffs) into the plan. If the consult’s “Experts consulted” list is missing or looks incomplete relative to the repo, re-invoke `ask-the-expert` rather than proceeding on a partial consult.
+3. **Hand in the current codebase as reference.** Tell `ask-the-expert` this is **Plan** mode with screening corpus = **whole current workspace** (the live tree on disk). Experts plan against today’s architecture — do not point them at an older release unless the user explicitly asked to target one.
+4. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan that **current workspace**, match **every** available expert domain, and dispatch to **all** matched experts (see that skill’s hard rules). Your job is to supply the plan and question, not to decide which experts run.
+5. **Incorporate** the synthesized guidance (risks, recommended approach, tradeoffs) into the plan. If the consult’s “Experts consulted” list is missing or looks incomplete relative to the repo, re-invoke `ask-the-expert` rather than proceeding on a partial consult.
 
-**Done when:** the plan has summary, steps, risks, tests/validation; `ask-the-expert` was actually invoked in Plan mode; its Experts consulted / inventory outcome is reflected; feedback is incorporated; open questions resolved or explicitly listed.
+**Done when:** the plan has summary, steps, risks, tests/validation; `ask-the-expert` was actually invoked in Plan mode against the **current workspace** as codebase reference; its Experts consulted / inventory outcome is reflected; feedback is incorporated; open questions resolved or explicitly listed.
 
 ### Step 3 — Work breakdown and GitHub filing
 

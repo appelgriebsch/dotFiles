@@ -4,9 +4,9 @@ description: Teach the user a new skill or concept, within this workspace.
 disable-model-invocation: true
 metadata:
     github-path: skills/productivity/teach
-    github-ref: refs/tags/v1.1.0
+    github-ref: refs/tags/v1.2.2
     github-repo: https://github.com/mattpocock/skills
-    github-tree-sha: 3b6a4245e2aaeacb308ba6175ab3e7f2e43b0c47
+    github-tree-sha: 15f8c86d39ef834e643d092733ca899b59049067
 name: teach
 ---
 The user has asked you to teach them something. This is a stateful request - they intend to learn the topic over multiple sessions.

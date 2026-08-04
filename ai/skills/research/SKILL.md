@@ -2,9 +2,9 @@
 description: Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.
 metadata:
     github-path: skills/engineering/research
-    github-ref: refs/tags/v1.1.0
+    github-ref: refs/tags/v1.2.2
     github-repo: https://github.com/mattpocock/skills
-    github-tree-sha: 06c848c1a1f3ae7afd88f040f73a8f3efee3494d
+    github-tree-sha: 972a34cd8128b7952b7eb279b06715862db906a7
 name: research
 ---
 Spin up a **background agent** to do the research, so you keep working while it reads.
