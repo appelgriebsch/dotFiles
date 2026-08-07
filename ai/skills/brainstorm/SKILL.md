@@ -46,7 +46,11 @@ When branching out:
 
 Follow [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), then create/update the main issue and linked child issues.
 
-**Done when:** that shared reference’s completion criteria are met and the user has issue URLs plus next steps.
+#### Human readable summary
+
+For every issue created, provide a human-readable summary of the plan and next steps. Talk in 'ASD-STE100 Simplified Technical English', and use the ubiquitous language from `CONTEXT.md` if available. Push the summary to the GitHub issue as a comment, and also provide it to the user in this skill’s output.
+
+**Done when:** that shared reference’s completion criteria are met and the user has issue URLs **and** summaries plus next steps.
 
 ### Step 4 — Stop and hand off
 
