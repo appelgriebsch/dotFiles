@@ -15,7 +15,28 @@ Break the work into **tracer bullet** tickets.
 
 Give each ticket its **blocking edges** — the other tickets that must complete before it can start. A ticket with no blockers can start immediately.
 
-**Done when:** every ticket has a one-line goal, a demoable/verifiable criterion, and an explicit blockers list (or “none”).
+### Per-ticket implementation plan (required when possible)
+
+The parent plan is the source of truth for the whole effort. **Before filing**, decompose it so **every** tracer-bullet (or expand–contract) ticket carries its **own** implementation plan — enough that `implement-ticket` can execute that child in isolation without re-deriving steps from the EPIC.
+
+For each ticket, work out (when possible):
+
+- **Scope** — what this slice includes and explicitly excludes
+- **Step-by-step implementation** — ordered code/config/infra steps for **this ticket only** (paths, modules, APIs, migrations as known)
+- **Tests / validation** — how this slice proves its done criterion
+- **Risks or open points local to this slice** — only if they affect how to implement it
+- **Depends on** — what prior tickets must have delivered (interfaces, data, flags) so the steps assume the right preconditions
+
+**How to derive it**
+
+1. Map each parent-plan step (or root-cause fix step) onto the ticket that owns it.
+2. Rewrite those steps at child granularity: concrete enough to implement, free of work that belongs on sibling tickets.
+3. Prefer a **full** plan when the approach, surfaces, and validation are already known from research/expert consult.
+4. If a slice **cannot** be planned fully yet (outcome of a prior ticket, live investigation, or unknown API shape), still file a **best-effort** plan: known steps, explicit unknowns, and what must be true after blockers land before implementation can finish. Mark residual unknowns in the body — do not leave the plan section empty or “TBD only”.
+
+Do **not** file a child that is only a goal + acceptance criterion when a workable plan can be written from the parent plan and codebase context already in hand.
+
+**Done when:** every ticket has a one-line goal, a demoable/verifiable criterion, an explicit blockers list (or “none”), and a per-ticket implementation plan (full or best-effort with stated unknowns).
 
 ### Wide refactors (exception)
 
@@ -27,21 +48,51 @@ Give each ticket its **blocking edges** — the other tickets that must complete
 
 When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket — green is promised only there.
 
+Each expand / migrate-batch / contract ticket still gets its **own** implementation plan (what changes, where, how to keep CI green for that step).
+
 ## GitHub issue creation / management
 
 Use the GitHub MCP.
 
+### Labels (apply on every create and update)
+
+Use these **exact** label names. Before applying, ensure each label exists on the repo (create it via GitHub MCP if missing). Colors/descriptions are optional; names are not.
+
+| Label | Meaning | When to apply |
+| --- | --- | --- |
+| `epic` | Parent of tracer-bullet (or expand–contract) child issues | Main issue **after** at least one child is linked. Never on a leaf/child ticket. |
+| `has-plan` | Issue body has an implementation (or fix) plan that `implement-ticket` can follow | Full plan **or** best-effort plan with concrete steps (not empty / “TBD only”). Apply to main and each child that qualifies. |
+| `needs-brainstorm` | Product/design/scope still needs grooming before implement | Open questions, unresolved preferences, or residual unknowns that `brainstorm` should close. Prefer on the issue that owns the gap (often a child with a thin plan, or the main issue if the whole idea is under-specified). |
+| `needs-troubleshoot` | Diagnosis/root-cause still needs work before implement | Open incident questions, unconfirmed root cause, or missing reproduce/validation path that `troubleshoot` should close. |
+
+**Rules**
+
+1. **Set labels from current state** on every create **and** every update — do not leave stale grooming flags after a plan lands.
+2. **`has-plan` vs grooming flags**
+   - Full, implementable plan and no material open questions → add `has-plan`; **remove** `needs-brainstorm` and `needs-troubleshoot` on that issue.
+   - Best-effort plan with residual unknowns → keep `has-plan` **and** the matching grooming label (`needs-brainstorm` for product/scope gaps, `needs-troubleshoot` for diagnosis gaps).
+   - No workable plan yet → do **not** add `has-plan`; add `needs-brainstorm` and/or `needs-troubleshoot` as appropriate.
+3. **`epic`** only when the main issue is a real parent (children exist). A single leaf with a plan gets `has-plan` only — not `epic`.
+4. **Which grooming label:** improvements/ideas → `needs-brainstorm`; bugs/incidents/traces → `needs-troubleshoot`. An issue may carry both only if both kinds of gap remain.
+5. Do **not** invent alternate names (`Epic`, `planned`, `needs-grooming`, etc.). Reuse these four so filters and `implement-ticket` stay consistent.
+
+### Filing steps
+
 1. **Main issue**
    - If work started from an existing GitHub Issue: update it with a summary of the plan.
    - If work started from an idea, improvement request, or trace ID only: create a new GitHub Issue with that summary.
+   - Keep the **full** parent plan (or a clear summary + pointer) on the main/EPIC issue so the overall story stays visible.
+   - Apply labels per the table (typically `epic` + `has-plan` when children and a parent plan exist; grooming flags only if gaps remain).
 
 2. **Child issues** — for each tracer-bullet ticket from the breakdown, create a GitHub Issue linked to the main issue. Each child body must include:
    - Goal (one line) — fits Context **What**
    - Context references (paths, issue URLs, ADRs — not duplicated full specs)
    - Blocking edges (issue numbers or “none”)
    - Demoable/verifiable done criterion — fits Acceptance Criteria
+   - **Implementation plan** — the per-ticket plan from the breakdown (step-by-step for this child; full or best-effort with unknowns). This is what `implement-ticket` will execute for leaf work and for each EPIC sub-ticket.
    - No secrets (API keys, passwords, PII)
+   - Apply labels per the table (`has-plan` and/or grooming flags; never `epic`).
 
-3. **User summary** — return plan summary, main + child issue links, and next-step recommendations.
+3. **User summary** — return plan summary, main + child issue links (noting that each child carries its own plan and which labels were set), and next-step recommendations.
 
-**Done when:** main issue exists/updated, every child ticket has a linked GitHub Issue with goal/context/blockers/done criterion, and the user has the URLs.
+**Done when:** main issue exists/updated with the parent plan, every child ticket has a linked GitHub Issue with goal/context/blockers/done criterion/**implementation plan**, **labels on every created/updated issue match the rules above**, and the user has the URLs.

@@ -1,6 +1,6 @@
 ---
 name: implement-ticket
-description: Execute a brainstorm/troubleshoot plan for a GitHub issue or EPIC (branch, implement, PR, review). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, and stack all sub-ticket PRs onto the EPIC PR at the end using gh-stack.
+description: Execute a brainstorm/troubleshoot plan for a GitHub issue or EPIC (branch, implement, PR, review). Abort if needs-brainstorm/needs-troubleshoot labels remain; require has-plan (or a body plan). For EPICs, require every sub-ticket ready, sequence by blockers, implement independent tickets in parallel, and stack all sub-ticket PRs onto the EPIC PR at the end using gh-stack.
 argument-hint: "Please provide the GitHub Issue id for the improvement, bug ticket, or EPIC you would like to implement."
 disable-model-invocation: true
 ---
@@ -9,21 +9,44 @@ disable-model-invocation: true
 
 ### Step 1 — Parse the Request
 
-Verify the input is an open GitHub Issue via the GitHub MCP. Load the issue and detect whether it is an **EPIC** (parent with one or more linked sub-tickets / child issues) or a **leaf ticket** (no sub-tickets).
+Verify the input is an open GitHub Issue via the GitHub MCP. Load the issue (**body, labels, links**). Detect whether it is an **EPIC** (has the `epic` label and/or is parent with one or more linked sub-tickets / child issues) or a **leaf ticket** (no sub-tickets). Prefer the `epic` label when present; if the label is missing but children are linked, treat as EPIC anyway.
+
+Labels used by `brainstorm` / `troubleshoot` (exact names):
+
+| Label | Implement-ticket meaning |
+| --- | --- |
+| `epic` | Parent of sub-tickets — run EPIC path |
+| `has-plan` | Plan was filed; still verify body has steps (label alone is not enough if the body is empty) |
+| `needs-brainstorm` | **Hard abort** — user must re-run `brainstorm` first |
+| `needs-troubleshoot` | **Hard abort** — user must re-run `troubleshoot` first |
+
+#### Readiness gates (leaf and every EPIC sub-ticket)
+
+Apply **before** branching or coding. Order matters:
+
+1. **Grooming labels (hard abort).** If the issue has `needs-brainstorm` and/or `needs-troubleshoot`:
+   - List the issue id/title and which grooming label(s) are set.
+   - Tell the user which skill to run (`brainstorm` and/or `troubleshoot`) to clear the gap.
+   - **Abort.** Do not implement while either grooming label remains — even if `has-plan` is also present (best-effort plan with residual unknowns).
+2. **Plan presence.** The issue is ready only when **both**:
+   - The body contains an **implementation plan** (step-by-step guidance from `brainstorm` / `troubleshoot`, not only a goal or title), **and**
+   - Preferably `has-plan` is set. If `has-plan` is **missing** but a clear body plan exists (legacy tickets), proceed and note the missing label. If `has-plan` is set but the body has no workable plan, **abort** and tell the user to re-run `brainstorm` / `troubleshoot` so the plan is written into the issue.
+3. If there is no plan and no grooming label: tell the user to run `brainstorm` or `troubleshoot` first, and **abort**.
 
 **Leaf ticket**
 
-- Confirm the issue body contains an **implementation plan** (step-by-step implementation guidance from `brainstorm` / `troubleshoot`, not only a goal or title).
-- If there is no plan: tell the user to run `brainstorm` or `troubleshoot` first, and **abort**.
+- Run the readiness gates on this issue only.
+- If ready: proceed to Step 2 with this ticket’s plan.
 
 **EPIC**
 
-1. Collect **every** sub-ticket (full details for each — body, state, links, blockers).
-2. Validate that **every** sub-ticket has an implementation plan attached.
-3. If **any** sub-ticket lacks a plan: list those issue ids/titles, tell the user every sub-ticket needs a plan before the EPIC can be implemented, and **abort**. Do not implement partial EPICs.
-4. If all sub-tickets have plans: read each ticket’s **blocking edges** (issue numbers that must finish first, or “none”) and build an execution sequence — a dependency graph ordered into **waves**. A wave is the set of remaining tickets whose blockers are already done (or have none); tickets in the same wave may run **in parallel**. Tickets with blockers wait for later waves.
+1. Collect **every** sub-ticket (full details for each — body, **labels**, state, links, blockers).
+2. Run the readiness gates on the **EPIC** issue itself (grooming labels on the parent also abort the whole run).
+3. Run the readiness gates on **every** sub-ticket.
+4. If **any** sub-ticket fails (grooming label, missing plan, or `has-plan` without a body plan): list those issue ids/titles and reasons, tell the user what to re-run, and **abort**. Do not implement partial EPICs.
+5. If all sub-tickets are ready: read each ticket’s **blocking edges** (issue numbers that must finish first, or “none”) and build an execution sequence — a dependency graph ordered into **waves**. A wave is the set of remaining tickets whose blockers are already done (or have none); tickets in the same wave may run **in parallel**. Tickets with blockers wait for later waves.
 
-**Done when:** a leaf ticket with a plan is loaded, **or** an EPIC has all sub-tickets loaded, every one has a plan, and the wave sequence is written; **or** the run aborted with a clear missing-plan / missing-issue report.
+**Done when:** a leaf ticket that passes readiness is loaded, **or** an EPIC has all sub-tickets loaded, every one (and the parent) passes readiness, and the wave sequence is written; **or** the run aborted with a clear report (grooming labels, missing plan, or missing issue).
 
 ### Step 2 — Sync main
 

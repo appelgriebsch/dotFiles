@@ -44,13 +44,15 @@ When branching out:
 
 ### Step 3 — Work breakdown and GitHub filing
 
-Follow [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), then create/update the main issue and linked child issues.
+Follow [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the parent plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues. Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
+
+**Labels (required):** on every issue you create or update, apply the shared label set from that reference — `epic` on the parent when children exist, `has-plan` when a workable implementation plan is on the issue, `needs-brainstorm` when product/scope still needs this skill, `needs-troubleshoot` when diagnosis still needs the troubleshoot skill. Ensure labels exist on the repo; clear stale grooming labels when a full plan lands.
 
 #### Human readable summary
 
 Provide a human-readable summary of the **full** implementation plan and next steps. Talk in 'ASD-STE100 Simplified Technical English', and use the ubiquitous language from `CONTEXT.md` if available. **Push the summary to the GitHub main issue** as a comment, and also provide it to the user in this skill’s output.
 
-**Done when:** that shared reference’s completion criteria are met and the user has issue URLs **and** summary plus next steps.
+**Done when:** that shared reference’s completion criteria are met (including a plan on every child issue when possible, and correct labels on every created/updated issue) and the user has issue URLs **and** summary plus next steps.
 
 ### Step 4 — Stop and hand off
 
