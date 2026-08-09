@@ -14,7 +14,7 @@ disable-model-invocation: true
 
 Verify if the provided input refers to an open GitHub Issue via the GitHub MCP. If yes, load issue details. If not, treat the input as a Datadog `trace_id`.
 
-If a Datadog `trace_id` appears in the input or the issue body, use the `datadog-analyzer` sub-agent to analyze the trace (APM, logs, metrics, events) for root-cause insights.
+If a Datadog `trace_id` appears in the input or the issue body, use the `datadog-analyzer` sub-agent to analyze the trace (APM, logs, metrics, events) for root-cause insights. Treat this as **early evidence gathering only** — it does **not** replace the mandatory `ask-the-expert` consult in Step 2 (which still discovers all repo technologies and may re-engage `datadog-analyzer` plus every other matched expert).
 
 If no trace information is available, tell the user to use the `brainstorm` skill for idea/improvement grooming instead, and stop.
 
@@ -52,9 +52,9 @@ Follow [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/ref
 
 #### Human readable summary
 
-For every issue created, provide a human-readable summary of the plan and next steps. Talk in 'ASD-STE100 Simplified Technical English', and use the ubiquitous language from `CONTEXT.md` if available. Push the summary to the GitHub issue as a comment, and also provide it to the user in this skill’s output.
+Provide a human-readable summary of the **full** implementation plan and next steps. Talk in 'ASD-STE100 Simplified Technical English', and use the ubiquitous language from `CONTEXT.md` if available. **Push the summary to the GitHub main issue** as a comment, and also provide it to the user in this skill’s output.
 
-**Done when:** that shared reference’s completion criteria are met and the user has issue URLs **and** summaries plus next steps.
+**Done when:** that shared reference’s completion criteria are met and the user has issue URLs **and** summary plus next steps.
 
 ### Step 4 — Stop and hand off
 
