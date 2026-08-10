@@ -166,6 +166,9 @@
   },
   "lsp": {
     "rust-analyzer": {
+      "binary": {
+        "path": "~/.cargo/bin/rust-analyzer"
+      },
       "initialization_options": {
         "inlayHints": {
           "maxLength": null,

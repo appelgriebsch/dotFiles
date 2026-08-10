@@ -22,3 +22,7 @@ fi
 if type bob &>/dev/null; then
   source "$HOME/.local/share/bob/env/env.sh"
 fi
+
+if type socktainer &>/dev/null; then
+  export DOCKER_HOST=unix:///opt/homebrew/var/run/socktainer/.socktainer/container.sock
+fi
