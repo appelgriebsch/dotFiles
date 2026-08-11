@@ -10,10 +10,10 @@
     "diagnostic_badges": true,
     "bold_folder_labels": true,
   },
-  "agent_servers" : {
-    "grok-build" : {
-      "type" : "registry"
-    }
+  "agent_servers": {
+    "grok-build": {
+      "type": "registry",
+    },
   },
   "auto_install_extensions": {
     "basher": true,
@@ -135,13 +135,6 @@
     "**/.vscode",
     "**/node_modules",
   ],
-  "agent": {
-    "sidebar_side": "left",
-    "dock": "left",
-    "play_sound_when_agent_done": "always",
-    "use_modifier_to_send": true,
-    "default_profile": "write",
-  },
   "languages": {
     "YAML": {
       "formatter": "language_server",
@@ -167,7 +160,7 @@
   "lsp": {
     "rust-analyzer": {
       "binary": {
-        "path": "~/.cargo/bin/rust-analyzer"
+        "path": "~/.cargo/bin/rust-analyzer",
       },
       "initialization_options": {
         "inlayHints": {
@@ -249,4 +242,65 @@
       },
     },
   },
+  "language_models": {
+    "openai_compatible": {
+      "supergrok": {
+        "api_url": "http://127.0.0.1:8787/v1",
+        "available_models": [
+          {
+            "name": "supergrok",
+            "display_name": "SuperGrok (local connector)",
+            "max_tokens": 500000,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": true,
+              "max_tokens_parameter": false
+            }
+          },
+          {
+            "name": "grok-4.6",
+            "display_name": "Grok 4.6",
+            "max_tokens": 500000,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": true,
+              "max_tokens_parameter": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  "agent": {
+    "sidebar_side": "left",
+    "dock": "left",
+    "play_sound_when_agent_done": "always",
+    "use_modifier_to_send": true,
+    "default_model": {
+      "provider": "supergrok",
+      "model": "supergrok"
+    },
+    "inline_assistant_model": {
+      "provider": "supergrok",
+      "model": "supergrok"
+    },
+    "inline_assistant_use_streaming_tools": false
+  },
+  "edit_predictions": {
+    "provider": "open_ai_compatible_api",
+    "open_ai_compatible_api": {
+      "api_url": "http://127.0.0.1:8787/v1/completions",
+      "model": "supergrok",
+      "prompt_format": "star_coder",
+      "max_output_tokens": 512
+    }
+  }
 }

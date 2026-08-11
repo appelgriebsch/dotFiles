@@ -93,6 +93,8 @@ Use these **exact** label names. Before applying, ensure each label exists on th
    - No secrets (API keys, passwords, PII)
    - Apply labels per the table (`has-plan` and/or grooming flags; never `epic`).
 
-3. **User summary** — return plan summary, main + child issue links (noting that each child carries its own plan and which labels were set), and next-step recommendations.
+3. **STE summary on main** — write a human-readable summary of the **full** plan and next steps in ASD-STE100 Simplified Technical English (ubiquitous language from `CONTEXT.md` when present). **Post it as a comment on the main GitHub Issue** (required — chat-only is not enough) and repeat it in the skill output to the user.
 
-**Done when:** main issue exists/updated with the parent plan, every child ticket has a linked GitHub Issue with goal/context/blockers/done criterion/**implementation plan**, **labels on every created/updated issue match the rules above**, and the user has the URLs.
+4. **User summary** — return the STE summary, main + child issue links (noting that each child carries its own plan), labels assigned to each issue, and next-step recommendations.
+
+**Done when:** main issue exists/updated with the parent plan; every child linked to main was created via GitHub MCP with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; and the user has the URLs plus that summary.

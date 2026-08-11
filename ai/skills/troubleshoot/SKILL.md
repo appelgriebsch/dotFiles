@@ -6,7 +6,7 @@ disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> This skill only **diagnoses and plans** — it must never write, edit, or execute implementation code, run builds/tests, or open branches/PRs. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build the fix; do not start implementation yourself, even if asked to "just fix it" in the same run.
+> This skill only **diagnoses, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and GitHub Issue creates/updates/comments. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build the fix; do not start implementation yourself, even if asked to "just fix it" in the same run.
 
 ## Workflow
 
@@ -30,7 +30,18 @@ Produce a plan that includes:
 - Recommended solutions or workarounds per root cause
 - Required code/config/infra changes and tests to validate the fix
 
-If the context is dubious, unclear, or requirements need external facts (unfamiliar APIs, libraries, specs, prior incidents), invoke the `research` skill **before** grilling the user. Have it write/update `RESEARCH.md` at the repository root, citing sources for each claim; re-invoke it later in this run if new open questions surface that need external facts. Only once research is done should you use the `grilling` skill to clarify whatever questions remain open (missing decisions, preferences, or ambiguous scope that research cannot answer).
+If the context is dubious, unclear, or requirements need external facts (unfamiliar APIs, libraries, specs, prior incidents), dispatch the `research` skill as a **background agent** **before** grilling the user so research legwork stays out of this conversation. Task it to write/update root `RESEARCH.md`, citing sources for each claim; re-dispatch the same way later if new open questions need external facts. When the agent finishes, take facts only from that file on disk. Only once `RESEARCH.md` is ready should you clarify whatever questions remain open (missing decisions, preferences, or ambiguous scope that research cannot answer): check whether a `CONTEXT.md` exists at the repository root, and if so run a `/grilling` session, using the `/domain-modeling` skill; if not, fall back to the plain `grilling` skill instead.
+
+#### Decision capture (after grilling)
+
+When a grilling session ran and settled **architectural decisions**, document them on disk before the expert consult finalizes — do not leave them only in chat:
+
+- **`CONTEXT.md` present** — record each qualifying decision as an ADR via `domain-modeling` (that skill’s three-criteria gate and ADR format). Glossary terms stay in `CONTEXT.md` as the session resolves them.
+- **No `CONTEXT.md`** — append a dated **Decisions** section to root `RESEARCH.md` (create the file if needed): for each settled decision, what was chosen, why, and rejected alternatives.
+
+If grilling produced no architectural decisions, say so briefly in the plan and skip this write.
+
+**Done when (decision capture):** every architectural decision from grilling is on disk (ADR under `docs/adr/` or a Decisions entry in `RESEARCH.md`), or the plan states none were made.
 
 #### Mandatory expert consult (do not skip)
 
@@ -44,19 +55,19 @@ When branching out:
 4. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan that **versioned codebase** (or the documented workspace fallback), match **every** available expert domain, and dispatch to **all** matched experts (see that skill’s hard rules). Your job is to supply the diagnosis materials, version signal, and question — not to decide which experts run.
 5. **Incorporate** the synthesized guidance (ranked hypotheses, evidence, next steps) into the plan. If the consult’s “Experts consulted” list is missing or looks incomplete relative to the repo, re-invoke `ask-the-expert` rather than proceeding on a partial consult.
 
-**Done when:** the plan has summary, reproduce steps (if applicable), ranked causes, fixes, and validation tests; ticket/trace version signals were checked; `ask-the-expert` was actually invoked in Diagnose mode against the **resolved git tag/revision** (or an explicit current-workspace fallback); its Experts consulted / inventory outcome is reflected; feedback is incorporated.
+**Done when:** the plan has summary, reproduce steps (if applicable), ranked causes, fixes, and validation tests; decision capture above is satisfied when grilling ran; ticket/trace version signals were checked; `ask-the-expert` was actually invoked in Diagnose mode against the **resolved git tag/revision** (or an explicit current-workspace fallback); its Experts consulted / inventory outcome is reflected; feedback is incorporated.
 
 ### Step 3 — Work breakdown and GitHub filing
 
 Follow [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the troubleshooting plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues. (If work started from a trace ID only, create the main issue from the plan summary.) Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
 
-**Labels (required):** on every issue you create or update, apply the shared label set from that reference — `epic` on the parent when children exist, `has-plan` when a workable fix/implementation plan is on the issue, `needs-troubleshoot` when diagnosis/root-cause still needs this skill, `needs-brainstorm` when residual product/scope gaps need the brainstorm skill. Ensure labels exist on the repo; clear stale grooming labels when a full plan lands.
+That shared reference owns three end-state gates — meet all of them before Step 4:
 
-#### Human readable summary
+1. **STE summary on main** — ASD-STE100 Simplified Technical English summary of the full plan + next steps posted as a **comment on the main GitHub Issue** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present.
+2. **Labels** on every issue you create or update, apply the shared label set from that reference — `epic` on the parent when children exist, `has-plan` when a workable fix/implementation plan is on the issue, `needs-troubleshoot` when diagnosis/root-cause still needs this skill, `needs-brainstorm` when residual product/scope gaps need the brainstorm skill. Ensure labels exist on the repo; clear stale grooming labels when a full plan lands.
+3. **Per-child plans and labels assigned** — as specified in the shared reference.
 
-Provide a human-readable summary of the **full** implementation plan and next steps. Talk in 'ASD-STE100 Simplified Technical English', and use the ubiquitous language from `CONTEXT.md` if available. **Push the summary to the GitHub main issue** as a comment, and also provide it to the user in this skill’s output.
-
-**Done when:** that shared reference’s completion criteria are met (including a plan on every child issue when possible, and correct labels on every created/updated issue) and the user has issue URLs **and** summary plus next steps.
+**Done when:** that shared reference’s completion criteria are met — including STE comment on the main ticket, correct labels on all touched issues, and a plan on every child when possible — and the user has issue URLs plus the STE summary and next steps.
 
 ### Step 4 — Stop and hand off
 

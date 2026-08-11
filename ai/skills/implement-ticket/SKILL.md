@@ -56,27 +56,33 @@ Ensure the local repo is up to date with the main branch. Pull and resolve merge
 
 ### Step 3 — Implement (leaf or EPIC waves)
 
+**Hard rule — background implement unit:** for every ticket (leaf or EPIC sub-ticket), dispatch **Steps 4–7 as one background task** (`task` / `general-purpose`, `mode: "background"`). Do this **always**, including when only one ticket is in flight — background is for **context isolation**, not only for parallelism. The parent conversation **orchestrates only**: prepare branch/worktree, launch the task, wait, read the task report. It must **not** implement, verify, open the PR, or review inline.
+
+Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–7 instructions below. When the task finishes, take status only from its report (PR URL, review outcome, deferred items, failures) — do not re-run the plan in the parent context.
+
 #### Leaf ticket
 
-Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it if missing; check it out if it exists. Then run **Steps 4–7** for this single ticket.
+Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it if missing; check it out if it exists. Then launch **one** background task for Steps 4–7 on that branch.
 
-**Done when:** the working branch is `feature/gh-{GITHUB_ISSUE_ID}` and Steps 4–7 for that ticket are complete.
+**Done when:** the working branch is `feature/gh-{GITHUB_ISSUE_ID}` and the background task has completed Steps 4–7 (or failed with a clear report).
 
 #### EPIC — sequence and parallel
 
 Before starting any wave, create the EPIC's own integration branch: `feature/gh-{GITHUB_EPIC_ID}` off the up-to-date main branch. Push it and open a **draft** PR for it (title references the EPIC id, body summarizes the EPIC and lists the sub-tickets to be stacked onto it). This EPIC PR is the eventual base that every sub-ticket PR will be stacked onto in Step 9 — do not merge it manually or squash sub-ticket work into it directly.
 
-Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave **in parallel** when possible (isolated branches / worktrees / subagents so work does not clobber a shared working tree). For each sub-ticket:
+Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–7 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
-1. Branch: `feature/gh-{GITHUB_SUBISSUE_ID}` (create or check out).
-2. Run **Steps 4–7** for that sub-ticket only (implement its plan, verify, PR, review).
-3. Treat the sub-ticket as **done for sequencing** only after its PR exists (and required verification passed), so later waves see correct blockers.
+1. Branch: `feature/gh-{GITHUB_SUBISSUE_ID}` (create or check out; use a worktree when running in parallel).
+2. Launch a **background** task that runs **Steps 4–7** for that sub-ticket only.
+3. Treat the sub-ticket as **done for sequencing** only after that task reports a PR (and required verification passed), so later waves see correct blockers.
 
-Do not start a later wave until every ticket in the current wave has finished Steps 4–7 (or failed with a reported blocker). If a parallel unit fails, report which sub-ticket failed and stop starting new waves that depend on it; finish other in-flight independent work when safe.
+Do not start a later wave until every ticket in the current wave has finished its background Steps 4–7 task (or failed with a reported blocker). If a parallel unit fails, report which sub-ticket failed and stop starting new waves that depend on it; finish other in-flight independent work when safe.
 
-**Done when:** every sub-ticket with a plan has been through Steps 4–7 in dependency order, or the user has a clear report of which wave/ticket blocked progress.
+**Done when:** every sub-ticket with a plan has been through a background Steps 4–7 task in dependency order, or the user has a clear report of which wave/ticket blocked progress.
 
 ### Step 4 — Implement the plan
+
+*(Runs inside the background task from Step 3 — never in the parent conversation.)*
 
 Apply the plan’s changes (code, config, infrastructure) for the **current** ticket only. If `AGENTS.md` or `*.instructions.md` exists, treat those instructions as authoritative over implicit assumptions. Add tests, docs, or other artifacts the plan requires.
 
@@ -84,21 +90,27 @@ Apply the plan’s changes (code, config, infrastructure) for the **current** ti
 
 ### Step 5 — Verify
 
+*(Runs inside the background task from Step 3 — never in the parent conversation.)*
+
 Run the project’s tests, linters, and build. Fix failures before continuing. For integration tests that need containers, use the `test-containers` skill.
 
 **Done when:** required checks pass (or blockers are reported to the user with evidence).
 
 ### Step 6 — Commit, push, open PR
 
+*(Runs inside the background task from Step 3 — never in the parent conversation.)*
+
 Commit on the feature branch, push to the remote, and open a GitHub Pull Request (e.g. via GitHub MCP). PR description must reference the GitHub Issue id for **this** ticket and summarize the changes. For EPIC work, also mention the parent EPIC issue id.
 
-**Done when:** PR URL exists and is reported.
+**Done when:** PR URL exists and is included in the task report.
 
 ### Step 7 — Code review
 
-Run the `expert-code-review` skill on the branch/PR. Offer to publish findings to the PR when appropriate.
+*(Runs inside the background task from Step 3 — never in the parent conversation.)*
 
-**Done when:** review delivered to the user (and published to the PR if the user agreed); PR URL + review outcome reported.
+Run the `expert-code-review` skill on the branch/PR. Publish findings to the PR when appropriate (or leave them in the task report for the parent to offer).
+
+**Done when:** review outcome and PR URL are in the task report.
 
 ### Step 8 — Stack sub-ticket PRs onto the EPIC PR (EPIC only)
 

@@ -1,6 +1,6 @@
 ---
 name: expert-code-review
-description: Expert code review via domain specialists. Use when the user wants recently written or modified code reviewed, a branch or PR reviewed, or feedback on security, performance, idioms, or architecture.
+description: Expert code review via domain specialists. Use when the user wants recently written or modified code reviewed, a branch or PR reviewed, or feedback on security, performance, idioms, architecture, or CI/CD delivery automation (GitHub Actions, Terraform, Helm, shell pipelines).
 argument-hint: "Please provide the branch, or GitHub Pull Request you would like reviewed."
 ---
 
@@ -12,7 +12,7 @@ Orchestrate review: scope the code for **expert routing only**, consult experts 
 2. **Screening = routing only** — Any pass over code before experts run exists solely to (a) define the review corpus and (b) decide which experts `ask-the-expert` should call. It is never a review.
 3. **Screening corpus matches the call shape**
    - **PR or diff** → screen **only the changeset** (changed paths + patch hunks). Do not inventory the rest of the tree for expert matching.
-   - **Branch or whole-repo** (or an explicit full-source request) → screen the **whole source** (tree, manifests, lockfiles, configs, migrations, IaC as needed for detection).
+   - **Branch or whole-repo** (or an explicit full-source request) → screen the **whole source** (tree, manifests, lockfiles, configs, migrations, workflows, Terraform/Helm/IaC as needed for detection).
    - **Named paths / snippet only** → screen those paths/snippet (expand only if required to resolve the named target).
 4. **Experts own domain judgment** — All domain findings come from matched experts via `ask-the-expert`. If a technology in the corpus has no expert, surface the gap; do not fill it with your own generalist domain review (non-domain process notes are fine).
 

@@ -1,6 +1,6 @@
 ---
 name: ask-the-expert
-description: Authoritative tech-specific consult via domain experts. Use when code review, implementation planning, or troubleshooting touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, Swift, PostgreSQL, or Datadog — or whenever another skill needs specialist input beyond generalist knowledge.
+description: Authoritative tech-specific consult via domain experts. Use when code review, implementation planning, or troubleshooting touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, Swift, PostgreSQL, Datadog, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines) — or whenever another skill needs specialist input beyond generalist knowledge.
 argument-hint: "Describe the code, technology, design question, or problem you would like expert input on."
 ---
 
@@ -19,6 +19,7 @@ You are an expert consultation orchestrator: discover every technology **in the 
 | Swift — client-side (SwiftUI/UIKit/AppKit), server-side (Vapor/Hummingbird/SwiftNIO), and CLI (swift-argument-parser, SwiftPM) | `swift-expert` | `**/*.swift`, `Package.swift`, `*.xcodeproj`, `*.xcworkspace`, Vapor/SwiftUI usage |
 | PostgreSQL queries, schemas, migrations, indexing, and query performance | `postgres-expert` | `**/*.{sql}`, Flyway/Liquibase/Alembic dirs, `postgres`/`postgresql` deps or URLs, JPA/`sqlx`/SQLAlchemy SQL touching Postgres |
 | Datadog observability data — metrics, logs, traces, dashboards, monitors, incidents | `datadog-analyzer` | Datadog client/SDK usage, `DD_*` env, trace/monitor/dashboard work, incident/APM investigation context |
+| CI/CD & delivery automation — GitHub Actions, Terraform pipelines, Helm charts, container build/deploy, CI shell | `ci-cd-expert` | `.github/workflows/**`, `action.yml`/`action.yaml`, `**/*.{tf,tfvars,hcl}`, `**/Chart.yaml`, `values*.yaml`, `Dockerfile*`, `docker-compose*.yml`, CI shell under `.github/`/scripts, `helmfile`, Kustomize/Argo/Flux delivery manifests |
 
 **Only invoke sub-agent IDs from this table.** Never invent experts. Never answer domain questions yourself when a matching expert exists.
 
@@ -64,7 +65,7 @@ For **Diagnose**, actively search ticket + trace materials for version signals *
 Perform legwork **only on the screening corpus**:
 
 1. **PR/diff:** list changed paths and skim patch language/framework signals (and any manifests/lockfiles **if they are part of the changeset**). Do not walk the untouched tree for matching.
-2. **Branch/whole-repo:** list top-level layout and key manifests (`Cargo.toml`, `pom.xml`/`build.gradle*`, `package.json`, `bun.lock*`, `pyproject.toml`, `Package.swift`, `*.sql` migration trees, Docker/K8s/IaC, etc.), then sample/search for detection signals.
+2. **Branch/whole-repo:** list top-level layout and key manifests (`Cargo.toml`, `pom.xml`/`build.gradle*`, `package.json`, `bun.lock*`, `pyproject.toml`, `Package.swift`, `*.sql` migration trees, `.github/workflows`, Terraform/Helm/Docker/K8s/IaC, etc.), then sample/search for detection signals.
 3. **Named/snippet/design:** inspect only those materials; treat ticket text, stack traces, and design notes as additional signals when provided.
 4. **Check each expert row** against corpus evidence — including rows you do not expect.
 5. Load `AGENTS.md` / `*.instructions.md` when present; constraints are **pass-through** to every expert, not material for your own analysis.
@@ -86,6 +87,7 @@ Codebase revision: [git tag | commit SHA | HEAD/current workspace] — [source o
 | swift-expert | yes/no | … |
 | postgres-expert | yes/no | … |
 | datadog-analyzer | yes/no | … |
+| ci-cd-expert | yes/no | … |
 
 Unmatched technologies in corpus (no expert): …
 ```
