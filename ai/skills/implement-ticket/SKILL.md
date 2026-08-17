@@ -1,6 +1,6 @@
 ---
 name: implement-ticket
-description: Execute a brainstorm/troubleshoot plan for a GitHub issue or EPIC (branch, implement, PR, review). Abort if needs-brainstorm/needs-troubleshoot labels remain; require has-plan (or a body plan). For EPICs, require every sub-ticket ready, sequence by blockers, implement independent tickets in parallel, and stack all sub-ticket PRs onto the EPIC PR at the end using gh-stack.
+description: Execute a brainstorm/troubleshoot plan for a GitHub issue or EPIC (branch, implement, PR; one review on the final PR). Abort if needs-brainstorm/needs-troubleshoot labels remain; require has-plan (or a body plan). For EPICs, require every sub-ticket ready, sequence by blockers, implement independent tickets in parallel, stack all sub-ticket PRs onto the EPIC PR at the end using gh-stack, then review that stack once.
 argument-hint: "Please provide the GitHub Issue id for the improvement, bug ticket, or EPIC you would like to implement."
 disable-model-invocation: true
 ---
@@ -64,29 +64,29 @@ Fetch and fast-forward the chosen parent base (pull the default branch when that
 
 ### Step 3 — Implement (leaf or EPIC waves)
 
-**Hard rule — background implement unit:** for every ticket (leaf or EPIC sub-ticket), dispatch **Steps 4–7 as one background task** (`task` / `general-purpose`, `mode: "background"`). Do this **always**, including when only one ticket is in flight — background is for **context isolation**, not only for parallelism. The parent conversation **orchestrates only**: prepare branch/worktree, launch the task, wait, read the task report. It must **not** implement, verify, open the PR, or review inline.
+**Hard rule — background implement unit:** for every ticket (leaf or EPIC sub-ticket), dispatch **Steps 4–6 as one background task** (`task` / `general-purpose`, `mode: "background"`). Do this **always**, including when only one ticket is in flight — background is for **context isolation**, not only for parallelism. The parent conversation **orchestrates only**: prepare branch/worktree, launch the task, wait, read the task report. It must **not** implement, verify, or open the PR inline.
 
-Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–7 instructions below. When the task finishes, take status only from its report (PR URL, review outcome, deferred items, failures) — do not re-run the plan in the parent context.
+Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–6 instructions below. When the task finishes, take status only from its report (PR URL, deferred items, failures) — do not re-run the plan in the parent context.
 
 #### Leaf ticket
 
-Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it from this ticket’s parent base if missing; check it out if it exists. Then launch **one** background task for Steps 4–7 on that branch. The task’s PR targets that same parent base.
+Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it from this ticket’s parent base if missing; check it out if it exists. Then launch **one** background task for Steps 4–6 on that branch. The task’s PR targets that same parent base.
 
-**Done when:** the working branch is `feature/gh-{GITHUB_ISSUE_ID}` (based on this ticket’s parent base) and the background task has completed Steps 4–7 (or failed with a clear report).
+**Done when:** the working branch is `feature/gh-{GITHUB_ISSUE_ID}` (based on this ticket’s parent base) and the background task has completed Steps 4–6 (or failed with a clear report).
 
 #### EPIC — sequence and parallel
 
-Before starting any wave, create the EPIC's own integration branch: `feature/gh-{GITHUB_EPIC_ID}` off the up-to-date main branch. Push it and open a **draft** PR for it (title references the EPIC id, body summarizes the EPIC and lists the sub-tickets to be stacked onto it). This EPIC PR is the eventual base that every sub-ticket PR will be stacked onto in Step 9 — do not merge it manually or squash sub-ticket work into it directly.
+Before starting any wave, create the EPIC's own integration branch: `feature/gh-{EPIC_ID}` off the up-to-date main branch. Push it and open a **draft** PR for it (title references the EPIC id, body summarizes the EPIC and lists the sub-tickets to be stacked onto it). This EPIC PR is the eventual base that every sub-ticket PR will be stacked onto in Step 7 — do not merge it manually or squash sub-ticket work into it directly.
 
-Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–7 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
+Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–6 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
-1. Resolve this sub-ticket’s parent base (Step 2). Branch: `feature/gh-{GITHUB_SUBISSUE_ID}` created from that parent base (create or check out; use a worktree when running in parallel). The sub-ticket PR targets that same parent base until Step 8 restacks it.
-2. Launch a **background** task that runs **Steps 4–7** for that sub-ticket only.
+1. Resolve this sub-ticket’s parent base (Step 2). Branch: `feature/gh-{GITHUB_SUBISSUE_ID}` created from that parent base (create or check out; use a worktree when running in parallel). The sub-ticket PR targets that same parent base until Step 7 restacks it.
+2. Launch a **background** task that runs **Steps 4–6** for that sub-ticket only.
 3. Treat the sub-ticket as **done for sequencing** only after that task reports a PR (and required verification passed), so later waves see correct blockers.
 
-Do not start a later wave until every ticket in the current wave has finished its background Steps 4–7 task (or failed with a reported blocker). If a parallel unit fails, report which sub-ticket failed and stop starting new waves that depend on it; finish other in-flight independent work when safe.
+Do not start a later wave until every ticket in the current wave has finished its background Steps 4–6 task (or failed with a reported blocker). If a parallel unit fails, report which sub-ticket failed and stop starting new waves that depend on it; finish other in-flight independent work when safe.
 
-**Done when:** every sub-ticket with a plan has been through a background Steps 4–7 task in dependency order, or the user has a clear report of which wave/ticket blocked progress.
+**Done when:** every sub-ticket with a plan has been through a background Steps 4–6 task in dependency order, or the user has a clear report of which wave/ticket blocked progress.
 
 ### Step 4 — Implement the plan
 
@@ -112,27 +112,32 @@ Commit on the feature branch, push to the remote, and open a GitHub Pull Request
 
 **Done when:** PR URL exists and is included in the task report.
 
-### Step 7 — Code review
+### Step 7 — Stack sub-ticket PRs onto the EPIC PR (EPIC only)
 
-*(Runs inside the background task from Step 3 — never in the parent conversation.)*
-
-Run the `expert-code-review` skill on the branch/PR. Publish findings to the PR when appropriate (or leave them in the task report for the parent to offer).
-
-**Done when:** review outcome and PR URL are in the task report.
-
-### Step 8 — Stack sub-ticket PRs onto the EPIC PR (EPIC only)
-
-After every sub-ticket has a PR (Step 6) and has been through review (Step 7), use the `gh-stack` skill to stack all sub-ticket PRs onto the EPIC PR created in Step 3:
+After every sub-ticket has a PR (Step 6), use the `gh-stack` skill to stack all sub-ticket PRs onto the EPIC PR created in Step 3:
 
 1. Order the sub-tickets bottom-to-top by the wave sequence from Step 1 (earlier waves — i.e. blockers — go lower in the stack; tickets within the same wave that have no relative dependency may be ordered arbitrarily, e.g. by ticket id).
-2. Run `gh stack link` (non-interactively, per the `gh-stack` skill's agent rules) with the EPIC branch first, `--base <main/default branch>`, followed by the sub-ticket branches/PR numbers in that bottom-to-top order, e.g.: `gh stack link --base main feature/{GITHUB_EPIC_ID} feature/{GITHUB_SUBISSUE_1} feature/{GITHUB_SUBISSUE_2} ...`. This pushes branches as needed, creates/corrects each PR's base so they chain in dependency order, and forms a single stack rooted at the EPIC PR.
+2. Run `gh stack link` (non-interactively, per the `gh-stack` skill's agent rules) with the EPIC branch first, `--base <main/default branch>`, followed by the sub-ticket branches/PR numbers in that bottom-to-top order, e.g.: `gh stack link --base main feature/{EPIC_ID} feature/{GITHUB_SUBISSUE_1} feature/{GITHUB_SUBISSUE_2} ...`. This pushes branches as needed, creates/corrects each PR's base so they chain in dependency order, and forms a single stack rooted at the EPIC PR.
 3. If any sub-ticket branch needs rebasing onto its new base to produce a clean diff (per the `gh-stack` skill's rebase guidance), run `gh stack rebase` and resolve conflicts before reporting the stack as ready.
 4. Verify the final structure with `gh stack view --json` and confirm every sub-ticket PR is chained beneath the correct dependent and ultimately based on the EPIC PR.
 
 **Done when:** every sub-ticket PR is linked into one stack rooted at the EPIC PR, verified via `gh stack view --json`, or the user has a clear report of which link/rebase step failed.
 
+### Step 8 — Code review (once, final PR)
+
+*(Parent conversation only — after the leaf PR exists, or after the EPIC stack is built in Step 7.)*
+
+Invoke `expert-code-review` **once** in this conversation (not as a background task, and not from inside a Step 4–6 task). Target the **final PR**:
+
+- **Leaf:** that ticket’s PR.
+- **EPIC:** the top of the stack (last branch in the Step 7 link order: last wave, then ticket id within the wave). That branch carries every earlier wave’s commits.
+
+Publish findings as comments on that PR only.
+
+**Done when:** one review has run on the final PR; comments (if any) are on that PR; the review outcome is recorded for wrap-up.
+
 ### Step 9 — EPIC wrap-up (EPIC only)
 
-After all sub-ticket waves complete and the stack is built, report a summary table: sub-ticket id, PR URL, review outcome, position in the stack, and any deferred items. Include the EPIC PR URL.
+After all sub-ticket waves complete, the stack is built, and the final-PR review has run, report a summary table: sub-ticket id, PR URL, position in the stack, and any deferred items. Include the EPIC PR URL, the final PR that was reviewed, and that review’s outcome.
 
 **Done when:** the user has one consolidated status for the whole EPIC.
