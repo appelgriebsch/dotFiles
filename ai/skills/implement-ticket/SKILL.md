@@ -32,6 +32,8 @@ Apply **before** branching or coding. Order matters:
    - The body contains an **implementation plan** (step-by-step guidance from `brainstorm` / `troubleshoot`, not only a goal or title), **and**
    - Preferably `has-plan` is set. If `has-plan` is **missing** but a clear body plan exists (legacy tickets), proceed and note the missing label. If `has-plan` is set but the body has no workable plan, **abort** and tell the user to re-run `brainstorm` / `troubleshoot` so the plan is written into the issue.
 3. If there is no plan and no grooming label: tell the user to run `brainstorm` or `troubleshoot` first, and **abort**.
+4. Resolve the parent EPIC (GitHub Issue parent, Epic Link, or “part of” EPIC). Record `{EPIC_ID}` or none.
+5. Record this ticket’s blockers (issue ids that must finish first, or none).
 
 **Leaf ticket**
 
@@ -46,25 +48,31 @@ Apply **before** branching or coding. Order matters:
 4. If **any** sub-ticket fails (grooming label, missing plan, or `has-plan` without a body plan): list those issue ids/titles and reasons, tell the user what to re-run, and **abort**. Do not implement partial EPICs.
 5. If all sub-tickets are ready: read each ticket’s **blocking edges** (issue numbers that must finish first, or “none”) and build an execution sequence — a dependency graph ordered into **waves**. A wave is the set of remaining tickets whose blockers are already done (or have none); tickets in the same wave may run **in parallel**. Tickets with blockers wait for later waves.
 
-**Done when:** a leaf ticket that passes readiness is loaded, **or** an EPIC has all sub-tickets loaded, every one (and the parent) passes readiness, and the wave sequence is written; **or** the run aborted with a clear report (grooming labels, missing plan, or missing issue).
+**Done when:** a leaf ticket that passes readiness is loaded, its parent EPIC is resolved (`{EPIC_ID}` or none), and its blockers are recorded; **or** an EPIC has all sub-tickets loaded, every one (and the parent) passes readiness, and the wave sequence is written; **or** the run aborted with a clear report (grooming labels, missing plan, or missing issue).
 
-### Step 2 — Sync main
+### Step 2 — Resolve and sync the parent base
 
-Ensure the local repo is up to date with the main branch. Pull and resolve merge conflicts when possible.
+The **parent base** is the branch this ticket is created from and the PR target until any later restack. First match after `git fetch`:
 
-**Done when:** main is current, or the user was asked to resolve conflicts manually and the run stopped.
+1. **Blocker:** the ticket has blockers and `feature/{BLOCKER_ID}` exists (local or `origin`) for at least one of them → that blocker branch. Several blockers: the last one in wave order (standalone leaf: last by ticket id among those with an active branch).
+2. **EPIC:** parent `{EPIC_ID}` and `origin/feature/{EPIC_ID}` exists (or this run just created it) → `feature/{EPIC_ID}`.
+3. **Default:** the repo default branch (`main` or `master`).
+
+Fetch and fast-forward the chosen parent base (pull the default branch when that is the match). Tickets with no blockers share the EPIC (or default) parent. A ticket with blockers uses its blocker branch — the previous wave’s work it depends on.
+
+**Done when:** this ticket’s parent base is chosen by that order and is current locally, or the user was asked to resolve conflicts and the run stopped.
 
 ### Step 3 — Implement (leaf or EPIC waves)
 
 **Hard rule — background implement unit:** for every ticket (leaf or EPIC sub-ticket), dispatch **Steps 4–7 as one background task** (`task` / `general-purpose`, `mode: "background"`). Do this **always**, including when only one ticket is in flight — background is for **context isolation**, not only for parallelism. The parent conversation **orchestrates only**: prepare branch/worktree, launch the task, wait, read the task report. It must **not** implement, verify, open the PR, or review inline.
 
-Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–7 instructions below. When the task finishes, take status only from its report (PR URL, review outcome, deferred items, failures) — do not re-run the plan in the parent context.
+Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–7 instructions below. When the task finishes, take status only from its report (PR URL, review outcome, deferred items, failures) — do not re-run the plan in the parent context.
 
 #### Leaf ticket
 
-Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it if missing; check it out if it exists. Then launch **one** background task for Steps 4–7 on that branch.
+Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it from this ticket’s parent base if missing; check it out if it exists. Then launch **one** background task for Steps 4–7 on that branch. The task’s PR targets that same parent base.
 
-**Done when:** the working branch is `feature/gh-{GITHUB_ISSUE_ID}` and the background task has completed Steps 4–7 (or failed with a clear report).
+**Done when:** the working branch is `feature/gh-{GITHUB_ISSUE_ID}` (based on this ticket’s parent base) and the background task has completed Steps 4–7 (or failed with a clear report).
 
 #### EPIC — sequence and parallel
 
@@ -72,7 +80,7 @@ Before starting any wave, create the EPIC's own integration branch: `feature/gh-
 
 Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–7 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
-1. Branch: `feature/gh-{GITHUB_SUBISSUE_ID}` (create or check out; use a worktree when running in parallel).
+1. Resolve this sub-ticket’s parent base (Step 2). Branch: `feature/gh-{GITHUB_SUBISSUE_ID}` created from that parent base (create or check out; use a worktree when running in parallel). The sub-ticket PR targets that same parent base until Step 8 restacks it.
 2. Launch a **background** task that runs **Steps 4–7** for that sub-ticket only.
 3. Treat the sub-ticket as **done for sequencing** only after that task reports a PR (and required verification passed), so later waves see correct blockers.
 
@@ -94,13 +102,13 @@ Apply the plan’s changes (code, config, infrastructure) for the **current** ti
 
 Run the project’s tests, linters, and build. Fix failures before continuing. For integration tests that need containers, use the `test-containers` skill.
 
-**Done when:** required checks pass (or blockers are reported to the user with evidence).
+**Done when:** required checks pass (or blockers are reported with evidence in the task report).
 
 ### Step 6 — Commit, push, open PR
 
 *(Runs inside the background task from Step 3 — never in the parent conversation.)*
 
-Commit on the feature branch, push to the remote, and open a GitHub Pull Request (e.g. via GitHub MCP). PR description must reference the GitHub Issue id for **this** ticket and summarize the changes. For EPIC work, also mention the parent EPIC issue id.
+Commit on the feature branch, push to the remote, and open a GitHub Pull Request (e.g. via GitHub MCP) targeting this ticket’s parent base. PR description must reference the GitHub Issue id for **this** ticket and summarize the changes. For EPIC work, also mention the parent EPIC issue id.
 
 **Done when:** PR URL exists and is included in the task report.
 

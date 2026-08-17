@@ -163,22 +163,14 @@ flowchart TD
     DC2b --> T2
     T2 -- "no" --> E["ask-the-expert (Diagnose mode)\nALWAYS — whole-repo scan,\nall matched experts"]
 
-    D --> F
+    D --> F["Refine plan with expert guidance"]
     E --> F
 
-    subgraph finalize["Finalize implementation plan"]
-        direction TB
-        F["Refine plan with expert guidance"] --> G["File tracer-bullet GitHub Issues\n+ labels (epic / has-plan /\nneeds-brainstorm / needs-troubleshoot)"]
-        G --> STE["Post STE summary comment\non main GitHub Issue"]
-        STE --> H["STOP — report plan + issue URLs\n+ STE summary"]
-    end
+    F["Refine plan with expert guidance"] --> G["File tracer-bullet GitHub Issues\n+ labels (epic / has-plan /\nneeds-brainstorm / needs-troubleshoot)"]
+    G --> STE["Post STE summary comment\non main GitHub Issue"]
+    STE --> H["STOP — report plan + issue URLs\n+ STE summary"]
 
-    subgraph approval["Manual approval by user"]
-        direction TB
-        I["implement-ticket"]
-    end
-
-    H -. "user runs manually" .-> I
+    H -. "user runs manually" .-> I["implement-ticket"]
 
     I --> IGate{"needs-brainstorm or\nneeds-troubleshoot?"}
     IGate -- "yes" --> IAbortGroom["Abort — re-run\nbrainstorm / troubleshoot"]
