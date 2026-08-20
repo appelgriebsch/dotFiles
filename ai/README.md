@@ -44,7 +44,7 @@ Domain experts share four consultation **modes** (used by `ask-the-expert` and r
 | `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and GitHub Issues. Ends with an STE summary comment on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), and readiness labels on every touched issue. |
 | `datadog-health-report` | Consolidated Datadog health report for a scoped area of responsibility — use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, and incidents synthesized into a meeting-ready summary. |
 | `expert-code-review` | Expert code review via domain specialists. Use when the user wants recently written or modified code reviewed, a branch or PR reviewed, or feedback on security, performance, idioms, architecture, or CI/CD delivery automation (GitHub Actions, Terraform, Helm, shell pipelines). |
-| `implement-ticket` | Execute a brainstorm/troubleshoot plan for a GitHub Issue or EPIC (branch, implement, PR, review). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, and stack all sub-ticket PRs onto the EPIC PR at the end using gh-stack. |
+| `implement-ticket` | Execute a brainstorm/troubleshoot plan for a GitHub Issue or EPIC (branch, implement, PR, review). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch using gh-stack, then review the top PR of the stack. |
 | `query-postgres` | Connect to Postgres databases via the psql CLI using per-environment credential files (e.g. env.prod) and run SQL queries. Use when the user wants to query a Postgres database, inspect or analyze data, run ad hoc SQL, or explore schema. Defaults to a read-only session and requires explicit user confirmation plus `--write` to run INSERT/UPDATE/DELETE/DDL statements. |
 | `test-containers` | Brings up (and tears down) the containers a project needs for its integration tests, using whichever container runtime is available — docker, podman, or the macOS-native "container" CLI, checked in that priority order. Use when the user asks to prepare/start/stop containers for integration tests, e.g. "prepare for IT tests", "start the docker containers for integration tests", "bring up containers for the ITs", "spin up podman for tests", or before running an integration test suite that requires a database/broker/etc. running in containers. |
 | `troubleshoot` | Diagnose a bug/incident (issue, Datadog trace id, or Zipkin Trace Id) into a fix plan and tracer-bullet work. Same end-state gates as `brainstorm`: STE summary on the main ticket, documented grilling decisions, readiness labels. |
@@ -134,57 +134,52 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 ```mermaid
 flowchart TD
-    A["User: idea/ticket"] --> B["brainstorm"]
-    A2["User: bug/incident/trace"] --> C["troubleshoot"]
+    subgraph plan["1. Plan — no code, no PRs"]
+        A["User: idea / ticket"] --> B["brainstorm"]
+        A2["User: bug / incident / trace"] --> C["troubleshoot"]
 
-    B --> R1{"Context dubious/unclear\nor needs external facts?"}
-    R1 -- "yes" --> S1["research\n(write/update RESEARCH.md\nin repo root)"]
-    S1 --> R1
-    R1 -- "no / settled" --> T1{"Open questions\nremain?"}
-    T1 -- "yes" --> U1{"CONTEXT.md\nat repo root?"}
-    U1 -- "yes" --> G1["grilling + domain-modeling"]
-    U1 -- "no" --> G1b["grilling only"]
-    G1 --> DC1["Decision capture:\nADRs via domain-modeling"]
-    G1b --> DC1b["Decision capture:\nDecisions section in RESEARCH.md"]
-    DC1 --> T1
-    DC1b --> T1
-    T1 -- "no" --> D["ask-the-expert (Plan mode)\nALWAYS — whole-repo scan,\nall matched experts"]
+        B --> R{"Context unclear\nor needs external facts?"}
+        C --> R
+        R -- yes --> S["research\nwrite/update RESEARCH.md"]
+        S --> R
+        R -- no --> T{"Open questions remain?"}
+        T -- yes --> U{"CONTEXT.md at repo root?"}
+        U -- yes --> G["grilling + domain-modeling\ncapture ADRs"]
+        U -- no --> Gb["grilling only\ncapture Decisions in RESEARCH.md"]
+        G --> T
+        Gb --> T
 
-    C --> R2{"Context dubious/unclear\nor needs external facts?"}
-    R2 -- "yes" --> S2["research\n(write/update RESEARCH.md\nin repo root)"]
-    S2 --> R2
-    R2 -- "no / settled" --> T2{"Open questions\nremain?"}
-    T2 -- "yes" --> U2{"CONTEXT.md\nat repo root?"}
-    U2 -- "yes" --> G2["grilling + domain-modeling"]
-    U2 -- "no" --> G2b["grilling only"]
-    G2 --> DC2["Decision capture:\nADRs via domain-modeling"]
-    G2b --> DC2b["Decision capture:\nDecisions section in RESEARCH.md"]
-    DC2 --> T2
-    DC2b --> T2
-    T2 -- "no" --> E["ask-the-expert (Diagnose mode)\nALWAYS — whole-repo scan,\nall matched experts"]
-
-    D --> F["Refine plan with expert guidance"]
-    E --> F
-
-    F["Refine plan with expert guidance"] --> G["File tracer-bullet GitHub Issues\n+ labels (epic / has-plan /\nneeds-brainstorm / needs-troubleshoot)"]
-    G --> STE["Post STE summary comment\non main GitHub Issue"]
-    STE --> H["STOP — report plan + issue URLs\n+ STE summary"]
+        T -- no --> X{"Skill?"}
+        X -- brainstorm --> D["ask-the-expert · Plan\nwhole-repo scan, all matched experts"]
+        X -- troubleshoot --> E["ask-the-expert · Diagnose\nwhole-repo scan, all matched experts"]
+        D --> F["Refine plan with expert guidance"]
+        E --> F
+        F --> ISS["File tracer-bullet GitHub Issues\n+ labels: epic / has-plan / needs-*"]
+        ISS --> STE["Post STE summary comment\non main GitHub Issue"]
+        STE --> H["STOP — report plan, issue URLs, STE summary"]
+    end
 
     H -. "user runs manually" .-> I["implement-ticket"]
 
-    I --> IGate{"needs-brainstorm or\nneeds-troubleshoot?"}
-    IGate -- "yes" --> IAbortGroom["Abort — re-run\nbrainstorm / troubleshoot"]
-    IGate -- "no" --> I0{"EPIC with sub-tickets?"}
-    I0 -- "yes" --> I1{"Every sub-ticket ready?\n(has-plan + body plan)"}
-    I1 -- "no" --> IAbort["Abort — list tickets\nnot ready"]
-    I1 -- "yes" --> IEpic["Create draft EPIC PR\n(feature/{EPIC_ID})"]
-    IEpic --> I2["Sequence by blockers;\nparallelize independent waves"]
-    I0 -- "no (leaf)" --> J
-    I2 --> J["Branch, implement, test, PR\n(per ticket / wave)"]
-    J --> K["expert-code-review"]
-    K --> L{"EPIC?"}
-    L -- "yes" --> M["gh-stack: stack all\nsub-ticket PRs onto EPIC PR"]
-    L -- "no" --> N["Done"]
+    subgraph impl["2. Implement — only after explicit user invoke"]
+        I --> IGate{"needs-brainstorm or\nneeds-troubleshoot?"}
+        IGate -- yes --> AbortGroom["Abort — re-run\nbrainstorm / troubleshoot"]
+        IGate -- no --> I0{"EPIC with sub-tickets?"}
+        I0 -- "no (leaf)" --> J["Branch, implement, test, PR"]
+        I0 -- yes --> I1{"Every sub-ticket ready?\nhas-plan + body plan"}
+        I1 -- no --> AbortReady["Abort — list tickets not ready"]
+        I1 -- yes --> IEpic["Create draft EPIC PR\nfeature/{EPIC_ID}"]
+        IEpic --> I2["Waves: branch, implement, test, PR\nper sub-ticket — no review"]
+        I2 --> M["gh-stack: stack sub-ticket PRs\nonto EPIC trunk"]
+        J --> K
+        M --> K["expert-code-review\nonce on final PR\n(leaf PR or stack top)"]
+        K --> N["Done"]
+    end
+
+    classDef abort fill:#fde8e8,stroke:#c0392b,color:#7b241c
+    classDef stop fill:#fff4e0,stroke:#d68910,color:#7d4e00
+    class AbortGroom,AbortReady abort
+    class H stop
 ```
 
 **No implicit handoff:** neither `brainstorm` nor `troubleshoot` may call `implement-ticket` or otherwise start building. The user must explicitly invoke `implement-ticket` for a filed ticket (or EPIC) to begin implementation. Implementation starts only when grooming labels are clear and a body plan is present (`has-plan` preferred); for EPICs, **every** sub-ticket (and the parent) must pass those readiness gates.

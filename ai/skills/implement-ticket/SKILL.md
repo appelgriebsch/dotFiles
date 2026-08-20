@@ -1,6 +1,6 @@
 ---
 name: implement-ticket
-description: Execute a brainstorm/troubleshoot plan for a GitHub issue or EPIC (branch, implement, PR; one review on the final PR). Abort if needs-brainstorm/needs-troubleshoot labels remain; require has-plan (or a body plan). For EPICs, require every sub-ticket ready, sequence by blockers, implement independent tickets in parallel, stack all sub-ticket PRs onto the EPIC PR at the end using gh-stack, then review that stack once.
+description: Execute a brainstorm/troubleshoot plan for a GitHub issue or EPIC (branch, implement, PR; one review on the final PR). Abort if needs-brainstorm/needs-troubleshoot labels remain; require has-plan (or a body plan). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch at the end using gh-stack (EPIC is the stack trunk, not a member targeting main), then review that stack once.
 argument-hint: "Please provide the GitHub Issue id for the improvement, bug ticket, or EPIC you would like to implement."
 disable-model-invocation: true
 ---
@@ -54,8 +54,8 @@ Apply **before** branching or coding. Order matters:
 
 The **parent base** is the branch this ticket is created from and the PR target until any later restack. First match after `git fetch`:
 
-1. **Blocker:** the ticket has blockers and `feature/{BLOCKER_ID}` exists (local or `origin`) for at least one of them → that blocker branch. Several blockers: the last one in wave order (standalone leaf: last by ticket id among those with an active branch).
-2. **EPIC:** parent `{EPIC_ID}` and `origin/feature/{EPIC_ID}` exists (or this run just created it) → `feature/{EPIC_ID}`.
+1. **Blocker:** the ticket has blockers and `feature/gh-{BLOCKER_ID}` exists (local or `origin`) for at least one of them → that blocker branch. Several blockers: the last one in wave order (standalone leaf: last by ticket id among those with an active branch).
+2. **EPIC:** parent `{EPIC_ID}` and `origin/feature/gh-{EPIC_ID}` exists (or this run just created it) → `feature/gh-{EPIC_ID}`.
 3. **Default:** the repo default branch (`main` or `master`).
 
 Fetch and fast-forward the chosen parent base (pull the default branch when that is the match). Tickets with no blockers share the EPIC (or default) parent. A ticket with blockers uses its blocker branch — the previous wave’s work it depends on.
@@ -76,7 +76,7 @@ Use branch name `feature/gh-{GITHUB_ISSUE_ID}`. Create it from this ticket’s p
 
 #### EPIC — sequence and parallel
 
-Before starting any wave, create the EPIC's own integration branch: `feature/gh-{EPIC_ID}` off the up-to-date main branch. Push it and open a **draft** PR for it (title references the EPIC id, body summarizes the EPIC and lists the sub-tickets to be stacked onto it). This EPIC PR is the eventual base that every sub-ticket PR will be stacked onto in Step 7 — do not merge it manually or squash sub-ticket work into it directly.
+Before starting any wave, create the EPIC's own integration branch: `feature/gh-{EPIC_ID}` off the up-to-date default branch. Push it and open a **draft** PR for it targeting the default branch (title references the EPIC id, body summarizes the EPIC and lists the sub-tickets). That draft PR is the only PR that targets the default branch; it stays draft through Step 8. Sub-ticket work reaches it in Step 7 (stack trunk + fast-forward), not by committing on the EPIC branch during waves.
 
 Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–6 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
@@ -112,16 +112,16 @@ Commit on the feature branch, push to the remote, and open a GitHub Pull Request
 
 **Done when:** PR URL exists and is included in the task report.
 
-### Step 7 — Stack sub-ticket PRs onto the EPIC PR (EPIC only)
+### Step 7 — Stack sub-ticket PRs onto the EPIC branch (EPIC only)
 
-After every sub-ticket has a PR (Step 6), use the `gh-stack` skill to stack all sub-ticket PRs onto the EPIC PR created in Step 3:
+After every sub-ticket has a PR (Step 6), use the `gh-stack` skill to stack **only the sub-ticket branches** onto `feature/gh-{EPIC_ID}`. The EPIC branch is the stack **trunk** (`--base`), not a stack member — its draft PR keeps targeting the default branch.
 
 1. Order the sub-tickets bottom-to-top by the wave sequence from Step 1 (earlier waves — i.e. blockers — go lower in the stack; tickets within the same wave that have no relative dependency may be ordered arbitrarily, e.g. by ticket id).
-2. Run `gh stack link` (non-interactively, per the `gh-stack` skill's agent rules) with the EPIC branch first, `--base <main/default branch>`, followed by the sub-ticket branches/PR numbers in that bottom-to-top order, e.g.: `gh stack link --base main feature/{EPIC_ID} feature/{GITHUB_SUBISSUE_1} feature/{GITHUB_SUBISSUE_2} ...`. This pushes branches as needed, creates/corrects each PR's base so they chain in dependency order, and forms a single stack rooted at the EPIC PR.
-3. If any sub-ticket branch needs rebasing onto its new base to produce a clean diff (per the `gh-stack` skill's rebase guidance), run `gh stack rebase` and resolve conflicts before reporting the stack as ready.
-4. Verify the final structure with `gh stack view --json` and confirm every sub-ticket PR is chained beneath the correct dependent and ultimately based on the EPIC PR.
+2. Two or more sub-tickets: run `gh stack link` (non-interactively, per the `gh-stack` skill's agent rules) as `gh stack link --base feature/gh-{EPIC_ID} feature/gh-{GITHUB_SUBISSUE_1} feature/gh-{GITHUB_SUBISSUE_2}...` (branches/PR numbers in that bottom-to-top order). Omit `feature/gh-{EPIC_ID}` from the linked arguments; omit the default branch from `--base`; omit `--open`. One sub-ticket: skip `link` — that PR already targets the EPIC parent base.
+3. If any sub-ticket branch needs rebasing onto its new base (per the `gh-stack` skill's rebase guidance), run `gh stack rebase` and resolve conflicts before continuing.
+4. Verify with `gh stack view --json` (when a stack was linked) that every sub-ticket PR is chained onto `feature/gh-{EPIC_ID}`, and that the EPIC PR is still a draft against the default branch with the full cumulative diff.
 
-**Done when:** every sub-ticket PR is linked into one stack rooted at the EPIC PR, verified via `gh stack view --json`, or the user has a clear report of which link/rebase step failed.
+**Done when:** sub-ticket PRs are stacked with trunk `feature/gh-{EPIC_ID}` (or the single sub-ticket PR already targets it), verified as above, or the user has a clear report of which link/rebase/fast-forward step failed.
 
 ### Step 8 — Code review (once, final PR)
 
