@@ -6,7 +6,7 @@ disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> This skill only **plans, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build it; do not start implementation yourself, even if asked to "just do it" in the same run.
+> This skill only **plans, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open feature branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After tickets are filed, **commit and push those artifacts to the repo default branch** (`main` or `master`). Then tell the user to run the `implement-ticket` skill manually to build it; do not start implementation yourself, even if asked to "just do it" in the same run.
 
 ## Workflow
 
@@ -65,8 +65,10 @@ That shared reference owns three end-state gates — meet all of them before Ste
 
 **Done when:** that shared reference’s completion criteria are met — including STE comment on the main ticket, correct labels on all touched issues, and a plan on every child when possible — and the user has issue URLs plus the STE summary and next steps.
 
-### Step 4 — Stop and hand off
+### Step 4 — Persist plan artifacts, then stop
 
-Report the plan summary and issue URLs, then stop. **Do not** begin implementation, create branches, edit files, or run `implement-ticket` yourself — the user must trigger implementation manually via the `implement-ticket` skill.
+If this run created or updated any of root `RESEARCH.md`, `CONTEXT.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit **only those paths** on the repo default branch (`main` or `master`) and push to `origin`. Use `issue-tracker` **Git naming** (`commit_with_ticket` when a ticket id exists). If HEAD is not the default branch, switch to it for this commit only (stash unrelated dirty files), then restore the previous checkout. Fast-forward from origin before pushing. Skip when none of those files changed.
 
-**Done when:** the user has been told to run `implement-ticket` manually when ready.
+Then report the plan summary, issue URLs, and the persist result (commit SHA, or that nothing changed). Stop. Do not begin implementation, create feature branches, or run `implement-ticket` — the user must trigger implementation manually via the `implement-ticket` skill.
+
+**Done when:** changed plan artifacts are on `origin` of the default branch (or none changed), and the user has been told to run `implement-ticket` manually when ready.
