@@ -1,4 +1,4 @@
-# Tracer-ticket breakdown and GitHub filing
+# Tracer-ticket breakdown and ticket filing
 
 Shared external reference for `brainstorm` and `troubleshoot`. Load after the plan (implementation or troubleshooting) is written. Not a skill — not invocable on its own.
 
@@ -50,51 +50,29 @@ When even the batches can't stay green alone, keep the sequence but let them sha
 
 Each expand / migrate-batch / contract ticket still gets its **own** implementation plan (what changes, where, how to keep CI green for that step).
 
-## GitHub issue creation / management
+## Ticket creation / management
 
-Use the GitHub MCP.
-
-### Labels (apply on every create and update)
-
-Use these **exact** label names. Before applying, ensure each label exists on the repo (create it via GitHub MCP if missing). Colors/descriptions are optional; names are not.
-
-| Label | Meaning | When to apply |
-| --- | --- | --- |
-| `epic` | Parent of tracer-bullet (or expand–contract) child issues | Main issue **after** at least one child is linked. Never on a leaf/child ticket. |
-| `has-plan` | Issue body has an implementation (or fix) plan that `implement-ticket` can follow | Full plan **or** best-effort plan with concrete steps (not empty / “TBD only”). Apply to main and each child that qualifies. |
-| `needs-brainstorm` | Product/design/scope still needs grooming before implement | Open questions, unresolved preferences, or residual unknowns that `brainstorm` should close. Prefer on the issue that owns the gap (often a child with a thin plan, or the main issue if the whole idea is under-specified). |
-| `needs-troubleshoot` | Diagnosis/root-cause still needs work before implement | Open incident questions, unconfirmed root cause, or missing reproduce/validation path that `troubleshoot` should close. |
-
-**Rules**
-
-1. **Set labels from current state** on every create **and** every update — do not leave stale grooming flags after a plan lands.
-2. **`has-plan` vs grooming flags**
-   - Full, implementable plan and no material open questions → add `has-plan`; **remove** `needs-brainstorm` and `needs-troubleshoot` on that issue.
-   - Best-effort plan with residual unknowns → keep `has-plan` **and** the matching grooming label (`needs-brainstorm` for product/scope gaps, `needs-troubleshoot` for diagnosis gaps).
-   - No workable plan yet → do **not** add `has-plan`; add `needs-brainstorm` and/or `needs-troubleshoot` as appropriate.
-3. **`epic`** only when the main issue is a real parent (children exist). A single leaf with a plan gets `has-plan` only — not `epic`.
-4. **Which grooming label:** improvements/ideas → `needs-brainstorm`; bugs/incidents/traces → `needs-troubleshoot`. An issue may carry both only if both kinds of gap remain.
-5. Do **not** invent alternate names (`Epic`, `planned`, `needs-grooming`, etc.). Reuse these four so filters and `implement-ticket` stay consistent.
+Load `issue-tracker` before any get/create/update/comment/link. Use **Operations** tool names and **Extras** labels.
 
 ### Filing steps
 
 1. **Main issue**
-   - If work started from an existing GitHub Issue: update it with a summary of the plan.
-   - If work started from an idea, improvement request, or trace ID only: create a new GitHub Issue with that summary.
+   - If work started from an existing ticket: **update** it with a summary of the plan (**Operations** update).
+   - If work started from an idea, improvement request, or trace ID only: **create** a new ticket with that summary (**Operations** create).
    - Keep the **full** parent plan (or a clear summary + pointer) on the main/EPIC issue so the overall story stays visible.
-   - Apply labels per the table (typically `epic` + `has-plan` when children and a parent plan exist; grooming flags only if gaps remain).
+   - Apply labels per **Extras** (typically `epic` + `has-plan` when children and a parent plan exist; grooming flags only if gaps remain).
 
-2. **Child issues** — for each tracer-bullet ticket from the breakdown, create a GitHub Issue linked to the main issue. Each child body must include:
+2. **Child issues** — for each tracer-bullet ticket from the breakdown, **create** a ticket (**Operations** create) and **link** it to the main issue (**Operations** link_child). Each child body must include:
    - Goal (one line) — fits Context **What**
    - Context references (paths, issue URLs, ADRs — not duplicated full specs)
-   - Blocking edges (issue numbers or “none”)
+   - Blocking edges (ticket ids or “none”)
    - Demoable/verifiable done criterion — fits Acceptance Criteria
    - **Implementation plan** — the per-ticket plan from the breakdown (step-by-step for this child; full or best-effort with unknowns). This is what `implement-ticket` will execute for leaf work and for each EPIC sub-ticket.
    - No secrets (API keys, passwords, PII)
-   - Apply labels per the table (`has-plan` and/or grooming flags; never `epic`).
+   - Apply labels per **Extras** (`has-plan` and/or grooming flags; never `epic`).
 
-3. **STE summary on main** — write a human-readable summary of the **full** plan and next steps in ASD-STE100 Simplified Technical English (ubiquitous language from `CONTEXT.md` when present). **Post it as a comment on the main GitHub Issue** (required — chat-only is not enough) and repeat it in the skill output to the user.
+3. **STE summary on main** — write a human-readable summary of the **full** plan and next steps in ASD-STE100 Simplified Technical English (ubiquitous language from `CONTEXT.md` when present). **Post it as a comment on the main ticket** (**Operations** comment) (required — chat-only is not enough) and repeat it in the skill output to the user.
 
 4. **User summary** — return the STE summary, main + child issue links (noting that each child carries its own plan), labels assigned to each issue, and next-step recommendations.
 
-**Done when:** main issue exists/updated with the parent plan; every child linked to main was created via GitHub MCP with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; and the user has the URLs plus that summary.
+**Done when:** main issue exists/updated with the parent plan; every child linked to main was created via **Operations** create + link_child with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; and the user has the URLs plus that summary.

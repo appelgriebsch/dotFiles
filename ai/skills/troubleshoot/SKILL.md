@@ -1,18 +1,18 @@
 ---
 name: troubleshoot
 description: Diagnose a bug/incident (issue or Datadog trace) into a fix plan and tracer-bullet work.
-argument-hint: "Please provide the GitHub Issue id or trace id of the problem or issue you would like to troubleshoot."
+argument-hint: "Please provide the ticket id or trace id of the problem or issue you would like to troubleshoot."
 disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> This skill only **diagnoses, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and GitHub Issue creates/updates/comments. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build the fix; do not start implementation yourself, even if asked to "just fix it" in the same run.
+> This skill only **diagnoses, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build the fix; do not start implementation yourself, even if asked to "just fix it" in the same run.
 
 ## Workflow
 
 ### Step 1 — Parse the Request
 
-Verify if the provided input refers to an open GitHub Issue via the GitHub MCP. If yes, load issue details. If not, treat the input as a Datadog `trace_id`.
+Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches, get the ticket via **Operations** get and load issue details. If not, treat the input as a Datadog `trace_id`.
 
 If a Datadog `trace_id` appears in the input or the issue body, use the `datadog-analyzer` sub-agent to analyze the trace (APM, logs, metrics, events) for root-cause insights. Treat this as **early evidence gathering only** — it does **not** replace the mandatory `ask-the-expert` consult in Step 2 (which still discovers all repo technologies and may re-engage `datadog-analyzer` plus every other matched expert).
 
@@ -57,14 +57,14 @@ When branching out:
 
 **Done when:** the plan has summary, reproduce steps (if applicable), ranked causes, fixes, and validation tests; decision capture above is satisfied when grilling ran; ticket/trace version signals were checked; `ask-the-expert` was actually invoked in Diagnose mode against the **resolved git tag/revision** (or an explicit current-workspace fallback); its Experts consulted / inventory outcome is reflected; feedback is incorporated.
 
-### Step 3 — Work breakdown and GitHub filing
+### Step 3 — Work breakdown and ticket filing
 
-Follow [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the troubleshooting plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues. (If work started from a trace ID only, create the main issue from the plan summary.) Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
+Follow [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the troubleshooting plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues via `issue-tracker`. (If work started from a trace ID only, create the main issue from the plan summary.) Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
 
 That shared reference owns three end-state gates — meet all of them before Step 4:
 
-1. **STE summary on main** — ASD-STE100 Simplified Technical English summary of the full plan + next steps posted as a **comment on the main GitHub Issue** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present.
-2. **Labels** on every issue you create or update, apply the shared label set from that reference — `epic` on the parent when children exist, `has-plan` when a workable fix/implementation plan is on the issue, `needs-troubleshoot` when diagnosis/root-cause still needs this skill, `needs-brainstorm` when residual product/scope gaps need the brainstorm skill. Ensure labels exist on the repo; clear stale grooming labels when a full plan lands.
+1. **STE summary on main** — ASD-STE100 Simplified Technical English summary of the full plan + next steps posted as a **comment on the main ticket** (**Operations** comment) (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present.
+2. **Labels** on every issue you create or update — apply `issue-tracker` **Extras** (create missing names first). Clear stale grooming labels when a full plan lands.
 3. **Per-child plans and labels assigned** — as specified in the shared reference.
 
 **Done when:** that shared reference’s completion criteria are met — including STE comment on the main ticket, correct labels on all touched issues, and a plan on every child when possible — and the user has issue URLs plus the STE summary and next steps.

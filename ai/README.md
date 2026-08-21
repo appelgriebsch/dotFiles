@@ -41,10 +41,11 @@ Domain experts share four consultation **modes** (used by `ask-the-expert` and r
 | --- | --- |
 | `ask-the-expert` | Authoritative tech-specific consult via domain experts. Use when code review, implementation planning, or troubleshooting touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, Swift, PostgreSQL, Datadog, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines) — or whenever another skill needs specialist input beyond generalist knowledge. |
 | `aws-sso-login` | Authenticate to AWS using Single Sign-On (SSO). Use when AWS CLI operations require SSO authentication or when SSO session has expired. |
-| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and GitHub Issues. Ends with an STE summary comment on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), and readiness labels on every touched issue. |
+| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary comment on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), and readiness labels on every touched issue. |
 | `datadog-health-report` | Consolidated Datadog health report for a scoped area of responsibility — use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, and incidents synthesized into a meeting-ready summary. |
 | `expert-code-review` | Expert code review via domain specialists. Use when the user wants recently written or modified code reviewed, a branch or PR reviewed, or feedback on security, performance, idioms, architecture, or CI/CD delivery automation (GitHub Actions, Terraform, Helm, shell pipelines). |
-| `implement-ticket` | Execute a brainstorm/troubleshoot plan for a GitHub Issue or EPIC (branch, implement, PR, review). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch using gh-stack, then review the top PR of the stack. |
+| `implement-ticket` | Execute a brainstorm/troubleshoot plan for a tracker ticket or EPIC (branch, implement, PR, review). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch using gh-stack, then review the top PR of the stack. |
+| `issue-tracker` | Single source for ticket identity, issue MCP operations, readiness labels, and git naming. Loaded by `brainstorm`, `troubleshoot`, `implement-ticket`, and `expert-code-review`. Swap this skill to change tracker. |
 | `query-postgres` | Connect to Postgres databases via the psql CLI using per-environment credential files (e.g. env.prod) and run SQL queries. Use when the user wants to query a Postgres database, inspect or analyze data, run ad hoc SQL, or explore schema. Defaults to a read-only session and requires explicit user confirmation plus `--write` to run INSERT/UPDATE/DELETE/DDL statements. |
 | `test-containers` | Brings up (and tears down) the containers a project needs for its integration tests, using whichever container runtime is available — docker, podman, or the macOS-native "container" CLI, checked in that priority order. Use when the user asks to prepare/start/stop containers for integration tests, e.g. "prepare for IT tests", "start the docker containers for integration tests", "bring up containers for the ITs", "spin up podman for tests", or before running an integration test suite that requires a database/broker/etc. running in containers. |
 | `troubleshoot` | Diagnose a bug/incident (issue, Datadog trace id, or Zipkin Trace Id) into a fix plan and tracer-bullet work. Same end-state gates as `brainstorm`: STE summary on the main ticket, documented grilling decisions, readiness labels. |
@@ -122,15 +123,15 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 ### Planning → implementation flow
 
-`brainstorm` and `troubleshoot` **plan, document decisions, and file GitHub Issues** — they never write **implementation code**, run tests, or open branches/PRs. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and GitHub Issue creates/updates/comments. Implementation is always triggered manually by the user afterwards, via `implement-ticket`.
+`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** (via `issue-tracker`) — they never write **implementation code**, run tests, or open branches/PRs. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. Implementation is always triggered manually by the user afterwards, via `implement-ticket`.
 
-**End-state gates** (both skills; owned with `skills/brainstorm/references/tracer-ticket-breakdown.md`):
+**End-state gates** (both skills; filing owned with `skills/brainstorm/references/tracer-ticket-breakdown.md`; labels and MCP owned by `issue-tracker`):
 
 | Gate | Requirement |
 | --- | --- |
-| **STE summary on main** | Full plan + next steps in ASD-STE100 Simplified Technical English, posted as a **comment on the main GitHub Issue** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present. |
+| **STE summary on main** | Full plan + next steps in ASD-STE100 Simplified Technical English, posted as a **comment on the main ticket** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present. |
 | **Decision capture** | Architectural decisions from grilling are on disk: **ADRs** via `domain-modeling` when root `CONTEXT.md` exists; otherwise a dated **Decisions** section in root `RESEARCH.md`. Skip only when grilling made none (state that in the plan). |
-| **Labels** | Every issue **created or updated** in the run has the correct readiness label attached. |
+| **Labels** | Every issue **created or updated** in the run has the correct readiness label attached (`issue-tracker` **Extras**). |
 
 ```mermaid
 flowchart TD
@@ -154,8 +155,8 @@ flowchart TD
         X -- troubleshoot --> E["ask-the-expert · Diagnose\nwhole-repo scan, all matched experts"]
         D --> F["Refine plan with expert guidance"]
         E --> F
-        F --> ISS["File tracer-bullet GitHub Issues\n+ labels: epic / has-plan / needs-*"]
-        ISS --> STE["Post STE summary comment\non main GitHub Issue"]
+        F --> ISS["File tracer-bullet tickets\nvia issue-tracker + labels"]
+        ISS --> STE["Post STE summary comment\non main ticket"]
         STE --> H["STOP — report plan, issue URLs, STE summary"]
     end
 

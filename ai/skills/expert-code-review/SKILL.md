@@ -28,6 +28,8 @@ Identify **mechanically** — collect material, do not analyze quality:
 - Constraints (runtime, conventions). If unspecified, ask experts to cover quality, security, performance, testing, and dependency hygiene
 - Branch/PR: ensure the correct repo and branch (stash uncommitted work before switching). If not in the right repo, offer a temp clone
 
+Load `issue-tracker` when the branch or PR may map to a ticket id.
+
 If `AGENTS.md` or `*.instructions.md` exists, treat those constraints as authoritative **pass-through** to experts — not as something you review against yourself in this step.
 
 **Forbidden in this step:** reading the corpus “to form an opinion,” summarizing problems, or drafting any finding list.
@@ -49,7 +51,7 @@ Invoke `ask-the-expert` in **Review** mode with:
 
 ### Step 3 — Merge and contextualize
 
-Merge **expert** findings only — do not re-derive severity from scratch or invent new domain issues. Eliminate duplicates; lead with impact; answer the user’s questions first. If a PR exists, skip comments already addressed on the PR. If the branch/PR maps to a GitHub Issue, validate the implementation against that ticket (use the GitHub MCP for retrieval).
+Merge **expert** findings only — do not re-derive severity from scratch or invent new domain issues. Eliminate duplicates; lead with impact; answer the user’s questions first. If a PR exists, skip comments already addressed on the PR. If the branch/PR maps to **Identity** `ticket_id_pattern`, get the ticket via **Operations** get and validate the implementation against it.
 
 Before delivery, apply [`references/review-standards.md`](references/review-standards.md).
 

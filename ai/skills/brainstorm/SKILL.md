@@ -1,18 +1,18 @@
 ---
 name: brainstorm
-description: Plan an improvement ticket or idea into tracer-bullet work and GitHub issues.
-argument-hint: "Please provide the GitHub Issue id or describe the improvement idea you would like to implement."
+description: Plan an improvement ticket or idea into tracer-bullet work and tracker tickets.
+argument-hint: "Please provide the ticket ID or describe the improvement idea you would like to implement."
 disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> This skill only **plans, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and GitHub Issue creates/updates/comments. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build it; do not start implementation yourself, even if asked to "just do it" in the same run.
+> This skill only **plans, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. Once the plan is filed, tell the user to run the `implement-ticket` skill manually to build it; do not start implementation yourself, even if asked to "just do it" in the same run.
 
 ## Workflow
 
 ### Step 1 — Parse the Request
 
-Verify if the provided input refers to an open GitHub Issue via the GitHub MCP. If not, treat it as an idea or improvement request. Gather context, requirements, and constraints. If the ticket or request references a PRD, load it via the GitHub MCP and extract relevant information.
+Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches an **open** ticket, get it via **Operations** get. If not, treat it as an idea or improvement request. Gather context, requirements, and constraints. If the ticket or request references a PRD that matches **Identity**, get that ticket via **Operations** get and extract relevant information.
 
 **Done when:** you have a written set of context, requirements, and constraints (from issue, PRD, and/or user text).
 
@@ -53,14 +53,14 @@ When branching out:
 
 **Done when:** the plan has summary, steps, risks, tests/validation; decision capture above is satisfied when grilling ran; `ask-the-expert` was actually invoked in Plan mode against the **current workspace** as codebase reference; its Experts consulted / inventory outcome is reflected; feedback is incorporated; open questions resolved or explicitly listed.
 
-### Step 3 — Work breakdown and GitHub filing
+### Step 3 — Work breakdown and ticket filing
 
-Follow [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the parent plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues. Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
+Follow [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the parent plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues via `issue-tracker`. Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
 
 That shared reference owns three end-state gates — meet all of them before Step 4:
 
-1. **STE summary on main** — ASD-STE100 Simplified Technical English summary of the full plan + next steps posted as a **comment on the main GitHub Issue** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present.
-2. **Labels** on every issue you create or update, apply the shared label set from that reference — `epic` on the parent when children exist, `has-plan` when a workable implementation plan is on the issue, `needs-brainstorm` when product/scope still needs this skill, `needs-troubleshoot` when diagnosis still needs the troubleshoot skill. Ensure labels exist on the repo; clear stale grooming labels when a full plan lands.
+1. **STE summary on main** — ASD-STE100 Simplified Technical English summary of the full plan + next steps posted as a **comment on the main ticket** (**Operations** comment) (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present.
+2. **Labels** on every issue you create or update — apply `issue-tracker` **Extras** (create missing names first). Clear stale grooming labels when a full plan lands.
 3. **Per-child plans and labels assigned** — as specified in the shared reference.
 
 **Done when:** that shared reference’s completion criteria are met — including STE comment on the main ticket, correct labels on all touched issues, and a plan on every child when possible — and the user has issue URLs plus the STE summary and next steps.
