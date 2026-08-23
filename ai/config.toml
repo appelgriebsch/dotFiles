@@ -12,58 +12,82 @@ default_reasoning_effort = "medium"
 
 [ui]
 theme = "auto"
+max_thoughts_width = 120
+fork_secondary_model = "grok-4.5"
+yolo = false
+compact_mode = false
+permission_mode = "auto"
+show_timeline = true
+simple_mode = false
+vim_mode = true
+combine_queued_prompts = true
+remember_tool_approvals = true
+default_selected_permission = "allow_command_always"
 
 [features]
 lsp_tools = true
 # two_pass_compaction = true   # opt-in;
 
-# ---------------------------------------------------------------------------
-# Session compaction
-# ---------------------------------------------------------------------------
+[sandbox]
+profile = "workspace"
+
 [session]
 auto_compact_threshold_percent = 85
 
-# ---------------------------------------------------------------------------
-# MCP servers
-# Tools are namespaced as server__tool (e.g. github__list_issues).
-# ---------------------------------------------------------------------------
-
 [mcp_servers.crates-io]
 command = "cratesio-mcp"
-args = ["--transport", "stdio"]
+args = [
+    "--transport",
+    "stdio",
+]
 enabled = true
 
 [mcp_servers.bun-mcp]
 command = "bunx"
-args = ["-y", "mcp-bun@latest"]
+args = [
+    "-y",
+    "mcp-bun@latest",
+]
 enabled = true
-env = { DISABLE_NOTIFICATIONS = "true" }
 
-# Enable when you need Datadog tools; set DATADOG_MCP_TOKEN in the environment.
+[mcp_servers.bun-mcp.env]
+DISABLE_NOTIFICATIONS = "true"
+
 [mcp_servers.datadog]
 url = "https://mcp.datadoghq.eu/v1/mcp"
 enabled = false
-headers = { Authorization = "Bearer ${DATADOG_MCP_TOKEN}" }
+
+[mcp_servers.datadog.headers]
+Authorization = "Bearer ${DATADOG_MCP_TOKEN}"
 
 [mcp_servers.github]
 command = "github-mcp-server"
 args = ["stdio"]
 enabled = true
-env = { GITHUB_PERSONAL_ACCESS_TOKEN = "${GITHUB_PERSONAL_ACCESS_TOKEN}" }
 
-# ---------------------------------------------------------------------------
-# Permissions
-#
-# GitHub: ask by default; allow common read-oriented tool name prefixes.
-# Refine after listing tools (e.g. grok mcp doctor / /mcps).
-# ---------------------------------------------------------------------------
+[mcp_servers.github.env]
+GITHUB_PERSONAL_ACCESS_TOKEN = "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+
 [permission]
-ask = [
-  "MCPTool(github__*)",
-]
+ask = ["MCPTool(github__*)"]
 allow = [
-  "MCPTool(github__get_*)",
-  "MCPTool(github__list_*)",
-  "MCPTool(github__search_*)",
-  "MCPTool(github__*_read_*)",
+    "MCPTool(github__get_*)",
+    "MCPTool(github__list_*)",
+    "MCPTool(github__search_*)",
+    "MCPTool(github__*_read_*)",
 ]
+
+[marketplace]
+default_skills_installs_purged = true
+official_marketplace_auto_installed = true
+
+[[marketplace.sources]]
+name = "xAI Official"
+git = "https://github.com/xai-org/plugin-marketplace.git"
+
+[cli]
+installer = "npm"
+auto_update = true
+
+[privacy]
+privacy_banner_acked = "2026-08-07T16:33:55Z"

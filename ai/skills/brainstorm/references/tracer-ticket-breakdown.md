@@ -1,6 +1,6 @@
 # Tracer-ticket breakdown and ticket filing
 
-Shared external reference for `brainstorm` and `troubleshoot`. Load after the plan (implementation or troubleshooting) is written. Not a skill — not invocable on its own.
+Shared external reference for `brainstorm` and `troubleshoot`. Load after the plan (implementation or troubleshooting) is written. Not a skill — not invocable on its own. Work breakdown and ticket filing run from skill Step 3; **Persist plan artifacts** runs from skill Step 4 after filing is done.
 
 ## Work breakdown
 
@@ -76,3 +76,25 @@ Load `issue-tracker` before any get/create/update/comment/link. Use **Operations
 4. **User summary** — return the STE summary, main + child issue links (noting that each child carries its own plan), labels assigned to each issue, and next-step recommendations.
 
 **Done when:** main issue exists/updated with the parent plan; every child linked to main was created via **Operations** create + link_child with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; and the user has the URLs plus that summary.
+
+## Persist plan artifacts
+
+Skill Step 4 — after filing. If this run created or updated any of root `RESEARCH.md`, `CONTEXT.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit **only those paths** on the **implement-ticket baseline branch** and open a **draft** PR for that head. Skip when none of those files changed. These files land with the work they inform — they merge when that work merges.
+
+`{BASELINE_ID}` is the **main issue** from filing above.
+
+| Kind | Baseline branch | Create from / PR target |
+| --- | --- | --- |
+| **EPIC** (`epic` label and/or children linked) | `issue-tracker` `branch_with_ticket` for `{BASELINE_ID}` | repo default branch (`main` or `master`) |
+| **Leaf** (no children) | `issue-tracker` `branch_with_ticket` for `{BASELINE_ID}` | that ticket’s **parent base** — same order as `implement-ticket` Step 2 (blocker branch if one exists, else parent EPIC branch if one exists, else default) |
+
+1. Fetch. Stash unrelated dirty files. Checkout the baseline branch; create it from the parent in the table if it is missing locally and on `origin`. If it already exists, use it (fast-forward from origin) — do not recreate it from default.
+2. Commit only the artifact paths. Message from **Git naming** `commit_with_ticket` with `{BASELINE_ID}`.
+3. Push the baseline branch to `origin`.
+4. If no open PR exists for this head: open a **draft** PR targeting the parent in the table. Title from `pr_title_with_ticket` for `{BASELINE_ID}`. Body: these are plan artifacts (research / decisions); implementation follows via `implement-ticket`; include ticket browse URLs (and child ids when this is an EPIC).
+5. If a PR already exists for this head: keep it draft, retarget its base if it does not match the parent in the table, report its URL.
+6. Restore the previous checkout.
+
+Then stop. Do not write implementation code or run `implement-ticket`.
+
+**Done when:** changed plan artifacts are on `origin` of the baseline branch and a draft PR URL exists for that head (or none of those files changed), and the user has been told to run `implement-ticket` manually when ready.

@@ -61,13 +61,13 @@ Prompt each background task with the full ticket plan, ticket id, branch name (a
 
 #### Leaf ticket
 
-Use branch name from `issue-tracker` **Git naming** `branch_with_ticket`. Create it from this ticket’s parent base if missing; check it out if it exists. Then launch **one** background task for Steps 4–6 on that branch. The task’s PR targets that same parent base.
+Use branch name from `issue-tracker` **Git naming** `branch_with_ticket`. Create it from this ticket’s parent base if missing; check it out if it exists (it may already carry plan-artifact commits and a draft PR from `brainstorm` / `troubleshoot` — keep those commits). Then launch **one** background task for Steps 4–6 on that branch. The task’s PR targets that same parent base.
 
 **Done when:** the working branch is `branch_with_ticket` for this ticket (based on this ticket’s parent base) and the background task has completed Steps 4–6 (or failed with a clear report).
 
 #### EPIC — sequence and parallel
 
-Before starting any wave, create the EPIC's own integration branch from `issue-tracker` `branch_with_ticket` for `{EPIC_ID}` off the up-to-date default branch. Push it and open a **draft** PR for it targeting the default branch (title from **Git naming** `pr_title_with_ticket` for the EPIC id, body summarizes the EPIC and lists the sub-tickets). That draft PR is the only PR that targets the default branch; it stays draft through Step 8. Sub-ticket work reaches it in Step 7 (stack trunk + fast-forward), not by committing on the EPIC branch during waves.
+Before starting any wave, ensure the EPIC `branch_with_ticket` for `{EPIC_ID}` exists and has a **draft** PR targeting the default branch. If the branch already exists (local or `origin`) — including plan-artifact commits from `brainstorm` / `troubleshoot` — **use it**; do not recreate it from default. If missing, create it from the up-to-date default branch and push. If no draft PR exists for this head, open one (title from **Git naming** `pr_title_with_ticket` for the EPIC id, body summarizes the EPIC and lists the sub-tickets); if one exists, reuse it. That draft PR is the only PR that targets the default branch; it stays draft through Step 8. Sub-ticket work reaches it in Step 7 (stack trunk + fast-forward), not by committing on the EPIC branch during waves.
 
 Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–6 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
@@ -99,7 +99,7 @@ Run the project’s tests, linters, and build. Fix failures before continuing. F
 
 *(Runs inside the background task from Step 3 — never in the parent conversation.)*
 
-Commit on the feature branch, push to the remote, and open a GitHub Pull Request (e.g. via GitHub MCP) targeting this ticket’s parent base. Use `issue-tracker` **Git naming** for the commit and PR title. PR description must reference the ticket id for **this** ticket and summarize the changes. For EPIC work, also mention the parent EPIC ticket id.
+Commit on the feature branch and push to the remote. If an open PR already exists for this head (including a grooming **draft** from `brainstorm` / `troubleshoot`), reuse it: retarget its base to this ticket’s parent base if needed, update the body for the implementation diff, and mark it ready for review. Otherwise open a GitHub Pull Request (e.g. via GitHub MCP) targeting this ticket’s parent base. Use `issue-tracker` **Git naming** for the commit and PR title. PR description must reference the ticket id for **this** ticket and summarize the changes. For EPIC work, also mention the parent EPIC ticket id.
 
 **Done when:** PR URL exists and is included in the task report.
 

@@ -123,7 +123,7 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 ### Planning → implementation flow
 
-`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** (via `issue-tracker`) — they never write **implementation code**, run tests, or open branches/PRs. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. Implementation is always triggered manually by the user afterwards, via `implement-ticket`.
+`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** (via `issue-tracker`) — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR).
 
 **End-state gates** (both skills; filing owned with `skills/brainstorm/references/tracer-ticket-breakdown.md`; labels and MCP owned by `issue-tracker`):
 
@@ -132,10 +132,11 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 | **STE summary on main** | Full plan + next steps in ASD-STE100 Simplified Technical English, posted as a **comment on the main ticket** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present. |
 | **Decision capture** | Architectural decisions from grilling are on disk: **ADRs** via `domain-modeling` when root `CONTEXT.md` exists; otherwise a dated **Decisions** section in root `RESEARCH.md`. Skip only when grilling made none (state that in the plan). |
 | **Labels** | Every issue **created or updated** in the run has the correct readiness label attached (`issue-tracker` **Extras**). |
+| **Plan artifacts on baseline** | Changed `RESEARCH.md` / `CONTEXT.md` / ADRs are committed on the implement-ticket baseline branch (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR. Skip when none of those files changed. |
 
 ```mermaid
 flowchart TD
-    subgraph plan["1. Plan — no code, no PRs"]
+    subgraph plan["1. Plan — no implementation code"]
         A["User: idea / ticket"] --> B["brainstorm"]
         A2["User: bug / incident / trace"] --> C["troubleshoot"]
 
@@ -157,7 +158,8 @@ flowchart TD
         E --> F
         F --> ISS["File tracer-bullet tickets\nvia issue-tracker + labels"]
         ISS --> STE["Post STE summary comment\non main ticket"]
-        STE --> H["STOP — report plan, issue URLs, STE summary"]
+        STE --> P["Commit RESEARCH.md / ADRs\non baseline branch, draft PR"]
+        P --> H["STOP — report plan, issue URLs,\nSTE summary, draft PR"]
     end
 
     H -. "user runs manually" .-> I["implement-ticket"]
@@ -166,10 +168,10 @@ flowchart TD
         I --> IGate{"needs-brainstorm or\nneeds-troubleshoot?"}
         IGate -- yes --> AbortGroom["Abort — re-run\nbrainstorm / troubleshoot"]
         IGate -- no --> I0{"EPIC with sub-tickets?"}
-        I0 -- "no (leaf)" --> J["Branch, implement, test, PR"]
+        I0 -- "no (leaf)" --> J["Reuse or create branch,\nimplement, test, PR"]
         I0 -- yes --> I1{"Every sub-ticket ready?\nhas-plan + body plan"}
         I1 -- no --> AbortReady["Abort — list tickets not ready"]
-        I1 -- yes --> IEpic["Create draft EPIC PR\nfeature/{EPIC_ID}"]
+        I1 -- yes --> IEpic["Reuse or create draft EPIC PR\nfeature/gh-{EPIC_ID}"]
         IEpic --> I2["Waves: branch, implement, test, PR\nper sub-ticket — no review"]
         I2 --> M["gh-stack: stack sub-ticket PRs\nonto EPIC trunk"]
         J --> K

@@ -6,7 +6,7 @@ disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> This skill only **diagnoses, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or open feature branches/PRs. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After tickets are filed, **commit and push those artifacts to the repo default branch** (`main` or `master`). Then tell the user to run the `implement-ticket` skill manually to build the fix; do not start implementation yourself, even if asked to "just fix it" in the same run.
+> This skill only **diagnoses, documents decisions, and files tickets** — it must never write, edit, or execute **implementation code**, run builds/tests, or start `implement-ticket`. Allowed writes are plan artifacts only: root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After tickets are filed, commit those artifacts on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) and open a **draft** PR. Then tell the user to run the `implement-ticket` skill manually to build the fix; do not start implementation yourself, even if asked to "just fix it" in the same run.
 
 ## Workflow
 
@@ -71,8 +71,6 @@ That shared reference owns three end-state gates — meet all of them before Ste
 
 ### Step 4 — Persist plan artifacts, then stop
 
-If this run created or updated any of root `RESEARCH.md`, `CONTEXT.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit **only those paths** on the repo default branch (`main` or `master`) and push to `origin`. Use `issue-tracker` **Git naming** (`commit_with_ticket` when a ticket id exists). If HEAD is not the default branch, switch to it for this commit only (stash unrelated dirty files), then restore the previous checkout. Fast-forward from origin before pushing. Skip when none of those files changed.
+Follow **Persist plan artifacts** in [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md). Report the plan summary, issue URLs, and the persist result (baseline branch, commit SHA, draft PR URL, or that nothing changed). Stop. Do not begin implementation or run `implement-ticket` — the user must trigger implementation manually via the `implement-ticket` skill.
 
-Then report the plan summary, issue URLs, and the persist result (commit SHA, or that nothing changed). Stop. Do not begin implementation, create feature branches, or run `implement-ticket` — the user must trigger implementation manually via the `implement-ticket` skill.
-
-**Done when:** changed plan artifacts are on `origin` of the default branch (or none changed), and the user has been told to run `implement-ticket` manually when ready.
+**Done when:** that shared reference’s persist completion criteria are met, and the user has been told to run `implement-ticket` manually when ready.
