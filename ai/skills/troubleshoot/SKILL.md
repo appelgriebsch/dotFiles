@@ -1,6 +1,6 @@
 ---
 name: troubleshoot
-description: Diagnose a bug/incident (issue or Datadog trace) into a fix plan and tracer-bullet work.
+description: Diagnose a bug/incident (issue, or Datadog trace id) into a fix plan and tracer-bullet work.
 argument-hint: "Please provide the ticket id or trace id of the problem or issue you would like to troubleshoot."
 disable-model-invocation: true
 ---
@@ -59,7 +59,7 @@ When branching out:
 
 ### Step 3 — Work breakdown and ticket filing
 
-Follow [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the troubleshooting plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues via `issue-tracker`. (If work started from a trace ID only, create the main issue from the plan summary.) Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
+Follow [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md): split into tracer-bullet tickets (or expand–contract for wide refactors), **work out a per-ticket implementation plan for each child** (sliced from the troubleshooting plan; full when possible, best-effort with stated unknowns otherwise), then create/update the main issue and linked child issues. (If work started from a trace ID only, create the main issue from the plan summary.) Do not file children that are only a goal + acceptance criterion when a workable plan can already be written.
 
 That shared reference owns three end-state gates — meet all of them before Step 4:
 

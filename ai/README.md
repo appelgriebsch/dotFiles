@@ -41,14 +41,14 @@ Domain experts share four consultation **modes** (used by `ask-the-expert` and r
 | --- | --- |
 | `ask-the-expert` | Authoritative tech-specific consult via domain experts. Use when code review, implementation planning, or troubleshooting touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, Swift, PostgreSQL, Datadog, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines) — or whenever another skill needs specialist input beyond generalist knowledge. |
 | `aws-sso-login` | Authenticate to AWS using Single Sign-On (SSO). Use when AWS CLI operations require SSO authentication or when SSO session has expired. |
-| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary comment on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), and readiness labels on every touched issue. |
+| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), readiness labels on every touched issue, and plan artifacts committed on the implement-ticket baseline branch with a draft PR. |
 | `datadog-health-report` | Consolidated Datadog health report for a scoped area of responsibility — use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, and incidents synthesized into a meeting-ready summary. |
 | `expert-code-review` | Expert code review via domain specialists. Use when the user wants recently written or modified code reviewed, a branch or PR reviewed, or feedback on security, performance, idioms, architecture, or CI/CD delivery automation (GitHub Actions, Terraform, Helm, shell pipelines). |
-| `implement-ticket` | Execute a brainstorm/troubleshoot plan for a tracker ticket or EPIC (branch, implement, PR, review). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch using gh-stack, then review the top PR of the stack. |
-| `issue-tracker` | Single source for ticket identity, issue MCP operations, readiness labels, and git naming. Loaded by `brainstorm`, `troubleshoot`, `implement-ticket`, and `expert-code-review`. Swap this skill to change tracker. |
+| `implement-ticket` | Execute a brainstorm/troubleshoot plan for a tracker ticket or EPIC (branch, implement, PR; one review on the final PR). Reuses the grooming baseline branch and draft PR when they exist. For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch at the end using gh-stack (EPIC is the stack trunk, not a member targeting main), then review that stack once. |
+| `issue-tracker` | Issue tracker identity, MCP operations, and git naming. Use when parsing a ticket id, fetching or creating a tracker issue, resolving parent/Epic or children, or naming a branch, commit, or pull request from a ticket. |
 | `query-postgres` | Connect to Postgres databases via the psql CLI using per-environment credential files (e.g. env.prod) and run SQL queries. Use when the user wants to query a Postgres database, inspect or analyze data, run ad hoc SQL, or explore schema. Defaults to a read-only session and requires explicit user confirmation plus `--write` to run INSERT/UPDATE/DELETE/DDL statements. |
 | `test-containers` | Brings up (and tears down) the containers a project needs for its integration tests, using whichever container runtime is available — docker, podman, or the macOS-native "container" CLI, checked in that priority order. Use when the user asks to prepare/start/stop containers for integration tests, e.g. "prepare for IT tests", "start the docker containers for integration tests", "bring up containers for the ITs", "spin up podman for tests", or before running an integration test suite that requires a database/broker/etc. running in containers. |
-| `troubleshoot` | Diagnose a bug/incident (issue, Datadog trace id, or Zipkin Trace Id) into a fix plan and tracer-bullet work. Same end-state gates as `brainstorm`: STE summary on the main ticket, documented grilling decisions, readiness labels. |
+| `troubleshoot` | Diagnose a bug/incident (issue, or Datadog trace id) into a fix plan and tracer-bullet work. Same end-state gates as `brainstorm`, including plan artifacts on the implement-ticket baseline branch with a draft PR. |
 
 ### Required external skills
 
@@ -56,7 +56,7 @@ The following skills are **not included** in this repo, but are required for som
 
 | Skill | Description | Source |
 | --- | --- | --- |
-| `gh-stack` | Manages stacked PRs and splits multi-part work into reviewable branches with gh-stack. Use for stack creation, viewing, edits, push, submit, sync, rebase, merge, or checkout; when asked to split or isolate work for review; whenever a user mentions a stack, branch layers, dependent PRs, or gh stack; or when a stack is checked out. | [github/gh-stack](https://github.com/github/gh-stack) (`skills/gh-stack`) |
+| `gh-stack` | Manage stacked branches and pull requests with the gh-stack GitHub CLI extension. Use when the user wants to create, push, rebase, sync, navigate, or view stacks of dependent PRs. Triggers on tasks involving stacked diffs, dependent pull requests, branch chains, or incremental code review workflows. | [github/gh-stack](https://github.com/github/gh-stack) (`skills/gh-stack`) |
 | `grilling` | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) |
 | `grill-me` | A relentless interview to sharpen a plan or design. (User-invoked wrapper around `grilling`.) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me) |
 | `domain-modeling` | Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model. (`brainstorm` / `troubleshoot` use it with `grilling` when root `CONTEXT.md` exists, including ADR capture.) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling) |
@@ -123,9 +123,9 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 ### Planning → implementation flow
 
-`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** (via `issue-tracker`) — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR).
+`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR).
 
-**End-state gates** (both skills; filing owned with `skills/brainstorm/references/tracer-ticket-breakdown.md`; labels and MCP owned by `issue-tracker`):
+**End-state gates** (both skills; filing owned with `skills/brainstorm/references/tracer-ticket-breakdown.md`):
 
 | Gate | Requirement |
 | --- | --- |
@@ -137,51 +137,59 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 ```mermaid
 flowchart TD
     subgraph plan["1. Plan — no implementation code"]
+        direction TB
         A["User: idea / ticket"] --> B["brainstorm"]
         A2["User: bug / incident / trace"] --> C["troubleshoot"]
 
-        B --> R{"Context unclear\nor needs external facts?"}
-        C --> R
-        R -- yes --> S["research\nwrite/update RESEARCH.md"]
+        C --> C0{"Ticket or trace?"}
+        C0 -- no --> Redirect["Redirect to brainstorm"]
+        C0 -- yes --> C1["datadog-analyzer<br/>early evidence"]
+        B --> R
+        C1 --> R{"Needs research?"}
+        R -- yes --> S["research → RESEARCH.md"]
         S --> R
-        R -- no --> T{"Open questions remain?"}
-        T -- yes --> U{"CONTEXT.md at repo root?"}
-        U -- yes --> G["grilling + domain-modeling\ncapture ADRs"]
-        U -- no --> Gb["grilling only\ncapture Decisions in RESEARCH.md"]
+        R -- no --> T{"Open questions?"}
+        T -- yes --> U{"CONTEXT.md?"}
+        U -- yes --> G["grilling + domain-modeling → ADRs"]
+        U -- no --> Gb["grilling → Decisions in RESEARCH.md"]
         G --> T
         Gb --> T
 
         T -- no --> X{"Skill?"}
-        X -- brainstorm --> D["ask-the-expert · Plan\nwhole-repo scan, all matched experts"]
-        X -- troubleshoot --> E["ask-the-expert · Diagnose\nwhole-repo scan, all matched experts"]
-        D --> F["Refine plan with expert guidance"]
+        X -- brainstorm --> D["ask-the-expert · Plan<br/>current workspace"]
+        X -- troubleshoot --> E["ask-the-expert · Diagnose<br/>tagged revision"]
+        D --> F["Refine plan"]
         E --> F
-        F --> ISS["File tracer-bullet tickets\nvia issue-tracker + labels"]
-        ISS --> STE["Post STE summary comment\non main ticket"]
-        STE --> P["Commit RESEARCH.md / ADRs\non baseline branch, draft PR"]
-        P --> H["STOP — report plan, issue URLs,\nSTE summary, draft PR"]
+        F --> ISS["File tickets + labels"]
+        ISS --> STE["STE summary on main"]
+        STE --> P["Commit artifacts, draft PR"]
+        P --> H["STOP"]
     end
 
-    H -. "user runs manually" .-> I["implement-ticket"]
+    H -.->|"user runs manually"| I
 
-    subgraph impl["2. Implement — only after explicit user invoke"]
-        I --> IGate{"needs-brainstorm or\nneeds-troubleshoot?"}
-        IGate -- yes --> AbortGroom["Abort — re-run\nbrainstorm / troubleshoot"]
-        IGate -- no --> I0{"EPIC with sub-tickets?"}
-        I0 -- "no (leaf)" --> J["Reuse or create branch,\nimplement, test, PR"]
-        I0 -- yes --> I1{"Every sub-ticket ready?\nhas-plan + body plan"}
-        I1 -- no --> AbortReady["Abort — list tickets not ready"]
-        I1 -- yes --> IEpic["Reuse or create draft EPIC PR\nfeature/gh-{EPIC_ID}"]
-        IEpic --> I2["Waves: branch, implement, test, PR\nper sub-ticket — no review"]
-        I2 --> M["gh-stack: stack sub-ticket PRs\nonto EPIC trunk"]
-        J --> K
-        M --> K["expert-code-review\nonce on final PR\n(leaf PR or stack top)"]
+    subgraph impl["2. Implement — explicit user invoke"]
+        direction TB
+        I["implement-ticket"] --> IGate{"needs-brainstorm /<br/>needs-troubleshoot?"}
+        IGate -- yes --> AbortGroom["Abort — re-groom"]
+        IGate -- no --> IPlan{"has-plan + body plan?"}
+        IPlan -- no --> AbortPlan["Abort — missing plan"]
+        IPlan -- yes --> I0{"EPIC?"}
+        I0 -- leaf --> Base["Parent base:<br/>blocker → EPIC → default"]
+        I0 -- yes --> I1{"Every sub-ticket ready?"}
+        I1 -- no --> AbortReady["Abort — not ready"]
+        I1 -- yes --> IEpic["Reuse/create EPIC draft PR"]
+        IEpic --> Waves["Waves: parallel background<br/>implement · verify · PR"]
+        Base --> LeafBG["Background: implement,<br/>verify, reuse/open PR"]
+        Waves --> Stack["gh-stack onto EPIC trunk"]
+        LeafBG --> K
+        Stack --> K["expert-code-review<br/>once on final PR"]
         K --> N["Done"]
     end
 
     classDef abort fill:#fde8e8,stroke:#c0392b,color:#7b241c
     classDef stop fill:#fff4e0,stroke:#d68910,color:#7d4e00
-    class AbortGroom,AbortReady abort
+    class AbortGroom,AbortPlan,AbortReady,Redirect abort
     class H stop
 ```
 
