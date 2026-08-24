@@ -57,7 +57,7 @@ Load `issue-tracker` before any get/create/update/comment/link. Use **Operations
 ### Filing steps
 
 1. **Main issue**
-   - If work started from an existing ticket: **update** it with a summary of the plan (**Operations** update).
+   - If work started from an existing ticket: **update** it with a summary of the plan (**Operations** update is fine).
    - If work started from an idea, improvement request, or trace ID only: **create** a new ticket with that summary (**Operations** create).
    - Keep the **full** parent plan (or a clear summary + pointer) on the main/EPIC issue so the overall story stays visible.
    - Apply labels per **Extras** (typically `epic` + `has-plan` when children and a parent plan exist; grooming flags only if gaps remain).

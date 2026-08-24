@@ -59,19 +59,21 @@ Fetch and fast-forward the chosen parent base (pull the default branch when that
 
 Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–6 instructions below. When the task finishes, take status only from its report (PR URL, deferred items, failures) — do not re-run the plan in the parent context.
 
+**Existing-branch freshness** (parent conversation, before launch): if `branch_with_ticket` already exists — including a grooming draft PR from `brainstorm` / `troubleshoot` — check it out, keep its plan-artifact commits, and rebase it onto the current parent base whenever that parent is not already an ancestor (typical case: default `main`/`master` moved since the draft). Push the rebase with `--force-with-lease`. Conflicts: ask the user and stop. Launch Steps 4–6 only after the parent is an ancestor of the working branch.
+
 #### Leaf ticket
 
-Use branch name from `issue-tracker` **Git naming** `branch_with_ticket`. Create it from this ticket’s parent base if missing; check it out if it exists (it may already carry plan-artifact commits and a draft PR from `brainstorm` / `troubleshoot` — keep those commits). Then launch **one** background task for Steps 4–6 on that branch. The task’s PR targets that same parent base.
+Use branch name from `issue-tracker` **Git naming** `branch_with_ticket`. Create it from this ticket’s parent base if missing; if it exists, apply **Existing-branch freshness**. Then launch **one** background task for Steps 4–6 on that branch. The task’s PR targets that same parent base.
 
-**Done when:** the working branch is `branch_with_ticket` for this ticket (based on this ticket’s parent base) and the background task has completed Steps 4–6 (or failed with a clear report).
+**Done when:** the working branch is `branch_with_ticket` for this ticket, based on this ticket’s current parent base (rebased when that parent was not already an ancestor), and the background task has completed Steps 4–6 (or failed with a clear report).
 
 #### EPIC — sequence and parallel
 
-Before starting any wave, ensure the EPIC `branch_with_ticket` for `{EPIC_ID}` exists and has a **draft** PR targeting the default branch. If the branch already exists (local or `origin`) — including plan-artifact commits from `brainstorm` / `troubleshoot` — **use it**; do not recreate it from default. If missing, create it from the up-to-date default branch and push. If no draft PR exists for this head, open one (title from **Git naming** `pr_title_with_ticket` for the EPIC id, body summarizes the EPIC and lists the sub-tickets); if one exists, reuse it. That draft PR is the only PR that targets the default branch; it stays draft through Step 8. Sub-ticket work reaches it in Step 7 (stack trunk + fast-forward), not by committing on the EPIC branch during waves.
+Before starting any wave, ensure the EPIC `branch_with_ticket` for `{EPIC_ID}` exists and has a **draft** PR targeting the default branch. If the branch already exists (local or `origin`) — including plan-artifact commits from `brainstorm` / `troubleshoot` — **use it** and apply **Existing-branch freshness** (parent base = default); do not recreate it from default. If missing, create it from the up-to-date default branch and push. If no draft PR exists for this head, open one (title from **Git naming** `pr_title_with_ticket` for the EPIC id, body summarizes the EPIC and lists the sub-tickets); if one exists, reuse it. That draft PR is the only PR that targets the default branch; it stays draft through Step 8. Sub-ticket work reaches it in Step 7 (stack trunk + fast-forward), not by committing on the EPIC branch during waves.
 
 Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–6 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
-1. Resolve this sub-ticket’s parent base (Step 2). Branch: `branch_with_ticket` for that sub-ticket, created from that parent base (create or check out; use a worktree when running in parallel). The sub-ticket PR targets that same parent base until Step 7 restacks it.
+1. Resolve this sub-ticket’s parent base (Step 2). Branch: `branch_with_ticket` for that sub-ticket, created from that parent base (create if missing; if it exists, apply **Existing-branch freshness**; use a worktree when running in parallel). The sub-ticket PR targets that same parent base until Step 7 restacks it.
 2. Launch a **background** task that runs **Steps 4–6** for that sub-ticket only.
 3. Treat the sub-ticket as **done for sequencing** only after that task reports a PR (and required verification passed), so later waves see correct blockers.
 
