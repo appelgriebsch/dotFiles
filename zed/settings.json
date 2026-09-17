@@ -19,7 +19,7 @@
     "basher": true,
     "codebook": true,
     "coverage-lsp": true,
-    "dependi": true,
+    "depsy": true,
     "docker-compose": true,
     "dockerfile": true,
     "env": true,

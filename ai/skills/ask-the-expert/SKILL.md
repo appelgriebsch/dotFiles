@@ -1,10 +1,10 @@
 ---
 name: ask-the-expert
-description: Authoritative tech-specific consult via domain experts. Use when code review, implementation planning, or troubleshooting touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, Swift, PostgreSQL, Datadog, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines) — or whenever another skill needs specialist input beyond generalist knowledge.
+description: Consult domain specialists. Use when Review, Plan, Diagnose, or Question work touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, Swift, PostgreSQL, Datadog, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines) — or whenever another skill needs specialist input.
 argument-hint: "Describe the code, technology, design question, or problem you would like expert input on."
 ---
 
-You are an expert consultation orchestrator: discover every technology **in the screening corpus** that has a dedicated expert, dispatch to **all** matching experts, synthesize. You are not the domain expert yourself.
+Orchestrate specialist input: match every technology in the screening **corpus** to a table expert, dispatch all matches in parallel, synthesize by mode. Domain judgment comes from those experts.
 
 ## Available experts
 
@@ -21,100 +21,79 @@ You are an expert consultation orchestrator: discover every technology **in the 
 | Datadog observability data — metrics, logs, traces, dashboards, monitors, incidents | `datadog-analyzer` | Datadog client/SDK usage, `DD_*` env, trace/monitor/dashboard work, incident/APM investigation context |
 | CI/CD & delivery automation — GitHub Actions, Terraform pipelines, Helm charts, container build/deploy, CI shell | `ci-cd-expert` | `.github/workflows/**`, `action.yml`/`action.yaml`, `**/*.{tf,tfvars,hcl}`, `**/Chart.yaml`, `values*.yaml`, `Dockerfile*`, `docker-compose*.yml`, CI shell under `.github/`/scripts, `helmfile`, Kustomize/Argo/Flux delivery manifests |
 
-**Only invoke sub-agent IDs from this table.** Never invent experts. Never answer domain questions yourself when a matching expert exists.
+Dispatch only table ids. Unmatched technologies in the corpus: record as *no expert available*.
 
-## Hard rules
+## Step 1 — Mode, corpus, revision
 
-1. **Screening corpus (from caller)** — Expert matching runs **only** against the corpus the caller defined:
-   - **PR / diff** → **only the changeset** (changed paths + patch hunks). Do **not** scan the rest of the repository to decide which experts to call.
-   - **Branch / whole-repo** → the **whole source** (manifests, lockfiles, source trees, IaC, migrations, configs).
-   - **Named paths / snippet / design-only** → those materials (plus any extra paths the caller explicitly included).
-   If the caller omitted a corpus: for **Review**, use the stated focus (diff if given, else named paths, else whole tree); for **Plan / Diagnose / Question**, default to the whole workspace unless the question is clearly scoped.
-2. **Codebase revision handed to experts (mode-specific)** — Matching and expert prompts must use the correct **revision** of the tree, not only the correct path set:
-   - **Plan** (e.g. from `brainstorm`) → hand experts the **current workspace codebase** as the architectural reference (whatever is checked out / on disk now). Do not invent an older release unless the caller explicitly asked to plan against one.
-   - **Diagnose** (e.g. from `troubleshoot`) → **before** inventory and dispatch, resolve a **production/incident revision** from ticket text, comments, labels, fix versions, stack traces, deploy notes, and trace/telemetry tags (`version`, `git.commit.sha`, `git.repository_url`, image/tag, chart appVersion, release name, etc.). Prefer a **git tag** (or commit SHA mappable to a tag) that matches that signal. Check out or otherwise materialize that revision for screening and for every expert prompt. If several conflicting signals appear, pick the best-supported one and state the choice. If **no** version signal is found, fall back to the current workspace and record that assumption explicitly — never silently plan a diagnosis against HEAD when the incident names another build.
-   - **Review / Question** → use the caller’s stated revision; default to the current workspace when unspecified.
-3. **Inventory is routing only** — The technology inventory exists **solely** to choose which experts to invoke. During inventory you must **not** form review findings, plan recommendations, diagnoses, answers, severities, strengths, or “quick look” analysis. Detection signals and evidence paths only.
-4. **Exhaustive expert matching (within the corpus)** — Walk **every row** of the table above against the screening corpus. A technology is “present” if any detection signal (or clear design/problem evidence **in the corpus**) hits. Multi-stack corpora are normal; several experts at once is expected.
-5. **Dispatch to all matches** — For **every** matched row, you **must** Task-invoke that expert. Do not skip an expert because the signal seems “minor,” “only infra,” or “only tests” **inside the corpus**. Do not collapse two domains into one expert. Do not add experts for technologies that appear only outside the corpus.
-6. **No silent generalist** — If a technology appears in the corpus but has **no** table row, record it as *no expert available* and do **not** substitute your own domain analysis. If **zero** table rows match after screening, say so explicitly and stop — there is no generalist fallback path.
-7. **Parallel by default** — Invoke all matched experts in parallel in one turn when the runtime allows.
+Pick one mode: **Review** · **Plan** · **Diagnose** · **Question**.
 
-## Workflow
+**Screening corpus** (matching runs only against this):
 
-### Step 1 — Consultation mode + corpus + revision
+- **PR / diff** → **changeset** (changed paths + patch hunks)
+- **Branch / whole-repo** → **whole source** (manifests, lockfiles, source trees, IaC, migrations, configs)
+- **Named paths / snippet / design-only** → those materials (plus any extra paths the caller included)
+- Caller omitted corpus: **Review** → stated focus (diff if given, else named paths, else whole tree); **Plan / Diagnose / Question** → whole workspace unless the question is clearly scoped
 
-Pick one: **Review** (existing code) · **Plan** (approach/tradeoffs, e.g. from `brainstorm`) · **Diagnose** (root cause, e.g. from `troubleshoot`) · **Question** (direct technical Q).
+**Codebase revision** handed to experts:
 
-Record the **screening corpus** per hard rule 1 (changeset vs whole source vs named materials).
-
-Resolve the **codebase revision** per hard rule 2:
-
-| Mode | Default revision handed to experts |
+| Mode | Revision |
 |---|---|
-| **Plan** (`brainstorm`) | **Current workspace** — live tree as architectural reference |
-| **Diagnose** (`troubleshoot`) | **Ticket/trace version if present** (prefer git tag / matching commit); else current workspace with that fallback called out |
+| **Plan** | **Current workspace** (live tree). Use an older release only when the caller asked to plan against one. |
+| **Diagnose** | **Ticket/trace version if present** (prefer git tag / matching SHA); else current workspace with that fallback called out |
 | **Review** / **Question** | Caller-stated revision, else current workspace |
 
-For **Diagnose**, actively search ticket + trace materials for version signals **before** Step 2. When a tag/SHA is resolved, materialize that tree (worktree/checkout/export) and treat it as the screening corpus root and the expert focus codebase.
+For **Diagnose**, resolve a production/incident revision **before** Step 2 from ticket text, comments, labels, fix versions, stack traces, deploy notes, and trace/telemetry tags (`version`, `git.commit.sha`, `git.repository_url`, image/tag, chart appVersion, release name, etc.). Prefer a **git tag** (or commit SHA mappable to a tag). Materialize that tree (worktree/checkout/export) as the screening corpus root and the expert focus codebase. If signals conflict, pick the best-supported one and state the choice. If no version signal is found, fall back to the current workspace and record that assumption.
 
-**Done when:** mode, screening corpus, and revision (tag/SHA/`HEAD`/fallback) are chosen, any Diagnose version resolution is documented, and all three will be passed into every expert prompt.
+**Done when:** mode, screening corpus, and revision (tag/SHA/`HEAD`/fallback) are recorded, Diagnose version resolution is documented when that mode applies, and all three will be passed into every expert prompt.
 
-### Step 2 — Technology inventory (routing only)
+## Step 2 — Technology inventory (routing only)
 
-Perform legwork **only on the screening corpus**:
+Walk **every row** of Available experts against the screening corpus. A technology is present if any detection signal (or clear design/problem evidence **in the corpus**) hits. Multi-stack corpora are expected.
 
-1. **PR/diff:** list changed paths and skim patch language/framework signals (and any manifests/lockfiles **if they are part of the changeset**). Do not walk the untouched tree for matching.
-2. **Branch/whole-repo:** list top-level layout and key manifests (`Cargo.toml`, `pom.xml`/`build.gradle*`, `package.json`, `bun.lock*`, `pyproject.toml`, `Package.swift`, `*.sql` migration trees, `.github/workflows`, Terraform/Helm/Docker/K8s/IaC, etc.), then sample/search for detection signals.
+Legwork **only on the screening corpus**:
+
+1. **PR/diff:** list changed paths and skim patch language/framework signals (and any manifests/lockfiles **in the changeset**).
+2. **Branch/whole-repo:** list top-level layout and key manifests, then sample/search for detection signals.
 3. **Named/snippet/design:** inspect only those materials; treat ticket text, stack traces, and design notes as additional signals when provided.
-4. **Check each expert row** against corpus evidence — including rows you do not expect.
-5. Load `AGENTS.md` / `*.instructions.md` when present; constraints are **pass-through** to every expert, not material for your own analysis.
-6. Produce a written inventory (routing artifact only):
+
+Load `AGENTS.md` / `*.instructions.md` when present; pass constraints through to every expert.
+
+Write the routing artifact:
 
 ```
 ### Technology inventory
 Screening corpus: [changeset | whole source | named paths/snippet] — [brief identifier]
 Codebase revision: [git tag | commit SHA | HEAD/current workspace] — [source of version signal, or "no signal; fallback to workspace"]
 
-| Expert | Matched? | Evidence (paths / signals in corpus) |
-|---|---|---|
-| rust-expert | yes/no | … |
-| bun-expert | yes/no | … |
-| spring-cloud-expert | yes/no | … |
-| python-expert | yes/no | … |
-| gis-expert | yes/no | … |
-| web-frontend-expert | yes/no | … |
-| swift-expert | yes/no | … |
-| postgres-expert | yes/no | … |
-| datadog-analyzer | yes/no | … |
-| ci-cd-expert | yes/no | … |
-
+For every Available experts row: Matched? yes/no — evidence (paths / signals in corpus).
 Unmatched technologies in corpus (no expert): …
 ```
 
-**Forbidden in this step:** drafting Critical/Warning/Suggestion items, answering the question, or otherwise consulting in place of the experts.
+Inventory is routing only: detection signals and evidence paths. Domain findings, plans, diagnoses, and answers wait for experts.
 
-**Done when:** the inventory table has a yes/no decision for **every** expert row based on the screening corpus only, each `yes` cites in-corpus evidence, unmatched non-table tech is listed, and **no consultation answer has been started**.
+**Done when:** every table row has yes/no with in-corpus evidence for each yes, unmatched non-table tech is listed, and the consultation answer has not been started.
 
-### Step 3 — Invoke every matched expert
+## Step 3 — Dispatch every match
 
-For **each** inventory row with `Matched? = yes`, Task-invoke that sub-agent with:
+If inventory has zero `yes` rows: say no listed expert applies to the screening corpus and **stop**.
+
+Otherwise Task-invoke **every** `yes` row **in parallel** (one turn when the runtime allows). Dispatch each matched domain to its own table expert, including signals that look minor, infra-only, or tests-only inside the corpus.
+
+Each expert prompt includes:
 
 - Consultation **mode** + the specific question
 - **Focus material** (diff/changeset, files, design, logs the caller cares about)
-- **Screening corpus** note (so the expert knows whether they are looking at a PR diff vs a full tree)
-- **Codebase revision** (tag/SHA/`HEAD`) and how it was chosen — Plan: current workspace as reference; Diagnose: ticket/trace-resolved tag when available
-- Paths/content from **that revision** (not an unrelated checkout) for layouts, configs, and related modules the expert needs — gathering context for an expert is not a license to pre-review
+- **Screening corpus** (PR diff vs full tree vs named paths)
+- **Codebase revision** (tag/SHA/`HEAD`) and how it was chosen
+- Paths/content from **that revision** for layouts, configs, and related modules the expert needs (excerpts and paths, not findings)
 - Architecture/runtime constraints and AGENTS/instructions excerpts
-- Note that other experts are running in parallel on sibling domains (avoid pure duplicate work, but do **not** omit cross-cutting concerns in your domain)
+- Note that other experts are running in parallel on sibling domains (cover cross-cutting concerns in your domain; drop pure duplicate work)
 
-If inventory has zero `yes` rows: return that no listed expert applies to the screening corpus; do not freestyle a domain review.
+**Done when:** every `yes` row has expert output in hand (or a hard invocation failure reported for that expert).
 
-**Done when:** every `yes` row has expert output in hand (or a hard invocation failure reported for that expert). Skipping a matched expert is a process failure.
+## Step 4 — Synthesize
 
-### Step 4 — Synthesize and return
-
-Merge into one coherent answer. Lead with a short **Experts consulted** list (names + why, tied to corpus evidence). Resolve contradictions with explicit tradeoffs; drop pure redundancy. For unmatched non-table tech, state that no specific expert exists — do not backfill with generalist analysis.
+Merge into one coherent answer. Lead with **Experts consulted** (names + why, tied to corpus evidence). Resolve contradictions with explicit tradeoffs; drop pure redundancy. For unmatched non-table tech, state that no specific expert exists.
 
 Shape by mode:
 

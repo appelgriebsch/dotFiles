@@ -1,11 +1,5 @@
 # Discovering how a project starts its IT containers
 
-Table of contents:
-- Where to look, in order
-- Patterns to grep for
-- Extracting the actual commands
-- Fallback: inferring from config when no instructions exist
-
 ## Where to look, in order
 
 1. `AGENTS.md` at the repo root (or nearest ancestor directory).
@@ -36,7 +30,7 @@ If no instructions file documents container startup, look for:
 | File | What it tells you |
 |---|---|
 | `docker-compose.yml` / `compose.yaml` (repo root or `src/test/resources/`) | Services, images, ports to bring up — run via `docker compose up -d` / `podman compose up -d` |
-| `pom.xml` — `docker-maven-plugin` / `fabric8` config | Maven goals like `docker:start`/`docker:stop`, and the images/ports Maven manages | 
+| `pom.xml` — `docker-maven-plugin` / `fabric8` config | Maven goals like `docker:start`/`docker:stop`, and the images/ports Maven manages |
 | `pom.xml` — Testcontainers dependency | Containers are usually started automatically by the test JVM; you may only need the daemon/socket running, not manual `docker run` commands |
 | `build.gradle(.kts)` equivalents of the above | Same idea for Gradle projects |
 

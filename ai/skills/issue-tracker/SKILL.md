@@ -1,17 +1,15 @@
 ---
 name: issue-tracker
 description: >-
-  Issue tracker identity, MCP operations, labels, and git naming. Use when
+  Ticket identity, issue MCP, readiness labels, and git naming. Use when
   parsing a ticket id, fetching or creating a tracker issue, applying
   readiness labels, resolving parent/Epic or children, or naming a branch,
-  commit, or pull request from a ticket.
+  commit, or PR from a ticket.
 ---
 
 # Issue tracker
 
-Single source for ticket identity, issue MCP operations, readiness labels, and git name templates.
-
-**Apply:** invoke or read this skill before parsing a ticket id, calling issue MCP, applying readiness labels, or naming a branch, commit, or PR. Substitute `{TICKET_ID}` from **Identity**. Use **Operations** tool names. Format git names from **Git naming**. Read **Extras** only when creating, updating, labeling, or linking issues.
+**Apply:** before parsing a ticket id, calling issue MCP, applying readiness labels, or naming a branch, commit, or PR. Substitute `{TICKET_ID}` from **Identity**. Use **Operations** tool names. Format git names from **Git naming**. Read **Extras** when creating, updating, labeling, linking, or checking `implement-ticket` readiness.
 
 **Done when:** every ticket id, browse URL, issue MCP tool, label, and git name in the run comes from the tables below.
 
@@ -73,7 +71,7 @@ Used by `brainstorm` / `troubleshoot` filing and by `implement-ticket` readiness
 
 ### Labels (apply on every create and update)
 
-Use these **exact** label names. Before applying, **Operations** labels_list; if a name is missing, **Operations** labels_create. Colors/descriptions are optional; names are not.
+Use these **exact** four names. Before applying, **Operations** labels_list; if a name is missing, **Operations** labels_create. Colors/descriptions are optional; names are not.
 
 | Label | Meaning | When to apply | implement-ticket |
 | --- | --- | --- | --- |
@@ -91,7 +89,7 @@ Use these **exact** label names. Before applying, **Operations** labels_list; if
    - No workable plan yet → do **not** add `has-plan`; add `needs-brainstorm` and/or `needs-troubleshoot` as appropriate.
 3. **`epic`** only when the main issue is a real parent (children exist). A single leaf with a plan gets `has-plan` only — not `epic`.
 4. **Which grooming label:** improvements/ideas → `needs-brainstorm`; bugs/incidents/traces → `needs-troubleshoot`. An issue may carry both only if both kinds of gap remain.
-5. Do **not** invent alternate names (`Epic`, `planned`, `needs-grooming`, etc.). Reuse these four so filters and `implement-ticket` stay consistent.
+5. Use these four names only (`epic`, `has-plan`, `needs-brainstorm`, `needs-troubleshoot`) so filters and `implement-ticket` stay consistent. Do not invent alternates (`Epic`, `planned`, `needs-grooming`).
 
 ## Switching trackers
 

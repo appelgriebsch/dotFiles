@@ -1,6 +1,6 @@
 ---
 name: implement-ticket
-description: Execute a brainstorm/troubleshoot plan for a tracker ticket or EPIC (branch, implement, PR; one review on the final PR). Abort if needs-brainstorm/needs-troubleshoot labels remain; require has-plan (or a body plan). For EPICs, require every sub-ticket plan, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch at the end using gh-stack (EPIC is the stack trunk, not a member targeting main), then review that stack once.
+description: Execute a filed ticket or EPIC plan: branch, implement, PR, then one review on the final PR.
 argument-hint: "Please provide the ticket ID for the improvement, bug ticket, or EPIC you would like to implement."
 disable-model-invocation: true
 ---
@@ -9,20 +9,15 @@ disable-model-invocation: true
 
 ### Step 1 — Parse the Request
 
-Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches, get the ticket via **Operations** get (**body, labels, links**) and require it is **open**. Detect **EPIC** vs **leaf** from **Extras** labels (`epic` and/or **Operations** children). Prefer extras `epic` when present; if the label is missing but children are linked, treat as EPIC anyway.
+Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches, get the ticket via **Operations** get (**body, labels, links**) and require it is **open**. Detect **EPIC** vs **leaf** per **Extras** (`epic` and/or **Operations** children).
 
 #### Readiness gates (leaf and every EPIC sub-ticket)
 
-Apply **before** branching or coding. Label names and abort meaning come from `issue-tracker` **Extras**. Order matters:
+Apply **before** branching or coding. Label names, abort meaning, and `has-plan` vs grooming rules: `issue-tracker` **Extras**. Order:
 
-1. **Grooming labels (hard abort).** If the issue has `needs-brainstorm` and/or `needs-troubleshoot`:
-   - List the issue id/title and which grooming label(s) are set.
-   - Tell the user which skill to run (`brainstorm` and/or `troubleshoot`) to clear the gap.
-   - **Abort.** Do not implement while either grooming label remains — even if `has-plan` is also present (best-effort plan with residual unknowns).
-2. **Plan presence.** The issue is ready only when **both**:
-   - The body contains an **implementation plan** (step-by-step guidance from `brainstorm` / `troubleshoot`, not only a goal or title), **and**
-   - Preferably `has-plan` is set. If `has-plan` is **missing** but a clear body plan exists (legacy tickets), proceed and note the missing label. If `has-plan` is set but the body has no workable plan, **abort** and tell the user to re-run `brainstorm` / `troubleshoot` so the plan is written into the issue.
-3. If there is no plan and no grooming label: tell the user to run `brainstorm` or `troubleshoot` first, and **abort**.
+1. **Grooming labels (hard abort).** If `needs-brainstorm` and/or `needs-troubleshoot` is set: list the issue id/title and which grooming label(s); tell the user to run `brainstorm` and/or `troubleshoot`; **abort**. Do not implement while either remains, even when `has-plan` is also set.
+2. **Plan presence.** Ready only when the body has an **implementation plan** (step-by-step from `brainstorm` / `troubleshoot`, not only a goal or title), **and** preferably `has-plan`. Missing `has-plan` but a clear body plan (legacy): proceed and note the missing label. `has-plan` set but no workable body plan: **abort**; tell the user to re-run `brainstorm` / `troubleshoot` so the plan is written into the issue.
+3. No plan and no grooming label: tell the user to run `brainstorm` or `troubleshoot` first, and **abort**.
 4. Resolve the parent EPIC (**Operations** parent). Record `{EPIC_ID}` or none.
 5. Record this ticket’s blockers (issue ids that must finish first, or none).
 
@@ -57,9 +52,9 @@ Fetch and fast-forward the chosen parent base (pull the default branch when that
 
 **Hard rule — background implement unit:** for every ticket (leaf or EPIC sub-ticket), dispatch **Steps 4–6 as one background task** (`task` / `general-purpose`, `mode: "background"`). Do this **always**, including when only one ticket is in flight — background is for **context isolation**, not only for parallelism. The parent conversation **orchestrates only**: prepare branch/worktree, launch the task, wait, read the task report. It must **not** implement, verify, or open the PR inline.
 
-Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and the full Step 4–6 instructions below. When the task finishes, take status only from its report (PR URL, deferred items, failures) — do not re-run the plan in the parent context.
+Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and an instruction to **load and follow** [`references/implement-unit.md`](references/implement-unit.md) (implement → verify → commit/push/PR). Resolve that path from this skill’s directory when writing the task prompt. Do not paste that file’s steps into the parent prompt. When the task finishes, take status only from its report (PR URL, deferred items, failures) — do not re-run the plan in the parent context.
 
-**Existing-branch freshness** (parent conversation, before launch): if `branch_with_ticket` already exists — including a grooming draft PR from `brainstorm` / `troubleshoot` — check it out, keep its plan-artifact commits, and rebase it onto the current parent base whenever that parent is not already an ancestor (typical case: default `main`/`master` moved since the draft). Push the rebase with `--force-with-lease`. Conflicts: ask the user and stop. Launch Steps 4–6 only after the parent is an ancestor of the working branch.
+**Existing-branch freshness** (parent conversation, before launch): if `branch_with_ticket` already exists — including a grooming draft PR from `brainstorm` / `troubleshoot` — check it out, keep its plan-artifact commits, and rebase it onto the current parent base whenever that parent is not already an ancestor (typical case: default `main`/`master` moved since the draft). Push the rebase with `--force-with-lease`. Conflicts: ask the user and stop. Launch the implement unit only after the parent is an ancestor of the working branch.
 
 #### Leaf ticket
 
@@ -74,36 +69,12 @@ Before starting any wave, ensure the EPIC `branch_with_ticket` for `{EPIC_ID}` e
 Walk the waves from Step 1 in order. Within each wave, start **every** ticket in that wave as its **own** background Steps 4–6 task **in parallel** when possible (isolated branches / worktrees so work does not clobber a shared working tree). Parallelism stacks on top of the always-on background rule — it does not replace it. For each sub-ticket:
 
 1. Resolve this sub-ticket’s parent base (Step 2). Branch: `branch_with_ticket` for that sub-ticket, created from that parent base (create if missing; if it exists, apply **Existing-branch freshness**; use a worktree when running in parallel). The sub-ticket PR targets that same parent base until Step 7 restacks it.
-2. Launch a **background** task that runs **Steps 4–6** for that sub-ticket only.
+2. Launch a **background** task that runs **Steps 4–6** for that sub-ticket only (load [`references/implement-unit.md`](references/implement-unit.md)).
 3. Treat the sub-ticket as **done for sequencing** only after that task reports a PR (and required verification passed), so later waves see correct blockers.
 
 Do not start a later wave until every ticket in the current wave has finished its background Steps 4–6 task (or failed with a reported blocker). If a parallel unit fails, report which sub-ticket failed and stop starting new waves that depend on it; finish other in-flight independent work when safe.
 
 **Done when:** every sub-ticket with a plan has been through a background Steps 4–6 task in dependency order, or the user has a clear report of which wave/ticket blocked progress.
-
-### Step 4 — Implement the plan
-
-*(Runs inside the background task from Step 3 — never in the parent conversation.)*
-
-Apply the plan’s changes (code, config, infrastructure) for the **current** ticket only. If `AGENTS.md` or `*.instructions.md` exists, treat those instructions as authoritative over implicit assumptions. Add tests, docs, or other artifacts the plan requires.
-
-**Done when:** every plan item for this ticket is addressed or explicitly deferred with a reason.
-
-### Step 5 — Verify
-
-*(Runs inside the background task from Step 3 — never in the parent conversation.)*
-
-Run the project’s tests, linters, and build. Fix failures before continuing. For integration tests that need containers, use the `test-containers` skill.
-
-**Done when:** required checks pass (or blockers are reported with evidence in the task report).
-
-### Step 6 — Commit, push, open PR
-
-*(Runs inside the background task from Step 3 — never in the parent conversation.)*
-
-Commit on the feature branch and push to the remote. If an open PR already exists for this head (including a grooming **draft** from `brainstorm` / `troubleshoot`), reuse it: retarget its base to this ticket’s parent base if needed, update the body for the implementation diff, and mark it ready for review. Otherwise open a GitHub Pull Request (e.g. via GitHub MCP) targeting this ticket’s parent base. Use `issue-tracker` **Git naming** for the commit and PR title. PR description must reference the ticket id for **this** ticket and summarize the changes. For EPIC work, also mention the parent EPIC ticket id.
-
-**Done when:** PR URL exists and is included in the task report.
 
 ### Step 7 — Stack sub-ticket PRs onto the EPIC branch (EPIC only)
 

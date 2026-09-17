@@ -1,12 +1,5 @@
 # Command mapping: docker vs podman vs container
 
-Table of contents:
-- Daemon/service startup
-- Basic container lifecycle (ps/kill/rm)
-- Compose support
-- Bridging tools that shell out to "docker" (Testcontainers, docker-maven-plugin, Maven `docker:start`)
-- Known gaps of the macOS `container` CLI
-
 ## Daemon/service startup
 
 | Tool | Start service | Notes |
@@ -28,7 +21,7 @@ Table of contents:
 
 podman's CLI is a near drop-in replacement for docker — when instructions say `docker <subcommand>`, substituting the binary name to `podman` almost always works unchanged.
 
-The `container` CLI has different subcommand names/aliases (`list`/`ls`, `delete`/`rm`) and does **not** support `docker-compose`-style multi-service files natively — there is no `container compose` subcommand as of CLI version 1.x. Do not assume flag-for-flag compatibility; check `container <subcommand> --help` before running an unverified command.
+The `container` CLI has different subcommand names/aliases (`list`/`ls`, `delete`/`rm`) and does **not** support `docker-compose`-style multi-service files natively — there is no `container compose` subcommand as of CLI version 1.x. Check `container <subcommand> --help` before running an unverified command.
 
 ## Compose support
 
@@ -64,7 +57,7 @@ If the user explicitly asks to proceed anyway with the `container` CLI, don't tr
 
 ## Known gaps of the macOS `container` CLI
 
-- No compose equivalent.
-- No Docker-API-compatible socket (breaks Testcontainers / docker-maven-plugin / docker-java clients).
+Compose and Docker-API support: tables above.
+
 - Requires macOS 26+ and Apple silicon.
 - Different default resource limits (1 GiB RAM / 4 CPUs) — adjust with `--memory` / `--cpus` on `container run` if a project's compose file specifies resource limits.

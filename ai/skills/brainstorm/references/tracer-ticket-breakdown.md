@@ -1,6 +1,11 @@
 # Tracer-ticket breakdown and ticket filing
 
-Shared external reference for `brainstorm` and `troubleshoot`. Load after the plan (implementation or troubleshooting) is written. Not a skill — not invocable on its own. Work breakdown and ticket filing run from skill Step 3; **Persist plan artifacts** runs from skill Step 4 after filing is done.
+Shared by `brainstorm` and `troubleshoot`. Load after the plan is written. Not a skill.
+
+- Skill Step 3 → **Work breakdown** then **Ticket creation / management** — meet each **Done when**.
+- Skill Step 4 → **Persist plan artifacts** — meet that **Done when**.
+
+This file owns filing and persist. Identity, MCP tool names, label meanings, and git templates live in `issue-tracker`.
 
 ## Work breakdown
 
@@ -34,13 +39,13 @@ For each ticket, work out (when possible):
 3. Prefer a **full** plan when the approach, surfaces, and validation are already known from research/expert consult.
 4. If a slice **cannot** be planned fully yet (outcome of a prior ticket, live investigation, or unknown API shape), still file a **best-effort** plan: known steps, explicit unknowns, and what must be true after blockers land before implementation can finish. Mark residual unknowns in the body — do not leave the plan section empty or “TBD only”.
 
-Do **not** file a child that is only a goal + acceptance criterion when a workable plan can be written from the parent plan and codebase context already in hand.
+File a child with a workable plan whenever the parent plan and codebase context already in hand can support one (goal + acceptance criterion alone only when that is all that can be written).
 
 **Done when:** every ticket has a one-line goal, a demoable/verifiable criterion, an explicit blockers list (or “none”), and a per-ticket implementation plan (full or best-effort with stated unknowns).
 
 ### Wide refactors (exception)
 
-**Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change — rename a column, retype a shared symbol — whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand–contract**.
+**Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change — rename a column, retype a shared symbol — whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Sequence it as **expand–contract**.
 
 1. **Expand:** add the new form beside the old so nothing breaks.
 2. **Migrate:** move call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists.
@@ -75,7 +80,7 @@ Load `issue-tracker` before any get/create/update/comment/link. Use **Operations
 
 4. **User summary** — return the STE summary, main + child issue links (noting that each child carries its own plan), labels assigned to each issue, and next-step recommendations.
 
-**Done when:** main issue exists/updated with the parent plan; every child linked to main was created via **Operations** create + link_child with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; and the user has the URLs plus that summary.
+**Done when:** main issue exists/updated with the parent plan; every child linked to main was created via **Operations** create + link_child with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; labels on every touched issue match **Extras**; and the user has the URLs plus that summary.
 
 ## Persist plan artifacts
 
@@ -95,6 +100,8 @@ Skill Step 4 — after filing. If this run created or updated any of root `RESEA
 5. If a PR already exists for this head: keep it draft, retarget its base if it does not match the parent in the table, report its URL.
 6. Restore the previous checkout.
 
-Then stop. Do not write implementation code or run `implement-ticket`.
+Then stop. Tell the user to run `implement-ticket` manually when ready.
+
+**Guardrail:** do not write implementation code or start `implement-ticket` from this run.
 
 **Done when:** changed plan artifacts are on `origin` of the baseline branch and a draft PR URL exists for that head (or none of those files changed), and the user has been told to run `implement-ticket` manually when ready.

@@ -19,6 +19,5 @@ Replace `<skill-dir>` with this skill's actual directory.
 
 ## Output tips
 
-- Default aligned table output is fine for reading results directly.
-- Use `--csv` (or `-A -F ','`) when the result needs to be parsed or exported.
-- For very wide rows, add `-x` (expanded output, one column per line).
+- `--csv` (or `-A -F ','`) when the result needs to be parsed or exported.
+- `-x` for very wide rows (expanded output, one column per line).

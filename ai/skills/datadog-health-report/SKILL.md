@@ -1,10 +1,10 @@
 ---
 name: datadog-health-report
-description: Consolidated Datadog health report for a scoped area of responsibility — use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, and incidents synthesized into a meeting-ready summary.
+description: Datadog health report for a scoped area of responsibility. Use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, incidents, and dashboards synthesized.
 argument-hint: "Please provide the area of responsibility (team, service, domain, or component) and any relevant Datadog tags or config to scope the report."
 ---
 
-Orchestrate Datadog signal gathering via the **`datadog-analyzer`** agent, then synthesize a standup/SoS health report. Scope every query; never run globally unscoped Datadog queries.
+Orchestrate Datadog signal gathering via **`datadog-analyzer`**, then synthesize a standup/SoS health report. Scope every query to the confirmed area, tags, and window.
 
 ## Step 1 — Confirm scope
 
@@ -46,7 +46,7 @@ Dispatch **parallel** Task invocations of `datadog-analyzer` (or equivalent), ea
 
 ## Step 4 — Overall status
 
-Strict rules — overall status = most severe finding:
+Overall status = most severe finding:
 
 - 🔴 **CRITICAL** — active P0/P1 incident, active SLO breach, or critical monitor triggered
 - 🟡 **DEGRADED** — warning monitors, error budget below 20%, or log/trace anomalies without active incident
@@ -61,7 +61,7 @@ Fill [`references/report-template.md`](references/report-template.md). Then adap
 - **Daily standup:** lead with TL;DR + status + action items; keep scannable in under 2 minutes
 - **SoS:** one section per area if multi-area; add cross-team summary, shared incidents, escalations
 
-Operational rules: scope with tags only; say “No data available” instead of omitting sections; use monitor/SLO baselines; annotate pre/post-deploy if the user noted deploys; put escalation paths on CRITICAL action items.
+Annotate pre/post-deploy if the user noted deploys. Put escalation paths on CRITICAL action items. Use monitor/SLO baselines for status.
 
 Before delivery, run [`references/qa-checklist.md`](references/qa-checklist.md).
 

@@ -1,42 +1,46 @@
 ---
 name: test-containers
-description: Brings up (and tears down) the containers a project needs for its integration tests, using whichever container runtime is available — docker, podman, or the macOS-native "container" CLI, checked in that priority order. Use when the user asks to prepare/start/stop containers for integration tests, e.g. "prepare for IT tests", "start the docker containers for integration tests", "bring up containers for the ITs", "spin up podman for tests", or before running an integration test suite that requires a database/broker/etc. running in containers.
+description: IT test containers. Use to start or stop the containers a project's integration tests need (docker, podman, or the macOS container CLI).
 ---
 
-# IT Test Containers
+# IT test containers
 
-## Overview
+## Step 1 — Detect the tool
 
-Integration test suites usually depend on containers (Postgres, RabbitMQ, etc.) being up before tests run. This skill discovers how a given project starts those containers, picks an available container tool, and executes the (possibly translated) start/stop commands.
+Run `scripts/detect_tool.sh`. It prints the selected tool on stdout. If it exits 1, relay stderr to the user and stop.
 
-## Workflow
+**Done when:** the tool name is known, or the run stopped on the script’s error.
 
-1. **Detect the available tool.** Run `scripts/detect_tool.sh`. It checks `docker` → `podman` → `container` in that order and prints the first one whose binary AND daemon/service are both available. If it exits 1, relay its stderr message to the user (no tool found, or a daemon needs manual starting) and stop.
-   - **Done when:** tool name is known, or the run stopped with the script’s error.
+## Step 2 — Discover the project's container setup
 
-2. **Discover the project's container setup**, in this order:
-   - Grep `AGENTS.md`, `*.instructions.md`, and `README.md` for container startup instructions.
-   - If nothing found, fall back to detecting `docker-compose.yml`/`compose.yaml`, a Maven `docker-maven-plugin`/fabric8 config, Testcontainers usage, or Gradle equivalents.
-   - See `references/config-discovery.md` for exact grep patterns and file locations to check.
-   - **Done when:** start (and optional stop) commands or plugin flow are identified.
+Follow [`references/config-discovery.md`](references/config-discovery.md): `AGENTS.md` → `*.instructions.md` → `README.md` → config-file fallback. Copy documented commands verbatim, then reconcile in step 3.
 
-3. **Reconcile the discovered commands with the detected tool.** If the instructions name a different tool than the one detected (e.g. instructions say `docker` but only `podman` is installed), translate:
-   - For plain CLI commands (`ps`, `kill`, `rm`, `run`, `logs`), substitute per the table in `references/command-mapping.md`.
-   - For Maven/Testcontainers-driven flows (e.g. `mvn -Pit docker:start`), prefer bridging via `DOCKER_HOST` pointed at podman's Docker-API-compatible socket rather than rewriting Maven goals — the plugin itself talks to the Docker API, not literal shell commands.
-   - If the only available tool is the macOS `container` CLI and the project needs compose or the Docker API (Testcontainers, docker-maven-plugin), first tell the user this combination isn't natively supported and ask how they want to proceed. If they ask you to translate the plugin's declared containers into direct `container run` commands, extract the image/alias/env/port config manually — see "Manual extraction fallback" in `references/command-mapping.md` — instead of running the Maven goal itself. Run the rest of the Maven lifecycle (migrations, tests) with `-Ddocker.skip=true` so Maven doesn't also try to talk to the Docker API.
-   - **Done when:** final command list (or user-approved fallback) is ready to run.
+**Done when:** start (and optional stop) commands or the plugin flow are identified, including the file they came from.
 
-4. **Execute** the resulting start command(s). Prefer running any documented cleanup step first (e.g. killing/removing stale containers) exactly as instructed, translated per step 3.
-   - **Done when:** start commands finished without unhandled failure.
+## Step 3 — Reconcile commands with the detected tool
 
-5. **Verify** containers are actually up: list containers with the tool-appropriate list command (`docker ps` / `podman ps` / `container list`) and confirm the expected services/ports are present before telling the user IT tests are ready to run.
-   - **Done when:** expected services/ports appear in the list output (or gaps are reported).
+If the instructions name a different tool than the one detected, translate using [`references/command-mapping.md`](references/command-mapping.md):
 
-6. **Stopping/cleanup**: when asked to tear down, run the project's documented stop command (translated the same way), or fall back to killing/removing all containers started by this session if no explicit stop command is documented. Confirm with the user before removing containers not obviously related to this project.
-   - **Done when:** stop/cleanup completed (or user declined unsafe removals).
+- Plain CLI (`ps`, `kill`, `rm`, `run`, `logs`): substitute per that table.
+- Maven/Testcontainers (e.g. `mvn -Pit docker:start`): prefer `DOCKER_HOST` pointed at podman's Docker-API-compatible socket over rewriting Maven goals — the plugin talks to the Docker API.
+- macOS `container` CLI with compose or the Docker API (Testcontainers, docker-maven-plugin): tell the user this combination isn't natively supported and ask how to proceed. Manual extraction into `container run` only with user opt-in — see "Manual extraction fallback" in `command-mapping.md`. Run the rest of the Maven lifecycle with `-Ddocker.skip=true`.
 
-## Resources
+**Done when:** the final command list (or user-approved fallback) is ready to run.
 
-- `scripts/detect_tool.sh` — deterministic tool-detection script (docker > podman > container priority, checks daemon reachability too).
-- `references/command-mapping.md` — command-equivalence table across docker/podman/container, `DOCKER_HOST` bridging for Maven/Testcontainers, and macOS `container` CLI limitations (no compose, no Docker-API socket).
-- `references/config-discovery.md` — where and how to find a project's documented container startup steps, and fallback config-file signals when no instructions exist.
+## Step 4 — Start
+
+Run the start command(s). Prefer any documented cleanup first (kill/remove stale containers), translated per step 3.
+
+**Done when:** start commands finished without unhandled failure.
+
+## Step 5 — Verify
+
+List containers with the tool-appropriate list command (`docker ps` / `podman ps` / `container list`) and confirm the expected services/ports are present before saying IT tests are ready.
+
+**Done when:** expected services/ports appear in the list output, or every gap is reported.
+
+## Step 6 — Stop / cleanup
+
+When asked to tear down, run the project's documented stop command (translated the same way), or kill/remove containers started by this session if no stop command is documented. Confirm with the user before removing containers not obviously related to this project.
+
+**Done when:** stop/cleanup completed, or the user declined those removals.
