@@ -11,9 +11,7 @@
     "bold_folder_labels": true,
   },
   "agent_servers": {
-    "grok-build": {
-      "type": "registry",
-    },
+    
   },
   "auto_install_extensions": {
     "basher": true,
