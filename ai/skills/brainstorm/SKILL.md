@@ -6,9 +6,9 @@ disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> **Allowed writes:** plan artifacts only — root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After filing, persist those artifacts on the **implement-ticket baseline branch** (Step 4) and open a **draft** PR, then stop and tell the user to run `implement-ticket` manually.
+> **Allowed writes:** plan artifacts only — root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, tracker creates/updates/comments, and, when the user asked for a UI prototype, the clickable prototype `ui-ux-expert` writes during the Plan consult. After filing, persist the plan artifacts on the **implement-ticket baseline branch** (Step 4) and open a **draft** PR, then stop and tell the user to run `implement-ticket` manually. The prototype stays in the working tree; commit it only when the user asks to keep it.
 >
-> **Guardrail:** do not write, edit, or execute implementation code; do not run builds/tests; do not start `implement-ticket` — even if asked to "just do it" in the same run.
+> **Guardrail:** do not write, edit, or execute implementation code; do not run builds/tests of the product; do not start `implement-ticket` — even if asked to "just do it" in the same run. The prototype is a design artifact.
 
 ## Workflow
 
@@ -26,7 +26,7 @@ Produce a plan that includes:
 - Step-by-step implementation guide (code, config, infrastructure)
 - Challenges/risks and mitigations
 - Required tests and validation steps
-- If the user asked for a prototype or proof of concept: a plan for it (use the `prototype` skill when building one)
+- If the user asked for a UI prototype: put a **clickable prototype** request in the `ask-the-expert` question (use that phrase) so `ui-ux-expert` matches and builds it. Record its path and how to open it in the plan. A logic-only proof of concept uses the `prototype` skill and does not require `ui-ux-expert`.
 
 Load [`references/research-grill-decisions.md`](references/research-grill-decisions.md) and complete its research → grill → decision-capture sequence before the expert consult.
 
@@ -42,7 +42,7 @@ When branching out:
 4. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan that **current workspace**, match **every** available expert domain, and dispatch to **all** matched experts (that skill’s inventory and dispatch). Your job is to supply the plan and question, not to decide which experts run.
 5. **Incorporate** the synthesized guidance (risks, recommended approach, tradeoffs) into the plan. If the consult’s “Experts consulted” list is missing or looks incomplete relative to the repo, re-invoke `ask-the-expert` rather than proceeding on a partial consult.
 
-**Done when:** the plan has summary, steps, risks, tests/validation; [`research-grill-decisions.md`](references/research-grill-decisions.md) **Done when** criteria are met; `ask-the-expert` was actually invoked in Plan mode against the **current workspace** as codebase reference; its Experts consulted / inventory outcome is reflected; feedback is incorporated; open questions resolved or explicitly listed.
+**Done when:** the plan has summary, steps, risks, tests/validation; [`research-grill-decisions.md`](references/research-grill-decisions.md) **Done when** criteria are met; `ask-the-expert` was actually invoked in Plan mode against the **current workspace** as codebase reference; its Experts consulted / inventory outcome is reflected; feedback is incorporated; open questions resolved or explicitly listed. If a UI prototype was requested, `ui-ux-expert` built it and the plan records its path and how to open it.
 
 ### Step 3 — Work breakdown and ticket filing
 
@@ -52,6 +52,6 @@ Load [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdow
 
 ### Step 4 — Persist plan artifacts, then stop
 
-Load **Persist plan artifacts** in [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md). Report the plan summary, issue URLs, and the persist result (baseline branch, commit SHA, draft PR URL, or that nothing changed). Then stop; the user runs `implement-ticket` manually.
+Load **Persist plan artifacts** in [`references/tracer-ticket-breakdown.md`](references/tracer-ticket-breakdown.md). Report the plan summary, issue URLs, the persist result (baseline branch, commit SHA, draft PR URL, or that nothing changed), and, when a prototype was built, its path and how to open it. Then stop; the user runs `implement-ticket` manually.
 
 **Done when:** that file’s persist **Done when** is met.
