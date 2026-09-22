@@ -49,7 +49,7 @@ Domain experts that `ask-the-expert` dispatches share two modes. The procedure i
 | --- | --- |
 | `ask-the-expert` | Consult domain specialists in Consultant mode, or in Reviewer mode when the caller asks for a review. Covers server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, and UI/UX. Deploy and end-to-end test runs are separate personas. |
 | `aws-sso-login` | AWS SSO login. Use when AWS CLI operations need SSO auth, or the SSO session has expired. |
-| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), readiness labels on every touched issue, and plan artifacts committed on the implement-ticket baseline branch with a draft PR. A requested UI prototype is written by `ui-ux-expert` during the Consultant consult and left in the working tree ([Planning → implementation flow](#planning--implementation-flow)). |
+| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary on the main ticket, documented grilling decisions (ADRs or a `docs/research/` decisions note), readiness labels on every touched issue, and plan artifacts committed on the implement-ticket baseline branch with a draft PR. A requested UI prototype is written by `ui-ux-expert` during the Consultant consult and left in the working tree ([Planning → implementation flow](#planning--implementation-flow)). |
 | `datadog-health-report` | Datadog health report for a scoped area of responsibility. Use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, incidents, and dashboards synthesized. |
 | `expert-code-review` | Review recently written or modified code, a branch, or a PR — including security, performance, idioms, architecture, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines). |
 | `implement-ticket` | Execute a filed ticket or EPIC plan: branch, implement, PR, then one review on the final PR. Reuses the grooming baseline branch and draft PR when they exist. For EPICs, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch (stack trunk) using gh-stack, then review that stack once. |
@@ -131,7 +131,7 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 ### Planning → implementation flow
 
-`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those plan artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR, and rebases onto the current parent base — typically `main`/`master` — when the parent is not already an ancestor).
+`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: one file per research inquiry under `docs/research/<scope>/` ([path rule](skills/brainstorm/references/research-grill-decisions.md)), `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those plan artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR, and rebases onto the current parent base — typically `main`/`master` — when the parent is not already an ancestor).
 
 When the user asked for a UI prototype, `brainstorm`'s Consultant consult names a **clickable prototype**. `ask-the-expert` dispatches `ui-ux-expert` to write it. The file stays in the working tree until the user asks to keep it. A logic-only proof of concept uses the `prototype` skill.
 
@@ -140,9 +140,9 @@ When the user asked for a UI prototype, `brainstorm`'s Consultant consult names 
 | Gate | Requirement |
 | --- | --- |
 | **STE summary on main** | Full plan + next steps in ASD-STE100 Simplified Technical English, posted as a **comment on the main ticket** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present. |
-| **Decision capture** | Architectural decisions from grilling are on disk: **ADRs** via `domain-modeling` when root `CONTEXT.md` exists; otherwise a dated **Decisions** section in root `RESEARCH.md`. Skip only when grilling made none (state that in the plan). |
+| **Decision capture** | Architectural decisions from grilling are on disk: **ADRs** via `domain-modeling` when root `CONTEXT.md` exists; otherwise a dated **Decisions** section in `docs/research/<scope>/decisions.md`. Skip only when grilling made none (state that in the plan). |
 | **Labels** | Every issue **created or updated** in the run has the correct readiness label attached (`issue-tracker` **Extras**). |
-| **Plan artifacts on baseline** | Changed `RESEARCH.md` / `CONTEXT.md` / ADRs are committed on the implement-ticket baseline branch (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR. Skip when none of those files changed. |
+| **Plan artifacts on baseline** | Changed `docs/research/` files / `CONTEXT.md` / ADRs are committed on the implement-ticket baseline branch (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR. Skip when none of those files changed. |
 
 ```mermaid
 flowchart TD
@@ -156,12 +156,12 @@ flowchart TD
         C0 -- yes --> C1["observability-expert<br/>early evidence"]
         B --> R
         C1 --> R{"Needs research?"}
-        R -- yes --> S["research → RESEARCH.md"]
+        R -- yes --> S["research → docs/research/scope/inquiry.md"]
         S --> R
         R -- no --> T{"Open questions?"}
         T -- yes --> U{"CONTEXT.md?"}
         U -- yes --> G["grilling + domain-modeling → ADRs"]
-        U -- no --> Gb["grilling → Decisions in RESEARCH.md"]
+        U -- no --> Gb["grilling → docs/research/scope/decisions.md"]
         G --> T
         Gb --> T
 

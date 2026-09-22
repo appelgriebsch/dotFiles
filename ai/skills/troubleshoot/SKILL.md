@@ -6,7 +6,7 @@ disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> **Allowed writes:** plan artifacts only — root `RESEARCH.md`, `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After filing, persist those artifacts on the **implement-ticket baseline branch** (Step 4) and open a **draft** PR, then stop and tell the user to run `implement-ticket` manually.
+> **Allowed writes:** plan artifacts only — `docs/research/` files per the [path rule](../brainstorm/references/research-grill-decisions.md), `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After filing, persist those artifacts on the **implement-ticket baseline branch** (Step 4) and open a **draft** PR, then stop and tell the user to run `implement-ticket` manually.
 >
 > **Guardrail:** do not write, edit, or execute implementation code; do not run builds/tests; do not start `implement-ticket` — even if asked to "just fix it" in the same run.
 

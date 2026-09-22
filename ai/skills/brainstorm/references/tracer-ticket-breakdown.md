@@ -69,7 +69,7 @@ Load `issue-tracker` before any get/create/update/comment/link. Use **Operations
 
 2. **Child issues** — for each tracer-bullet ticket from the breakdown, **create** a ticket (**Operations** create) and **link** it to the main issue (**Operations** link_child). Each child body must include:
    - Goal (one line) — fits Context **What**
-   - Context references (paths, issue URLs, ADRs — not duplicated full specs)
+   - Context references (paths, issue URLs, ADRs, this run’s `docs/research` files when any were written — not duplicated full specs)
    - Blocking edges (ticket ids or “none”)
    - Demoable/verifiable done criterion — fits Acceptance Criteria
    - **Implementation plan** — the per-ticket plan from the breakdown (step-by-step for this child; full or best-effort with unknowns). This is what `implement-ticket` will execute for leaf work and for each EPIC sub-ticket.
@@ -84,7 +84,7 @@ Load `issue-tracker` before any get/create/update/comment/link. Use **Operations
 
 ## Persist plan artifacts
 
-Skill Step 4 — after filing. If this run created or updated any of root `RESEARCH.md`, `CONTEXT.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit **only those paths** on the **implement-ticket baseline branch** and open a **draft** PR for that head. Skip when none of those files changed. These files land with the work they inform — they merge when that work merges.
+Skill Step 4 — after filing. When this run wrote files under `docs/research/` (**Research store** in [`research-grill-decisions.md`](research-grill-decisions.md)), root `CONTEXT.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit those paths on the **implement-ticket baseline branch** and open a **draft** PR for that head. Skip when none of those files changed. These files land with the work they inform — they merge when that work merges.
 
 `{BASELINE_ID}` is the **main issue** from filing above.
 
@@ -94,7 +94,7 @@ Skill Step 4 — after filing. If this run created or updated any of root `RESEA
 | **Leaf** (no children) | `issue-tracker` `branch_with_ticket` for `{BASELINE_ID}` | that ticket’s **parent base** — same order as `implement-ticket` Step 2 (blocker branch if one exists, else parent EPIC branch if one exists, else default) |
 
 1. Fetch. Stash unrelated dirty files. Checkout the baseline branch; create it from the parent in the table if it is missing locally and on `origin`. If it already exists, use it (fast-forward from origin) — do not recreate it from default.
-2. Commit only the artifact paths. Message from **Git naming** `commit_with_ticket` with `{BASELINE_ID}`.
+2. Apply the **scope rename** in [`research-grill-decisions.md`](research-grill-decisions.md) when the research directory is still a topic slug. Commit only the `docs/research/<scope>/` files this run wrote, plus changed root `CONTEXT.md` and ADR paths. Message from **Git naming** `commit_with_ticket` with `{BASELINE_ID}`.
 3. Push the baseline branch to `origin`.
 4. If no open PR exists for this head: open a **draft** PR targeting the parent in the table. Title from `pr_title_with_ticket` for `{BASELINE_ID}`. Body: these are plan artifacts (research / decisions); implementation follows via `implement-ticket`; include ticket browse URLs (and child ids when this is an EPIC).
 5. If a PR already exists for this head: keep it draft, retarget its base if it does not match the parent in the table, report its URL.
