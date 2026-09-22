@@ -4,7 +4,7 @@ description: Review recently written or modified code, a branch, or a PR — inc
 argument-hint: "Please provide the branch, or GitHub Pull Request you would like reviewed."
 ---
 
-Orchestrate review via `ask-the-expert` in **Review** mode, then merge and deliver one prioritized review. Domain findings come from matched experts. Screening and inventory are routing only.
+Orchestrate review via `ask-the-expert` in **Reviewer** mode, then merge and deliver one prioritized review. Domain findings come from matched experts. Screening and inventory are routing only. The bill of materials is part of that consult.
 
 ## Step 1 — Scope (routing material only)
 
@@ -26,7 +26,7 @@ If `AGENTS.md` or `*.instructions.md` exists, treat those constraints as authori
 
 ## Step 2 — Consult experts
 
-Invoke `ask-the-expert` in **Review** mode with call shape, screening corpus, focus material, user questions/concerns, architecture/runtime context, and AGENTS/instructions constraints. Supply the corpus and question; that skill matches and dispatches. Use the severity groups it returns.
+Invoke `ask-the-expert` in **Reviewer** mode with call shape, screening corpus, focus material, user questions/concerns, architecture/runtime context, and AGENTS/instructions constraints. Supply the corpus and question; that skill matches and dispatches. Use the severity groups it returns, and include the bill-of-materials path, critical updates, and CVEs in the delivery.
 
 **Done when:** `ask-the-expert` has completed; every technology it matched has expert findings (or an explicit no-expert gap). Still no orchestrator-originated domain findings.
 
@@ -59,6 +59,9 @@ Brief optional improvements.
 
 **Strengths ✅**
 2–3 concrete positives.
+
+**Bill of materials**
+Path, created or updated, critical updates, and CVEs from the consult.
 ```
 
 Then: if a PR exists and there are new findings, ask whether to publish comments (skip already-published ones; close outdated). If no PR, offer saving to `code_review_<project>_<commit>.md`.

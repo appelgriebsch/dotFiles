@@ -1,6 +1,6 @@
 # Research, grill, decision capture
 
-Shared by `brainstorm` and `troubleshoot` during plan generation (their Step 2). Load **before** the calling skill’s expert consult. The consult itself stays in the calling skill (**Plan** vs **Diagnose**).
+Shared by `brainstorm` and `troubleshoot` during plan generation (their Step 2). Load **before** the calling skill’s expert consult. The consult itself stays in the calling skill (both use **Consultant**; `troubleshoot` also passes the incident revision).
 
 **Done when (whole file):** the research/grill **Done when** is met, and the decision-capture **Done when** is met or no grilling session ran.
 

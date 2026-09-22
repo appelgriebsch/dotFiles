@@ -8,43 +8,48 @@ Configuration, agents, and skills for [Grok Build](https://x.ai) (`~/.grok/`).
 | --- | --- |
 | `config.toml` | Portable Grok config — models, UI theme, LSP feature flag, MCP servers, and permission rules. Uses **`${ENV}` placeholders** for secrets (see [MCP config](#mcp-config)). |
 | `lsp.json` | LSP server configurations for TypeScript (typescript-language-server), Python (pyright), and Rust (rust-analyzer). |
-| `agents/` | Custom subagent definitions (domain experts, analyzers, and execution agents). |
+| `agents/` | Custom subagent definitions (domain experts and execution personas). |
 | `skills/` | Agent skills (portable instructions invoked by name or automatically based on their description). |
 
 ### Agents (`agents/`)
 
-Domain experts share four consultation **modes** (used by `ask-the-expert` and related skills). `test-engineer` and `deployment-engineer` reuse these names; each agent file says which modes run the work and which stop short:
+Domain experts that `ask-the-expert` dispatches share two modes. The procedure is [`skills/ask-the-expert/references/modes.md`](skills/ask-the-expert/references/modes.md).
 
 | Mode | When |
 | --- | --- |
-| **Review** | Critique existing/changed code, config, SQL, monitors, etc. |
-| **Plan** | Validate an approach before implementation (e.g. from `brainstorm`). |
-| **Diagnose** | Ranked root-cause hypotheses from evidence / live signals (e.g. from `troubleshoot`). |
-| **Question** | Direct how/what/why technical Q — answer first, then brief rationale. |
+| **Consultant** | Default. Ideation, brainstorming, troubleshooting, and improvements to an implementation plan. Researches candidate libraries and leaves a choice among several to the user. |
+| **Reviewer** | Only when the caller explicitly asks to review a pull request, branch, repository, or snippet. Creates or updates the repository bill of materials (name, version, license) and notes critical updates and CVEs. |
 
 | Agent | Purpose |
 | --- | --- |
-| `bun-expert.md` | Bun / TypeScript-JS runtime expert (Biome, Bun SQL/RabbitMQ/S3 APIs, security) — Review, Plan, Diagnose, Question. |
-| `ci-cd-expert.md` | CI/CD & delivery expert (GitHub Actions, Terraform pipelines, Helm charts, container build/deploy, CI shell) — Review, Plan, Diagnose, Question. |
-| `datadog-analyzer.md` | Datadog observability expert — live metrics/logs/traces/monitors/events (Diagnose), instrumentation/monitor review (Review), observability strategy (Plan), and product/query Q&A (Question). |
-| `deployment-engineer.md` | Senior deployment engineer. Ships an existing build artifact to Cloudflare Workers, Vercel, DigitalOcean, AWS, or Kubernetes via Helm. Consults `ci-cd-expert` before the push, then reports what landed and the web URL. Review deploys; Diagnose explains a failed deploy; Plan and Question stop before the push. |
-| `gis-expert.md` | GIS / geospatial expert (GeoTools, GDAL, Turf.js, PostGIS, Shapely, CRS, spatial indexing) — Review, Plan, Diagnose, Question. |
-| `postgres-expert.md` | PostgreSQL expert (SQL, schema/indexes, migrations, locking, EXPLAIN, ORM SQL) — Review, Plan, Diagnose, Question. |
-| `python-expert.md` | Python expert for web (FastAPI/Flask/Django), AWS Lambda/serverless, and data/ML (pandas, NumPy, Polars, TensorFlow/Keras, scikit-learn) — Review, Plan, Diagnose, Question. |
-| `rust-expert.md` | Rust expert across async services (Tokio/Axum, PostgreSQL, RabbitMQ, S3), CLI (clap/argh), and client/desktop/WASM (Tauri, egui/iced/Dioxus/Slint, wasm-bindgen, Leptos/Yew) — Review, Plan, Diagnose, Question. |
-| `spring-cloud-expert.md` | Java/Spring Cloud microservices expert (correctness, resilience, security, Kubernetes readiness) — Review, Plan, Diagnose, Question. |
-| `swift-expert.md` | Swift expert across client (SwiftUI/UIKit/AppKit), server (Vapor/Hummingbird/SwiftNIO), and CLI (swift-argument-parser, SwiftPM) — Review, Plan, Diagnose, Question. |
-| `test-engineer.md` | Senior test engineer. After a PR or a staging rollout, runs the change, then the full regression, and compares backend KPIs with the baseline. Browser checks use `obscura`. Review and Diagnose execute; Plan and Question stop before a run. |
-| `ui-ux-expert.md` | Senior UI/UX expert (progressive, fluent, mobile-first web design; clickable prototypes; shadcn/ui when no design system is given) — Review, Plan, Diagnose, Question. |
-| `web-frontend-expert.md` | Web frontend expert (React, Next.js, Svelte, a11y, responsiveness, performance) — Review, Plan, Diagnose, Question. |
+| `bun-expert.md` | Server-side JavaScript/TypeScript on Node.js, preferably Bun. |
+| `ci-cd-expert.md` | Automation: GitHub Actions, Helm charts, Terraform, shell, container builds, Make / Just. |
+| `gis-expert.md` | GIS and geospatial data: reading and writing datasets, clipping, merging, distance, and related operations. |
+| `observability-expert.md` | Application performance monitoring, tracing, logging, metrics, and KPIs. Datadog is one platform. |
+| `postgres-expert.md` | PostgreSQL queries and operations: SQL performance, missing indexes, query optimization. |
+| `python-expert.md` | Server-side Python, serverless Python (for example AWS Lambda), and data analysis in Python. |
+| `rust-expert.md` | Client- and server-side Rust. Servers prefer Tokio. Clients prefer the web and WebAssembly; cross-platform GUI and CLI/TUI are in scope. |
+| `spring-cloud-expert.md` | Server-side Java on an LTS release, using Spring Boot and Spring Cloud. |
+| `swift-expert.md` | Client- and server-side Swift, including desktop, mobile, web, WebAssembly, and CLI/TUI. |
+| `ui-ux-expert.md` | Progressive, fluent, mobile-first web UI/UX. Writes a clickable prototype when asked. |
+| `web-frontend-expert.md` | Client-side JavaScript/TypeScript, HTML/CSS, and current browser platform features such as WebGPU. |
+
+### Execution personas
+
+`deployment-engineer` and `test-engineer` are not dispatched by `ask-the-expert`. A person invokes them, or process automation does (a script, a webhook, or a workflow step).
+
+| Agent | Purpose |
+| --- | --- |
+| `deployment-engineer.md` | Ships an existing build artifact to Cloudflare Workers, Vercel, DigitalOcean, AWS, or Kubernetes via Helm. Consults `ci-cd-expert` in Consultant mode before the push, then reports what landed and the web URL. |
+| `test-engineer.md` | Runs API and web end-to-end checks against a PR preview or a staging rollout, then compares backend KPIs with the baseline. Browser checks use `obscura`. |
 
 ### Skills (`skills/`)
 
 | Skill | Description |
 | --- | --- |
-| `ask-the-expert` | Consult domain specialists. Use when Review, Plan, Diagnose, or Question work touches Rust, Bun/TypeScript, Java/Spring Cloud, Python (web, Lambda, data/ML), GIS, web front-end, UI/UX design, API or web end-to-end verification, Swift, PostgreSQL, Datadog, CI/CD (GitHub Actions, Terraform, Helm, shell pipelines), or cloud deployment of build artifacts — or whenever another skill needs specialist input. |
+| `ask-the-expert` | Consult domain specialists in Consultant mode, or in Reviewer mode when the caller asks for a review. Covers server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, and UI/UX. Deploy and end-to-end test runs are separate personas. |
 | `aws-sso-login` | AWS SSO login. Use when AWS CLI operations need SSO auth, or the SSO session has expired. |
-| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), readiness labels on every touched issue, and plan artifacts committed on the implement-ticket baseline branch with a draft PR. A requested UI prototype is written by `ui-ux-expert` during the Plan consult and left in the working tree ([Planning → implementation flow](#planning--implementation-flow)). |
+| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary on the main ticket, documented grilling decisions (ADRs or `RESEARCH.md`), readiness labels on every touched issue, and plan artifacts committed on the implement-ticket baseline branch with a draft PR. A requested UI prototype is written by `ui-ux-expert` during the Consultant consult and left in the working tree ([Planning → implementation flow](#planning--implementation-flow)). |
 | `datadog-health-report` | Datadog health report for a scoped area of responsibility. Use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, incidents, and dashboards synthesized. |
 | `expert-code-review` | Review recently written or modified code, a branch, or a PR — including security, performance, idioms, architecture, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines). |
 | `implement-ticket` | Execute a filed ticket or EPIC plan: branch, implement, PR, then one review on the final PR. Reuses the grooming baseline branch and draft PR when they exist. For EPICs, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch (stack trunk) using gh-stack, then review that stack once. |
@@ -128,7 +133,7 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 `brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: root `RESEARCH.md`, `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those plan artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR, and rebases onto the current parent base — typically `main`/`master` — when the parent is not already an ancestor).
 
-When the user asked for a UI prototype, `brainstorm`'s Plan consult names a **clickable prototype**. `ask-the-expert` dispatches `ui-ux-expert` to write it. The file stays in the working tree until the user asks to keep it. A logic-only proof of concept uses the `prototype` skill.
+When the user asked for a UI prototype, `brainstorm`'s Consultant consult names a **clickable prototype**. `ask-the-expert` dispatches `ui-ux-expert` to write it. The file stays in the working tree until the user asks to keep it. A logic-only proof of concept uses the `prototype` skill.
 
 **End-state gates** (both skills; filing owned with `skills/brainstorm/references/tracer-ticket-breakdown.md`):
 
@@ -148,7 +153,7 @@ flowchart TD
 
         C --> C0{"Ticket or trace?"}
         C0 -- no --> Redirect["Redirect to brainstorm"]
-        C0 -- yes --> C1["datadog-analyzer<br/>early evidence"]
+        C0 -- yes --> C1["observability-expert<br/>early evidence"]
         B --> R
         C1 --> R{"Needs research?"}
         R -- yes --> S["research → RESEARCH.md"]
@@ -161,8 +166,8 @@ flowchart TD
         Gb --> T
 
         T -- no --> X{"Skill?"}
-        X -- brainstorm --> D["ask-the-expert · Plan<br/>current workspace"]
-        X -- troubleshoot --> E["ask-the-expert · Diagnose<br/>tagged revision"]
+        X -- brainstorm --> D["ask-the-expert · Consultant<br/>current workspace"]
+        X -- troubleshoot --> E["ask-the-expert · Consultant<br/>incident revision"]
         D --> Dp{"Clickable<br/>prototype?"}
         Dp -- yes --> UXp["ui-ux-expert<br/>working tree"]
         Dp -- no --> F["Refine plan"]
