@@ -16,7 +16,7 @@ disable-model-invocation: true
 
 Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches, get the ticket via **Operations** get and load issue details. If not, treat the input as a trace id. A bare id is a Datadog trace id.
 
-If a trace id appears in the input or the issue body, use the `observability-expert` sub-agent to analyze the trace (APM, logs, metrics, events) for root-cause insights. Name the platform the id belongs to; a Datadog trace id names Datadog. Tell that agent this pass is Consultant signal gathering and to leave the bill of materials unwritten. Treat this as **early evidence gathering only** — it does **not** replace the mandatory `ask-the-expert` consult in Step 2 (which still discovers all repo technologies and may re-engage `observability-expert` plus every other matched expert).
+If a trace id appears in the input or the issue body, follow **One domain** in `ask-the-expert` for `observability`. Analyze the trace (APM, logs, metrics, events) for root-cause insights. Name the platform the id belongs to; a Datadog trace id names Datadog. This pass is Consultant signal gathering and leaves the bill of materials unwritten. Treat this as **early evidence gathering only** — it does **not** replace the mandatory `ask-the-expert` consult in Step 2 (which still discovers all repo technologies and may dispatch `observability` again plus every other matched domain).
 
 If no trace information is available, tell the user to use the `brainstorm` skill for idea/improvement grooming instead, and stop.
 
@@ -40,7 +40,7 @@ Load [`../brainstorm/references/research-grill-decisions.md`](../brainstorm/refe
 
 When branching out:
 
-1. **Invoke the skill** (do not impersonate experts yourself, and do not Task-call individual expert agents from this skill except the optional early `observability-expert` evidence pass in Step 1 — full multi-expert orchestration belongs to `ask-the-expert`).
+1. **Invoke the skill** (do not impersonate domain children yourself — full multi-domain orchestration belongs to `ask-the-expert`). The Step 1 trace pass is the **One domain** `observability` child. A screen, flow, or usability failure is part of this consult.
 2. **Pass full context**: draft plan, issue text, trace findings from Step 1, stack traces/logs, affected services/paths, and open questions.
 3. **Resolve and hand over the incident codebase revision.** Before/with the consult, mine the ticket and trace for version signals (fix versions, release names, image/git tags, `version` / `git.commit.sha` / deploy tags on the monitoring platform, stack-trace build ids, etc.). Prefer a **git tag** (or commit mappable to one). Tell `ask-the-expert` this is **Consultant** mode for troubleshooting, screening corpus = **whole source at that revision**, and pass the tag/SHA plus the evidence. `ask-the-expert` must materialize that tagged tree for experts. If no signal exists, say so and allow fallback to the current workspace — do not assume HEAD matches production.
 4. **Do not pre-filter technologies** for the consult. `ask-the-expert` must scan that **versioned codebase** (or the documented workspace fallback), match **every** available expert domain, and dispatch to **all** matched experts (that skill’s inventory and dispatch). Your job is to supply the diagnosis materials, version signal, and question — not to decide which experts run.

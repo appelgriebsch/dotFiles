@@ -4,7 +4,7 @@ description: Datadog health report for a scoped area of responsibility. Use befo
 argument-hint: "Please provide the area of responsibility (team, service, domain, or component) and any relevant Datadog tags or config to scope the report."
 ---
 
-Orchestrate Datadog signal gathering via **`observability-expert`**, then synthesize a standup/SoS health report. Scope every query to the confirmed area, tags, and window. Each prompt names Datadog as the platform, uses Consultant mode, and tells the agent this run gathers signals and leaves the bill of materials unwritten.
+Orchestrate Datadog signal gathering via the **One domain** child for `observability` in `ask-the-expert`, then synthesize a standup/SoS health report. Scope every query to the confirmed area, tags, and window. Each prompt names Datadog as the platform, uses Consultant mode, and leaves the bill of materials unwritten.
 
 ## Step 1 — Confirm scope
 
@@ -18,9 +18,9 @@ Confirm with the user if missing:
 
 **Done when:** area + tags/env are clear enough to scope queries.
 
-## Step 2 — Gather signals via observability-expert
+## Step 2 — Gather signals
 
-Dispatch **parallel** Task invocations of `observability-expert`, each scoped to the confirmed tags and window on Datadog. Cover these seven categories — one focused prompt per category (or batch carefully without dropping a category):
+Spawn **parallel** **One domain** children for `observability`, each scoped to the confirmed tags and window on Datadog. Cover these seven categories — one focused prompt per category (or batch carefully without dropping a category):
 
 | Category | Fetch |
 | --- | --- |
