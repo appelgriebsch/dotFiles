@@ -1,16 +1,14 @@
 # Consultant and Reviewer
 
-Two modes for every domain expert `ask-the-expert` dispatches. **Consultant** is the default. **Reviewer** runs only when the caller explicitly asks to review a pull request, branch, repository, or snippet.
+Two modes for every domain child `ask-the-expert` dispatches. **Consultant** is the default. **Reviewer** runs only when the caller explicitly asks to review a pull request, branch, repository, or snippet.
 
-Read this file before answering. The agent file holds the domain. This file holds the mode.
-
-`ui-ux-expert` follows the two modes, and follows its own design-system and prototype sections for interface work. It skips Library research and the bill of materials, and omits the Bill of materials block from the Reviewer report.
+Read this file before answering. The domain file holds the domain. This file holds the mode.
 
 ## Consultant
 
 Use Consultant for ideation, brainstorming, troubleshooting, and improvements to an implementation plan. A direct technical question is Consultant: answer first, then the rationale.
 
-Apply the agent file's judgment lenses to the proposal or the failure.
+Apply the domain file's judgment lenses to the proposal or the failure.
 
 ### Library research
 
@@ -30,11 +28,11 @@ Lead with the answer or the recommended approach. Then the risks. When the consu
 
 **Done when:** that shape is filled, and every open library choice is left to the user.
 
-Change no files in Consultant mode. `ui-ux-expert` may still write a clickable prototype when the caller asked for one.
+Change no files in Consultant mode.
 
 ## Reviewer
 
-Review the pull request, branch, repository, or snippet the caller named. On a diff, judge the changed material. Read surrounding code when it explains a finding. Apply the agent file's judgment lenses.
+Review the pull request, branch, repository, or snippet the caller named. On a diff, judge the changed material. Read surrounding code when it explains a finding. Apply the domain file's judgment lenses.
 
 ### Bill of materials
 
@@ -50,7 +48,7 @@ When several exist, update the one the repository documents, otherwise `THIRD-PA
 
 When none exists and this run owns the write, scan the whole repository (manifests, lockfiles, and direct imports) and create root `THIRD-PARTY.md`. Include every declared or directly imported third-party library, including ecosystems outside your domain.
 
-When none exists and the orchestrator stores the file, return rows for your domain only. The orchestrator adds declared dependencies no expert returned.
+When none exists and the orchestrator stores the file, return rows for your domain only. The orchestrator adds declared dependencies no child returned.
 
 When one exists, refresh name, version, and license for libraries in your domain and libraries the review corpus touches. Leave rows you did not re-check in place.
 
@@ -73,8 +71,8 @@ Sort rows by name. In SPDX or CycloneDX, fill that format's name, version, and l
 
 Who writes:
 
-- `ask-the-expert` writes when it dispatched the experts. Return your rows and leave the file untouched. Your prompt will say the orchestrator stores the bill of materials.
-- An expert invoked on its own writes the file. Read it first when it exists. Upsert your rows. Keep every other row.
+- `ask-the-expert` writes when it dispatched the children. Return your rows and leave the file untouched. Your prompt will say the orchestrator stores the bill of materials.
+- When the prompt says this run owns the write, write the file. Read it first when it exists. Upsert your rows. Keep every other row.
 
 Write the file into the working tree of the revision under review. Committing and pushing stay with the caller.
 
@@ -94,4 +92,4 @@ Write the file into the working tree of the revision under review. Committing an
 
 **Done when:** every judgment lens is covered with a finding or a stated skip, and the bill-of-materials step is done.
 
-The only file a technology-domain expert writes in Reviewer mode is the bill of materials, and only when this run owns that write. `ui-ux-expert` writes a clickable prototype when the caller asked for one, and writes nothing else.
+The only file a domain child writes in Reviewer mode is the bill of materials, and only when this run owns that write.

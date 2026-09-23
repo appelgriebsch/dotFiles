@@ -6,20 +6,26 @@
 # Secrets: use environment variables (${VAR}). Never commit real tokens.
 
 [models]
-default = "grok-4.5"
-web_search = "grok-4.5"
+default = "grok-4.7"
+web_search = "grok-4.7"
 default_reasoning_effort = "medium"
+
+[model."grok-4.6"]
+context_window = 256000
+
+[model."grok-4.7"]
+context_window = 256000
 
 [ui]
 theme = "auto"
-max_thoughts_width = 120
-fork_secondary_model = "grok-4.5"
+max_thoughts_width = 140
+fork_secondary_model = "grok-4.6"
 yolo = false
 compact_mode = false
 permission_mode = "auto"
 show_timeline = true
-simple_mode = false
 vim_mode = true
+simple_mode = false
 combine_queued_prompts = true
 remember_tool_approvals = true
 default_selected_permission = "allow_command_always"
@@ -32,7 +38,7 @@ lsp_tools = true
 profile = "workspace"
 
 [session]
-auto_compact_threshold_percent = 85
+auto_compact_threshold_percent = 70
 
 [mcp_servers.crates-io]
 command = "cratesio-mcp"
