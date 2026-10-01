@@ -6,7 +6,7 @@ disable-model-invocation: true
 ---
 
 > [!IMPORTANT]
-> **Allowed writes:** plan artifacts only — `docs/research/` files per the [path rule](../brainstorm/references/research-grill-decisions.md), `CONTEXT.md` / ADRs via `domain-modeling`, and tracker creates/updates/comments. After filing, persist those artifacts on the **implement-ticket baseline branch** (Step 4) and open a **draft** PR, then stop and tell the user to run `implement-ticket` manually.
+> **Allowed writes:** tracker creates/updates/comments, plus `GLOSSARY.md` / ADRs via `domain-modeling`. Research and decisions that are not ADRs stay out of the repo: scratch during the run, then `RESEARCH` / `DECISION` doc comments on the **main** ticket ([research-grill-decisions](../brainstorm/references/research-grill-decisions.md)). After filing, persist `GLOSSARY.md` / ADRs on the **implement-ticket baseline branch** (Step 4) and open a **draft** PR when those files changed, then stop and tell the user to run `implement-ticket` manually.
 >
 > **Guardrail:** do not write, edit, or execute implementation code; do not run builds/tests; do not start `implement-ticket` — even if asked to "just fix it" in the same run.
 
@@ -50,12 +50,12 @@ When branching out:
 
 ### Step 3 — Work breakdown and ticket filing
 
-Load [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md). Split the troubleshooting plan into tracer-bullet (or expand–contract) tickets, file/update the main issue and linked children, and meet that file’s **Work breakdown** and **Ticket creation / management** **Done when** before Step 4.
+Load [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md). Split the troubleshooting plan into tracer-bullet (or expand–contract) tickets. One bullet files a leaf. Two or more file an EPIC with one sub-task per bullet. File per that reference: extras `issue_type_bug`, an STE-100 description, and a `PLAN` doc comment on the leaf or on each sub-task.
 
 **Done when:** that file’s filing **Done when** is met.
 
 ### Step 4 — Persist plan artifacts, then stop
 
-Load **Persist plan artifacts** in [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md). Report the plan summary, issue URLs, and the persist result (baseline branch, commit SHA, draft PR URL, or that nothing changed). Then stop; the user runs `implement-ticket` manually.
+Load **Persist plan artifacts** in [`../brainstorm/references/tracer-ticket-breakdown.md`](../brainstorm/references/tracer-ticket-breakdown.md). Report the plan summary, issue URLs, which issue carries the `PLAN` comment, which of `RESEARCH` / `DECISION` are on the main ticket, and the persist result (baseline branch, commit SHA, draft PR URL, or that `GLOSSARY.md` / ADRs did not change). Then stop; the user runs `implement-ticket` manually.
 
 **Done when:** that file’s persist **Done when** is met.
