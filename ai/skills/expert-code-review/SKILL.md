@@ -62,8 +62,11 @@ Brief optional improvements.
 
 **Bill of materials**
 Path, created or updated, critical updates, and CVEs from the consult.
+
+**Ponytail**
+The consult's close: what was skipped or not checked, and the risk.
 ```
 
 Then: if a PR exists and there are new findings, ask whether to publish comments (skip already-published ones; close outdated). If no PR, offer saving to `code_review_<project>_<commit>.md`.
 
-**Done when:** review shown to the user; publish/save handled per their answer.
+**Done when:** review shown to the user, including the Ponytail close; publish/save handled per their answer.

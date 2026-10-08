@@ -19,6 +19,8 @@ Configuration and skills for [Grok Build](https://x.ai) (`~/.grok/`).
 | **Consultant** | Default. Ideation, brainstorming, troubleshooting, and improvements to an implementation plan. Researches candidate libraries and leaves a choice among several to the user. |
 | **Reviewer** | Only when the caller explicitly asks to review a pull request, branch, repository, or snippet. Creates or updates the repository bill of materials (name, version, license) and notes critical updates and CVEs. |
 
+Both modes apply [Ponytail](https://github.com/DietrichGebert/ponytail): the smallest complete change that still finishes the task. The rules live in [`skills/ask-the-expert/references/modes.md`](skills/ask-the-expert/references/modes.md).
+
 | Domain file | Purpose |
 | --- | --- |
 | `domains/bun.md` | Server-side JavaScript/TypeScript on Node.js, preferably Bun. |

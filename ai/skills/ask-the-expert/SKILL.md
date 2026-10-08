@@ -4,7 +4,7 @@ description: Consult domain specialists. Use for Consultant work (ideation, brai
 argument-hint: "Describe the code, technology, design question, or problem you would like expert input on."
 ---
 
-Orchestrate specialist input: match every technology in the screening **corpus** to a table domain, dispatch all matches in parallel as general-purpose children, synthesize by mode. Domain judgment comes from those children. Modes, library research, and the bill of materials are defined in [`references/modes.md`](references/modes.md). Each child reads that file and exactly one file under [`references/domains/`](references/domains/).
+Orchestrate specialist input: match every technology in the screening **corpus** to a table domain, dispatch all matches in parallel as general-purpose children, synthesize by mode. Domain judgment comes from those children. Ponytail, the modes, library research, and the bill of materials are defined in [`references/modes.md`](references/modes.md). Each child reads that file and exactly one file under [`references/domains/`](references/domains/). The domain file holds scenarios, idiom, and judgment.
 
 ## Available experts
 
@@ -85,7 +85,7 @@ Each child prompt includes:
 
 - Consultation **mode** + the specific question
 - The instruction to follow `references/modes.md`
-- The instruction to read `references/domains/<id>.md` and apply that file's scenarios and judgment
+- The instruction to read `references/domains/<id>.md` and apply that file's scenarios, idiom, and judgment
 - **Focus material** (diff/changeset, files, design, logs the caller cares about)
 - **Screening corpus** (PR diff vs full tree vs named paths)
 - **Codebase revision** (tag/SHA/`HEAD`) and how it was chosen
@@ -104,7 +104,7 @@ Use this when a caller already names one domain and wants that child only. Skip 
 
 ## Step 4 — Synthesize
 
-Merge into one coherent answer. Lead with **Experts consulted** (domain ids + why, tied to corpus evidence). Resolve contradictions with explicit tradeoffs; drop pure redundancy. For unmatched non-table tech, state that no specific expert exists.
+Merge into one coherent answer. Lead with **Experts consulted** (domain ids + why, tied to corpus evidence). Resolve contradictions with explicit tradeoffs; drop pure redundancy. Keep the recommendation inside the smallest complete change [`references/modes.md`](references/modes.md) defines. For unmatched non-table tech, state that no specific expert exists.
 
 When any child leaves a library choice open, list the options and leave the choice to the user. When children recommend different libraries for the same job, present each option with the evidence that child cited and leave the choice to the user.
 
@@ -115,6 +115,8 @@ Shape by mode:
 - **Consultant:** the answer or recommended approach, risks, and ranked causes when the consult is troubleshooting
 - **Reviewer:** Critical / Warning / Suggestion, then the bill-of-materials path, critical updates, and CVEs
 
+Merge the children's Ponytail closes into one close of one or two lines: what the consult skipped or did not check, and the risk. Keep a risk that is specific to a domain. Drop a duplicate.
+
 Return only the consultation — no code writes or tickets unless explicitly asked. The Reviewer bill of materials is that ask: the synthesis includes its path.
 
-**Done when:** synthesized answer is returned, every matched domain's input is reflected (or failure called out), and the Experts consulted list matches the inventory `yes` set. On Reviewer, the bill of materials is stored and named in the synthesis, including critical updates and CVEs.
+**Done when:** synthesized answer is returned, every matched domain's input is reflected (or failure called out), the Experts consulted list matches the inventory `yes` set, and the Ponytail close is present. On Reviewer, the bill of materials is stored and named in the synthesis, including critical updates and CVEs.
