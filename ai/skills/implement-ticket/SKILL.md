@@ -9,14 +9,18 @@ disable-model-invocation: true
 
 ### Step 1 — Parse the Request
 
-Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches, get the ticket via **Operations** get (**body, labels, links**) and require it is **open**. Detect **EPIC** vs **leaf** per **Extras** (`epic` and/or **Operations** children).
+Load `issue-tracker`. Match the input against **Identity** `ticket_id_pattern` (or extract the id from a browse URL). If it matches, get the ticket via **Operations** get (**body, labels, links**). Detect **EPIC** vs **leaf** per **Extras** (`epic` and/or **Operations** children).
+
+When the issue is **closed** and its implementing PR has merged — the leaf PR, or for an EPIC the PR from `branch_with_ticket` for this id that targets the default branch — run **Delete a ticket ref** for this issue and, when it is an EPIC, for each child. Then stop.
+
+Otherwise require the issue is **open**.
 
 #### Readiness gates (leaf and every EPIC sub-ticket)
 
 Apply **before** branching or coding. Label names, abort meaning, and `has-plan` vs grooming rules: `issue-tracker` **Extras**. Order:
 
 1. **Grooming labels (hard abort).** If `needs-brainstorm` and/or `needs-troubleshoot` is set: list the issue id/title and which grooming label(s); tell the user to run `brainstorm` and/or `troubleshoot`; **abort**. Do not implement while either remains, even when `has-plan` is also set.
-2. **Plan presence.** Ready only when the body has an **implementation plan** (step-by-step from `brainstorm` / `troubleshoot`, not only a goal or title), **and** preferably `has-plan`. Missing `has-plan` but a clear body plan (legacy): proceed and note the missing label. `has-plan` set but no workable body plan: **abort**; tell the user to re-run `brainstorm` / `troubleshoot` so the plan is written into the issue.
+2. **Plan presence.** Load the plan with `issue-tracker` **Read a doc comment** for `PLAN`. Ready when that comment is a step-by-step plan (full or best-effort with concrete steps, not only a goal or title), preferably with `has-plan`. An **EPIC parent** has no `PLAN` comment; it is ready when its description is the whole plan in STE-100 (every slice and its order). Missing `has-plan` but a clear `PLAN` comment, or a legacy body that is itself the step-by-step plan: proceed and note the gap. `has-plan` set but no workable `PLAN` comment and no legacy body plan (and, on an EPIC parent, no STE-100 plan in the description): **abort**; tell the user to re-run `brainstorm` / `troubleshoot`.
 3. No plan and no grooming label: tell the user to run `brainstorm` or `troubleshoot` first, and **abort**.
 4. Resolve the parent EPIC (**Operations** parent). Record `{EPIC_ID}` or none.
 5. Record this ticket’s blockers (issue ids that must finish first, or none).
@@ -24,17 +28,19 @@ Apply **before** branching or coding. Label names, abort meaning, and `has-plan`
 **Leaf ticket**
 
 - Run the readiness gates on this issue only.
+- Load ticket context with **Read a doc comment** for `RESEARCH` and for `DECISION`. Search this issue first. When a kind is absent and **Operations** parent returns an issue, read that kind on the parent. Keep whichever text you find for the Step 3 prompt. Absence of either comment is normal.
 - If ready: proceed to Step 2 with this ticket’s plan.
 
 **EPIC**
 
-1. Collect **every** sub-ticket via **Operations** children, then get full details for each (body, **labels**, state, links, blockers).
+1. Collect **every** sub-ticket via **Operations** children, then get full details for each (body, **labels**, state, links, blockers, and **Read a doc comment** for `PLAN`).
 2. Run the readiness gates on the **EPIC** issue itself (grooming labels on the parent also abort the whole run).
 3. Run the readiness gates on **every** sub-ticket.
-4. If **any** sub-ticket fails (grooming label, missing plan, or `has-plan` without a body plan): list those issue ids/titles and reasons, tell the user what to re-run, and **abort**. Do not implement partial EPICs.
+4. If **any** sub-ticket fails (grooming label, missing `PLAN` comment / legacy body plan, or `has-plan` without a workable plan): list those issue ids/titles and reasons, tell the user what to re-run, and **abort**. Do not implement partial EPICs.
 5. If all sub-tickets are ready: read each ticket’s **blocking edges** (ticket ids that must finish first, or “none”) and build an execution sequence — a dependency graph ordered into **waves**. A wave is the set of remaining tickets whose blockers are already done (or have none); tickets in the same wave may run **in parallel**. Tickets with blockers wait for later waves.
+6. For `RESEARCH` and for `DECISION`, **Read a doc comment** on the EPIC parent and on each sub-task. Keep the parent text for every sub-task prompt. When a sub-task has its own comment for that kind, that text replaces the parent text for that sub-task only. Absence of either comment is normal.
 
-**Done when:** a leaf ticket that passes readiness is loaded, its parent EPIC is resolved (`{EPIC_ID}` or none), and its blockers are recorded; **or** an EPIC has all sub-tickets loaded, every one (and the parent) passes readiness, and the wave sequence is written; **or** the run aborted with a clear report (grooming labels, missing plan, or missing issue).
+**Done when:** a leaf ticket that passes readiness is loaded, its parent EPIC is resolved (`{EPIC_ID}` or none), its blockers are recorded, and `RESEARCH` / `DECISION` comments on that leaf (or its parent) were read or noted absent; **or** an EPIC has all sub-tickets loaded, every one (and the parent) passes readiness, the wave sequence is written, and those two comments on the EPIC (or on a sub-task) were read or noted absent; **or** the run aborted with a clear report (grooming labels, missing plan, or missing issue).
 
 ### Step 2 — Resolve and sync the parent base
 
@@ -52,7 +58,7 @@ Fetch and fast-forward the chosen parent base (pull the default branch when that
 
 **Hard rule — background implement unit:** for every ticket (leaf or EPIC sub-ticket), dispatch **Steps 4–6 as one background task** (`task` / `general-purpose`, `mode: "background"`). Do this **always**, including when only one ticket is in flight — background is for **context isolation**, not only for parallelism. The parent conversation **orchestrates only**: prepare branch/worktree, launch the task, wait, read the task report. It must **not** implement, verify, or open the PR inline.
 
-Prompt each background task with the full ticket plan, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and an instruction to **load and follow** [`references/implement-unit.md`](references/implement-unit.md) (implement → verify → commit/push/PR). Resolve that path from this skill’s directory when writing the task prompt. Do not paste that file’s steps into the parent prompt. When the task finishes, take status only from its report (PR URL, deferred items, failures) — do not re-run the plan in the parent context.
+Prompt each background task with that ticket’s plan from Step 1 (the `PLAN` comment when it was loaded, otherwise the legacy body plan), the `RESEARCH` and `DECISION` text when Step 1 loaded them, ticket id, branch name (and worktree path if used), that ticket’s parent base (PR target), any `AGENTS.md` / `*.instructions.md` paths, and an instruction to **load and follow** [`references/implement-unit.md`](references/implement-unit.md) (implement → verify → commit/push/PR). For an EPIC, every sub-task prompt gets that sub-task’s plan and the `RESEARCH` / `DECISION` text Step 1 kept for it. Resolve that path from this skill’s directory when writing the task prompt. Do not paste that file’s steps into the parent prompt. When the task finishes, take status only from its report (PR URL, deferred items, failures) — do not re-run the plan in the parent context.
 
 **Existing-branch freshness** (parent conversation, before launch): if `branch_with_ticket` already exists — including a grooming draft PR from `brainstorm` / `troubleshoot` — check it out, keep its plan-artifact commits, and rebase it onto the current parent base whenever that parent is not already an ancestor (typical case: default `main`/`master` moved since the draft). Push the rebase with `--force-with-lease`. Conflicts: ask the user and stop. Launch the implement unit only after the parent is an ancestor of the working branch.
 
@@ -98,10 +104,20 @@ Invoke `expert-code-review` **once** in this conversation (not as a background t
 
 Publish findings as comments on that PR only.
 
-**Done when:** one review has run on the final PR; comments (if any) are on that PR; the review outcome is recorded for wrap-up.
+**Done when:** one review has run on the final PR; comments (if any) are on that PR; the review outcome is recorded for wrap-up. A leaf then runs Step 10. An EPIC runs Step 9 first.
 
 ### Step 9 — EPIC wrap-up (EPIC only)
 
 After all sub-ticket waves complete, the stack is built, and the final-PR review has run, report a summary table: sub-ticket id, PR URL, position in the stack, and any deferred items. Include the EPIC PR URL, the final PR that was reviewed, and that review’s outcome.
 
 **Done when:** the user has one consolidated status for the whole EPIC.
+
+### Step 10 — Ticket refs
+
+After the leaf review, or after the EPIC wrap-up, look for **Git naming** `ticket_ref` on this issue and, for an EPIC, on each sub-task.
+
+When the implementing PR has already merged, run **Delete a ticket ref**.
+
+When that PR is still open, leave every ref that exists. Tell the user each ref name, and that a later `implement-ticket` run deletes it once that PR has merged and the issue is closed.
+
+**Done when:** merged work has had its `ticket_ref` branches deleted, or the user has the ref names that stay until that merge.

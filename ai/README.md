@@ -19,6 +19,8 @@ Configuration and skills for [Grok Build](https://x.ai) (`~/.grok/`).
 | **Consultant** | Default. Ideation, brainstorming, troubleshooting, and improvements to an implementation plan. Researches candidate libraries and leaves a choice among several to the user. |
 | **Reviewer** | Only when the caller explicitly asks to review a pull request, branch, repository, or snippet. Creates or updates the repository bill of materials (name, version, license) and notes critical updates and CVEs. |
 
+Both modes apply [Ponytail](https://github.com/DietrichGebert/ponytail): the smallest complete change that still finishes the task. The rules live in [`skills/ask-the-expert/references/modes.md`](skills/ask-the-expert/references/modes.md).
+
 | Domain file | Purpose |
 | --- | --- |
 | `domains/bun.md` | Server-side JavaScript/TypeScript on Node.js, preferably Bun. |
@@ -39,7 +41,7 @@ Configuration and skills for [Grok Build](https://x.ai) (`~/.grok/`).
 | --- | --- |
 | `ask-the-expert` | Consult domain specialists in Consultant mode, or in Reviewer mode when the caller asks for a review. Covers server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, and web UI/UX. |
 | `aws-sso-login` | AWS SSO login. Use when AWS CLI operations need SSO auth, or the SSO session has expired. |
-| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE summary on the main ticket, documented grilling decisions (ADRs or a `docs/research/` decisions note), readiness labels on every touched issue, and plan artifacts committed on the implement-ticket baseline branch with a draft PR ([Planning → implementation flow](#planning--implementation-flow)). |
+| `brainstorm` | Plan an improvement ticket or idea into tracer-bullet work and tracker tickets. Ends with an STE-100 description, a `PLAN` doc comment on the leaf or on each sub-task, `RESEARCH` / `DECISION` doc comments on the main ticket for anything that is not an ADR, readiness labels on every touched issue, and `GLOSSARY.md` / ADRs committed on the implement-ticket baseline branch with a draft PR ([Planning → implementation flow](#planning--implementation-flow)). |
 | `datadog-health-report` | Datadog health report for a scoped area of responsibility. Use before a daily standup or SoS when you need metrics, logs, traces, monitors, SLOs, incidents, and dashboards synthesized. |
 | `expert-code-review` | Review recently written or modified code, a branch, or a PR — including security, performance, idioms, architecture, or CI/CD (GitHub Actions, Terraform, Helm, shell pipelines). |
 | `implement-ticket` | Execute a filed ticket or EPIC plan: branch, implement, PR, then one review on the final PR. Reuses the grooming baseline branch and draft PR when they exist. For EPICs, sequence by blockers, implement independent tickets in parallel, stack only the sub-ticket PRs onto the EPIC branch (stack trunk) using gh-stack, then review that stack once. |
@@ -57,7 +59,7 @@ The following skills are **not included** in this repo, but are required for som
 | `gh-stack` | Manage stacked branches and pull requests with the gh-stack GitHub CLI extension. Use when the user wants to create, push, rebase, sync, navigate, or view stacks of dependent PRs. Triggers on tasks involving stacked diffs, dependent pull requests, branch chains, or incremental code review workflows. | [github/gh-stack](https://github.com/github/gh-stack) (`skills/gh-stack`) |
 | `grilling` | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) |
 | `grill-me` | A relentless interview to sharpen a plan or design. (User-invoked wrapper around `grilling`.) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me) |
-| `domain-modeling` | Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model. (`brainstorm` / `troubleshoot` use it with `grilling` when root `CONTEXT.md` exists, including ADR capture.) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling) |
+| `domain-modeling` | Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model. (`brainstorm` / `troubleshoot` use it with `grilling` when root `GLOSSARY.md` exists, including ADR capture.) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling) |
 | `research` | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/research) |
 
 ### Optional external skills
@@ -117,7 +119,7 @@ See the upstream READMEs for details: [mattpocock/skills](https://github.com/mat
 
 ### Planning → implementation flow
 
-`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** — they never write **implementation code**, run tests, or start `implement-ticket`. Allowed plan artifacts: one file per research inquiry under `docs/research/<scope>/` ([path rule](skills/brainstorm/references/research-grill-decisions.md)), `CONTEXT.md` / ADRs (via `domain-modeling`), and tracker creates/updates/comments. After filing, those plan artifacts are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR, and rebases onto the current parent base — typically `main`/`master` — when the parent is not already an ancestor).
+`brainstorm` and `troubleshoot` **plan, document decisions, and file tracker tickets** — they never write **implementation code**, run tests, or start `implement-ticket`. Git writes are `GLOSSARY.md` / ADRs via `domain-modeling`. Research and architectural decisions that do not become an ADR are scratch during the run, then `RESEARCH` / `DECISION` doc comments on the **main** ticket (leaf or EPIC) ([research-grill-decisions](skills/brainstorm/references/research-grill-decisions.md)). The issue description is STE-100. The implementation plan is a `PLAN` doc comment on the leaf or on each sub-task. A `PLAN`, `RESEARCH`, or `DECISION` body over 65,536 characters is pushed to `ticket/gh-{id}` (never a pull request) and the comment points at that file. `implement-ticket` deletes those refs after the implementing PR has merged. After filing, changed `GLOSSARY.md` / ADRs are committed on the **implement-ticket baseline branch** (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR, so they merge with the work they inform. Implementation is always triggered manually by the user afterwards, via `implement-ticket` (which reuses that branch and draft PR, and rebases onto the current parent base — typically `main`/`master` — when the parent is not already an ancestor).
 
 A screen, flow, or design-system question goes through `ask-the-expert`, which dispatches the `ui-ux-design` domain.
 
@@ -125,10 +127,13 @@ A screen, flow, or design-system question goes through `ask-the-expert`, which d
 
 | Gate | Requirement |
 | --- | --- |
-| **STE summary on main** | Full plan + next steps in ASD-STE100 Simplified Technical English, posted as a **comment on the main ticket** (and shown to the user). Use ubiquitous language from `CONTEXT.md` when present. |
-| **Decision capture** | Architectural decisions from grilling are on disk: **ADRs** via `domain-modeling` when root `CONTEXT.md` exists; otherwise a dated **Decisions** section in `docs/research/<scope>/decisions.md`. Skip only when grilling made none (state that in the plan). |
+| **STE-100 description** | Leaf and each sub-task: the description is the STE-100 summary of that plan. EPIC parent: the description is the whole epic plan in STE-100 (every slice and its order). Shown to the user. Terms from `GLOSSARY.md` when present. |
+| **`PLAN` comment** | Leaf: one `PLAN` doc comment of the full plan. EPIC: one `PLAN` comment per sub-task, that slice’s plan. The EPIC parent has no `PLAN` comment. Each comment starts with `# PLAN`. |
+| **Decision capture** | An architectural decision that passes `domain-modeling`’s ADR gate (root `GLOSSARY.md` present) is an ADR in git. Every other settled architectural decision is a dated entry in a `DECISION` doc comment on the main ticket (`# DECISION`). Skip only when grilling made none (state that in the plan). |
+| **`RESEARCH` comment** | Each research inquiry is assembled into a `RESEARCH` doc comment on the main ticket (`# RESEARCH`). Skip when this run did no research. |
 | **Labels** | Every issue **created or updated** in the run has the correct readiness label attached (`issue-tracker` **Extras**). |
-| **Plan artifacts on baseline** | Changed `docs/research/` files / `CONTEXT.md` / ADRs are committed on the implement-ticket baseline branch (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR. Skip when none of those files changed. |
+| **Glossary and ADRs on baseline** | Changed `GLOSSARY.md` / ADRs are committed on the implement-ticket baseline branch (`branch_with_ticket` for the EPIC id, or for a leaf the ticket id) with a **draft** PR. That branch carries the glossary and ADRs only. Skip when none of those files changed. |
+| **Oversized doc** | A comment body over 65,536 characters is the file on `ticket/gh-{id}`, and the comment’s body after `# PLAN`, `# RESEARCH`, or `# DECISION` is `ticket/gh-{id}:{FILE}`. `implement-ticket` reads it with `git show` and deletes the ref after the implementing PR has merged. |
 
 ```mermaid
 flowchart TD
@@ -142,14 +147,15 @@ flowchart TD
         C0 -- yes --> C1["observability domain child<br/>early evidence"]
         B --> R
         C1 --> R{"Needs research?"}
-        R -- yes --> S["research → docs/research/scope/inquiry.md"]
+        R -- yes --> S["research → scratch inquiry"]
         S --> R
         R -- no --> T{"Open questions?"}
-        T -- yes --> U{"CONTEXT.md?"}
-        U -- yes --> G["grilling + domain-modeling → ADRs"]
-        U -- no --> Gb["grilling → docs/research/scope/decisions.md"]
-        G --> T
-        Gb --> T
+        T -- yes --> G["grilling"]
+        G --> Cap{"ADR gate?"}
+        Cap -- yes --> ADR["domain-modeling → ADR"]
+        Cap -- no --> Dec["scratch DECISION.md"]
+        ADR --> T
+        Dec --> T
 
         T -- no --> X{"Skill?"}
         X -- brainstorm --> D["ask-the-expert · Consultant<br/>current workspace"]
@@ -157,8 +163,8 @@ flowchart TD
         D --> F["Refine plan"]
         E --> F
         F --> ISS["File tickets + labels"]
-        ISS --> STE["STE summary on main"]
-        STE --> P["Commit artifacts, draft PR"]
+        ISS --> STE["STE-100 + PLAN comment<br/>RESEARCH / DECISION comments"]
+        STE --> P["Commit ADRs, draft PR"]
         P --> H["STOP"]
     end
 
@@ -168,7 +174,7 @@ flowchart TD
         direction TB
         I["implement-ticket"] --> IGate{"needs-brainstorm /<br/>needs-troubleshoot?"}
         IGate -- yes --> AbortGroom["Abort — re-groom"]
-        IGate -- no --> IPlan{"has-plan + body plan?"}
+        IGate -- no --> IPlan{"has-plan + PLAN comment?"}
         IPlan -- no --> AbortPlan["Abort — missing plan"]
         IPlan -- yes --> I0{"EPIC?"}
         I0 -- leaf --> Base["Parent base:<br/>blocker → EPIC → default"]
@@ -189,7 +195,7 @@ flowchart TD
     class H stop
 ```
 
-**No implicit handoff:** neither `brainstorm` nor `troubleshoot` may call `implement-ticket` or start the ticket implementation. The user must explicitly invoke `implement-ticket` for a filed ticket (or EPIC) to begin implementation. Implementation starts only when grooming labels are clear and a body plan is present (`has-plan` preferred); for EPICs, **every** sub-ticket (and the parent) must pass those readiness gates.
+**No implicit handoff:** neither `brainstorm` nor `troubleshoot` may call `implement-ticket` or start the ticket implementation. The user must explicitly invoke `implement-ticket` for a filed ticket (or EPIC) to begin implementation. Implementation starts only when grooming labels are clear and a `PLAN` doc comment is present (`has-plan` preferred; an EPIC parent is ready from its STE-100 description). For EPICs, **every** sub-ticket (and the parent) must pass those readiness gates.
 
 ## Installation
 

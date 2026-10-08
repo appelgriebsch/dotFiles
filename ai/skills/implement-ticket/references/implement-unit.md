@@ -1,12 +1,12 @@
 # Implement unit (background)
 
-Runs inside the background task dispatched from `implement-ticket` Step 3 — never in the parent conversation. The task prompt supplies this ticket’s plan, ticket id, branch (and worktree path if used), **parent base** (PR target), and any `AGENTS.md` / `*.instructions.md` paths.
+Runs inside the background task dispatched from `implement-ticket` Step 3 — never in the parent conversation. The task prompt supplies this ticket’s plan, any `RESEARCH` / `DECISION` text, ticket id, branch (and worktree path if used), **parent base** (PR target), and any `AGENTS.md` / `*.instructions.md` paths.
 
 Load `issue-tracker` for **Git naming** and ticket browse URLs.
 
 ## Step 4 — Implement the plan
 
-Apply the plan’s changes (code, config, infrastructure) for the **current** ticket only. If `AGENTS.md` or `*.instructions.md` exists, treat those instructions as authoritative over implicit assumptions. Add tests, docs, or other artifacts the plan requires.
+Apply the plan’s changes (code, config, infrastructure) for the **current** ticket only. If `AGENTS.md` or `*.instructions.md` exists, treat those instructions as authoritative over implicit assumptions. When the prompt includes `RESEARCH` or `DECISION` text, treat the first as the facts behind the plan and the second as settled choices, including rejected alternatives, and follow them where they constrain the work. Add tests, docs, or other artifacts the plan requires.
 
 **Done when:** every plan item for this ticket is addressed or explicitly deferred with a reason.
 

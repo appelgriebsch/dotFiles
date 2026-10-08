@@ -37,11 +37,11 @@ For each ticket, work out (when possible):
 1. Map each parent-plan step (or root-cause fix step) onto the ticket that owns it.
 2. Rewrite those steps at child granularity: concrete enough to implement, free of work that belongs on sibling tickets.
 3. Prefer a **full** plan when the approach, surfaces, and validation are already known from research/expert consult.
-4. If a slice **cannot** be planned fully yet (outcome of a prior ticket, live investigation, or unknown API shape), still file a **best-effort** plan: known steps, explicit unknowns, and what must be true after blockers land before implementation can finish. Mark residual unknowns in the body — do not leave the plan section empty or “TBD only”.
+4. If a slice **cannot** be planned fully yet (outcome of a prior ticket, live investigation, or unknown API shape), still file a **best-effort** plan: known steps, explicit unknowns, and what must be true after blockers land before implementation can finish. Mark residual unknowns in that plan. The plan stays filled in.
 
 File a child with a workable plan whenever the parent plan and codebase context already in hand can support one (goal + acceptance criterion alone only when that is all that can be written).
 
-**Done when:** every ticket has a one-line goal, a demoable/verifiable criterion, an explicit blockers list (or “none”), and a per-ticket implementation plan (full or best-effort with stated unknowns).
+**Done when:** every ticket has a one-line goal, a demoable/verifiable criterion, an explicit blockers list (or “none”), and a per-ticket implementation plan (full or best-effort with stated unknowns). That plan is what filing posts as the `PLAN` doc comment.
 
 ### Wide refactors (exception)
 
@@ -57,34 +57,50 @@ Each expand / migrate-batch / contract ticket still gets its **own** implementat
 
 ## Ticket creation / management
 
-Load `issue-tracker` before any get/create/update/comment/link. Use **Operations** tool names and **Extras** labels.
+Load `issue-tracker` before any get/create/update/comment. Use **Operations** tool names, **Extras** labels, and **Extras** issue types.
+
+One tracer bullet files a **leaf**. Two or more file an **EPIC**: one parent plus one sub-task per bullet.
+
+| Shape | Main issue type | Sub-tasks |
+| --- | --- | --- |
+| **Leaf** | `brainstorm` → extras `issue_type_improvement`; `troubleshoot` → extras `issue_type_bug` | none |
+| **EPIC** | same as the leaf row | one extras `issue_type_subtask` per bullet; parent = the main issue |
+
+### Description and `PLAN`
+
+Write descriptions in **STE-100** (ASD Simplified Technical English): short sentences, one action per sentence, terms from `GLOSSARY.md` when that file exists.
+
+| Ticket | Description | `PLAN` comment |
+| --- | --- | --- |
+| Leaf | STE-100 summary of the plan: what changes, why, the next step, and blocker ids when any | the full implementation plan |
+| EPIC parent | the whole epic plan in STE-100, every slice and its order | none |
+| Sub-task | STE-100 summary of that slice, including blocker ids when any | that slice’s implementation plan |
+
+The `PLAN` comment is the per-ticket plan from the breakdown, in ordinary technical prose: scope, steps, tests/validation, local risks, and **Depends on** (blocker ids, or none). No secrets (API keys, passwords, PII). `implement-ticket` executes this comment.
+
+Write the files under **Scratch** in [`research-grill-decisions.md`](research-grill-decisions.md). The leaf file is `{scratch}/PLAN.md`. Each sub-task file is `{scratch}/{slice-slug}/PLAN.md` until it is posted. Create **Scratch** when this run has none yet.
 
 ### Filing steps
 
-1. **Main issue**
-   - If work started from an existing ticket: **update** it with a summary of the plan (**Operations** update is fine).
-   - If work started from an idea, improvement request, or trace ID only: **create** a new ticket with that summary (**Operations** create).
-   - Keep the **full** parent plan (or a clear summary + pointer) on the main/EPIC issue so the overall story stays visible.
-   - Apply labels per **Extras** (typically `epic` + `has-plan` when children and a parent plan exist; grooming flags only if gaps remain).
+1. **Main issue** — **Operations** update when the run started from an existing ticket; **Operations** create otherwise. Set `type` from the table. Set the body to the STE-100 description for this shape. Apply labels per **Extras** (`epic` + `has-plan` when this is an EPIC whose description is the whole plan; a leaf gets `has-plan` when its `PLAN` file has concrete steps; grooming flags only when gaps remain).
 
-2. **Child issues** — for each tracer-bullet ticket from the breakdown, **create** a ticket (**Operations** create) and **link** it to the main issue (**Operations** link_child). Each child body must include:
-   - Goal (one line) — fits Context **What**
-   - Context references (paths, issue URLs, ADRs, this run’s `docs/research` files when any were written — not duplicated full specs)
-   - Blocking edges (ticket ids or “none”)
-   - Demoable/verifiable done criterion — fits Acceptance Criteria
-   - **Implementation plan** — the per-ticket plan from the breakdown (step-by-step for this child; full or best-effort with unknowns). This is what `implement-ticket` will execute for leaf work and for each EPIC sub-ticket.
-   - No secrets (API keys, passwords, PII)
-   - Apply labels per **Extras** (`has-plan` and/or grooming flags; never `epic`).
+2. **Sub-tasks** (EPIC only) — **Operations** create each bullet with `type` = extras `issue_type_subtask`, `parent_issue_number` = the main issue number, and that slice’s STE-100 summary as the body. Labels per **Extras** (`has-plan` when that slice’s `PLAN` file has concrete steps; never `epic`).
 
-3. **STE summary on main** — write a human-readable summary of the **full** plan and next steps in ASD-STE100 Simplified Technical English (ubiquitous language from `CONTEXT.md` when present). **Post it as a comment on the main ticket** (**Operations** comment) (required — chat-only is not enough) and repeat it in the skill output to the user.
+3. **Ids in the text** — after every issue exists, update any description that still names a slice or a blocker without its ticket id, so the epic plan and each sub-task summary use those ids (or “none”).
 
-4. **User summary** — return the STE summary, main + child issue links (noting that each child carries its own plan), labels assigned to each issue, and next-step recommendations.
+4. **Post `PLAN`** — **Post a doc comment** for `PLAN` from the leaf file onto the leaf, or from each slice file onto that sub-task. The description stays the STE-100 text.
 
-**Done when:** main issue exists/updated with the parent plan; every child linked to main was created via **Operations** create + link_child with goal/context/blockers/done criterion/**implementation plan**; the main ticket has an **STE summary comment** attached; labels on every touched issue match **Extras**; and the user has the URLs plus that summary.
+5. **Ticket context** — on the **main** issue only. When **Scratch** has inquiry files, write `{scratch}/RESEARCH.md` as **Ticket context files** in [`research-grill-decisions.md`](research-grill-decisions.md). **Post a doc comment** for `RESEARCH` and for `DECISION` when each file exists.
+
+6. **User summary** — return the main STE-100 description, each issue URL, the issue that carries the `PLAN` comment (the leaf, or every sub-task), which of `RESEARCH` / `DECISION` are on the main issue, the labels, and the next step (`implement-ticket`).
+
+Delete **Scratch** after every post attempted above succeeds, including a post that published an oversized file on `ticket_ref`. When a post fails, leave that file, report the path and the error, and keep the description as the STE-100 text.
+
+**Done when:** the main issue has the issue type from the table and its STE-100 description; a leaf has a `PLAN` doc comment; an EPIC has one sub-task per tracer bullet, each with its STE-100 summary, the sub-task type, the main issue as parent, and its own `PLAN` doc comment; `RESEARCH` and `DECISION` doc comments are on the main issue when this run produced them; labels match **Extras**; the user has the URLs and the STE-100 text.
 
 ## Persist plan artifacts
 
-Skill Step 4 — after filing. When this run wrote files under `docs/research/` (**Research store** in [`research-grill-decisions.md`](research-grill-decisions.md)), root `CONTEXT.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit those paths on the **implement-ticket baseline branch** and open a **draft** PR for that head. Skip when none of those files changed. These files land with the work they inform — they merge when that work merges.
+Skill Step 4 — after filing. When this run changed root `GLOSSARY.md` (including a rename from `CONTEXT.md`), a context-local `GLOSSARY.md`, or ADRs (`docs/adr/` or a context-local `docs/adr/`), commit those paths on the **implement-ticket baseline branch** and open a **draft** PR for that head. Skip when none of those files changed. They land with the work they inform — they merge when that work merges. `PLAN`, `RESEARCH`, and `DECISION` stay on the issue comment or on `ticket_ref`. The baseline branch carries the glossary and ADRs only.
 
 `{BASELINE_ID}` is the **main issue** from filing above.
 
@@ -94,9 +110,9 @@ Skill Step 4 — after filing. When this run wrote files under `docs/research/` 
 | **Leaf** (no children) | `issue-tracker` `branch_with_ticket` for `{BASELINE_ID}` | that ticket’s **parent base** — same order as `implement-ticket` Step 2 (blocker branch if one exists, else parent EPIC branch if one exists, else default) |
 
 1. Fetch. Stash unrelated dirty files. Checkout the baseline branch; create it from the parent in the table if it is missing locally and on `origin`. If it already exists, use it (fast-forward from origin) — do not recreate it from default.
-2. Apply the **scope rename** in [`research-grill-decisions.md`](research-grill-decisions.md) when the research directory is still a topic slug. Commit only the `docs/research/<scope>/` files this run wrote, plus changed root `CONTEXT.md` and ADR paths. Message from **Git naming** `commit_with_ticket` with `{BASELINE_ID}`.
+2. Commit only changed glossary and ADR paths: root `GLOSSARY.md`, a rename from root `CONTEXT.md`, context-local `GLOSSARY.md`, and ADR paths. Message from **Git naming** `commit_with_ticket` with `{BASELINE_ID}`.
 3. Push the baseline branch to `origin`.
-4. If no open PR exists for this head: open a **draft** PR targeting the parent in the table. Title from `pr_title_with_ticket` for `{BASELINE_ID}`. Body: these are plan artifacts (research / decisions); implementation follows via `implement-ticket`; include ticket browse URLs (and child ids when this is an EPIC).
+4. If no open PR exists for this head: open a **draft** PR targeting the parent in the table. Title from `pr_title_with_ticket` for `{BASELINE_ID}`. Body: these are glossary / ADR artifacts; `PLAN`, `RESEARCH`, and `DECISION` are doc comments on the ticket (an oversized one names its `ticket_ref` in the comment); implementation follows via `implement-ticket`; include ticket browse URLs (and sub-task ids when this is an EPIC).
 5. If a PR already exists for this head: keep it draft, retarget its base if it does not match the parent in the table, report its URL.
 6. Restore the previous checkout.
 

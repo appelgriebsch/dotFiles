@@ -32,6 +32,15 @@ Apply all three to every design and review:
 - **Fluent.** The next state grows out of the control the user just used, in the same frame, with immediate feedback. Motion shows where something went. Honor `prefers-reduced-motion`.
 - **Mobile-first.** Design and check a narrow width first (~360px). The primary action stays in thumb reach. Hit targets are at least 44px. Every path works with touch and keyboard; hover only adds. Wider layouts add columns and density.
 
+## Idiom
+
+Craft above is how a screen is shaped. Apply these with it:
+
+- A control's label is visible text, associated with the control. Placeholder text is a hint.
+- An error names the field and the correction, and sits on that field.
+- A reversible action offers undo. A destructive action names the verb and asks for confirmation only when undo is impossible.
+- Words match the design system in force: one noun for one concept.
+
 ## Judgment
 
 Apply every lens that fits. Skip a lens that does not fit the material and say so. A broken primary task is Critical. A craft or design-system break is Warning.
