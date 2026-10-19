@@ -1,0 +1,40 @@
+{
+  "commands": [
+    {
+      "title": "GH Copilot",
+      "cmd": "gh",
+      "args": [
+        "copilot",
+        "--acp",
+        "--model",
+        "claude-sonnet-5.5"
+      ],
+    },
+    {
+      "title": "SuperGrok",
+      "cmd": "grok",
+      "args": [
+        "acp"
+      ],
+      "model": "grok-4.7"
+    }
+  ],
+  "actions": [
+    {
+      "title": "Explain",
+      "prompt": "Explain in simple terms"
+    },
+    {
+      "title": "Summarize",
+      "prompt": "Summarize with key points"
+    },
+    {
+      "title": "Commit Message",
+      "prompt": "Write a concise commit message that explains the intent of all staged changes. Follow the repository's existing commit-message style."
+    },
+    {
+      "title": "Pull Request Summary",
+      "prompt": "Write an accurate pull request title and a concise summary of the changes. Choose a short descriptive branch name and the appropriate target branch."
+    }
+  ]
+}

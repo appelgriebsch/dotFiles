@@ -4,6 +4,7 @@
   ],
   "installed_packages": [
     "A File Icon",
+    "ACP",
     "AutoProjects",
     "ayu",
     "Babel",
@@ -63,7 +64,6 @@
     "NeoVintageousLineNumbers",
     "nginx",
     "Open in Default Application",
-    "OpenAI completion",
     "Origami",
     "Package Control",
     "Project And Workspace Management",
