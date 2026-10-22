@@ -1,0 +1,68 @@
+{
+  "asm-lsp": {
+    "enabled": true,
+    "command": [
+      "asm-lsp"
+    ],
+    "selector": "source.asm | source.assembly"
+  },
+  "clangd": {
+    "command": [
+      "ccls"
+    ],
+    "enabled": true,
+    "initialization_options": {
+      "cacheDirectory": "/tmp/ccls"
+    },
+    "settings": {
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        "*.sublime-project",
+        ".git/",
+        ".hg/"
+      ]
+    },
+  },
+  "depsy-lsp": {
+    "command": [
+      "depsy-lsp"
+    ],
+    "enabled": true,
+    "selector": "source.TOML | source.toml | source.JSON | source.json",
+    "initializationOptions": {
+      "inlay_hints": {
+        "enabled": true,
+        "up_to_date_text": " ",
+        "needs_update_text": " {}"
+      },
+      "diagnostics": {
+        "outdated_severity": "hint",
+        "unknown_severity": "warning",
+      },
+    },
+    "settings": {
+      "rootPatterns": [
+        "Cargo.toml",
+        "*.sublime-project",
+        ".git/",
+        ".hg/"
+      ]
+    }
+  },
+  "justfile": {
+    "command": [
+      "just-lsp"
+    ],
+    "enabled": true,
+    "selector": "source.just",
+    "settings": {
+      "rootPatterns": [
+        "Cargo.toml",
+        "*.sublime-project",
+        ".git/",
+        ".hg/"
+      ]
+    }
+  },
+}
