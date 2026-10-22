@@ -22,6 +22,7 @@
   "gravity_highlight_color_blue": true,
   "gravity_tab_height_short": true,
   "gravity_title_bar": true,
+  "hardware_acceleration": "opengl",
   "hide_tab_scrolling_buttons": true,
   "highlight_line": true,
   "highlight_modified_tabs": true,
@@ -50,5 +51,6 @@
   "trim_trailing_white_space_on_save": "all",
   "ui_scale": 1,
   "vintageous_use_super_keys": false,
-  "vintageous_use_sys_clipboard": true
+  "vintageous_use_sys_clipboard": true,
+  "file_icon_theme": "A File Icon (Mono).sublime-file-icons"
 }

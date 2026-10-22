@@ -78,7 +78,6 @@
     "SVG Viewer",
     "Swift Next",
     "Sync Merge Scheme",
-    "Sync Settings",
     "Terminus",
     "Terraform",
     "TOML",
@@ -86,6 +85,6 @@
     "WASM Interface Type",
     "x86 and x86_64 Assembly",
     "YamlPipelines",
-    "ZipContents",
+    "ZipContents"
   ]
 }

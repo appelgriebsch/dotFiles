@@ -30,7 +30,7 @@
     ],
     "enabled": true,
     "selector": "source.TOML | source.toml | source.JSON | source.json",
-    "initializationOptions": {
+    "initialization_options": {
       "inlay_hints": {
         "enabled": true,
         "up_to_date_text": " ",

@@ -11,6 +11,16 @@
       ],
     },
     {
+      "title": "Cursor",
+      "cmd": "cursor-agent",
+      "args": [
+        "acp",
+        "--sandbox=enabled",
+        "--model=grok-4.7-high",
+        "--auto-review"
+      ],
+    },
+    {
       "title": "SuperGrok",
       "cmd": "grok",
       "args": [
