@@ -5,7 +5,6 @@
   "crates.incompatibleDecorator": " ${version}",
   "dbcode.pagination": true,
   "dbcode.history.enabled": true,
-  "dbcode.useLanguageServer": true,
   "dbcode.resultLocation": "below",
   "debug.toolBarLocation": "commandCenter",
   "diffEditor.ignoreTrimWhitespace": false,
@@ -90,7 +89,6 @@
   "workbench.preferredLightColorTheme": "Ayu Light",
   "window.systemColorTheme": "auto",
   "githubPullRequests.createOnPublishBranch": "never",
-  "inlineChat.enableV2": true,
   "inlineChat.notebookAgent": true,
   "chat.agent.sandbox.enabled": "on",
   "inlineChat.askInChat": false,
@@ -99,9 +97,20 @@
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.gpuAcceleration": "off",
   "workbench.experimental.modernUI": true,
-  "chat.agentHost.enabled": true,
   "rust-analyzer.server.path": "~/.cargo/bin/rust-analyzer",
   "chat.viewSessions.orientation": "stacked",
-  "grok.summarizeRepliesAloud": false,
-  "local-sync.removeExtensions": true
+  "local-sync.removeExtensions": true,
+  "window.newWindowProfile": "Default",
+  "workbench.editorAssociations": {
+    "{hexdiff}:/**/*.*": "hexEditor.hexedit"
+  },
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ],
+  "rust-glancer.diagnostics.command": "clippy"
 }
