@@ -1,0 +1,24 @@
+{
+  "source_repo": "appelgriebsch/dotFiles",
+  "source_branch": "master",
+  "source_path": "ai/skills/ask-the-expert",
+  "version_url": "https://github.com/appelgriebsch/dotFiles/tree/master/ai/skills/ask-the-expert",
+  "raw_base": "https://raw.githubusercontent.com/appelgriebsch/dotFiles/master/ai/skills/ask-the-expert",
+  "files": [
+    "SKILL.md",
+    "references/modes.md",
+    "references/domains/bun.md",
+    "references/domains/ci-cd.md",
+    "references/domains/gis.md",
+    "references/domains/observability.md",
+    "references/domains/postgres.md",
+    "references/domains/python.md",
+    "references/domains/rust.md",
+    "references/domains/spring-cloud.md",
+    "references/domains/swift.md",
+    "references/domains/ui-ux-design.md",
+    "references/domains/web-frontend.md"
+  ],
+  "cache_dir": "cache",
+  "version_marker": "cache/VERSION"
+}

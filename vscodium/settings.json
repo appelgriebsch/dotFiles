@@ -112,5 +112,20 @@
     "**/.forgejo/workflows/*.yml",
     "**/.forgejo/workflows/*.yaml"
   ],
-  "rust-glancer.diagnostics.command": "clippy"
+  "rust-glancer.diagnostics.command": "clippy",
+  "acp.agents": {
+    "Grok": {
+      "command": "grok",
+      "args": [
+        "--permission-mode",
+        "auto",
+        "agent",
+        "--effort",
+        "high",
+        "--model",
+        "grok-4.7",
+        "stdio"
+      ]
+    }
+  }
 }

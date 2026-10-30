@@ -1,0 +1,43 @@
+active_model = "mistral-large-4"
+default_agent = "smart-approve"
+enable_telemetry = false
+
+[[mcp_servers]]
+name = "crates-io"
+transport = "stdio"
+command = "cratesio-mcp"
+args = [
+    "--transport",
+    "stdio",
+]
+
+[[mcp_servers]]
+name = "bun-mcp"
+transport = "stdio"
+command = "bunx"
+args = [
+    "-y",
+    "mcp-bun@latest",
+]
+
+[mcp_servers.env]
+DISABLE_NOTIFICATIONS = "true"
+
+[[mcp_servers]]
+name = "github"
+transport = "stdio"
+command = "github-mcp-server"
+args = [
+    "stdio",
+]
+disabled = true
+
+[[mcp_servers]]
+url = "https://mcp.datadoghq.eu/v1/mcp"
+name = "datadog"
+transport = "streamable-http"
+disabled = true
+
+[mcp_servers.auth]
+api_key_env = "DATADOG_MCP_TOKEN"
+type = "static"

@@ -1,6 +1,6 @@
 ---
 name: implement-ticket
-description: Execute a filed ticket or EPIC plan: branch, implement, PR, then one review on the final PR.
+description: Execute a filed ticket or EPIC plan - branch, implement, PR, then one review on the final PR.
 argument-hint: "Please provide the ticket ID for the improvement, bug ticket, or EPIC you would like to implement."
 disable-model-invocation: true
 ---
