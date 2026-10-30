@@ -24,7 +24,14 @@
       "title": "SuperGrok",
       "cmd": "grok",
       "args": [
-        "acp"
+        "--permission-mode",
+        "auto",
+        "agent",
+        "--effort",
+        "high",
+        "--model",
+        "grok-4.7",
+        "stdio"
       ],
       "model": "grok-4.7"
     }
