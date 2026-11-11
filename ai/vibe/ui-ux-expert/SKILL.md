@@ -1,5 +1,5 @@
 ---
-name: uiux-expert
+name: ui-ux-expert
 description: Consult a Senior UI/UX expert for progressive, fluent, mobile-first
   web design. Load when the user asks for design guidance, design reviews, UI/UX
   decisions, component or design-system choices (shadcn by default), or a

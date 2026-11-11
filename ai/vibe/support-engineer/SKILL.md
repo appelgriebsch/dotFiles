@@ -5,8 +5,9 @@ description: Load this skill when the user reports a production problem — a
   monitoring tool (Datadog, Cloudflare Observability, Grafana, Sentry, etc.) —
   and wants the relevant evidence collected, the root cause identified across
   source code repositories (e.g. on GitHub), and a handover to the
-  solution-engineer skill for an implementation plan and tracer-bullet ticket.
-  Ends with a plain-English (ASD-STE100) summary of the outcome.
+  solution-engineer skill for an implementation plan. ALWAYS stops when the plan
+  is ready — no implementation work starts. Ends with a plain-English
+  (ASD-STE100) summary of the outcome.
 ---
 # Support Engineer
 
@@ -33,10 +34,11 @@ You are a senior support engineer. Given a stacktrace, error description, or tra
 - Form one or more root-cause hypotheses and validate each against the evidence: reproduce the logic mentally, check boundary conditions (null/empty input, timeouts, retries, resource limits), and verify commit history around the first occurrence if repo access allows it.
 - State the root cause with its supporting evidence, and state confidence explicitly (confirmed / probable / inconclusive). If inconclusive, say exactly which additional data (log level increase, specific trace, repo access) would settle it, rather than guessing.
 
-## Phase 3 — Hand over to solution-engineer
+## Phase 3 — Hand over to solution-engineer (plan only, then STOP)
 
 - Compose a handover package containing: the original report, the collected evidence (trace IDs, log lines, stack frames, occurrence timeline), the identified root cause with confidence level, and the affected repos and code locations.
-- Invoke the `solution-engineer` skill with this analysis as the task description, so it can produce the implementation plan and tracer-bullet GitHub Issue. Follow its process from there.
+- Invoke the `solution-engineer` skill with this analysis as the task description, so it can produce the expert-reviewed implementation plan. Follow its process from there.
+- HARD STOP: the handover ends when the plan is ready. Do NOT write, modify, or scaffold any code, config, or files in the target repo. Do not create GitHub Issues or ADRs. No implementation work starts. Implementation, tickets, and ADRs happen only if the user explicitly asks to continue after seeing the plan.
 
 ## Phase 4 — Plain-English summary (ASD-STE100)
 
@@ -45,10 +47,11 @@ End with a short summary in plain technical English, following ASD-STE100 rules:
 1. What the problem was.
 2. What evidence you found.
 3. What the root cause is, and how sure you are.
-4. What happens next (the solution-engineer handover).
+4. What happens next (the plan is ready; implementation starts only if the user asks for it).
 
 ## General rules
 
+- ALWAYS stop when the plan is ready. No implementation work starts without an explicit user request.
 - Never invent log lines, trace data, or code content. Only report what a tool or file actually returned.
 - If the monitoring tool or a repo is not reachable with the configured connectors, say so and ask for the needed access instead of speculating.
 - Keep the evidence trail complete: every conclusion must point back to a trace, log line, or code location that supports it.
