@@ -41,17 +41,7 @@ Act as a senior developer who turns an implementation / mitigation plan into mer
 
 ## Step 4 — Expert code review
 
-1. Load the `ask-the-expert` skill and run it in **Reviewer** mode on the new PR (the changeset is the screening corpus and focus material). State the chosen mode to the user.
-2. Produce the consolidated review in the expert-code-review delivery format (Overall Assessment, Critical 🔴, Warnings ⚠️, Suggestions 💡, Strengths ✅, Bill of materials, Ponytail).
-
-**Done when:** one merged, deduplicated, prioritized review exists, sourced from expert findings.
-
-## Step 5 — Publish findings on the PR
-
-1. Publish the consolidated findings as a review on the PR created in Step 3:
-  - **Inline comments** on the specific files/lines each finding concerns, with the suggested fix where applicable.
-  - A **top-level review summary** for overall assessment, strengths, bill of materials, and findings that are not line-specific.
-2. Offer to implement potential improvements / fixes for Critical and Warning findings directly on the feature branch (new commits, PR updated). Do this only on the user's confirmation.
-3. Report to the user: PR URL, review summary, and whether fixes were applied or offered.
+1. Load the `code-reviewer` skill and run it on the new PR (the changeset is the screening corpus and focus material).
+2. Report to the user: PR URL, review summary, and whether fixes were applied or offered.
 
 **Done when:** the review is published on the PR and the user has the summary and next-step options.
