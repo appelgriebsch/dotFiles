@@ -19,7 +19,7 @@ context_window = 256000
 [ui]
 theme = "auto"
 max_thoughts_width = 140
-fork_secondary_model = "grok-4.6"
+fork_secondary_model = "grok-4.7"
 yolo = false
 compact_mode = false
 permission_mode = "auto"
@@ -67,12 +67,11 @@ enabled = false
 Authorization = "Bearer ${DATADOG_MCP_TOKEN}"
 
 [mcp_servers.github]
-command = "github-mcp-server"
-args = ["stdio"]
+url = "https://api.githubcopilot.com/mcp/"
 enabled = true
 
-[mcp_servers.github.env]
-GITHUB_PERSONAL_ACCESS_TOKEN = "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+[mcp_servers.github.headers]
+Authorization = "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
 
 [permission]
 ask = ["MCPTool(github__*)"]

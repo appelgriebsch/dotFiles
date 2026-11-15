@@ -127,5 +127,6 @@
         "stdio"
       ]
     }
-  }
+  },
+  "mistral-vibe-code.telemetry.enabled": false
 }

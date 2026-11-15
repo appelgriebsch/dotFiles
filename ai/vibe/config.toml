@@ -1,6 +1,11 @@
 active_model = "mistral-large-4"
 default_agent = "smart-approve"
 enable_telemetry = false
+vim_keybindings = true
+installed_agents = [
+    "lean",
+]
+theme = "mistral-light"
 
 [[mcp_servers]]
 name = "crates-io"
@@ -24,13 +29,14 @@ args = [
 DISABLE_NOTIFICATIONS = "true"
 
 [[mcp_servers]]
+url = "https://api.githubcopilot.com/mcp/"
 name = "github"
-transport = "stdio"
-command = "github-mcp-server"
-args = [
-    "stdio",
-]
+transport = "streamable-http"
 disabled = true
+
+[mcp_servers.auth]
+api_key_env = "GITHUB_PERSONAL_ACCESS_TOKEN"
+type = "static"
 
 [[mcp_servers]]
 url = "https://mcp.datadoghq.eu/v1/mcp"
