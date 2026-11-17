@@ -8,6 +8,7 @@ description: "Load this skill when the user gives a task description or GitHub
   no tickets or ADRs are created, unless the user explicitly asks to continue.
   Ends with a plain-English (ASD-STE100) summary and a Mermaid architecture
   diagram."
+disable-model-invocation: true
 ---
 # Solution Engineer
 
@@ -29,7 +30,7 @@ Research the option space with web search where facts matter (library maturity, 
 
 ## Phase 2 — Architecture and technology selection
 
-Derive the system architecture and technology stack from the chosen option. Prefer boring, proven technology that the repo and team already use. For server-side JS/TS, CI/CD, GIS, PostgreSQL, Python, Rust, Java Spring Boot, Swift, web front-end, or UI/UX areas, load the `ask-the-expert` skill in Consultant mode and use it to pressure-test the architecture and technology choice. Incorporate its feedback before moving on.
+Derive the system architecture and technology stack from the chosen option. Prefer boring, proven technology that the repo and team already use. For server-side JS/TS, CI/CD, GIS, PostgreSQL, Python, Rust, Java Spring Boot, Swift, web front-end, or UI/UX areas, load the `domain-expert` persona in Consultant mode and use it to pressure-test the architecture and technology choice. Incorporate its feedback before moving on.
 
 ## Phase 3 — Resolve unknowns with the user (grilling)
 
@@ -46,7 +47,7 @@ Facts are your job, never the user's: anything you can look up (filesystem, web,
 
 ## Phase 4 — Implementation plan (expert-reviewed) — MANDATORY STOP AFTER THIS PHASE
 
-Write a detailed implementation plan: milestones, components to build/change, data flows, interfaces, test strategy, rollout/deployment steps, and risks. Then load `ask-the-expert` in Consultant mode again, have it review the plan, and refine the plan with its feedback. Record what changed because of the review.
+Write a detailed implementation plan: milestones, components to build/change, data flows, interfaces, test strategy, rollout/deployment steps, and risks. Then load `domain-expert` in Consultant mode again, have it review the plan, and refine the plan with its feedback. Record what changed because of the review.
 
 ## HARD STOP — the plan is the deliverable
 

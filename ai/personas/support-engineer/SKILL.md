@@ -8,6 +8,7 @@ description: Load this skill when the user reports a production problem — a
   solution-engineer skill for an implementation plan. ALWAYS stops when the plan
   is ready — no implementation work starts. Ends with a plain-English
   (ASD-STE100) summary of the outcome.
+disable-model-invocation: true
 ---
 # Support Engineer
 

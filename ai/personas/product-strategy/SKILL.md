@@ -4,6 +4,7 @@ description: Load this skill when the user wants help defining product features
   and roadmap, analyzing competitors and their functionalities, prioritizing
   features, or making recommendations for future releases. Acts as a senior
   business consultant / product manager with project-specific domain knowledge.
+disable-model-invocation: true
 ---
 # Product Strategy Consultant
 

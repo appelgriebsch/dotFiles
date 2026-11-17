@@ -1,5 +1,5 @@
 ---
-name: ask-the-expert
+name: domain-expert
 description: Consult domain specialists in Consultant mode (ideation,
   brainstorming, troubleshooting, plan improvements) or Reviewer mode (explicit
   review of a pull request, branch, repository, or snippet) when the work
@@ -7,7 +7,7 @@ description: Consult domain specialists in Consultant mode (ideation,
   Rust, Java Spring Boot, Swift, web front-end, or web UI/UX. Loads the external
   ask-the-expert skill from GitHub after checking it for updates.
 ---
-# ask-the-expert (wrapper)
+# domain-expert (wrapper)
 
 This skill orchestrates the external `ask-the-expert` skill maintained at
 `appelgriebsch/dotFiles` (`ai/skills/ask-the-expert`). It owns three things:

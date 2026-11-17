@@ -4,6 +4,7 @@ description: Consult a Senior UI/UX expert for progressive, fluent, mobile-first
   web design. Load when the user asks for design guidance, design reviews, UI/UX
   decisions, component or design-system choices (shadcn by default), or a
   working prototype of the task with production-like test data.
+disable-model-invocation: true
 ---
 # Senior UI/UX Expert
 

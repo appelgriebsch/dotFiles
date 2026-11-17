@@ -7,6 +7,7 @@ description: Load this skill when the user wants automated testing of an API or
   outcomes, structured test reports, and performance KPI measurement compared
   against the previous version. Also load for requests to verify a release,
   check for regressions, or benchmark backend performance.
+disable-model-invocation: true
 ---
 # Senior Test Engineer
 

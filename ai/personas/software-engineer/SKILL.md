@@ -1,12 +1,13 @@
 ---
-name: implementation-engineer
+name: software-engineer
 description: Load this skill when the user wants an implementation or mitigation
   plan (usually attached to a GitHub Issue) implemented on top of an existing
   GitHub repository by a senior developer. Implements the plan, opens a GitHub
-  Pull Request for the changes, then runs a code review via ask-the-expert in
+  Pull Request for the changes, then runs a code review via domain-expert in
   Reviewer mode following the expert-code-review guidelines, and publishes the
   consolidated findings as review comments (inline where applicable) on the new
   PR.
+disable-model-invocation: true
 ---
 # Implementation Engineer
 
