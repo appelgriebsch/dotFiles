@@ -3,11 +3,11 @@ name: solution-engineer
 description: "Load this skill when the user gives a task description or GitHub
   Issue and wants a full solution-engineering pass — research the option space
   (Ponytail FULL mindset), pick architecture and technology, grill the user to
-  resolve unknowns, and produce an expert-reviewed implementation plan. The
-  skill ALWAYS stops when the plan is ready: no implementation work starts, and
-  no tickets or ADRs are created, unless the user explicitly asks to continue.
-  Ends with a plain-English (ASD-STE100) summary and a Mermaid architecture
-  diagram."
+  resolve unknowns, and produce an implementation plan reviewed by domain-expert
+  and, when frontend work is involved, also by ui-ux-expert. The skill ALWAYS
+  stops when the plan is ready; no implementation work starts, and no tickets
+  or ADRs are created, unless the user explicitly asks to continue. Ends with
+  a plain-English (ASD-STE100) summary and a Mermaid architecture diagram."
 disable-model-invocation: true
 ---
 # Solution Engineer
@@ -47,14 +47,28 @@ Facts are your job, never the user's: anything you can look up (filesystem, web,
 
 ## Phase 4 — Implementation plan (expert-reviewed) — MANDATORY STOP AFTER THIS PHASE
 
-Write a detailed implementation plan: milestones, components to build/change, data flows, interfaces, test strategy, rollout/deployment steps, and risks. Then load `domain-expert` in Consultant mode again, have it review the plan, and refine the plan with its feedback. Record what changed because of the review.
+Write a detailed implementation plan: milestones, components to build/change, data flows, interfaces, test strategy, rollout/deployment steps, and risks.
+
+### Step 4a — Domain expert review
+
+Load `domain-expert` in Consultant mode, have it review the plan, and refine the plan with its feedback. Record what changed because of the review.
+
+### Step 4b — UI/UX review (only when frontend work is involved)
+
+Check the plan for ANY frontend work: screens, UI components, web front-end code, design-system changes, user-facing flows, or layout. If any exists:
+
+1. Load the `ui-ux-expert` persona and pass it the full plan plus the domain-expert feedback from Step 4a.
+2. Ask it to review the plan for: progressive enhancement, mobile-first layout, accessibility (WCAG), interaction states, design-system consistency (shadcn by default), and realistic user flows with edge cases.
+3. Incorporate its feedback into the plan. Record what changed because of this review.
+
+If the plan has NO frontend work, skip this step and note that in the plan.
 
 ## HARD STOP — the plan is the deliverable
 
 When Phase 4 is complete, STOP. Present the reviewed plan and the final overview, then end your turn. This stop is mandatory and has no exceptions:
 
 - Do NOT write, modify, or scaffold any code, config, or files in the target repo. No implementation work starts.
-- Do NOT run Phase 5 or Phase 6. Do not create GitHub Issues, ADRs, or any other repo artifacts.
+- Do NOT run Phase 5 or Phase 6. Do not create GitHub Issues, ADRs, or any other repo artifacts. Tracer-bullet splitting and ticket creation happen ONLY in Phase 5, after both the domain-expert review (Step 4a) and the UI/UX review (Step 4b, when frontend work exists) are complete.
 - Do not "prepare", "bootstrap", or pre-stage anything that belongs to implementation.
 - Phases 5 and 6 below run ONLY if the user explicitly asks to continue after seeing the plan. A general "go ahead" is enough — but without it, do nothing.
 

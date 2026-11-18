@@ -60,10 +60,10 @@ See [`personas/README.md`](personas/README.md) for full details.
 | Persona | Model-invocable | Description |
 | --- | --- | --- |
 | `domain-expert` | **yes** | Wrapper that loads the external `ask-the-expert` skill from `ai/skills/ask-the-expert` (cached from GitHub via `MANIFEST.json`, auto-updated on each run). Chooses **Consultant** or **Reviewer** mode and delegates execution. **Never** modifies the external skill's instructions. |
-| `code-reviewer` | no | Orchestrates expert code reviews. Collects code based on trigger type (PR/diff, branch, paths), invokes `ask-the-expert` in Reviewer mode, **merges and contextualizes findings**, applies review standards, eliminates duplicates, and publishes a structured report (Overall Assessment, Critical Issues, Warnings, Suggestions, Strengths, Bill of Materials, Ponytail). For PR triggers, posts inline and summary comments. **Never** invents code. |
-| `software-engineer` | no | Acts as a senior developer who turns an implementation or mitigation plan into merged-ready changes on an existing GitHub repo. **Requires** a concrete plan with scope, steps, and acceptance criteria — **stops** if none exists. Creates feature branch, implements incrementally with small commits, runs build/lint/tests, opens PR with proper description, and runs `code-reviewer` on the new PR. **Never** implements without a plan. |
+| `code-reviewer` | no | Orchestrates expert code reviews. Collects code based on trigger type (PR/diff, branch, paths), invokes `domain-expert` in Reviewer mode, **merges and contextualizes findings**, applies review standards, eliminates duplicates, and publishes a structured report (Overall Assessment, Critical Issues, Warnings, Suggestions, Strengths, Bill of Materials, Ponytail). For PR triggers, posts inline and summary comments. **Never** invents code. |
+| `software-engineer` | no | Acts as a senior developer who turns an implementation or mitigation plan into merged-ready changes on an existing GitHub repo. Handles **leaf** tickets (implement → PR → review) and **EPICs** (detect sub-tickets → resolve dependency waves → implement one-by-one stacking branches via `gh-stack` with the EPIC branch as trunk → draft PR with cumulative diff → `code-reviewer` on top of stack). **Requires** a concrete plan — **stops** if none exists. **Never** implements without a plan. |
 | `product-strategy` | no | Acts as a senior business consultant / product manager. Gathers domain context from `AGENTS.md`, `*.instructions.md`, and `GLOSSARY.md`. Defines features (problem → solution → persona → metric), analyzes competitors with web search, prioritizes with RICE or MoSCoW, and recommends roadmaps (Now/Next/Later). Delivers artifacts as Canvas or documents. Ends with top 3 recommendations, highest-risk assumption, and next step. |
-| `solution-engineer` | no | Runs full solution-engineering pass: **Ponytail FULL** option-space research → architecture/technology selection (pressure-tested via `ask-the-expert` Consultant mode) → **grilling** the user to resolve unknowns (decision-tree rounds) → expert-reviewed implementation plan. **MANDATORY HARD STOP** after planning — never writes code, creates tickets, or ADRs unless explicitly asked. Ends with ASD-STE100 summary and Mermaid architecture diagram. |
+| `solution-engineer` | no | Runs full solution-engineering pass: **Ponytail FULL** option-space research → architecture/technology selection (pressure-tested via `domain-expert` Consultant mode) → **grilling** the user to resolve unknowns (decision-tree rounds) → implementation plan with **two reviews**: Step 4a `domain-expert` (Consultant), Step 4b `ui-ux-expert` (only when frontend work exists — screens, components, web front-end, design system). **MANDATORY HARD STOP** after planning — tracer-bullet splitting and tickets happen only in Phase 5 if the user explicitly continues. Never writes code unless asked. Ends with ASD-STE100 summary and Mermaid architecture diagram. |
 | `support-engineer` | no | Diagnoses production problems (stacktrace, error, trace ID from Datadog/Cloudflare/Grafana/Sentry/CloudWatch). Triages → collects evidence (traces, spans, logs, stack frames) → locates code and identifies root cause with explicit confidence levels → hands over to `solution-engineer` with a complete package. **ALWAYS stops** when the plan is ready. Ends with ASD-STE100 summary: problem, evidence, root cause, next steps. |
 | `test-engineer` | no | Runs automated API/web tests against deployed environments (typically staging after PR merge). Writes test plans with explicit expected results, runs PR-focused tests first, then full E2E regression, measures performance KPIs (p50/p95/p99 latency, throughput, error rates), compares against previous version baselines. Produces structured test reports using `report-template.md`. **Never** modifies application code. |
 | `ui-ux-expert` | no | Senior UI/UX expert for progressive, fluent, mobile-first web design. Provides concrete design guidance (layout, hierarchy, typography, spacing, color, interaction states, WCAG accessibility, responsive behavior). Follows **shadcn** component model by default (Radix primitives, Tailwind, CSS variables). Builds working prototypes with production-like test data — never lorem ipsum. |
@@ -74,15 +74,17 @@ See [`personas/README.md`](personas/README.md) for full details.
 | --- | --- |
 | `domain-expert` | `ask-the-expert` skill (external, cached from GitHub via `ai/skills/ask-the-expert`) |
 | `code-reviewer` | `domain-expert` persona (Reviewer mode) |
-| `solution-engineer` | `domain-expert` persona (Consultant mode, twice) |
-| `software-engineer` | `code-reviewer` persona (review); references `expert-code-review` guidelines |
+| `solution-engineer` | `domain-expert` persona (Consultant, Step 4a) + `ui-ux-expert` persona (Step 4b, when frontend work exists) |
+| `software-engineer` | `code-reviewer` persona (final review, Step 4); `gh-stack` skill (EPIC branch stacking, Step 2b) |
 
 ### Persona-to-persona references
 
-| From | To |
-| --- | --- |
-| `support-engineer` | `solution-engineer` (handover in Phase 3) |
-| `software-engineer` | `code-reviewer` (review in Step 4) |
+| From | To | When |
+| --- | --- | --- |
+| `support-engineer` | `solution-engineer` | Phase 3 handover (plan only) |
+| `solution-engineer` | `domain-expert` | Step 4a — plan review (Consultant mode) |
+| `solution-engineer` | `ui-ux-expert` | Step 4b — UI/UX review (only if frontend work in plan) |
+| `software-engineer` | `code-reviewer` | Step 4 — final review on leaf PR or top of EPIC stack |
 
 ---
 
@@ -92,19 +94,14 @@ The following skills are **not included** in this repo but may be required by wo
 
 | Skill | Description | Source |
 | --- | --- | --- |
-| `gh-stack` | Manage stacked branches and pull requests with the gh-stack GitHub CLI extension. | [github/gh-stack](https://github.com/github/gh-stack) |
-| `grilling` | Grill the user relentlessly about a plan, decision, or idea. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) |
-| `grill-me` | A relentless interview to sharpen a plan or design. (Wrapper around `grilling`.) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me) |
-| `domain-modeling` | Build and sharpen a project's domain model, `GLOSSARY.md`, and ADRs. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling) |
+| `gh-stack` | Manage stacked branches and pull requests with the gh-stack GitHub CLI extension. Used by `software-engineer` for EPIC branch stacking. | [github/gh-stack](https://github.com/github/gh-stack) |
 | `ponytail` | Lazy senior dev mode: the smallest change that fully solves the task. | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) |
-| `research` | Investigate a question against high-trust primary sources and capture findings as a Markdown file. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/research) |
 
 ### Optional external skills
 
 | Skill | Description | Source |
 | --- | --- | --- |
 | `convert-documents-to-markdown` | Convert Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV, and PDF files to GitHub-Flavored Markdown. | [firecrawl/anydoc](https://github.com/firecrawl/anydoc/tree/main/skills/convert-documents-to-markdown) |
-| `writing-for-agents` | Writing documents for agents. Use when creating or editing skills, AGENTS.md, or CLAUDE.md. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-for-agents) |
 
 #### Install external skills
 
@@ -113,15 +110,6 @@ The following skills are **not included** in this repo but may be required by wo
 ```sh
 gh extension install github/gh-stack
 gh skill install github/gh-stack
-```
-
-**mattpocock/skills**:
-
-```sh
-npx skills@latest add mattpocock/skills
-# or individually:
-gh skill install mattpocock/skills research
-gh skill install mattpocock/skills grilling
 ```
 
 **firecrawl/anydoc** (optional):
