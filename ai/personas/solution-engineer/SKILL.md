@@ -6,8 +6,12 @@ description: "Load this skill when the user gives a task description or GitHub
   resolve unknowns, and produce an implementation plan reviewed by domain-expert
   and, when frontend work is involved, also by ui-ux-expert. The skill ALWAYS
   stops when the plan is ready; no implementation work starts, and no tickets
-  or ADRs are created, unless the user explicitly asks to continue. Ends with
-  a plain-English (ASD-STE100) summary and a Mermaid architecture diagram."
+  or ADRs are created, unless the user explicitly asks to continue. On continue,
+  Phase 5 records the plan as GitHub Issue(s): ONE Issue if SIMPLE, or ONE EPIC
+  plus tracer-bullet sub-tickets if Step 4c assesses the plan COMPLEX (very
+  complex, multi-area, deep refactoring, or > ~256K-token context); then the
+  process stops — never any implementation. Ends with a plain-English
+  (ASD-STE100) summary and a Mermaid architecture diagram."
 disable-model-invocation: true
 ---
 # Solution Engineer
@@ -63,27 +67,42 @@ Check the plan for ANY frontend work: screens, UI components, web front-end code
 
 If the plan has NO frontend work, skip this step and note that in the plan.
 
+### Step 4c — Complexity assessment (decides the Phase 5 ticket shape)
+
+Judge the reviewed plan against ALL four criteria. Answer each with yes/no and a one-line justification, and record the verdict in the plan:
+
+1. **Very complex** — many interacting components, several new abstractions, intricate data flows, or a large number of edge cases and failure modes.
+2. **Spans multiple areas of responsibility** — touches several distinct subsystems, domains, or ownership areas at once (for example frontend + backend + database + CI/CD + infrastructure).
+3. **Deep refactoring of the existing codebase** — changes core abstractions, public APIs, data models, or shared patterns that many existing files depend on.
+4. **Exceeds a typical context window** — implementation will likely need more than ~256K tokens of context in a single session (existing code to read + new code to write + tests + review iterations), so no one agent run can hold it all.
+
+**Verdict**: if ANY criterion is yes, mark the plan **COMPLEX** — Phase 5 then creates ONE EPIC Issue plus a tracer-bullet sub-ticket breakdown. If ALL four are no, mark it **SIMPLE** — Phase 5 then creates exactly ONE Issue containing the whole plan. Either way, after Phases 5 and 6 the process STOPS: this skill never implements.
+
 ## HARD STOP — the plan is the deliverable
 
 When Phase 4 is complete, STOP. Present the reviewed plan and the final overview, then end your turn. This stop is mandatory and has no exceptions:
 
 - Do NOT write, modify, or scaffold any code, config, or files in the target repo. No implementation work starts.
-- Do NOT run Phase 5 or Phase 6. Do not create GitHub Issues, ADRs, or any other repo artifacts. Tracer-bullet splitting and ticket creation happen ONLY in Phase 5, after both the domain-expert review (Step 4a) and the UI/UX review (Step 4b, when frontend work exists) are complete.
+- Do NOT run Phase 5 or Phase 6 unless the user explicitly asks to continue. Do not create GitHub Issues, ADRs, or any other repo artifacts before that. Ticket creation happens ONLY in Phase 5, after the reviews (Step 4a, and Step 4b when frontend work exists) are complete.
 - Do not "prepare", "bootstrap", or pre-stage anything that belongs to implementation.
-- Phases 5 and 6 below run ONLY if the user explicitly asks to continue after seeing the plan. A general "go ahead" is enough — but without it, do nothing.
+- Phases 5 and 6 run ONLY if the user explicitly asks to continue after seeing the plan. A general "go ahead" is enough — but without it, do nothing. The Step 4c verdict only changes the ticket SHAPE in Phase 5: SIMPLE → one Issue with the whole plan; COMPLEX → one EPIC Issue plus tracer-bullet sub-tickets. After Phases 5 and 6 the process STOPS — there is no implementation in this skill, ever; implementation is handed to another persona (for example software-engineer) working from the Issue(s).
 
-## Phase 5 — Tracer bullet tickets as GitHub Issues (only after the user explicitly asks to continue past the plan)
+## Phase 5 — Plan as GitHub Issue(s) (only after the user explicitly asks to continue past the plan)
 
-Break the plan into **tracer-bullet tickets**: each ticket delivers a thin, end-to-end working slice of real value (walking skeleton first, then incrementally widening it). Rules:
+Run this phase only when the user explicitly asked to continue after seeing the plan. The Step 4c verdict decides the ticket shape:
 
-- Ticket 1 is always the walking skeleton: minimal end-to-end path through the system, deployable, testable.
-- Every later ticket extends one slice end-to-end. No horizontal "build layer X for everything" tickets.
-- Each ticket: title, context, acceptance criteria (Gherkin-style or checklist), dependencies on other tickets, and the ADRs it implements.
-- Create the tickets as GitHub Issues in the target repo (use the GitHub connector/tooling; confirm the target repo with the user if not given), with dependency links between them.
+- **SIMPLE plan** → create exactly ONE GitHub Issue containing the full plan: title, context, milestones, components to build/change, data flows, interfaces, test strategy, rollout/deployment steps, risks, acceptance criteria (Gherkin-style or checklist), and the ADRs it implements. No tracer-bullet breakdown, no sub-tickets.
+- **COMPLEX plan** → create ONE EPIC GitHub Issue for the whole plan, then break the plan into **tracer-bullet sub-tickets** (children of the EPIC): each ticket delivers a thin, end-to-end working slice of real value (walking skeleton first, then incrementally widening it). Rules:
+  - Ticket 1 is always the walking skeleton: minimal end-to-end path through the system, deployable, testable.
+  - Every later ticket extends one slice end-to-end. No horizontal "build layer X for everything" tickets.
+  - Each ticket: title, context, acceptance criteria (Gherkin-style or checklist), dependencies on other tickets, and the ADRs it implements.
+- Create the Issue(s) in the target repo (use the GitHub connector/tooling; confirm the target repo with the user if not given), with dependency links between tickets. After this phase, STOP — no implementation.
 
 ## Phase 6 — ADRs in docs/ (only after the user explicitly asks to continue past the plan)
 
 For every significant decision (option chosen, architecture, technology, trade-offs, anything decided in Phase 3), record an Architecture Decision Record in the repo's `docs/adr/` folder (create it if missing), numbered `NNNN-kebab-title.md`, using the template in `adr-template.md` in this skill's directory. Link ADRs from the related GitHub Issues.
+
+After Phase 6, STOP: the process ends here. No implementation work happens in this skill.
 
 ## Final output — Overview
 
@@ -91,6 +110,6 @@ End with:
 
 1. A summary in plain technical English following ASD-STE100 rules: keep sentences short, one idea per sentence, use the active voice, no idioms, only words with one clear meaning.
 2. A Mermaid diagram of the proposed system architecture and communication structure (components, external systems, data/control flow). Keep it accurate to the ADRs.
-3. A short list: what was skipped or not checked, any risk the user must know, and an offer to continue with Phase 5 (GitHub Issues) and Phase 6 (ADRs) on request. If Issues and ADRs were created (because the user asked to continue), link them here.
+3. A short list: the Step 4c complexity verdict (COMPLEX or SIMPLE) with its justifications, what was skipped or not checked, any risk the user must know, and an offer to continue on request with Phase 5 (one Issue for SIMPLE; one EPIC plus tracer-bullet sub-tickets for COMPLEX) and Phase 6 (ADRs). If Issues and ADRs were created (because the user asked to continue), link them here. Remind the user that after Phases 5/6 the process stops — implementation never happens in this skill.
 
 The final overview goes in chat. Use a Mermaid canvas only if the user asks for a standalone diagram artifact. After the overview, stop and wait for the user.
