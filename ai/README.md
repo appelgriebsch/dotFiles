@@ -20,13 +20,13 @@ Agent skills are portable instructions invoked by name or automatically based on
 
 | Skill | Model-invocable | Description |
 | --- | --- | --- |
-| `ask-the-expert` | yes | Consult domain specialists in **Consultant** mode (ideation, brainstorming, troubleshooting, plan improvements) or **Reviewer** mode (explicit review of a PR, branch, repository, or snippet). Covers server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, and web UI/UX. Dispatches a general-purpose child per matched domain — see [Domain specialists](#domain-specialists). |
+| `ask-the-expert` | yes | Consult domain specialists in **Consultant** mode (ideation, brainstorming, troubleshooting, plan improvements) or **Reviewer** mode (explicit review of a PR, branch, repository, or snippet). Covers server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, and web UI/UX. Dispatches a general-purpose child per matched domain — see [Domain specialists](#domain-specialists). Target repos can add their own experts via `## Expert: <id>` sections in the root `AGENTS.md` and set the output wording via a root `GLOSSARY.md`. |
 | `query-postgres` | yes | Query Postgres. Use to query, inspect, analyze, run ad hoc SQL, or explore schema. Read-only by default; `--write` only after explicit confirmation. Uses `scripts/pg_query.sh` with per-environment credential files (`env.<environment>` in the skill directory). |
 | `test-containers` | yes | IT test containers. Use to start or stop the containers a project's integration tests need. Supports **docker**, **podman**, or the **macOS container CLI** (auto-detected via `scripts/detect_tool.sh`). Discovers the project's container setup from `AGENTS.md` → `*.instructions.md` → `README.md` → config files. |
 
 ### Domain specialists
 
-`ask-the-expert` dispatches a general-purpose child per matched domain. The child reads [`skills/ask-the-expert/references/modes.md`](skills/ask-the-expert/references/modes.md) and one file under [`skills/ask-the-expert/references/domains/`](skills/ask-the-expert/references/domains/).
+`ask-the-expert` dispatches a general-purpose child per matched domain — a table domain or a repo-defined expert. The child reads [`skills/ask-the-expert/references/modes.md`](skills/ask-the-expert/references/modes.md) and one domain definition: a file under [`skills/ask-the-expert/references/domains/`](skills/ask-the-expert/references/domains/), or the matching `## Expert: <id>` section of the target repo's root `AGENTS.md` (inline, or the file it links to).
 
 | Mode | When |
 | --- | --- |
@@ -48,6 +48,10 @@ Both modes apply [Ponytail](https://github.com/DietrichGebert/ponytail): the sma
 | `domains/swift.md` | Client- and server-side Swift, including desktop, mobile, web, WebAssembly, and CLI/TUI. |
 | `domains/web-frontend.md` | Client-side JavaScript/TypeScript, HTML/CSS, and current browser platform features such as WebGPU. |
 | `domains/ui-ux-design.md` | Progressive, fluent, mobile-first web UI/UX: design system, craft, and how a screen looks and flows. |
+
+#### Repo-defined experts and GLOSSARY.md
+
+A target repo declares its own experts in the root `AGENTS.md`, one `## Expert: <id>` section per expert. An optional `Signals:` line scopes when the expert dispatches; without it the expert always dispatches. An id that matches a table domain above overrides that domain's file for the run. When the screening corpus contains a technology no expert covers, the technology inventory ends with a hint that shows how to add the section. When the corpus root has a `GLOSSARY.md`, its terms are used verbatim in the inventory, the child prompts, and the synthesis.
 
 ---
 

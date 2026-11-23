@@ -1,10 +1,10 @@
 ---
 name: ask-the-expert
-description: Consult domain specialists. Use for Consultant work (ideation, brainstorming, troubleshooting, improvements to an implementation plan) or an explicit review of a pull request, branch, repository, or snippet, when that work touches server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, or web UI/UX — or whenever another skill needs specialist input.
+description: Consult domain specialists. Use for Consultant work (ideation, brainstorming, troubleshooting, improvements to an implementation plan) or an explicit review of a pull request, branch, repository, or snippet, when that work touches server-side JavaScript/TypeScript, CI/CD automation, observability, GIS, PostgreSQL, Python, Rust, Java with Spring Boot, Swift, web front-end, or web UI/UX — or whenever another skill needs specialist input. Target repos can also define their own experts in `## Expert: <id>` sections of the root AGENTS.md.
 argument-hint: "Describe the code, technology, design question, or problem you would like expert input on."
 ---
 
-Orchestrate specialist input: match every technology in the screening **corpus** to a table domain, dispatch all matches in parallel as general-purpose children, synthesize by mode. Domain judgment comes from those children. Ponytail, the modes, library research, and the bill of materials are defined in [`references/modes.md`](references/modes.md). Each child reads that file and exactly one file under [`references/domains/`](references/domains/). The domain file holds scenarios, idiom, and judgment.
+Orchestrate specialist input: match every technology in the screening **corpus** to a table domain or a repo-defined expert, dispatch all matches in parallel as general-purpose children, synthesize by mode. Domain judgment comes from those children. Ponytail, the modes, library research, and the bill of materials are defined in [`references/modes.md`](references/modes.md). Each child reads that file and exactly one domain definition: a file under [`references/domains/`](references/domains/) for a table domain, or the matching `## Expert: <id>` section of the corpus-root `AGENTS.md` for a repo-defined expert. The domain definition holds scenarios, idiom, and judgment.
 
 ## Available experts
 
@@ -22,7 +22,26 @@ Orchestrate specialist input: match every technology in the screening **corpus**
 | Client-side JavaScript/TypeScript, HTML/CSS, browser platform (WebGPU and the rest) | `web-frontend` | `**/*.{html,css,scss}`, client components, browser DOM or GPU API use |
 | Web UI/UX — screens, flows, design systems, how an interface looks and behaves | `ui-ux-design` | A screen, flow, design system, usability failure, or how an interface looks or behaves, in the consultation question, ticket, or draft plan. View, layout, or stylesheet paths in the corpus |
 
-Dispatch only table domains. Unmatched technologies in the corpus: record as *no expert available*.
+Dispatch table domains and repo-defined experts (next section). Unmatched technologies in the corpus: record as *no expert available* and print the no-expert hint (Step 2).
+
+## Repo-defined experts (root AGENTS.md)
+
+A target repo declares its own experts in the `AGENTS.md` at the screening-corpus root, one section per expert:
+
+```
+## Expert: <id>
+
+Signals: <optional detection signals, comma-separated>
+
+<body in the references/domains/ shape — persona line, Scenarios, Idiom, Judgment, bill-of-materials note — or a single markdown link to a definition file in the repo for larger instructions>
+```
+
+- Parse only the exact `## Expert: ` heading prefix in the corpus-root `AGENTS.md`, outside fenced code blocks. `*.instructions.md` stay constraint files.
+- `Signals:` is optional. When present, match the signals against the screening corpus like table rows. When absent, the expert always matches.
+- When the section body contains a markdown link to a file in the repo, read that file as the definition. Otherwise use the inline body.
+- An `<id>` equal to a table domain id overrides [`references/domains/<id>.md`](references/domains/) for that run. Record the override in the inventory.
+- Duplicate ids in one `AGENTS.md`: the last section wins. Record the conflict.
+- Keep sections compact: `AGENTS.md` loads in every agent session of the target repo. Offload long definitions through a link.
 
 ## Step 1 — Mode, corpus, revision
 
@@ -45,7 +64,9 @@ Pick one mode. **Reviewer** when the caller explicitly asks to review a pull req
 
 For an incident or trace, resolve the production revision **before** Step 2 from ticket text, comments, labels, fix versions, stack traces, deploy notes, and trace/telemetry tags (`version`, `git.commit.sha`, `git.repository_url`, image/tag, chart appVersion, release name, etc.). Prefer a **git tag** (or commit SHA mappable to a tag). Materialize that tree (worktree/checkout/export) as the screening corpus root and the child focus codebase. If signals conflict, pick the best-supported one and state the choice. If no version signal is found, fall back to the current workspace and record that assumption.
 
-**Done when:** mode, screening corpus, and revision (tag/SHA/`HEAD`/fallback) are recorded, incident version resolution is documented when the caller is troubleshooting, and all three will be passed into every child prompt.
+**Glossary.** Look for `GLOSSARY.md` at the screening-corpus root. When present, read it and record its path and terms. Use its terms verbatim in the routing artifact, every child prompt, and the synthesis. Do not invent synonyms for defined terms; when a needed term is missing, flag it and propose a definition. When absent, record `Glossary: absent` and continue with domain-definition wording.
+
+**Done when:** mode, screening corpus, revision (tag/SHA/`HEAD`/fallback), and glossary (path or absent) are recorded, incident version resolution is documented when the caller is troubleshooting, and all four will be passed into every child prompt.
 
 ## Step 2 — Technology inventory (routing only)
 
@@ -58,7 +79,7 @@ Legwork on the screening corpus, plus the consultation question, ticket, and dra
 3. **Named/snippet/design:** inspect only those materials; treat ticket text, stack traces, and design notes as additional signals when provided.
 4. **Consultation question, ticket, or draft plan:** apply this text to every row whose detection signals name it.
 
-Load `AGENTS.md` / `*.instructions.md` when present; pass constraints through to every child.
+Load `AGENTS.md` / `*.instructions.md` when present; pass constraints through to every child. Parse the corpus-root `AGENTS.md` for `## Expert: <id>` sections (see Repo-defined experts) and walk every repo-defined expert like a table row: matched per its `Signals:` (always when it has none), with any override of a table domain noted.
 
 Write the routing artifact:
 
@@ -66,18 +87,25 @@ Write the routing artifact:
 ### Technology inventory
 Screening corpus: [changeset | whole source | named paths/snippet] — [brief identifier]
 Codebase revision: [git tag | commit SHA | HEAD/current workspace] — [source of version signal, or "no signal; fallback to workspace"]
+Glossary: [GLOSSARY.md at corpus root | absent]
 
 For every Available experts row: Matched? yes/no — evidence (paths / signals in corpus).
+Repo-defined experts (root AGENTS.md):
+- <id> — Matched? yes/no — [overrides table domain <id> | new domain] — source: [inline section | link to <path>] — evidence
 Unmatched technologies in corpus (no expert): …
 ```
 
 Inventory is routing only: detection signals and evidence paths. Domain findings, recommendations, and answers wait for the children.
 
-**Done when:** every table row has yes/no with in-corpus evidence for each yes, unmatched non-table tech is listed, and the consultation answer has not been started.
+**No-expert hint.** At the end of the inventory, print one line per unmatched technology:
+
+> No expert available for `<technology>`. To add one, create an `## Expert: <id>` section in `AGENTS.md` at the repository root — inline, or linking a definition file in the repo for larger instructions.
+
+**Done when:** every table row and every repo-defined expert has yes/no with in-corpus evidence for each yes, unmatched non-table tech is listed with the no-expert hint, the glossary is recorded, and the consultation answer has not been started.
 
 ## Step 3 — Dispatch every match
 
-If inventory has zero `yes` rows: say no listed domain applies to the screening corpus and **stop**.
+If inventory has zero `yes` rows (no table domain and no repo-defined expert): say no expert applies to the screening corpus, print the no-expert hint for the unmatched technologies, and **stop**.
 
 Otherwise spawn **every** `yes` row **in parallel** (one turn when the runtime allows). Each spawn is a general-purpose child. The prompt selects the domain. Dispatch each matched domain, including signals that look minor, infra-only, or tests-only inside the corpus.
 
@@ -85,12 +113,13 @@ Each child prompt includes:
 
 - Consultation **mode** + the specific question
 - The instruction to follow `references/modes.md`
-- The instruction to read `references/domains/<id>.md` and apply that file's scenarios, idiom, and judgment
+- The instruction to read the domain definition — `references/domains/<id>.md` for a table domain, or the `## Expert: <id>` section of the corpus-root `AGENTS.md` (inline body, or the file it links to) for a repo-defined expert — and apply its scenarios, idiom, and judgment
 - **Focus material** (diff/changeset, files, design, logs the caller cares about)
 - **Screening corpus** (PR diff vs full tree vs named paths)
 - **Codebase revision** (tag/SHA/`HEAD`) and how it was chosen
 - Paths/content from **that revision** for layouts, configs, and related modules the child needs (excerpts and paths, not findings)
 - Architecture/runtime constraints and AGENTS/instructions excerpts
+- **Glossary** terms from the corpus-root `GLOSSARY.md` (or `none`), with the instruction to use them verbatim in the answer and to flag a needed-but-missing term with a proposed definition
 - Note that other children are running in parallel on sibling domains (cover cross-cutting concerns in your domain; drop pure duplicate work)
 - On **Reviewer**: "Return your bill-of-materials rows. The orchestrator stores the bill of materials."
 
@@ -98,13 +127,13 @@ Each child prompt includes:
 
 ## One domain
 
-Use this when a caller already names one domain and wants that child only. Skip Step 2. Spawn one general-purpose child with the Step 3 prompt for that domain id, mode, question, focus, and revision. A signal-gathering run adds: "Leave the bill of materials unwritten."
+Use this when a caller already names one domain and wants that child only. The domain id may be a table domain or a repo-defined `## Expert: <id>` id. Skip Step 2. Spawn one general-purpose child with the Step 3 prompt for that domain id, mode, question, focus, and revision. A signal-gathering run adds: "Leave the bill of materials unwritten."
 
 **Done when:** that single child has returned, or the invocation failure is reported.
 
 ## Step 4 — Synthesize
 
-Merge into one coherent answer. Lead with **Experts consulted** (domain ids + why, tied to corpus evidence). Resolve contradictions with explicit tradeoffs; drop pure redundancy. Keep the recommendation inside the smallest complete change [`references/modes.md`](references/modes.md) defines. For unmatched non-table tech, state that no specific expert exists.
+Merge into one coherent answer. Lead with **Experts consulted** (domain ids + why, tied to corpus evidence, + source: table file or root-AGENTS.md expert section). Resolve contradictions with explicit tradeoffs; drop pure redundancy. Keep the recommendation inside the smallest complete change [`references/modes.md`](references/modes.md) defines. For unmatched non-table tech, state that no specific expert exists and repeat the no-expert hint from Step 2.
 
 When any child leaves a library choice open, list the options and leave the choice to the user. When children recommend different libraries for the same job, present each option with the evidence that child cited and leave the choice to the user.
 
@@ -119,4 +148,4 @@ Merge the children's Ponytail closes into one close of one or two lines: what th
 
 Return only the consultation — no code writes or tickets unless explicitly asked. The Reviewer bill of materials is that ask: the synthesis includes its path.
 
-**Done when:** synthesized answer is returned, every matched domain's input is reflected (or failure called out), the Experts consulted list matches the inventory `yes` set, and the Ponytail close is present. On Reviewer, the bill of materials is stored and named in the synthesis, including critical updates and CVEs.
+**Done when:** synthesized answer is returned, every matched domain's input is reflected (or failure called out), the Experts consulted list matches the inventory `yes` set (table + repo-defined), and the Ponytail close is present. On Reviewer, the bill of materials is stored and named in the synthesis, including critical updates and CVEs.
