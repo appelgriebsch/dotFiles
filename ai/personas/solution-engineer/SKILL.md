@@ -34,7 +34,7 @@ Research the option space with web search where facts matter (library maturity, 
 
 ## Phase 2 — Architecture and technology selection
 
-Derive the system architecture and technology stack from the chosen option. Prefer boring, proven technology that the repo and team already use. For server-side JS/TS, CI/CD, GIS, PostgreSQL, Python, Rust, Java Spring Boot, Swift, web front-end, or UI/UX areas, load the `domain-expert` persona in Consultant mode and use it to pressure-test the architecture and technology choice. Incorporate its feedback before moving on.
+Derive the system architecture and technology stack from the chosen option. Prefer boring, proven technology that the repo and team already use. First read the target repo's root `AGENTS.md` when present — parse its `## Expert: <id>` sections (outside fenced code blocks), the repo-defined experts `ask-the-expert` dispatches like table domains — plus `*.instructions.md` constraints and `GLOSSARY.md`; use the glossary terms verbatim in the plan and the final overview. For server-side JS/TS, CI/CD, GIS, PostgreSQL, Python, Rust, Java Spring Boot, Swift, web front-end, or UI/UX areas, load the `domain-expert` persona in Consultant mode with the repo root as screening corpus and those excerpts as context, and use it to pressure-test the architecture and technology choice. Incorporate its feedback before moving on; record any no-expert hints it prints (they name the `## Expert:` section to add).
 
 ## Phase 3 — Resolve unknowns with the user (grilling)
 
@@ -55,7 +55,7 @@ Write a detailed implementation plan: milestones, components to build/change, da
 
 ### Step 4a — Domain expert review
 
-Load `domain-expert` in Consultant mode, have it review the plan, and refine the plan with its feedback. Record what changed because of the review.
+Load `domain-expert` in Consultant mode, pass it the full plan plus the repo context gathered in Phase 2 (corpus root, `AGENTS.md` excerpts with every `## Expert: <id>` section, `*.instructions.md`, `GLOSSARY.md` terms), have it review the plan, and refine the plan with its feedback. Record what changed because of the review, plus the Experts consulted list (domain ids with source: table domain file or repo-defined `## Expert:` section, and any overrides) and any no-expert hints.
 
 ### Step 4b — UI/UX review (only when frontend work is involved)
 
