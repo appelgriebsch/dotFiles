@@ -1,11 +1,107 @@
+applied_migrations = [
+    "bash_read_only_defaults_v1",
+]
+enabled_plugins = [
+    "vibe-security",
+]
+enable_telemetry = false
+
 active_model = "mistral-large-4"
 default_agent = "smart-approve"
-enable_telemetry = false
 vim_keybindings = true
 installed_agents = [
     "lean",
 ]
 theme = "mistral-light"
+
+[tools.connector_github_app_search_issues]
+permission = "always"
+
+[tools.bash]
+allowlist = [
+    "basename",
+    "cat",
+    "cd",
+    "comm",
+    "cut",
+    "date",
+    "diff",
+    "dirname",
+    "du",
+    "echo",
+    "file",
+    "find",
+    "fmt",
+    "fold",
+    "gh issue view",
+    "git branch -a",
+    "git diff",
+    "git log",
+    "git status",
+    "grep",
+    "head",
+    "join",
+    "less",
+    "ls",
+    "md5sum",
+    "more",
+    "nl",
+    "od",
+    "paste",
+    "pwd",
+    "readlink",
+    "sha1sum",
+    "sha256sum",
+    "shasum",
+    "sort",
+    "stat",
+    "sum",
+    "tac",
+    "tail",
+    "tr",
+    "tree",
+    "uname",
+    "uniq",
+    "wc",
+    "which",
+    "whoami",
+]
+
+[tools.connector_github_app_issue_read]
+permission = "always"
+
+[tools.connector_github_app_pull_request_read]
+permission = "always"
+
+[tools.connector_web_search_web_search]
+permission = "always"
+
+[tools.connector_web_search_open_url]
+permission = "always"
+
+[tools.connector_github_app_list_commits]
+permission = "always"
+
+[tools.connector_github_app_add_issue_comment]
+permission = "always"
+
+[tools.connector_github_app_issue_write]
+permission = "always"
+
+[tools.connector_github_app_pull_request_review_write]
+permission = "always"
+
+[tools.connector_github_app_add_comment_to_pending_review]
+permission = "always"
+
+[tools.connector_github_app_list_pull_requests]
+permission = "always"
+
+[tools.connector_github_app_create_pull_request]
+permission = "always"
+
+[tools.connector_github_app_get_file_contents]
+permission = "always"
 
 [[mcp_servers]]
 name = "crates-io"
